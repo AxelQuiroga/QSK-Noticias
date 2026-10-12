@@ -1,0 +1,125 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate, slugify } from '../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('news', ({ data }) => {
+    return import.meta.env.PROD ? data.status === 'published' : true;
+  });
+
+  return articles.map((article) => ({
+    params: { slug: article.data.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await render(article);
+const { data } = article;
+
+const sectionSlug = slugify(data.section);
+const municipalitySlug = slugify(data.municipality);
+---
+
+<BaseLayout
+  title={`${data.title} — SAQL Noticias`}
+  description={data.description}
+  canonical={`/noticias/${data.slug}/`}
+>
+  <article class="container-editorial py-10">
+    <nav aria-label="Miga de pan" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+        <li><a href="/" class="hover:text-text">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href={`/secciones/${sectionSlug}/`} class="hover:text-text">{data.section}</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">{data.municipality}</a></li>
+      </ol>
+    </nav>
+
+    <header class="mx-auto max-w-3xl">
+      <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+        <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
+          {data.section}
+        </a>
+        <span aria-hidden="true">·</span>
+        <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
+          {data.municipality}
+        </a>
+      </div>
+
+      <h1 class="mt-3 font-heading text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+        {data.title}
+      </h1>
+
+      <p class="mt-4 text-lg text-text-secondary">
+        {data.description}
+      </p>
+
+      <div class="mt-4 flex flex-wrap items-center gap-3 text-sm text-text-secondary">
+        <span>Por <strong class="font-medium text-text">{data.author}</strong></span>
+        <span aria-hidden="true">·</span>
+        <time datetime={data.publishedAt.toISOString()}>
+          {formatDate(data.publishedAt)}
+        </time>
+        {data.updatedAt && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>Actualizado: <time datetime={data.updatedAt.toISOString()}>{formatDate(data.updatedAt)}</time></span>
+          </>
+        )}
+      </div>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl">
+      <div class="prose-content text-base leading-relaxed text-text">
+        <Content />
+      </div>
+
+      {data.sources.length > 0 && (
+        <footer class="mt-10 border-t border-border pt-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+            Fuentes
+          </h2>
+          <ul class="mt-3 space-y-2">
+            {data.sources.map((source) => (
+              <li>
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm text-accent underline-offset-4 hover:underline"
+                >
+                  {source.name}
+                </a>
+                {source.description && (
+                  <span class="text-sm text-text-secondary"> — {source.description}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </footer>
+      )}
+
+      <nav class="mt-10" aria-label="Volver">
+        <a href="/" class="link-accent text-sm font-medium">
+          &larr; Volver a la portada
+        </a>
+      </nav>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: data.title,
+    description: data.description,
+    datePublished: data.publishedAt.toISOString(),
+    dateModified: (data.updatedAt ?? data.publishedAt).toISOString(),
+    author: { '@type': 'Organization', name: data.author },
+    publisher: { '@type': 'Organization', name: 'SAQL Noticias' },
+    articleSection: data.section,
+    contentLocation: { '@type': 'Place', name: data.municipality },
+  })} />
+</BaseLayout>

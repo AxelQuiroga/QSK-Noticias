@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPublishedArticles, slugify } from '../lib/articles';
+
+const articles = await getPublishedArticles();
+---
+
+<BaseLayout
+  title="Buscar — SAQL Noticias"
+  description="Búsqueda de noticias en SAQL Noticias."
+>
+  <div class="container-editorial py-10">
+    <header>
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+        Buscar
+      </h1>
+    </header>
+
+    <div class="mt-6">
+      <label for="search-input" class="sr-only">
+        Buscar noticias
+      </label>
+      <input
+        type="search"
+        id="search-input"
+        name="q"
+        placeholder="Escribí tu búsqueda…"
+        class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text placeholder:text-text-secondary focus:border-accent focus:outline-none"
+        autocomplete="off"
+      />
+    </div>
+
+    <div id="search-results" class="mt-8" aria-live="polite">
+      <p id="search-placeholder" class="text-text-secondary">
+        Escribí un término para buscar entre los artículos publicados.
+      </p>
+      <p id="search-empty" class="hidden text-text-secondary">
+        No se encontraron resultados para tu búsqueda.
+      </p>
+      <ul id="search-list" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {articles.map((article) => {
+          const data = article.data;
+          const sectionSlug = slugify(data.section);
+          const municipalitySlug = slugify(data.municipality);
+          const searchText = `${data.title} ${data.description} ${data.section} ${data.municipality}`.toLowerCase();
+          return (
+            <li class="card" data-search={searchText}>
+              <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
+                <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
+                  {data.section}
+                </a>
+                <span aria-hidden="true">·</span>
+                <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
+                  {data.municipality}
+                </a>
+              </div>
+              <h3 class="mt-2 text-lg font-bold tracking-tight text-text">
+                <a href={`/noticias/${data.slug}/`} class="hover:underline">
+                  {data.title}
+                </a>
+              </h3>
+              <p class="mt-2 text-sm text-text-secondary">{data.description}</p>
+              <p class="mt-3 text-xs text-text-secondary">
+                <time datetime={data.publishedAt.toISOString()}>
+                  {data.publishedAt.toLocaleDateString('es-AR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                  })}
+                </time>
+              </p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const input = document.getElementById('search-input') as HTMLInputElement;
+    const placeholder = document.getElementById('search-placeholder') as HTMLParagraphElement;
+    const emptyMsg = document.getElementById('search-empty') as HTMLParagraphElement;
+    const list = document.getElementById('search-list') as HTMLUListElement;
+    const items = Array.from(list.querySelectorAll('li'));
+
+    function search(query: string) {
+      const q = query.trim().toLowerCase();
+      if (!q) {
+        placeholder.classList.remove('hidden');
+        emptyMsg.classList.add('hidden');
+        items.forEach((item) => item.classList.remove('hidden'));
+        return;
+      }
+
+      placeholder.classList.add('hidden');
+      const terms = q.split(/\s+/);
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const text = (item.getAttribute('data-search') || '').toLowerCase();
+        const matches = terms.every((term) => text.includes(term));
+        item.classList.toggle('hidden', !matches);
+        if (matches) visibleCount++;
+      });
+
+      emptyMsg.classList.toggle('hidden', visibleCount > 0);
+    }
+
+    if (input) {
+      input.addEventListener('input', (e) => {
+        search((e.target as HTMLInputElement).value);
+      });
+    }
+  </script>
+</BaseLayout>

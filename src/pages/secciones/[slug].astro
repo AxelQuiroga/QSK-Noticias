@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { slugify } from '../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('news');
+  const sections = new Set(articles.map((a) => a.data.section));
+  return Array.from(sections).map((section) => ({
+    params: { slug: slugify(section) },
+    props: { section },
+  }));
+}
+
+const { section } = Astro.props;
+const articles = await getCollection('news', ({ data }) => {
+  const matches = data.section === section;
+  return import.meta.env.PROD ? matches && data.status === 'published' : matches;
+});
+const sorted = articles.sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+---
+
+<BaseLayout
+  title={`${section} — SAQL Noticias`}
+  description={`Noticias de la sección ${section} en Zona Sur del conurbano bonaerense.`}
+>
+  <div class="container-editorial py-10">
+    <header>
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+        {section}
+      </h1>
+      <p class="mt-2 text-text-secondary">
+        {sorted.length} {sorted.length === 1 ? 'artículo' : 'artículos'} en esta sección.
+      </p>
+    </header>
+
+    {sorted.length > 0 ? (
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {sorted.map((article) => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    ) : (
+      <p class="mt-8 text-text-secondary">
+        No hay artículos publicados en esta sección todavía.
+      </p>
+    )}
+  </div>
+</BaseLayout>

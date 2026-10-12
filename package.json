@@ -1,0 +1,35 @@
+{
+  "name": "saql-noticias",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SAQL Noticias — Medio digital independiente de Zona Sur, Buenos Aires",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "prebuild": "node scripts/generate-search.mjs",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:install": "playwright install chromium",
+    "typecheck": "astro check",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "astro": "7.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "4.13.0",
+    "@fontsource/inter": "^5.2.5",
+    "@fontsource/manrope": "^5.2.5",
+    "@playwright/test": "1.64.0",
+    "@tailwindcss/vite": "4.3.3",
+    "gray-matter": "^4.0.3",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5.9.3",
+    "vitest": "5.0.3"
+  }
+}

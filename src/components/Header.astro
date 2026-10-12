@@ -1,0 +1,93 @@
+---
+import { getSections } from '../lib/articles';
+import { slugify } from '../lib/utils';
+
+const sections = await getSections();
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur">
+  <div class="container-editorial">
+    <div class="flex h-16 items-center justify-between">
+      <a href="/" class="flex items-baseline gap-2" aria-label="SAQL Noticias - Inicio">
+        <span class="font-heading text-2xl font-extrabold tracking-tight text-text">
+          SAQL
+        </span>
+        <span class="hidden text-sm font-medium text-text-secondary sm:inline">
+          NOTICIAS
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-6 md:flex" aria-label="Navegación principal">
+        {sections.map((section) => (
+          <a
+            href={`/secciones/${slugify(section)}/`}
+            class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
+          >
+            {section}
+          </a>
+        ))}
+        <a
+          href="/buscar/"
+          class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
+        >
+          Buscar
+        </a>
+      </nav>
+
+      <button
+        id="menu-toggle"
+        class="inline-flex items-center justify-center rounded-md p-2 text-text-secondary hover:bg-surface hover:text-text md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú de navegación"
+      >
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    class="hidden border-t border-border md:hidden"
+    aria-label="Navegación móvil"
+  >
+    <div class="container-editorial py-4">
+      <ul class="flex flex-col gap-3">
+        {sections.map((section) => (
+          <li>
+            <a
+              href={`/secciones/${slugify(section)}/`}
+              class="block text-base font-medium text-text-secondary hover:text-text"
+            >
+              {section}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/buscar/"
+            class="block text-base font-medium text-text-secondary hover:text-text"
+          >
+            Buscar
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación');
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

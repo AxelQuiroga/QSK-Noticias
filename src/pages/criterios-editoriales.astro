@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Criterios editoriales — SAQL Noticias"
+  description="Criterios editoriales de SAQL Noticias."
+>
+  <div class="container-editorial py-10">
+    <article class="mx-auto max-w-3xl">
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+        Criterios editoriales
+      </h1>
+
+      <div class="prose-content mt-6 space-y-4 text-text">
+        <p>
+          SAQL Noticias se compromete a publicar información verificada, contextualizada y relevante para la comunidad de Zona Sur.
+        </p>
+        <p>
+          Los artículos publicados pasan por un proceso de revisión humana antes de su publicación. La aprobación editorial es una acción humana y no se automatiza.
+        </p>
+        <p>
+          Los borradores y artículos en revisión no se publican. Solo los artículos con estado <code>published</code> son visibles en el sitio.
+        </p>
+        <p>
+          Las fuentes consultadas se declaran en cada artículo. La presencia de fuentes no implica automáticamente que un artículo sea verificado.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

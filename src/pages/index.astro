@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import {
+  getFeaturedArticle,
+  getLatestArticles,
+  getMunicipalities,
+  getSections,
+} from '../lib/articles';
+import { slugify } from '../lib/utils';
+
+const featured = await getFeaturedArticle();
+const latest = await getLatestArticles(6);
+const municipalities = await getMunicipalities();
+const sections = await getSections();
+---
+
+<BaseLayout
+  title="SAQL Noticias — Zona Sur, Buenos Aires"
+  description="Medio digital independiente con cobertura de actualidad en Zona Sur del conurbano bonaerense."
+>
+  <div class="container-editorial py-10">
+    <div class="grid gap-8 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        {featured && (
+          <section aria-labelledby="featured-heading">
+            <h1 id="featured-heading" class="sr-only">Noticia principal</h1>
+            <ArticleCard article={featured} variant="featured" />
+          </section>
+        )}
+
+        <section class="mt-10" aria-labelledby="latest-heading">
+          <h2 id="latest-heading" class="section-title">Últimas noticias</h2>
+          <div class="mt-4 grid gap-4 sm:grid-cols-2">
+            {latest.map((article) => (
+              <ArticleCard article={article} />
+            ))}
+          </div>
+        </section>
+      </div>
+
+      <aside class="space-y-8">
+        <section aria-labelledby="sections-heading">
+          <h2 id="sections-heading" class="section-title">Secciones</h2>
+          <ul class="mt-4 space-y-2">
+            {sections.map((section) => (
+              <li>
+                <a
+                  href={`/secciones/${slugify(section)}/`}
+                  class="block rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-accent hover:text-text"
+                >
+                  {section}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section aria-labelledby="municipalities-heading">
+          <h2 id="municipalities-heading" class="section-title">Municipios</h2>
+          <ul class="mt-4 space-y-2">
+            {municipalities.map((municipality) => (
+              <li>
+                <a
+                  href={`/municipios/${slugify(municipality)}/`}
+                  class="block rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-accent hover:text-text"
+                >
+                  {municipality}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </div>
+</BaseLayout>

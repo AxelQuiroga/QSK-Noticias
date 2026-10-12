@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-bg: #10151d;
+  --color-surface: #1a2230;
+  --color-text: #f4f6f8;
+  --color-text-secondary: #a9b4c3;
+  --color-accent: #d94841;
+  --color-border: #303946;
+  --color-info: #4a9eff;
+
+  --font-heading: 'Manrope', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-body antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-text;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-editorial {
+    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply rounded-lg border border-border bg-surface p-5;
+  }
+
+  .section-title {
+    @apply font-heading text-xl font-bold tracking-tight;
+  }
+
+  .meta-text {
+    @apply text-sm text-text-secondary;
+  }
+
+  .link-accent {
+    @apply text-accent underline-offset-4 hover:underline;
+  }
+}
