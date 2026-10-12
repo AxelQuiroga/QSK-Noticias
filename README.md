@@ -79,8 +79,7 @@ slug: 'titulo-del-articulo'
 section: 'Sección'
 municipality: 'Municipio'
 author: 'Autor o redacción'
-publishedAt: 2026-10-10
-status: 'published'  # draft | review | published
+status: 'review'  # draft | review | published
 featured: false
 sources: []
 ---
@@ -89,6 +88,16 @@ Contenido del artículo en Markdown.
 ```
 
 3. Solo los artículos con `status: 'published'` aparecen en producción
+
+## Flujo editorial
+
+1. **Crear**: escribí el artículo con `status: 'draft'` o `status: 'review'`
+2. **Revisar**: control editorial humano del contenido
+3. **Publicar**: cambiá a `status: 'published'` y ejecutá `npm run build`
+   - El script `publish.mjs` asigna `publishedAt` automáticamente (solo la primera vez)
+   - Si el artículo ya tiene `publishedAt`, no se modifica
+4. **Actualizar**: para actualizaciones sustanciales, agregá `updatedAt` manualmente
+   - La fecha original de publicación se conserva siempre
 
 ## Cómo cambiar el artículo destacado
 

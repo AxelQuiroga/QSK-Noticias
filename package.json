@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "prebuild": "node scripts/generate-search.mjs",
+    "prebuild": "node scripts/publish.mjs && node scripts/generate-search.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run",
