@@ -30,7 +30,6 @@ npm run typecheck # Verificación de tipos
 - Solo artículos con `status: 'published'` aparecen en producción
 - Los slugs deben ser URL-friendly (minúsculas, guiones, sin acentos)
 - Usar `slugify()` de `src/lib/utils.ts` para generar slugs consistentes
-- El contenido de demostración es ficticio y no debe publicarse como real
 
 ## Tests
 

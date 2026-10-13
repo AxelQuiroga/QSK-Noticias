@@ -124,11 +124,6 @@ Contenido del artículo en Markdown.
 4. Configurá: Build command `npx astro build`, Output directory `dist`
 5. El subdominio gratuito `*.pages.dev` se asigna automáticamente
 
-## Contenido de demostración
-
-Todos los artículos incluidos son ficticios. No representan hechos reales.
-Antes del lanzamiento público, reemplazar por contenido real que cumpla el contrato editorial.
-
 ## Licencia
 
 Proyecto privado.

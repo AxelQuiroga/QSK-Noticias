@@ -1,0 +1,16 @@
+---
+interface Props {
+  variant?: 'header' | 'footer';
+}
+
+const { variant = 'header' } = Astro.props;
+
+const sizes: Record<'header' | 'footer', string> = {
+  header: 'h-10',
+  footer: 'h-7',
+};
+---
+
+<a href="/" aria-label="QSK Noticias — Inicio" class="inline-flex items-center">
+  <img src="/logo.svg" alt="QSK Noticias" class={`block w-auto ${sizes[variant]}`} />
+</a>

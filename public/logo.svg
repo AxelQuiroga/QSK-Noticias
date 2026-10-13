@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">QSK Noticias</title>
+  <desc id="desc">Logotipo moderno para un medio de noticias, con símbolo de transmisión en rojo y azul marino.</desc>
+  <rect width="1200" height="360" rx="28" fill="#FFFFFF"/>
+  <g transform="translate(54 48)">
+    <rect x="0" y="0" width="264" height="264" rx="42" fill="#10243A"/>
+    <circle cx="132" cy="132" r="78" fill="none" stroke="#FFFFFF" stroke-width="15"/>
+    <path d="M132 54 A78 78 0 0 1 210 132" fill="none" stroke="#E53935" stroke-width="17" stroke-linecap="round"/>
+    <path d="M132 88 A44 44 0 0 1 176 132" fill="none" stroke="#E53935" stroke-width="13" stroke-linecap="round"/>
+    <circle cx="132" cy="132" r="13" fill="#E53935"/>
+    <path d="M166 166 L204 204" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="366" y="192" font-size="150" font-weight="800" letter-spacing="-5" fill="#10243A">QSK</text>
+    <rect x="370" y="218" width="118" height="8" rx="4" fill="#E53935"/>
+    <text x="510" y="253" font-size="58" font-weight="700" letter-spacing="8" fill="#10243A">NOTICIAS</text>
+    <text x="373" y="292" font-size="19" font-weight="600" letter-spacing="4" fill="#657487">INFORMACIÓN · ACTUALIDAD · VERDAD</text>
+  </g>
+</svg>

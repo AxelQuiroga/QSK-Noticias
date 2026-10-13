@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 264" role="img" aria-label="QSK Noticias">
+  <title>QSK Noticias</title>
+  <rect width="264" height="264" rx="42" fill="#10243A"/>
+  <circle cx="132" cy="132" r="78" fill="none" stroke="#FFFFFF" stroke-width="15"/>
+  <path d="M132 54 A78 78 0 0 1 210 132" fill="none" stroke="#E53935" stroke-width="17" stroke-linecap="round"/>
+  <path d="M132 88 A44 44 0 0 1 176 132" fill="none" stroke="#E53935" stroke-width="13" stroke-linecap="round"/>
+  <circle cx="132" cy="132" r="13" fill="#E53935"/>
+  <path d="M166 166 L204 204" stroke="#FFFFFF" stroke-width="15" stroke-linecap="round"/>
+</svg>

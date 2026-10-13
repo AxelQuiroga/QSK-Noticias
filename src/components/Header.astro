@@ -1,4 +1,5 @@
 ---
+import Logo from './Logo.astro';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
 import { getChildLocations, getLocationsByType, locationSlug } from '../data/locations';
@@ -17,14 +18,7 @@ const regiones = getLocationsByType('region');
 <header class="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur">
   <div class="container-editorial">
     <div class="flex h-16 items-center justify-between">
-      <a href="/" class="flex items-baseline gap-2" aria-label="QSK Noticias - Inicio">
-        <span class="font-heading text-2xl font-extrabold tracking-tight text-text">
-          QSK
-        </span>
-        <span class="hidden text-sm font-medium text-text-secondary sm:inline">
-          NOTICIAS
-        </span>
-      </a>
+      <Logo variant="header" />
 
       <nav class="hidden items-center gap-6 lg:flex" aria-label="Navegación principal">
         {sections.map((section) => (
