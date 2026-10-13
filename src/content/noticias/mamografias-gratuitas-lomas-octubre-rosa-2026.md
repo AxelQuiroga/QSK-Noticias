@@ -6,7 +6,7 @@ section: "Salud"
 municipality: "Lomas de Zamora"
 region: "Zona Sur"
 scope: "local"
-author: "Redacción SAQL Noticias"
+author: "Redacción QSK Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
 featured: false

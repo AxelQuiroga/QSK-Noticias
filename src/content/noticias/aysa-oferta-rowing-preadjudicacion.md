@@ -6,7 +6,7 @@ section: "Economía"
 municipality: "AMBA"
 region: "AMBA"
 scope: "nacional"
-author: "Redacción SAQL Noticias"
+author: "Redacción QSK Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
 featured: false
@@ -61,4 +61,4 @@ La documentación pública consultada permite confirmar las ofertas económicas 
 
 También será necesario contrastar las obligaciones de inversión con el pliego y sus modificaciones, y comprobar qué metas y obras corresponden específicamente a los municipios de Zona Sur.
 
-SAQL Noticias seguirá el proceso a partir de la documentación oficial disponible y actualizará esta información cuando existan nuevos actos administrativos verificables.
+QSK Noticias seguirá el proceso a partir de la documentación oficial disponible y actualizará esta información cuando existan nuevos actos administrativos verificables.

@@ -1,4 +1,4 @@
-# SAQL Noticias — Guía para agentes
+# QSK Noticias — Guía para agentes
 
 ## Descripción
 

@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Portada', () => {
   test('carga correctamente con título y descripción', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/SAQL Noticias/);
+    await expect(page).toHaveTitle(/QSK Noticias/);
   });
 
   test('muestra la noticia principal destacada', async ({ page }) => {
@@ -30,9 +30,9 @@ test.describe('Portada', () => {
     await expect(page.locator('#municipalities-heading')).toBeVisible();
   });
 
-  test('el header tiene el logo SAQL', async ({ page }) => {
+  test('el header tiene el logo QSK', async ({ page }) => {
     await page.goto('/');
-    const logo = page.getByRole('link', { name: /SAQL Noticias.*Inicio/ });
+    const logo = page.getByRole('link', { name: /QSK Noticias.*Inicio/ });
     await expect(logo).toBeVisible();
   });
 

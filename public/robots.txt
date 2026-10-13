@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404
 
-Sitemap: https://saql-noticias.pages.dev/sitemap.xml
+Sitemap: https://qsk-noticias.pages.dev/sitemap.xml

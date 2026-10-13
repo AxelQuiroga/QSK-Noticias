@@ -6,7 +6,7 @@ section: "Actualidad"
 municipality: "Lanús"
 region: "Zona Sur"
 scope: "local"
-author: "SAQL Noticias"
+author: "QSK Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
 featured: false
@@ -25,7 +25,7 @@ sources:
     description: "Antecedente periodístico sobre la reapertura de las rampas en noviembre de 2021."
 ---
 
-El Municipio de Lanús comenzó una nueva etapa de obras en la estación ferroviaria para renovar la conexión peatonal entre Lanús Este y Lanús Oeste. Mientras avanzan los trabajos, la circulación por la rampa destinada a personas con discapacidad se encuentra interrumpida, según una observación directa compartida con SAQL Noticias.
+El Municipio de Lanús comenzó una nueva etapa de obras en la estación ferroviaria para renovar la conexión peatonal entre Lanús Este y Lanús Oeste. Mientras avanzan los trabajos, la circulación por la rampa destinada a personas con discapacidad se encuentra interrumpida, según una observación directa compartida con QSK Noticias.
 
 La información pública disponible detalla las características de la intervención, pero no permite establecer cuándo volverá a habilitarse el paso ni qué alternativa accesible está disponible durante las obras.
 
@@ -43,7 +43,7 @@ La nueva obra supone otra intervención sobre esa conexión. Sin embargo, la inf
 
 ## Qué se sabe sobre la circulación
 
-La observación directa recibida por SAQL Noticias indica que la circulación por la rampa está cortada. Este dato describe el estado reportado del acceso, pero no alcanza por sí solo para determinar si todos los cruces peatonales de la estación están afectados.
+La observación directa recibida por QSK Noticias indica que la circulación por la rampa está cortada. Este dato describe el estado reportado del acceso, pero no alcanza por sí solo para determinar si todos los cruces peatonales de la estación están afectados.
 
 Tampoco se encontró, entre las publicaciones consultadas, información precisa sobre un recorrido alternativo accesible o una fecha de habilitación.
 
@@ -53,4 +53,4 @@ Por ese motivo, quienes necesiten cruzar entre Lanús Este y Oeste y no puedan u
 
 La obra fue anunciada con el propósito de mejorar la accesibilidad de la estación. Mientras se ejecuta, quedan dos cuestiones prácticas sin aclarar en la información pública relevada: qué alternativa pueden utilizar las personas con movilidad reducida durante los trabajos y cuándo se habilitará nuevamente la conexión.
 
-SAQL Noticias continuará siguiendo las novedades publicadas sobre la intervención y las condiciones de circulación en el entorno de la estación.
+QSK Noticias continuará siguiendo las novedades publicadas sobre la intervención y las condiciones de circulación en el entorno de la estación.

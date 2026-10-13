@@ -23,7 +23,7 @@ const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
 ---
 
 <BaseLayout
-  title={`${data.title} — SAQL Noticias`}
+  title={`${data.title} — QSK Noticias`}
   description={data.description}
   canonical={`/noticias/${data.slug}/`}
 >
@@ -126,7 +126,7 @@ const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
     datePublished: data.publishedAt.toISOString(),
     dateModified: (data.updatedAt ?? data.publishedAt).toISOString(),
     author: { '@type': 'Organization', name: data.author },
-    publisher: { '@type': 'Organization', name: 'SAQL Noticias' },
+    publisher: { '@type': 'Organization', name: 'QSK Noticias' },
     articleSection: data.section,
     ...(data.municipality
       ? { contentLocation: { '@type': 'Place', name: data.municipality } }

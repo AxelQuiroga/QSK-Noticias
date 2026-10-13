@@ -6,7 +6,7 @@ section: "Salud"
 municipality: "Lanús"
 region: "Zona Sur"
 scope: "local"
-author: "Redacción SAQL Noticias"
+author: "Redacción QSK Noticias"
 publishedAt: "2026-10-13"
 status: "draft"
 featured: false
@@ -46,4 +46,4 @@ El Municipio informó que las jornadas se suspenderán en caso de lluvia. Por es
 
 El cronograma, las ubicaciones, los horarios y las prestaciones mencionadas se basan en la publicación de la Municipalidad de Lanús. La denominación oficial utilizada en esta nota es plaza Villa Obrera, también identificada en publicaciones locales como plaza Güemes de Villa Obrera.
 
-SAQL Noticias actualizará esta información si se comunica algún cambio en las jornadas.
+QSK Noticias actualizará esta información si se comunica algún cambio en las jornadas.

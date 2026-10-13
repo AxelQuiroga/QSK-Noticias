@@ -1,4 +1,4 @@
-# SAQL Noticias
+# QSK Noticias
 
 Medio digital independiente con cobertura de actualidad en Zona Sur del conurbano bonaerense.
 
@@ -112,7 +112,7 @@ Contenido del artículo en Markdown.
 
 ```json
 {
-  "name": "saql-noticias",
+  "name": "qsk-noticias",
   "compatibility_date": "2026-10-12",
   "assets": {
     "directory": "./dist"

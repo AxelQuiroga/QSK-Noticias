@@ -1,9 +1,9 @@
 {
-  "name": "saql-noticias",
+  "name": "qsk-noticias",
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "description": "SAQL Noticias — Medio digital independiente de Zona Sur, Buenos Aires",
+  "description": "QSK Noticias — Medio digital independiente de Zona Sur, Buenos Aires",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

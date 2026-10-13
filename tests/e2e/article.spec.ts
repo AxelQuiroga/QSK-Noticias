@@ -12,7 +12,7 @@ test.describe('Artículo', () => {
     const h1 = page.getByRole('heading', { level: 1 });
     await expect(h1).toBeVisible();
     await expect(h1).toContainText('Ejemplo de noticia');
-    await expect(page.getByText('Redacción SAQL')).toBeVisible();
+    await expect(page.getByText('Redacción QSK')).toBeVisible();
     const breadcrumb = page.getByRole('navigation', { name: 'Miga de pan' });
     await expect(breadcrumb.getByText('Tránsito')).toBeVisible();
     await expect(breadcrumb.getByText('Lomas de Zamora')).toBeVisible();

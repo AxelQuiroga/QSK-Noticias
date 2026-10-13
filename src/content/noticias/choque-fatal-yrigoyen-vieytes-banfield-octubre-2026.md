@@ -6,7 +6,7 @@ section: "Actualidad"
 municipality: "Lomas de Zamora"
 region: "Zona Sur"
 scope: "local"
-author: "SAQL Noticias"
+author: "QSK Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
 featured: false
@@ -57,4 +57,4 @@ La causa continúa siendo el ámbito en el que deben evaluarse las imágenes, la
 
 Hasta la información publicada el 4 de octubre, no se había confirmado una resolución judicial que modificara la calificación de la causa ni una nueva detención del conductor.
 
-SAQL Noticias seguirá las novedades que se publiquen sobre la investigación, distinguiendo los hechos informados, las afirmaciones atribuidas a las fuentes y las decisiones que efectivamente adopte la Justicia.
+QSK Noticias seguirá las novedades que se publiquen sobre la investigación, distinguiendo los hechos informados, las afirmaciones atribuidas a las fuentes y las decisiones que efectivamente adopte la Justicia.

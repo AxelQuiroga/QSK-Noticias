@@ -6,7 +6,7 @@ section: "Deportes"
 municipality: "Lomas de Zamora"
 region: "Zona Sur"
 scope: "local"
-author: "SAQL Noticias"
+author: "QSK Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
 featured: false

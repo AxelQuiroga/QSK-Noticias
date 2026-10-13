@@ -6,7 +6,7 @@ section: "Salud"
 municipality: "Lanús"
 region: "Zona Sur"
 scope: "local"
-author: "Redacción SAQL Noticias"
+author: "Redacción QSK Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
 featured: false
@@ -50,6 +50,6 @@ También será importante conocer qué mecanismos de seguimiento se utilizarán 
 
 La aprobación de la ordenanza establece un marco para organizar el sistema, pero no alcanza por sí sola para demostrar que los tiempos de respuesta hayan mejorado o que todos los recursos anunciados ya estén funcionando.
 
-SAQL Noticias continuará el seguimiento a partir de la documentación normativa y de las precisiones que brinde el Municipio sobre la implementación del sistema.
+QSK Noticias continuará el seguimiento a partir de la documentación normativa y de las precisiones que brinde el Municipio sobre la implementación del sistema.
 
 <!--publishedAt está puesto como 2026-10-13 a modo de fecha prevista para la publicación. Si finalmente se publica otro día, hay que sustituirla por la fecha real de primera publicación.-->

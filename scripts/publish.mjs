@@ -66,7 +66,7 @@ const published = results.filter((r) => r.action === 'published');
 const unchanged = results.filter((r) => r.action === 'unchanged');
 const skipped = results.filter((r) => r.action === 'skipped');
 
-console.log('=== SAQL Noticias — Script de publicación ===');
+console.log('=== QSK Noticias — Script de publicación ===');
 console.log(`Publicados por primera vez: ${published.length}`);
 published.forEach((r) => console.log(`  ✓ ${r.file} → ${r.publishedAt}`));
 console.log(`Sin cambios (ya publicados): ${unchanged.length}`);
