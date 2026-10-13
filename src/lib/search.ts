@@ -43,3 +43,15 @@ export function searchArticles(
     return q.split(/\s+/).every((term) => searchable.includes(term));
   });
 }
+
+/**
+ * Filtra artículos por municipio (el valor del frontmatter, que guarda el
+ * partido). Sin municipio seleccionado devuelve la lista completa.
+ */
+export function filterByMunicipality<T extends { data: { municipality?: string } }>(
+  articles: T[],
+  municipality: string | null,
+): T[] {
+  if (!municipality) return articles;
+  return articles.filter((article) => article.data.municipality === municipality);
+}

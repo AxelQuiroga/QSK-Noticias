@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getPublishedArticles, slugify } from '../lib/articles';
+import { getLocationsByType } from '../data/locations';
 
 const articles = await getPublishedArticles();
+const municipios = getLocationsByType('municipio');
 ---
 
 <BaseLayout
@@ -30,6 +32,21 @@ const articles = await getPublishedArticles();
       />
     </div>
 
+    <div class="mt-4">
+      <label for="filter-municipio" class="text-sm font-medium text-text-secondary">
+        Filtrar por municipio
+      </label>
+      <select
+        id="filter-municipio"
+        class="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-3 text-text focus:border-accent focus:outline-none"
+      >
+        <option value="">Todos los municipios</option>
+        {municipios.map((municipio) => (
+          <option value={municipio.name}>{municipio.name}</option>
+        ))}
+      </select>
+    </div>
+
     <div id="search-results" class="mt-8" aria-live="polite">
       <p id="search-placeholder" class="text-text-secondary">
         Escribí un término para buscar entre los artículos publicados.
@@ -44,7 +61,7 @@ const articles = await getPublishedArticles();
           const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
           const searchText = `${data.title} ${data.description} ${data.section} ${data.municipality ?? ''} ${data.region ?? ''}`.toLowerCase();
           return (
-            <li class="card" data-search={searchText}>
+            <li class="card" data-search={searchText} data-municipio={data.municipality ?? ''}>
               <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
                 <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
                   {data.section}
@@ -87,9 +104,13 @@ const articles = await getPublishedArticles();
     const list = document.getElementById('search-list') as HTMLUListElement;
     const items = Array.from(list.querySelectorAll('li'));
 
-    function search(query: string) {
-      const q = query.trim().toLowerCase();
-      if (!q) {
+    const municipioFilter = document.getElementById('filter-municipio') as HTMLSelectElement;
+
+    function applyFilters() {
+      const q = input.value.trim().toLowerCase();
+      const municipio = municipioFilter.value;
+
+      if (!q && !municipio) {
         placeholder.classList.remove('hidden');
         emptyMsg.classList.add('hidden');
         items.forEach((item) => item.classList.remove('hidden'));
@@ -97,23 +118,27 @@ const articles = await getPublishedArticles();
       }
 
       placeholder.classList.add('hidden');
-      const terms = q.split(/\s+/);
+      const terms = q ? q.split(/\s+/) : [];
       let visibleCount = 0;
 
       items.forEach((item) => {
         const text = (item.getAttribute('data-search') || '').toLowerCase();
-        const matches = terms.every((term) => text.includes(term));
-        item.classList.toggle('hidden', !matches);
-        if (matches) visibleCount++;
+        const itemMunicipio = item.getAttribute('data-municipio') || '';
+        const queryOk = terms.every((term) => text.includes(term));
+        const municipioOk = !municipio || itemMunicipio === municipio;
+
+        item.classList.toggle('hidden', !(queryOk && municipioOk));
+        if (queryOk && municipioOk) visibleCount++;
       });
 
       emptyMsg.classList.toggle('hidden', visibleCount > 0);
     }
 
     if (input) {
-      input.addEventListener('input', (e) => {
-        search((e.target as HTMLInputElement).value);
-      });
+      input.addEventListener('input', applyFilters);
+    }
+    if (municipioFilter) {
+      municipioFilter.addEventListener('change', applyFilters);
     }
   </script>
 </BaseLayout>

@@ -2,17 +2,8 @@
 import Logo from './Logo.astro';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
-import { getChildLocations, getLocationsByType, locationSlug } from '../data/locations';
 
 const sections = SECTIONS;
-
-/** Municipios con sus localidades hijas (relación territorial del catálogo). */
-const municipios = getLocationsByType('municipio').map((municipio) => ({
-  ...municipio,
-  localidades: getChildLocations(municipio.id),
-}));
-
-const regiones = getLocationsByType('region');
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur">
@@ -29,55 +20,7 @@ const regiones = getLocationsByType('region');
             {section}
           </a>
         ))}
-        <details class="group relative">
-          <summary class="list-none cursor-pointer text-sm font-medium text-text-secondary transition-colors hover:text-text [&::-webkit-details-marker]:hidden">
-            Municipios
-          </summary>
-          <ul class="absolute left-0 top-full z-50 mt-2 w-56 rounded-md border border-border bg-bg p-2 shadow-lg">
-            {municipios.map((municipio) => (
-              <li>
-                <a
-                  href={`/municipios/${locationSlug(municipio)}/`}
-                  class="block rounded px-3 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-surface hover:text-text"
-                >
-                  {municipio.name}
-                </a>
-                {municipio.localidades.length > 0 && (
-                  <ul class="mb-1 ml-3 border-l border-border pl-1">
-                    {municipio.localidades.map((localidad) => (
-                      <li>
-                        <a
-                          href={`/localidades/${locationSlug(localidad)}/`}
-                          class="block rounded px-3 py-1.5 text-sm text-text-secondary transition-colors hover:bg-surface hover:text-text"
-                        >
-                          {localidad.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </details>
-        <details class="group relative">
-          <summary class="list-none cursor-pointer text-sm font-medium text-text-secondary transition-colors hover:text-text [&::-webkit-details-marker]:hidden">
-            Regiones
-          </summary>
-          <ul class="absolute left-0 top-full z-50 mt-2 w-52 rounded-md border border-border bg-bg p-2 shadow-lg">
-            {regiones.map((location) => (
-              <li>
-                <a
-                  href={`/regiones/${locationSlug(location)}/`}
-                  class="block rounded px-3 py-2 text-sm font-medium text-text-secondary transition-colors hover:bg-surface hover:text-text"
-                >
-                  {location.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </details>
-        <a
+<a
           href="/buscar/"
           class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
         >
@@ -116,50 +59,6 @@ const regiones = getLocationsByType('region');
                   class="block text-base font-medium text-text-secondary hover:text-text"
                 >
                   {section}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wide text-text-secondary">Municipios</p>
-          <ul class="mt-2 flex flex-col gap-3">
-            {municipios.map((municipio) => (
-              <li>
-                <a
-                  href={`/municipios/${locationSlug(municipio)}/`}
-                  class="block text-base font-medium text-text-secondary hover:text-text"
-                >
-                  {municipio.name}
-                </a>
-                {municipio.localidades.length > 0 && (
-                  <ul class="mt-2 ml-3 flex flex-col gap-2 border-l border-border pl-3">
-                    {municipio.localidades.map((localidad) => (
-                      <li>
-                        <a
-                          href={`/localidades/${locationSlug(localidad)}/`}
-                          class="block text-sm text-text-secondary hover:text-text"
-                        >
-                          {localidad.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wide text-text-secondary">Regiones</p>
-          <ul class="mt-2 flex flex-col gap-3">
-            {regiones.map((location) => (
-              <li>
-                <a
-                  href={`/regiones/${locationSlug(location)}/`}
-                  class="block text-base font-medium text-text-secondary hover:text-text"
-                >
-                  {location.name}
                 </a>
               </li>
             ))}
