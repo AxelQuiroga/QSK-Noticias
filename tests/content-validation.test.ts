@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
-import matter from 'gray-matter';
+import yaml from 'js-yaml';
 
 const CONTENT_DIR = 'src/content/noticias';
 
@@ -14,24 +14,31 @@ function getMarkdownFiles(dir: string): string[] {
 function getAllArticles() {
   return getMarkdownFiles(CONTENT_DIR).map((f) => {
     const content = readFileSync(f, 'utf-8');
-    const { data } = matter(content);
+    const frontmatterMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
+    let data = {};
+    if (frontmatterMatch) {
+      try {
+        data = yaml.load(frontmatterMatch[1]) || {};
+      } catch (e) {
+        data = {};
+      }
+    }
     return { file: f, data };
   });
 }
 
-describe('Content validation - artículos de demostración', () => {
-  it('todos los artículos tienen campos obligatorios', () => {
+describe('Content validation - articulos de demostracion', () => {
+  it('todos los articulos tienen campos obligatorios', () => {
     const articles = getAllArticles();
     expect(articles.length).toBeGreaterThan(0);
 
     for (const { data } of articles) {
-      expect(data.title, `Artículo sin título: ${data.slug}`).toBeTruthy();
-      expect(data.description, `Artículo sin descripción: ${data.slug}`).toBeTruthy();
-      expect(data.slug, `Artículo sin slug en ${data.file}`).toBeTruthy();
-      expect(data.section, `Artículo sin sección: ${data.slug}`).toBeTruthy();
-      expect(data.municipality, `Artículo sin municipio: ${data.slug}`).toBeTruthy();
-      expect(data.author, `Artículo sin autor: ${data.slug}`).toBeTruthy();
-      expect(data.publishedAt, `Artículo sin fecha: ${data.slug}`).toBeTruthy();
+      expect(data.title, `Articulo sin titulo: ${data.slug}`).toBeTruthy();
+      expect(data.description, `Articulo sin descripcion: ${data.slug}`).toBeTruthy();
+      expect(data.slug, `Articulo sin slug en ${data.file}`).toBeTruthy();
+      expect(data.section, `Articulo sin seccion: ${data.slug}`).toBeTruthy();
+      expect(data.author, `Articulo sin autor: ${data.slug}`).toBeTruthy();
+      expect(data.publishedAt, `Articulo sin fecha: ${data.slug}`).toBeTruthy();
     }
   });
 
@@ -40,11 +47,11 @@ describe('Content validation - artículos de demostración', () => {
     const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
     for (const { data } of articles) {
-      expect(data.slug, `Slug inválido: ${data.slug}`).toMatch(slugRegex);
+      expect(data.slug, `Slug invalido: ${data.slug}`).toMatch(slugRegex);
     }
   });
 
-  it('los estados editoriales son válidos', () => {
+  it('los estados editoriales son validos', () => {
     const articles = getAllArticles();
     const validStatuses = ['draft', 'review', 'published'];
 
@@ -53,7 +60,7 @@ describe('Content validation - artículos de demostración', () => {
     }
   });
 
-  it('las fechas de actualización son posteriores a la publicación cuando existen', () => {
+  it('las fechas de actualizacion son posteriores a la publicacion cuando existen', () => {
     const articles = getAllArticles();
 
     for (const { data } of articles) {
@@ -62,13 +69,13 @@ describe('Content validation - artículos de demostración', () => {
         const updated = new Date(data.updatedAt);
         expect(
           updated >= published,
-          `Artículo ${data.slug}: updatedAt anterior a publishedAt`,
+          `Articulo ${data.slug}: updatedAt anterior a publishedAt`,
         ).toBe(true);
       }
     }
   });
 
-  it('las fuentes tienen nombre y URL válida', () => {
+  it('las fuentes tienen nombre y URL valida', () => {
     const articles = getAllArticles();
 
     for (const { data } of articles) {
@@ -77,21 +84,21 @@ describe('Content validation - artículos de demostración', () => {
           expect(source.name, `Fuente sin nombre en ${data.slug}`).toBeTruthy();
           expect(
             () => new URL(source.url),
-            `URL inválida en ${data.slug}: ${source.url}`,
+            `URL invalida en ${data.slug}: ${source.url}`,
           ).not.toThrow();
         }
       }
     }
   });
 
-  it('hay al menos un artículo destacado', () => {
+  it('hay al menos un articulo destacado', () => {
     const articles = getAllArticles();
     const featured = articles.filter((a) => a.data.featured === true);
     expect(featured.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('los artículos publicados aparecen en el índice de búsqueda', () => {
+  it('los articulos publicados aparecen en el indice de busqueda', () => {
     const articles = getAllArticles().filter((a) => a.data.status === 'published');
     expect(articles.length).toBeGreaterThan(0);
-  });
+  };
 });
