@@ -10,7 +10,7 @@ test.describe('Portada', () => {
     await page.goto('/');
     const featured = page.locator('article').first();
     await expect(featured).toBeVisible();
-    await expect(featured).toContainText(/tránsito/i);
+    await expect(featured.locator('h3 a')).toBeVisible();
   });
 
   test('muestra las últimas noticias', async ({ page }) => {
@@ -32,8 +32,9 @@ test.describe('Portada', () => {
 
   test('el header tiene el logo QSK', async ({ page }) => {
     await page.goto('/');
-    const logo = page.getByRole('link', { name: /QSK Noticias.*Inicio/ });
+    const logo = page.locator('header a[href="/"]');
     await expect(logo).toBeVisible();
+    await expect(logo).toHaveAttribute('aria-label', /QSK Noticias/i);
   });
 
   test('el footer tiene enlaces institucionales', async ({ page }) => {

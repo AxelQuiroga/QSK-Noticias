@@ -7,8 +7,8 @@ municipality: "AMBA"
 region: "AMBA"
 scope: "nacional"
 author: "Redacción QSK Noticias"
-publishedAt: "2026-10-12"
-status: "draft"
+publishedAt: "2026-10-13"
+status: "published"
 featured: false
 sources:
   - name: "Ministerio de Economía"

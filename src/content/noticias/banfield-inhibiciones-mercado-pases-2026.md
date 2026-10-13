@@ -7,8 +7,8 @@ municipality: "Lomas de Zamora"
 region: "Zona Sur"
 scope: "local"
 author: "QSK Noticias"
-publishedAt: "2026-10-12"
-status: "draft"
+publishedAt: "2026-10-13"
+status: "published"
 featured: false
 sources:
   - name: "Club Atlético Banfield — levantamiento de inhibiciones y cancelación de multas"

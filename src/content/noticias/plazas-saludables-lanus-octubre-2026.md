@@ -8,7 +8,7 @@ region: "Zona Sur"
 scope: "local"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-13"
-status: "draft"
+status: "published"
 featured: false
 sources:
   - name: "Municipalidad de Lanús"

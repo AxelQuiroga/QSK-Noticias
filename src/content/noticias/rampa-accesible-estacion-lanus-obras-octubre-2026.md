@@ -7,8 +7,8 @@ municipality: "Lanús"
 region: "Zona Sur"
 scope: "local"
 author: "QSK Noticias"
-publishedAt: "2026-10-12"
-status: "draft"
+publishedAt: "2026-10-13"
+status: "published"
 featured: false
 sources:
   - name: "Municipio de Lanús — Inició la segunda etapa de obras en la estación Lanús"
