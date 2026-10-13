@@ -4,19 +4,13 @@ import ArticleCard from '../components/ArticleCard.astro';
 import { getFeaturedArticle, getLatestArticles } from '../lib/articles';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
-import { getLocationById, getLocationsByType, locationSlug } from '../data/locations';
+import { getLocationsByType, locationSlug } from '../data/locations';
 
 const featured = await getFeaturedArticle();
 const latest = await getLatestArticles(6);
 const sections = SECTIONS;
 const municipios = getLocationsByType('municipio');
 const regiones = getLocationsByType('region');
-
-/** Localidades con su municipio padre (relación territorial del catálogo). */
-const localidades = getLocationsByType('localidad').map((localidad) => ({
-  ...localidad,
-  municipio: localidad.parentId ? getLocationById(localidad.parentId) : undefined,
-}));
 ---
 
 <BaseLayout
@@ -70,25 +64,6 @@ const localidades = getLocationsByType('localidad').map((localidad) => ({
                   class="block rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-accent hover:text-text"
                 >
                   {location.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="localities-heading">
-          <h2 id="localities-heading" class="section-title">Localidades</h2>
-          <ul class="mt-4 space-y-2">
-            {localidades.map((localidad) => (
-              <li>
-                <a
-                  href={`/localidades/${locationSlug(localidad)}/`}
-                  class="block rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-text-secondary transition-colors hover:border-accent hover:text-text"
-                >
-                  {localidad.name}
-                  {localidad.municipio && (
-                    <span class="font-normal"> · {localidad.municipio.name}</span>
-                  )}
                 </a>
               </li>
             ))}
