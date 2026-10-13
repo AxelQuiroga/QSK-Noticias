@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticlesByRegion } from '../../lib/articles';
+import { getLocationsByType, locationSlug } from '../../data/locations';
+
+export async function getStaticPaths() {
+  return getLocationsByType('region').map((location) => ({
+    params: { slug: locationSlug(location) },
+    props: { region: location.name },
+  }));
+}
+
+const { region } = Astro.props;
+const sorted = await getArticlesByRegion(region);
+---
+
+<BaseLayout
+  title={`${region} - SAQL Noticias`}
+  description={`Noticias de la región ${region} en Zona Sur del conurbano bonaerense.`}
+>
+  <div class="container-editorial py-10">
+    <header>
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+        {region}
+      </h1>
+      <p class="mt-2 text-text-secondary">
+        {sorted.length} {sorted.length === 1 ? 'artículo' : 'artículos'} de esta región.
+      </p>
+    </header>
+
+    {sorted.length > 0 ? (
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {sorted.map((article) => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    ) : (
+      <p class="mt-8 text-text-secondary">
+        No hay artículos publicados de esta región todavía.
+      </p>
+    )}
+  </div>
+</BaseLayout>

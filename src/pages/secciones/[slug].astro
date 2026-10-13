@@ -1,26 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { slugify } from '../../lib/articles';
+import { getArticlesBySection, slugify } from '../../lib/articles';
+import { SECTIONS } from '../../data/sections';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('news');
-  const sections = new Set(articles.map((a) => a.data.section));
-  return Array.from(sections).map((section) => ({
+  return SECTIONS.map((section) => ({
     params: { slug: slugify(section) },
     props: { section },
   }));
 }
 
 const { section } = Astro.props;
-const articles = await getCollection('news', ({ data }) => {
-  const matches = data.section === section;
-  return import.meta.env.PROD ? matches && data.status === 'published' : matches;
-});
-const sorted = articles.sort(
-  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
-);
+const sorted = await getArticlesBySection(section);
 ---
 
 <BaseLayout

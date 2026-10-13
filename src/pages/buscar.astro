@@ -41,18 +41,22 @@ const articles = await getPublishedArticles();
         {articles.map((article) => {
           const data = article.data;
           const sectionSlug = slugify(data.section);
-          const municipalitySlug = slugify(data.municipality);
-          const searchText = `${data.title} ${data.description} ${data.section} ${data.municipality}`.toLowerCase();
+          const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
+          const searchText = `${data.title} ${data.description} ${data.section} ${data.municipality ?? ''} ${data.region ?? ''}`.toLowerCase();
           return (
             <li class="card" data-search={searchText}>
               <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
                 <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
                   {data.section}
                 </a>
-                <span aria-hidden="true">·</span>
-                <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
-                  {data.municipality}
-                </a>
+                {municipalitySlug && (
+                  <>
+                    <span aria-hidden="true">·</span>
+                    <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
+                      {data.municipality}
+                    </a>
+                  </>
+                )}
               </div>
               <h3 class="mt-2 text-lg font-bold tracking-tight text-text">
                 <a href={`/noticias/${data.slug}/`} class="hover:underline">

@@ -4,6 +4,8 @@ description: "El Municipio de Lomas de Zamora anunció mamografías gratuitas si
 slug: "mamografias-gratuitas-lomas-octubre-rosa-2026"
 section: "Salud"
 municipality: "Lomas de Zamora"
+region: "Zona Sur"
+scope: "local"
 author: "Redacción SAQL Noticias"
 publishedAt: "2026-10-12"
 status: "draft"

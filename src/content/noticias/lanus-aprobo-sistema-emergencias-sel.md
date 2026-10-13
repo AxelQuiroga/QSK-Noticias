@@ -4,6 +4,8 @@ description: "El Concejo Deliberante aprobó por mayoría la ordenanza del Siste
 slug: "lanus-aprobo-sistema-emergencias-sel"
 section: "Salud"
 municipality: "Lanús"
+region: "Zona Sur"
+scope: "local"
 author: "Redacción SAQL Noticias"
 publishedAt: "2026-10-12"
 status: "draft"

@@ -30,27 +30,19 @@ export async function getLatestArticles(count = 10): Promise<Article[]> {
 
 export async function getArticlesBySection(section: string): Promise<Article[]> {
   const articles = await getPublishedArticles();
-  return articles.filter(
-    (a) => a.data.section.toLowerCase().replace(/\s+/g, '-') === section,
-  );
+  return articles.filter((a) => a.data.section === section);
 }
 
 export async function getArticlesByMunicipality(municipality: string): Promise<Article[]> {
   const articles = await getPublishedArticles();
   return articles.filter(
-    (a) =>
-      a.data.municipality.toLowerCase().replace(/\s+/g, '-') === municipality,
+    (a) => a.data.municipality === municipality,
   );
 }
 
-export async function getSections(): Promise<string[]> {
+export async function getArticlesByRegion(region: string): Promise<Article[]> {
   const articles = await getPublishedArticles();
-  const sections = new Set(articles.map((a) => a.data.section));
-  return Array.from(sections).sort();
-}
-
-export async function getMunicipalities(): Promise<string[]> {
-  const articles = await getPublishedArticles();
-  const municipalities = new Set(articles.map((a) => a.data.municipality));
-  return Array.from(municipalities).sort();
+  return articles.filter(
+    (a) => a.data.region === region,
+  );
 }

@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLocationById, getLocationsByType, locationSlug } from '../../data/locations';
+
+export async function getStaticPaths() {
+  return getLocationsByType('localidad').map((location) => ({
+    params: { slug: locationSlug(location) },
+    props: { localidadId: location.id },
+  }));
+}
+
+const { localidadId } = Astro.props;
+const localidad = getLocationById(localidadId);
+const municipio = localidad?.parentId ? getLocationById(localidad.parentId) : undefined;
+
+// Bajo el modelo vigente `municipality` guarda el PARTIDO, no la localidad, así
+// que todavía no hay artículos asociados a una localidad concreta. La página
+// funciona como entrada de la jerarquía localidad -> partido.
+---
+
+<BaseLayout
+  title={`${localidad?.name ?? 'Localidad'} — SAQL Noticias`}
+  description={`Noticias de ${localidad?.name ?? ''}${municipio ? `, partido de ${municipio.name}` : ''}, Zona Sur del conurbano bonaerense.`}
+>
+  <div class="container-editorial py-10">
+    <header>
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+        {localidad?.name}
+      </h1>
+      {municipio && (
+        <p class="mt-2 text-text-secondary">
+          Localidad del partido de{' '}
+          <a href={`/municipios/${locationSlug(municipio)}/`} class="text-accent hover:underline">
+            {municipio.name}
+          </a>
+          .
+        </p>
+      )}
+    </header>
+
+    <p class="mt-8 text-text-secondary">
+      Todavía no hay artículos publicados de esta localidad.
+    </p>
+    {municipio && (
+      <p class="mt-2 text-text-secondary">
+        Mientras tanto, podés ver las noticias de{' '}
+        <a href={`/municipios/${locationSlug(municipio)}/`} class="text-accent hover:underline">
+          {municipio.name}
+        </a>
+        .
+      </p>
+    )}
+  </div>
+</BaseLayout>

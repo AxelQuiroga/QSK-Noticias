@@ -1,10 +1,11 @@
-
 ---
 title: "AySA: Rowing presentó la oferta más alta y el expediente registra una preadjudicación"
 description: "Rowing ofertó US$340,2 millones por el 90% de AySA. Qué consta en el expediente, qué inversiones se anunciaron y qué falta confirmar."
 slug: "aysa-oferta-rowing-preadjudicacion"
 section: "Economía"
 municipality: "AMBA"
+region: "AMBA"
+scope: "nacional"
 author: "Redacción SAQL Noticias"
 publishedAt: "2026-10-12"
 status: "draft"

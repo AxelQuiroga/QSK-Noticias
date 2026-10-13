@@ -4,6 +4,8 @@ description: "El Municipio informó trabajos en tres escuelas primarias y un cen
 slug: "obras-escuelas-publicas-lanus-octubre-2026"
 section: "Educación"
 municipality: "Lanús"
+region: "Zona Sur"
+scope: "local"
 author: "SAQL Noticias"
 publishedAt: "2026-10-12"
 status: "draft"

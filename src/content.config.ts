@@ -15,7 +15,9 @@ const news = defineCollection({
       .min(1, 'El slug es obligatorio')
       .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'El slug debe ser URL-friendly'),
     section: z.string().min(1, 'La sección es obligatoria'),
-    municipality: z.string().min(1, 'El municipio es obligatoria'),
+    municipality: z.string().optional(),
+    region: z.string().optional(),
+    scope: z.enum(['local', 'regional', 'provincial', 'nacional']).optional(),
     author: z.string().min(1, 'El autor es obligatorio'),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),

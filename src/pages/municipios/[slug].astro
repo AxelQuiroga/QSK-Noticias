@@ -1,26 +1,18 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { slugify } from '../../lib/articles';
+import { getArticlesByMunicipality } from '../../lib/articles';
+import { getLocationsByType, locationSlug } from '../../data/locations';
 
 export async function getStaticPaths() {
-  const articles = await getCollection('news');
-  const municipalities = new Set(articles.map((a) => a.data.municipality));
-  return Array.from(municipalities).map((municipality) => ({
-    params: { slug: slugify(municipality) },
-    props: { municipality },
+  return getLocationsByType('municipio').map((location) => ({
+    params: { slug: locationSlug(location) },
+    props: { municipality: location.name },
   }));
 }
 
 const { municipality } = Astro.props;
-const articles = await getCollection('news', ({ data }) => {
-  const matches = data.municipality === municipality;
-  return import.meta.env.PROD ? matches && data.status === 'published' : matches;
-});
-const sorted = articles.sort(
-  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
-);
+const sorted = await getArticlesByMunicipality(municipality);
 ---
 
 <BaseLayout

@@ -4,6 +4,8 @@ description: "El Municipio de Lanús anunció cuatro jornadas gratuitas con cont
 slug: "plazas-saludables-lanus-octubre-2026"
 section: "Salud"
 municipality: "Lanús"
+region: "Zona Sur"
+scope: "local"
 author: "Redacción SAQL Noticias"
 publishedAt: "2026-10-13"
 status: "draft"

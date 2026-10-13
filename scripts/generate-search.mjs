@@ -28,6 +28,8 @@ const entries = files
       description: data.description || '',
       section: data.section || '',
       municipality: data.municipality || '',
+      region: data.region || '',
+      scope: data.scope || '',
       publishedAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : '',
     };
   })

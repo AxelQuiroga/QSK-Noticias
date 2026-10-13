@@ -4,6 +4,8 @@ description: "El Municipio inició una nueva etapa de trabajos para renovar la c
 slug: "rampa-accesible-estacion-lanus-obras-octubre-2026"
 section: "Actualidad"
 municipality: "Lanús"
+region: "Zona Sur"
+scope: "local"
 author: "SAQL Noticias"
 publishedAt: "2026-10-12"
 status: "draft"

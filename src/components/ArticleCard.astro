@@ -1,5 +1,6 @@
 ---
-import { formatDate, type Article } from '../lib/articles';
+import { formatDate, slugify, type Article } from '../lib/articles';
+import { findLocationByName, locationSlug } from '../data/locations';
 
 interface Props {
   article: Article;
@@ -8,8 +9,14 @@ interface Props {
 
 const { article, variant = 'default' } = Astro.props;
 const { data } = article;
-const sectionSlug = data.section.toLowerCase().replace(/\s+/g, '-');
-const municipalitySlug = data.municipality.toLowerCase().replace(/\s+/g, '-');
+const sectionSlug = slugify(data.section);
+
+// Solo enlazamos si el valor del frontmatter pertenece al catálogo Y es un
+// municipio. Asi evitamos URLs rotas (p. ej. `municipality: "AMBA"`, que es
+// una region, no un municipio).
+const municipality = data.municipality ? findLocationByName(data.municipality) : undefined;
+const municipalitySlug =
+  municipality && municipality.type === 'municipio' ? locationSlug(municipality) : null;
 ---
 
 <article class:list={[
@@ -21,10 +28,14 @@ const municipalitySlug = data.municipality.toLowerCase().replace(/\s+/g, '-');
     <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
       {data.section}
     </a>
-    <span aria-hidden="true">·</span>
-    <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
-      {data.municipality}
-    </a>
+    {municipality && municipalitySlug && (
+      <>
+        <span aria-hidden="true">·</span>
+        <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
+          {municipality.name}
+        </a>
+      </>
+    )}
   </div>
 
   <h3 class:list={[

@@ -4,6 +4,8 @@ description: "El club informó pagos vinculados con inhibiciones, multas y embar
 slug: "banfield-inhibiciones-mercado-pases-2026"
 section: "Deportes"
 municipality: "Lomas de Zamora"
+region: "Zona Sur"
+scope: "local"
 author: "SAQL Noticias"
 publishedAt: "2026-10-12"
 status: "draft"
