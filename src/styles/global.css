@@ -66,3 +66,14 @@
     @apply text-accent underline-offset-4 hover:underline;
   }
 }
+
+/*
+ * Navegación editorial: fundido breve y sutil (150 ms) en el cambio de página.
+ * Sin desplazamientos, zooms ni efectos llamativos. El header es idéntico en
+ * todas las páginas, así que su crossfade es imperceptible y se ve estable.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 150ms;
+  animation-timing-function: ease-out;
+}
