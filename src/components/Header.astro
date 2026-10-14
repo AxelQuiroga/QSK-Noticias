@@ -78,10 +78,12 @@ const sections = SECTIONS;
 </header>
 
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  function bindMenuToggle() {
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('mobile-menu');
+    if (!toggle || !menu || toggle.dataset.menuBound === 'true') return;
 
-  if (toggle && menu) {
+    toggle.dataset.menuBound = 'true';
     toggle.addEventListener('click', () => {
       const isOpen = toggle.getAttribute('aria-expanded') === 'true';
       toggle.setAttribute('aria-expanded', String(!isOpen));
@@ -89,4 +91,8 @@ const sections = SECTIONS;
       menu.classList.toggle('hidden');
     });
   }
+
+  // Con ClientRouter el script corre una vez, pero el header se reemplaza
+  // en cada navegación: re-bindear en cada página (inicial y post-swap).
+  document.addEventListener('astro:page-load', bindMenuToggle);
 </script>
