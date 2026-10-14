@@ -4,6 +4,7 @@ description: "El programa municipal busca recuperar calles adoquinadas en Lomas 
 slug: "adoquines-banfield-obras-municipales-2026"
 section: "Obras públicas"
 municipality: "Lomas de Zamora"
+localidad: "Banfield"
 region: "Zona Sur"
 scope: "local"
 author: "QSK Noticias"

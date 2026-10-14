@@ -46,3 +46,14 @@ export async function getArticlesByRegion(region: string): Promise<Article[]> {
     (a) => a.data.region === region,
   );
 }
+
+/**
+ * Artículos etiquetados con una localidad concreta del catálogo (campo
+ * opcional `localidad` del frontmatter). Bajo el modelo vigente
+ * `municipality` guarda el partido, así que una localidad sólo tiene
+ * artículos propios si la redacción la etiquetó explícitamente.
+ */
+export async function getArticlesByLocalidad(localidad: string): Promise<Article[]> {
+  const articles = await getPublishedArticles();
+  return articles.filter((a) => a.data.localidad === localidad);
+}

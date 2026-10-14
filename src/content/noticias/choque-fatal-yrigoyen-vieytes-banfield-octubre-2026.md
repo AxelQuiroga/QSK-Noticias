@@ -4,6 +4,7 @@ description: "La familia de Cristian Jalil pidió revisar la calificación de la
 slug: "choque-fatal-yrigoyen-vieytes-banfield-octubre-2026"
 section: "Actualidad"
 municipality: "Lomas de Zamora"
+localidad: "Banfield"
 region: "Zona Sur"
 scope: "local"
 author: "QSK Noticias"

@@ -57,10 +57,20 @@ describe('slugifyLite', () => {
 });
 
 describe('collectReferencedLocalidadSlugs', () => {
-  it('no detecta referencias con el modelo de contenido actual (sin campo localidad)', () => {
+  it('detecta las localidades etiquetadas en artículos publicados', () => {
     const slugs = collectReferencedLocalidadSlugs('src/content/noticias');
-    expect(slugs.has('banfield')).toBe(false);
-    expect(slugs.has('ezpeleta')).toBe(false);
-    expect(slugs.size).toBe(0);
+    expect(slugs.has('banfield')).toBe(true);
+    expect(slugs.has('ezpeleta')).toBe(true);
+  });
+
+  it('sólo detecta localidades que existen en el catálogo', () => {
+    const catalogSlugs = new Set(
+      LOCATIONS.filter((location) => location.type === 'localidad').map((location) =>
+        slugify(location.name),
+      ),
+    );
+    for (const referenced of collectReferencedLocalidadSlugs('src/content/noticias')) {
+      expect(catalogSlugs).toContain(referenced);
+    }
   });
 });

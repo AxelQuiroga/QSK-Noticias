@@ -3,19 +3,33 @@ import { slugify } from '../lib/utils';
 /**
  * Catálogo de ubicaciones, INDEPENDIENTE de los artículos.
  *
- * Modelo geográfico adoptado (frontmatter):
- * - `region`    -> agrupación amplia (AMBA, Zona Sur).
+ * Modelo geográfico de cinco niveles:
+ * - `pais`      -> Argentina.
+ * - `provincia` -> Buenos Aires.
+ * - `region`    -> agrupación editorial de cobertura (Zona Sur, AMBA); NO es
+ *                  una jurisdicción y puede cruzar provincias.
  * - `municipio` -> partido del conurbano (Lomas de Zamora, Quilmes, Lanús).
  * - `localidad` -> ciudad/barrio dentro de un partido (Banfield, Ezpeleta).
  *
- * El campo `municipality` del frontmatter guarda el PARTIDO, no la localidad.
- * Las relaciones territoriales se expresan con `parentId`
- * (localidad -> municipio -> region).
+ * `parentId` expresa CONTENCIÓN ADMINISTRATIVA
+ * (localidad -> municipio -> provincia -> pais). La pertenencia a regiones
+ * editoriales es otra relación y se expresa con `regionIds` en los municipios,
+ * para no confundir una agrupación periodística (Zona Sur) con una
+ * jurisdicción (provincia de Buenos Aires).
+ *
+ * Frontmatter de los artículos:
+ * - `municipality` guarda el PARTIDO, no la localidad.
+ * - `localidad` (opcional) guarda la localidad del catálogo a la que refiere
+ *   la noticia; permite que `/localidades/*` liste contenido real.
+ * - `region` es la agrupación editorial declarada por la redacción.
+ * El schema de contenido valida estos valores contra el catálogo, así un
+ * municipio inexistente o un tipo mal usado fallan en el build (ver
+ * `src/content.config.ts`).
  *
  * Una ubicación puede NO tener artículos publicados: el catálogo es la fuente
  * de verdad para la navegación y las rutas, no el contenido.
  */
-export type LocationType = 'region' | 'municipio' | 'localidad';
+export type LocationType = 'pais' | 'provincia' | 'region' | 'municipio' | 'localidad';
 
 export interface Location {
   /** Identificador estable. Nunca se deriva del nombre visible. */
@@ -24,30 +38,43 @@ export interface Location {
   name: string;
   /** Tipo de ubicación. */
   type: LocationType;
-  /** Ubicación que la contiene (localidad -> municipio -> region). */
+  /** Contenedor administrativo directo (localidad -> municipio -> provincia -> pais). */
   parentId?: string;
+  /** Regiones editoriales a las que pertenece (solo municipios). */
+  regionIds?: readonly string[];
 }
 
 export const LOCATIONS: readonly Location[] = [
+  { id: 'pais-argentina', name: 'Argentina', type: 'pais' },
+  {
+    id: 'provincia-buenos-aires',
+    name: 'Buenos Aires',
+    type: 'provincia',
+    parentId: 'pais-argentina',
+  },
+  // Regiones editoriales: agrupaciones de cobertura, no jurisdicciones.
   { id: 'region-zona-sur', name: 'Zona Sur', type: 'region' },
   { id: 'region-amba', name: 'AMBA', type: 'region' },
   {
     id: 'municipio-lomas-de-zamora',
     name: 'Lomas de Zamora',
     type: 'municipio',
-    parentId: 'region-zona-sur',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ['region-zona-sur', 'region-amba'],
   },
   {
     id: 'municipio-quilmes',
     name: 'Quilmes',
     type: 'municipio',
-    parentId: 'region-zona-sur',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ['region-zona-sur', 'region-amba'],
   },
   {
     id: 'municipio-lanus',
     name: 'Lanús',
     type: 'municipio',
-    parentId: 'region-zona-sur',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ['region-zona-sur', 'region-amba'],
   },
   {
     id: 'localidad-banfield',
@@ -86,3 +113,82 @@ export const findLocationByName = (name: string): Location | undefined => {
   const normalized = name.trim().toLowerCase();
   return LOCATIONS.find((location) => location.name.toLowerCase() === normalized);
 };
+
+/** Ubicación del catálogo con ese nombre y ese tipo, o `undefined`. */
+export const findLocationByNameAndType = (
+  name: string,
+  type: LocationType,
+): Location | undefined => {
+  const location = findLocationByName(name);
+  return location && location.type === type ? location : undefined;
+};
+
+/** ¿`name` es una ubicación del catálogo de ese tipo? */
+export const isKnownLocationName = (name: string, type: LocationType): boolean =>
+  findLocationByNameAndType(name, type) !== undefined;
+
+/** Ancestros administrativos, del más cercano al más lejano. */
+export const getAncestors = (location: Location): Location[] => {
+  const ancestors: Location[] = [];
+  let current = location.parentId ? getLocationById(location.parentId) : undefined;
+  while (current && !ancestors.includes(current)) {
+    ancestors.push(current);
+    current = current.parentId ? getLocationById(current.parentId) : undefined;
+  }
+  return ancestors;
+};
+
+/** Primer ancestro del tipo indicado (o `undefined`). */
+export const getAncestorOfType = (location: Location, type: LocationType): Location | undefined =>
+  getAncestors(location).find((ancestor) => ancestor.type === type);
+
+/** Regiones editoriales a las que pertenece una ubicación. */
+export const getRegions = (location: Location): Location[] =>
+  (location.regionIds ?? [])
+    .map((id) => getLocationById(id))
+    .filter((region): region is Location => region !== undefined);
+
+/**
+ * Contexto geográfico completo de un nombre del catálogo: la ubicación, sus
+ * ancestros administrativos, sus regiones editoriales y todos los nombres
+ * asociados (para indexar y mostrar). `undefined` si el nombre no pertenece
+ * al catálogo.
+ */
+export interface LocationContext {
+  location: Location;
+  ancestors: Location[];
+  regions: Location[];
+  /** Nombres únicos, del más específico al más general. */
+  names: string[];
+}
+
+export const getLocationContext = (name: string): LocationContext | undefined => {
+  const location = findLocationByName(name);
+  if (!location) return undefined;
+
+  const ancestors = getAncestors(location);
+  const regions = getRegions(location);
+  const names: string[] = [];
+  for (const item of [location, ...ancestors, ...regions]) {
+    if (!names.includes(item.name)) names.push(item.name);
+  }
+
+  return { location, ancestors, regions, names };
+};
+
+/**
+ * Provincia y país de una ubicación del catálogo, resueltos por la cadena
+ * administrativa (`parentId`). Devuelve cadenas vacías si no se pueden
+ * determinar, en vez de inventar un valor.
+ */
+export const getProvinciaOf = (name: string): string =>
+  (() => {
+    const location = findLocationByName(name);
+    return location ? (getAncestorOfType(location, 'provincia')?.name ?? '') : '';
+  })();
+
+export const getPaisOf = (name: string): string =>
+  (() => {
+    const location = findLocationByName(name);
+    return location ? (getAncestorOfType(location, 'pais')?.name ?? '') : '';
+  })();

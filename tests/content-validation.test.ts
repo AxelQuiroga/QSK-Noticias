@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { readFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import yaml from 'js-yaml';
+import { findLocationByNameAndType, type LocationType } from '../src/data/locations';
 
 const CONTENT_DIR = 'src/content/noticias';
 const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -20,6 +21,7 @@ interface RawArticle {
   slug?: string;
   section?: string;
   municipality?: string;
+  localidad?: string;
   region?: string;
   scope?: string;
   author?: string;
@@ -98,16 +100,36 @@ describe('Content validation - artículos', () => {
     }
   });
 
-  it('municipio y región son textos no vacíos cuando están presentes', () => {
+  it('municipio, localidad y región son textos no vacíos cuando están presentes', () => {
     for (const { data } of getAllArticles()) {
       const locations: Record<string, string | undefined> = {
         municipality: data.municipality,
+        localidad: data.localidad,
         region: data.region,
       };
       for (const [field, value] of Object.entries(locations)) {
         if (value === undefined) continue;
         expect(typeof value, `${field} no es texto en ${data.slug}`).toBe('string');
         expect(value.trim(), `${field} vacío en ${data.slug}`).not.toBe('');
+      }
+    }
+  });
+
+  it('las ubicaciones declaradas existen en el catálogo con el tipo correcto', () => {
+    const fields: ReadonlyArray<{ field: keyof RawArticle; type: LocationType }> = [
+      { field: 'municipality', type: 'municipio' },
+      { field: 'localidad', type: 'localidad' },
+      { field: 'region', type: 'region' },
+    ];
+
+    for (const { file, data } of getAllArticles()) {
+      for (const { field, type } of fields) {
+        const value = data[field];
+        if (typeof value !== 'string') continue;
+        expect(
+          findLocationByNameAndType(value, type),
+          `"${value}" en ${field} no es un ${type} del catálogo (${data.slug ?? file})`,
+        ).toBeDefined();
       }
     }
   });

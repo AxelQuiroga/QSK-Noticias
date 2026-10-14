@@ -4,6 +4,7 @@ description: "El Municipio de Quilmes informó trabajos de bacheo con hormigón 
 slug: "corte-transito-avenida-smith-ezpeleta-octubre-2026"
 section: "Tránsito"
 municipality: "Quilmes"
+localidad: "Ezpeleta"
 region: "Zona Sur"
 scope: "local"
 author: "QSK Noticias"
