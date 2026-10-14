@@ -2,21 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getPublishedArticles } from '../lib/articles';
-import { getLocationsByType } from '../data/locations';
-
 const articles = await getPublishedArticles();
-
-/**
- * Sugerencias de escritura: sólo nombres del catálogo geográfico (chico y
- * curado), no cientos de localidades. Se ofrecen mientras se escribe mediante
- * un `<datalist>`.
- */
-const suggestions = [
-  ...getLocationsByType('municipio'),
-  ...getLocationsByType('localidad'),
-  ...getLocationsByType('provincia'),
-  ...getLocationsByType('region'),
-].map((location) => location.name);
 
 const TABS = [
   { id: 'noticias', label: 'Noticias' },
@@ -48,14 +34,10 @@ const TABS = [
         type="search"
         id="search-input"
         name="q"
-        list="location-suggestions"
         placeholder="Ej. transporte en Lanús, educación en Buenos Aires…"
         class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text placeholder:text-text-secondary focus:border-accent focus:outline-none"
         autocomplete="off"
       />
-      <datalist id="location-suggestions">
-        {suggestions.map((name) => <option value={name} />)}
-      </datalist>
     </div>
 
     <div
