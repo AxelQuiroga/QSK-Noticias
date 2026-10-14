@@ -67,14 +67,11 @@ test.describe('Búsqueda', () => {
     await expect(visibleResults(page)).toHaveCount(0);
   });
 
-  test('ofrece sugerencias de ubicaciones reconocidas al escribir', async ({ page }) => {
+  test('no muestra el desplegable nativo de sugerencias geográficas', async ({ page }) => {
     await page.goto('/buscar/');
-    const values = await page
-      .locator('#location-suggestions option')
-      .evaluateAll((options) => options.map((option) => (option as HTMLOptionElement).value));
-    expect(values).toContain('Lanús');
-    expect(values).toContain('Banfield');
-    expect(values).toContain('Buenos Aires');
+    const input = page.getByLabel('Buscar noticias');
+    await expect(input).not.toHaveAttribute('list');
+    await expect(page.locator('#location-suggestions')).toHaveCount(0);
   });
 
   test('la pestaña Municipios lista municipios con artículos', async ({ page }) => {
