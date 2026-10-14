@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticlesByLocalidad, getArticlesByMunicipality } from '../../lib/articles';
 import { getLocationById, getLocationsByType, locationSlug } from '../../data/locations';
 
 export async function getStaticPaths() {
@@ -13,9 +15,13 @@ const { localidadId } = Astro.props;
 const localidad = getLocationById(localidadId);
 const municipio = localidad?.parentId ? getLocationById(localidad.parentId) : undefined;
 
-// Bajo el modelo vigente `municipality` guarda el PARTIDO, no la localidad, así
-// que todavía no hay artículos asociados a una localidad concreta. La página
-// funciona como entrada de la jerarquía localidad -> partido.
+// La localidad tiene artículos propios sólo si el frontmatter la etiqueta
+// explícitamente (`localidad: "Banfield"`), porque `municipality` guarda el
+// partido. Si no hay, se ofrecen los del partido como alternativa, sin
+// mezclarlos con los de la localidad.
+const articles = localidad ? await getArticlesByLocalidad(localidad.name) : [];
+const municipioArticles =
+  articles.length === 0 && municipio ? await getArticlesByMunicipality(municipio.name) : [];
 ---
 
 <BaseLayout
@@ -36,19 +42,45 @@ const municipio = localidad?.parentId ? getLocationById(localidad.parentId) : un
           .
         </p>
       )}
+      {articles.length > 0 && (
+        <p class="mt-2 text-text-secondary">
+          {articles.length} {articles.length === 1 ? 'artículo' : 'artículos'} de esta localidad.
+        </p>
+      )}
     </header>
 
-    <p class="mt-8 text-text-secondary">
-      Todavía no hay artículos publicados de esta localidad.
-    </p>
-    {municipio && (
-      <p class="mt-2 text-text-secondary">
-        Mientras tanto, podés ver las noticias de{' '}
-        <a href={`/municipios/${locationSlug(municipio)}/`} class="text-accent hover:underline">
-          {municipio.name}
-        </a>
-        .
-      </p>
+    {articles.length > 0 ? (
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {articles.map((article) => (
+          <li>
+            <ArticleCard article={article} />
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <>
+        <p class="mt-8 text-text-secondary">
+          Todavía no hay artículos publicados de esta localidad.
+        </p>
+        {municipio && (
+          <p class="mt-2 text-text-secondary">
+            Mientras tanto, podés ver las noticias de{' '}
+            <a href={`/municipios/${locationSlug(municipio)}/`} class="text-accent hover:underline">
+              {municipio.name}
+            </a>
+            .
+          </p>
+        )}
+        {municipioArticles.length > 0 && (
+          <ul class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {municipioArticles.map((article) => (
+              <li>
+                <ArticleCard article={article} variant="compact" />
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
     )}
   </div>
 </BaseLayout>

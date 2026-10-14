@@ -1,21 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getPublishedArticles, slugify } from '../lib/articles';
-import { getLocationsByType } from '../data/locations';
-
+import ArticleCard from '../components/ArticleCard.astro';
+import { getPublishedArticles } from '../lib/articles';
 const articles = await getPublishedArticles();
-const municipios = getLocationsByType('municipio');
+
+const TABS = [
+  { id: 'noticias', label: 'Noticias' },
+  { id: 'municipios', label: 'Municipios' },
+  { id: 'localidades', label: 'Localidades' },
+  { id: 'provincias', label: 'Provincias' },
+] as const;
 ---
 
 <BaseLayout
   title="Buscar — QSK Noticias"
-  description="Búsqueda de noticias en QSK Noticias."
+  description="Búsqueda de noticias por tema, municipio, localidad, provincia o región en QSK Noticias."
 >
   <div class="container-editorial py-10">
     <header>
       <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
         Buscar
       </h1>
+      <p class="mt-2 max-w-2xl text-text-secondary">
+        Buscá por tema, municipio, localidad, provincia o una combinación de ambos.
+      </p>
     </header>
 
     <div class="mt-6">
@@ -26,119 +34,303 @@ const municipios = getLocationsByType('municipio');
         type="search"
         id="search-input"
         name="q"
-        placeholder="Escribí tu búsqueda…"
+        placeholder="Ej. transporte en Lanús, educación en Buenos Aires…"
         class="w-full rounded-lg border border-border bg-surface px-4 py-3 text-text placeholder:text-text-secondary focus:border-accent focus:outline-none"
         autocomplete="off"
       />
     </div>
 
-    <div class="mt-4">
-      <label for="filter-municipio" class="text-sm font-medium text-text-secondary">
-        Filtrar por municipio
-      </label>
-      <select
-        id="filter-municipio"
-        class="mt-1 w-full rounded-lg border border-border bg-surface px-4 py-3 text-text focus:border-accent focus:outline-none"
-      >
-        <option value="">Todos los municipios</option>
-        {municipios.map((municipio) => (
-          <option value={municipio.name}>{municipio.name}</option>
-        ))}
-      </select>
+    <div
+      id="search-tabs"
+      role="tablist"
+      aria-label="Tipos de resultado"
+      class="mt-6 flex flex-wrap gap-1 border-b border-border"
+    >
+      {TABS.map((tab, index) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${tab.id}`}
+          data-tab={tab.id}
+          aria-controls={`panel-${tab.id}`}
+          aria-selected={index === 0 ? 'true' : 'false'}
+          class:list={[
+            '-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors',
+            index === 0 ? 'border-accent text-text' : 'border-transparent text-text-secondary hover:text-text',
+          ]}
+        >
+          {tab.label}
+        </button>
+      ))}
     </div>
 
-    <div id="search-results" class="mt-8" aria-live="polite">
-      <p id="search-placeholder" class="text-text-secondary">
-        Escribí un término para buscar entre los artículos publicados.
+    <div id="search-results" class="mt-6" aria-live="polite" data-index-state="loading">
+      <p id="search-index-error" class="hidden text-text-secondary">
+        No se pudo cargar el índice de búsqueda. Recargá la página para intentarlo de nuevo.
       </p>
-      <p id="search-empty" class="hidden text-text-secondary">
-        No se encontraron resultados para tu búsqueda.
-      </p>
-      <ul id="search-list" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {articles.map((article) => {
-          const data = article.data;
-          const sectionSlug = slugify(data.section);
-          const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
-          const searchText = `${data.title} ${data.description} ${data.section} ${data.municipality ?? ''} ${data.region ?? ''}`.toLowerCase();
-          return (
-            <li class="card" data-search={searchText} data-municipio={data.municipality ?? ''}>
-              <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
-                <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
-                  {data.section}
-                </a>
-                {municipalitySlug && (
-                  <>
-                    <span aria-hidden="true">·</span>
-                    <a href={`/municipios/${municipalitySlug}/`} class="hover:text-text">
-                      {data.municipality}
-                    </a>
-                  </>
-                )}
-              </div>
-              <h3 class="mt-2 text-lg font-bold tracking-tight text-text">
-                <a href={`/noticias/${data.slug}/`} class="hover:underline">
-                  {data.title}
-                </a>
-              </h3>
-              <p class="mt-2 text-sm text-text-secondary">{data.description}</p>
-              <p class="mt-3 text-xs text-text-secondary">
-                <time datetime={data.publishedAt.toISOString()}>
-                  {data.publishedAt.toLocaleDateString('es-AR', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric',
-                  })}
-                </time>
-              </p>
+
+      <section
+        id="panel-noticias"
+        role="tabpanel"
+        aria-labelledby="tab-noticias"
+        data-tab="noticias"
+      >
+        <p id="search-placeholder" class="text-text-secondary">
+          Escribí un término para buscar entre los artículos publicados.
+        </p>
+        <p id="search-empty" class="hidden text-text-secondary">
+          No se encontraron resultados para tu búsqueda.
+        </p>
+        <p id="search-summary" class="hidden text-sm text-text-secondary"></p>
+        <ul id="search-list" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.map((article) => (
+            <li data-slug={article.data.slug}>
+              <ArticleCard article={article} />
             </li>
-          );
-        })}
-      </ul>
+          ))}
+        </ul>
+      </section>
+
+      <section
+        id="panel-municipios"
+        role="tabpanel"
+        aria-labelledby="tab-municipios"
+        data-tab="municipios"
+        class="hidden"
+      >
+        <p class="search-empty hidden text-text-secondary">
+          No hay municipios que coincidan con tu búsqueda.
+        </p>
+        <ul class="search-locations mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></ul>
+      </section>
+
+      <section
+        id="panel-localidades"
+        role="tabpanel"
+        aria-labelledby="tab-localidades"
+        data-tab="localidades"
+        class="hidden"
+      >
+        <p class="search-empty hidden text-text-secondary">
+          No hay localidades que coincidan con tu búsqueda.
+        </p>
+        <ul class="search-locations mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></ul>
+      </section>
+
+      <section
+        id="panel-provincias"
+        role="tabpanel"
+        aria-labelledby="tab-provincias"
+        data-tab="provincias"
+        class="hidden"
+      >
+        <p class="search-empty hidden text-text-secondary">
+          No hay provincias que coincidan con tu búsqueda.
+        </p>
+        <ul class="search-locations mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3"></ul>
+      </section>
     </div>
   </div>
 
   <script>
-    const input = document.getElementById('search-input') as HTMLInputElement;
-    const placeholder = document.getElementById('search-placeholder') as HTMLParagraphElement;
-    const emptyMsg = document.getElementById('search-empty') as HTMLParagraphElement;
-    const list = document.getElementById('search-list') as HTMLUListElement;
-    const items = Array.from(list.querySelectorAll('li'));
+    import {
+      buildSearchDocuments,
+      matchesQuery,
+      searchDocuments,
+      type SearchDocument,
+    } from '../lib/search';
+    import { getLocationById, getLocationsByType, getProvinciaOf, locationSlug } from '../data/locations';
 
-    const municipioFilter = document.getElementById('filter-municipio') as HTMLSelectElement;
+    const INDEX_URL = `${import.meta.env.BASE_URL}search-index.json`;
 
-    function applyFilters() {
-      const q = input.value.trim().toLowerCase();
-      const municipio = municipioFilter.value;
+    // El índice se descarga una sola vez por sesión de navegación; con el
+    // ClientRouter los módulos sobreviven a los cambios de página.
+    let documentsPromise: Promise<SearchDocument[]> | null = null;
+    let documents: SearchDocument[] | null = null;
+    let activeTab = 'noticias';
 
-      if (!q && !municipio) {
-        placeholder.classList.remove('hidden');
-        emptyMsg.classList.add('hidden');
-        items.forEach((item) => item.classList.remove('hidden'));
+    function loadDocuments(): Promise<SearchDocument[]> {
+      if (!documentsPromise) {
+        documentsPromise = fetch(INDEX_URL)
+          .then((response) => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+          })
+          .then((entries: Parameters<typeof buildSearchDocuments>[0]) => buildSearchDocuments(entries));
+      }
+      return documentsPromise;
+    }
+
+    const escapeHtml = (text: string): string =>
+      text.replace(
+        /[&<>"']/g,
+        (character) =>
+          ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character] ??
+          character,
+      );
+
+    const TAB_LABELS: Record<string, string> = {
+      noticias: 'artículo',
+      municipios: 'municipio',
+      localidades: 'localidad',
+      provincias: 'provincia',
+    };
+
+    function initSearchPage(): void {
+      const results = document.getElementById('search-results');
+      const input = document.getElementById('search-input') as HTMLInputElement | null;
+      const list = document.getElementById('search-list') as HTMLUListElement | null;
+      if (!results || !input || !list) return;
+      // Idempotente: con view transitions el mismo nodo no debe recibir dos
+      // listeners al volver a esta página.
+      if (results.dataset.bound === 'true') return;
+      results.dataset.bound = 'true';
+
+      // Alias ya no nulos: TS no conserva el estrechamiento dentro de las
+      // funciones anidadas de abajo.
+      const searchInput: HTMLInputElement = input;
+      const resultsList: HTMLUListElement = list;
+
+      const placeholder = document.getElementById('search-placeholder');
+      const emptyMsg = document.getElementById('search-empty');
+      const summary = document.getElementById('search-summary');
+      const errorMsg = document.getElementById('search-index-error');
+      const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('#search-tabs [role="tab"]'));
+      const panels = Array.from(results.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+      const items = Array.from(list.querySelectorAll<HTMLLIElement>('li[data-slug]'));
+      const itemBySlug = new Map(items.map((item) => [item.dataset.slug ?? '', item]));
+      const originalOrder = [...items];
+
+      function selectTab(tabId: string): void {
+        activeTab = tabId;
+        for (const tab of tabs) {
+          const selected = tab.dataset.tab === tabId;
+          tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+          tab.className = `-mb-px border-b-2 px-3 py-2 text-sm font-medium transition-colors ${
+            selected ? 'border-accent text-text' : 'border-transparent text-text-secondary hover:text-text'
+          }`;
+        }
+        for (const panel of panels) {
+          panel.classList.toggle('hidden', panel.dataset.tab !== tabId);
+        }
+      }
+
+      /** Filas de un tipo de ubicación, con la cantidad de artículos indexados. */
+      function renderLocations(
+        kind: 'municipios' | 'localidades' | 'provincias',
+        query: string,
+      ): void {
+        const panel = panels.find((candidate) => candidate.dataset.tab === kind);
+        const listEl = panel?.querySelector('ul');
+        const emptyEl = panel?.querySelector('.search-empty');
+        if (!panel || !listEl || !emptyEl) return;
+
+        const hasQuery = query.trim() !== '';
+        const docs = documents ?? [];
+        const countOf = (matcher: (doc: SearchDocument) => boolean): number =>
+          docs.filter(matcher).length;
+
+        const locations = getLocationsByType(
+          kind === 'municipios' ? 'municipio' : kind === 'localidades' ? 'localidad' : 'provincia',
+        ).filter((location) => !hasQuery || matchesQuery(location.name, query));
+
+        listEl.innerHTML = locations
+          .map((location) => {
+            const name = escapeHtml(location.name);
+            if (kind === 'provincias') {
+              const municipios = getLocationsByType('municipio').filter(
+                (municipio) => getProvinciaOf(municipio.name) === location.name,
+              );
+              const links = municipios
+                .map(
+                  (municipio) =>
+                    `<a class="text-accent hover:underline" href="/municipios/${locationSlug(municipio)}/">${escapeHtml(municipio.name)}</a>`,
+                )
+                .join(' · ');
+              const count = countOf((doc) => doc.location.provincia === location.name);
+              return `<li class="card"><h3 class="font-heading font-bold tracking-tight text-text">${name}</h3><p class="mt-1 text-xs text-text-secondary">${count} ${count === 1 ? 'artículo' : 'artículos'}${links ? ` · Municipios: ${links}` : ''}</p></li>`;
+            }
+
+            const href =
+              kind === 'municipios'
+                ? `/municipios/${locationSlug(location)}/`
+                : `/localidades/${locationSlug(location)}/`;
+            const count =
+              kind === 'municipios'
+                ? countOf((doc) => doc.location.municipality === location.name)
+                : countOf((doc) => doc.location.localidad === location.name);
+            const partido = getLocationById(location.parentId ?? '')?.name ?? '';
+            const context =
+              kind === 'municipios'
+                ? getProvinciaOf(location.name)
+                : partido
+                  ? `partido de ${escapeHtml(partido)}`
+                  : '';
+            return `<li class="card"><h3 class="font-heading font-bold tracking-tight text-text"><a class="hover:underline" href="${href}">${name}</a></h3><p class="mt-1 text-xs text-text-secondary">${count} ${count === 1 ? 'artículo' : 'artículos'}${context ? ` · ${context}` : ''}</p></li>`;
+          })
+          .join('');
+
+        emptyEl.classList.toggle('hidden', locations.length > 0);
+      }
+
+      /** Aplica la consulta actual a la pestaña de noticias y a las de ubicaciones. */
+      function applySearch(): void {
+        const query = searchInput.value;
+        const hasQuery = query.trim() !== '';
+
+        placeholder?.classList.toggle('hidden', hasQuery);
+
+        if (!hasQuery) {
+          emptyMsg?.classList.add('hidden');
+          summary?.classList.add('hidden');
+          resultsList.append(...originalOrder);
+          for (const item of items) item.classList.remove('hidden');
+        } else if (documents) {
+          const matched = searchDocuments(documents, query);
+          const matchedSlugs = new Set(matched.map((doc) => doc.slug));
+          for (const item of items) {
+            item.classList.toggle('hidden', !matchedSlugs.has(item.dataset.slug ?? ''));
+          }
+          for (const doc of matched) {
+            const item = itemBySlug.get(doc.slug);
+            if (item) resultsList.append(item);
+          }
+          emptyMsg?.classList.toggle('hidden', matched.length > 0);
+          if (summary) {
+            const label = TAB_LABELS[activeTab] ?? 'resultado';
+            summary.textContent = `${matched.length} ${matched.length === 1 ? label : `${label}s`} para tu búsqueda.`;
+            summary.classList.toggle('hidden', matched.length === 0);
+          }
+        }
+
+        renderLocations('municipios', query);
+        renderLocations('localidades', query);
+        renderLocations('provincias', query);
+      }
+
+      for (const tab of tabs) {
+        tab.addEventListener('click', () => selectTab(tab.dataset.tab ?? 'noticias'));
+      }
+      input.addEventListener('input', applySearch);
+
+      if (documents) {
+        results.dataset.indexState = 'ready';
+        applySearch();
         return;
       }
 
-      placeholder.classList.add('hidden');
-      const terms = q ? q.split(/\s+/) : [];
-      let visibleCount = 0;
-
-      items.forEach((item) => {
-        const text = (item.getAttribute('data-search') || '').toLowerCase();
-        const itemMunicipio = item.getAttribute('data-municipio') || '';
-        const queryOk = terms.every((term) => text.includes(term));
-        const municipioOk = !municipio || itemMunicipio === municipio;
-
-        item.classList.toggle('hidden', !(queryOk && municipioOk));
-        if (queryOk && municipioOk) visibleCount++;
-      });
-
-      emptyMsg.classList.toggle('hidden', visibleCount > 0);
+      loadDocuments()
+        .then((loaded) => {
+          documents = loaded;
+          results.dataset.indexState = 'ready';
+          applySearch();
+        })
+        .catch(() => {
+          results.dataset.indexState = 'error';
+          errorMsg?.classList.remove('hidden');
+        });
     }
 
-    if (input) {
-      input.addEventListener('input', applyFilters);
-    }
-    if (municipioFilter) {
-      municipioFilter.addEventListener('change', applyFilters);
-    }
+    document.addEventListener('astro:page-load', initSearchPage);
   </script>
 </BaseLayout>

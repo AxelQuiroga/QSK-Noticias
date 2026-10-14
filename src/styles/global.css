@@ -14,6 +14,17 @@
 }
 
 @layer base {
+  /*
+   * El sitio es de tema oscuro, así que hay que declarárselo al navegador: sin
+   * esto pinta los controles nativos con su esquema por defecto (claro) y
+   * desentonan sobre el fondo. Afecta, por ejemplo, al desplegable de
+   * sugerencias del `<datalist>` en /buscar/, a las scrollbars y al autofill.
+   * https://developer.mozilla.org/docs/Web/CSS/color-scheme
+   */
+  :root {
+    color-scheme: dark;
+  }
+
   html {
     scroll-behavior: smooth;
   }

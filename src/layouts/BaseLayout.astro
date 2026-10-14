@@ -26,6 +26,9 @@ const canonicalUrl = canonical
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Antes de cualquier CSS: le dice al navegador que el tema es oscuro y
+         evita el destello claro mientras carga. Ver `color-scheme` en global.css. -->
+    <meta name="color-scheme" content="dark" />
     <ClientRouter />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="description" content={description} />
