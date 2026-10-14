@@ -9,6 +9,7 @@
     "start": "astro dev",
     "prebuild": "node scripts/publish.mjs && node scripts/generate-search.mjs",
     "build": "astro build",
+    "postbuild": "node scripts/verify-sitemap.mjs",
     "preview": "astro preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -18,19 +19,27 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "7.3.8"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@axe-core/playwright": "4.13.0",
+    "@eslint/js": "^10.0.1",
     "@fontsource/inter": "^5.2.5",
     "@fontsource/manrope": "^5.2.5",
     "@playwright/test": "1.64.0",
     "@tailwindcss/vite": "4.3.3",
+    "@typescript-eslint/eslint-plugin": "^8.71.2",
+    "@typescript-eslint/parser": "^8.71.2",
+    "eslint": "^10.12.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "globals": "^17.13.0",
     "gray-matter": "^4.0.3",
     "js-yaml": "^3.14.1",
     "tailwindcss": "4.3.3",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.2",
     "vitest": "5.0.3"
   }
 }

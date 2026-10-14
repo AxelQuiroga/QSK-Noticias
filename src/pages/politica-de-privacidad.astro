@@ -1,0 +1,272 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+/*
+ * Política de Privacidad — QSK Noticias
+ *
+ * Esta página describe únicamente los servicios y prácticas verificados en el
+ * código de este repositorio a la fecha de última actualización.
+ *
+ * CONFIRMADO en el repositorio:
+ *   - Salida estática de Astro, alojada en Cloudflare Pages.
+ *   - Google AdSense: el cargador (adsbygoogle.js) está cargado en el <head>
+ *     de todas las páginas desde src/layouts/BaseLayout.astro. No hay unidades
+ *     de anuncio (<ins class="adsbygoogle">) escritas en el código.
+ *   - Sin cookies propias, sin localStorage/sessionStorage/indexedDB en src/.
+ *   - Sin formularios de contacto (solo enlaces mailto:), sin cuentas de
+ *     usuario, sin comentarios y sin newsletter.
+ *   - La búsqueda es 100% del lado del cliente: no envía la consulta a ningún
+ *     servidor propio.
+ *   - Fuentes tipográficas auto-alojadas vía @fontsource (sin Google Fonts).
+ *
+ * PENDIENTE DE CONFIRMAR con el responsable (no inventar):
+ *   - Denominación legal exacta del responsable (persona física o jurídica),
+ *     CUIT y domicilio.
+ *   - Si la cuenta de AdSense está aprobada y si hay Anuncios automáticos
+ *     activados desde el panel de AdSense.
+ *   - Si Cloudflare Web Analytics está activado desde el panel de Cloudflare
+ *     (inyecta el beacon en el borde; no aparece en el código ni en dist/).
+ *   - Punto de contacto formal para ejercicio de derechos (¿es el mismo correo
+ *     publicado en /contacto?).
+ *   - Si corresponde inscripción de bases de datos ante la AAIP.
+ */
+const lastUpdated = '13 de octubre de 2026';
+const contactEmail = 'sebastian.a.quiroga@outlook.com.ar';
+---
+
+<BaseLayout
+  title="Política de Privacidad — QSK Noticias"
+  description="Qué información puede recopilar QSK Noticias, con qué finalidad, cómo se usan cookies y servicios de terceros, y cómo ejercer tus derechos."
+>
+  <div class="container-editorial py-10">
+    <article class="mx-auto max-w-3xl">
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+        Política de Privacidad
+      </h1>
+
+      <div class="prose-content mt-6 space-y-4 text-text">
+        <p>
+          Esta política explica qué información puede recopilarse cuando visitás <strong>QSK
+          Noticias</strong>, con qué finalidad se usa y qué podés hacer al respecto. Describe las
+          prácticas reales del sitio a la fecha de última actualización; si en el futuro se incorporan
+          nuevas herramientas, esta página se actualizará.
+        </p>
+        <p class="text-sm text-text-secondary">
+          Última actualización: <time datetime="2026-10-13">{lastUpdated}</time>.
+        </p>
+
+        <h2 class="section-title pt-6">1. Responsable del sitio</h2>
+        <p>
+          QSK Noticias es un medio digital independiente con cobertura de la Zona Sur del conurbano
+          bonaerense, en la provincia de Buenos Aires, Argentina.
+        </p>
+        <p>
+          Canal de contacto para consultas sobre esta política y para el ejercicio de derechos:{' '}
+          <a class="link-accent" href={`mailto:${contactEmail}?subject=Privacidad`}>{contactEmail}</a>.
+        </p>
+        <p>
+          Los datos identificatorios legales completos del responsable no se publican en el sitio;
+          pueden solicitarse por ese mismo canal.
+        </p>
+
+        <h2 class="section-title pt-6">2. Qué información recopilamos</h2>
+        <p>
+          <strong>No necesitás registrarte ni crear una cuenta</strong> para leer QSK Noticias. El
+          sitio no tiene formularios de contacto, comentarios, áreas de participación con cuentas ni
+          suscripciones por correo. El contacto con la redacción se realiza por correo electrónico, y
+          esos mensajes se administran en el proveedor de correo correspondiente.
+        </p>
+        <p>
+          <strong>Buscador interno.</strong> La búsqueda funciona enteramente en tu navegador: filtra
+          los artículos que ya vienen cargados en la página y no envía tu consulta a nuestros
+          servidores.
+        </p>
+        <p>
+          <strong>Datos técnicos de la visita.</strong> Como en cualquier sitio web, al visitar la
+          página el proveedor de alojamiento y los servicios de terceros que incorporamos pueden
+          recibir datos técnicos de la conexión, como la dirección IP, el tipo de navegador y de
+          dispositivo, y las páginas solicitadas. Estos datos se utilizan para entregar el contenido,
+          mantener el sitio funcionando y protegerlo frente a abusos.
+        </p>
+        <p>
+          No solicitamos ni recopilamos a través del sitio datos sensibles ni datos personales como
+          nombre, documento o domicilio.
+        </p>
+
+        <h2 class="section-title pt-6">3. Para qué usamos la información</h2>
+        <ul class="list-disc space-y-1 pl-5">
+          <li>Entregar el contenido del sitio y mantener su funcionamiento y su seguridad.</li>
+          <li>
+            Entender, de forma agregada y estadística, cómo se utiliza el sitio, cuando esa medición
+            está habilitada (ver la sección 5).
+          </li>
+          <li>
+            Mostrar publicidad a través de Google AdSense y medir su rendimiento. Esa publicidad es
+            gestionada por Google y sus partners, según se describe en la sección 6.
+          </li>
+        </ul>
+
+        <h2 class="section-title pt-6">4. Cookies y tecnologías similares</h2>
+        <p>
+          A la fecha de esta política, el código del sitio <strong>no instala cookies propias</strong>{' '}
+          ni utiliza almacenamiento local del navegador (como <code>localStorage</code> o{' '}
+          <code>sessionStorage</code>) para rastrearte.
+        </p>
+        <p>
+          Sin embargo, los servicios de terceros que se incorporan —en particular Google, a través de
+          AdSense— <strong>pueden instalar y leer cookies u otras tecnologías similares</strong> en tu
+          navegador para mostrar anuncios y medir su rendimiento. Esas cookies son administradas por
+          esos terceros y se rigen por sus propias políticas.
+        </p>
+        <p>
+          El sitio <strong>no incluye por ahora</strong> un banner de consentimiento ni un gestor de
+          cookies. Podés bloquear o eliminar las cookies desde la configuración de tu navegador; tené
+          en cuenta que hacerlo puede afectar el funcionamiento de algunos servicios de terceros.
+        </p>
+
+        <h2 class="section-title pt-6">5. Alojamiento y medición de visitas</h2>
+        <p>
+          El sitio se aloja en <strong>Cloudflare Pages</strong>. Como todo proveedor de
+          infraestructura, Cloudflare procesa datos técnicos de la conexión necesarios para servir el
+          contenido y proteger el servicio. Esos datos se rigen por la política de privacidad de
+          Cloudflare, enlazada en la sección 7.
+        </p>
+        <p>
+          Respecto de <strong>Cloudflare Web Analytics</strong>: el código del sitio no incluye el
+          fragmento de medición. Cloudflare ofrece una activación desde su panel que agrega ese
+          fragmento automáticamente al publicar el sitio, de modo que no es posible confirmar desde
+          este repositorio si la medición está activa. En caso de estar habilitada, se trata de un
+          servicio que, según Cloudflare, está diseñado para no recopilar ni usar datos personales de
+          los visitantes.
+        </p>
+
+        <h2 class="section-title pt-6">6. Publicidad: Google AdSense</h2>
+        <p>
+          El sitio incorpora el cargador de <strong>Google AdSense</strong> en todas sus páginas. Esto
+          permite que Google y sus partners muestren anuncios. Según Google, cuando un sitio utiliza
+          sus servicios publicitarios:
+        </p>
+        <ul class="list-disc space-y-1 pl-5">
+          <li>
+            Terceros, incluido Google, usan cookies para mostrar anuncios basados en las visitas
+            previas de una persona a este sitio o a otros sitios de Internet.
+          </li>
+          <li>
+            El uso de cookies publicitarias por parte de Google permite a Google y a sus partners
+            mostrar anuncios basados en las visitas a este sitio y a otros sitios.
+          </li>
+          <li>
+            Cualquier persona puede inhabilitar la publicidad personalizada desde la{' '}
+            <a
+              class="link-accent"
+              href="https://adssettings.google.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Configuración de anuncios de Google</a>.
+          </li>
+        </ul>
+        <p>
+          Estas cookies y tecnologías son administradas por Google, no por QSK Noticias. El modo en que
+          se muestran los anuncios —por ejemplo, si se usan anuncios automáticos— depende de la
+          configuración de la cuenta de AdSense, que no se define en el código del sitio publicado. La
+          participación en el programa de AdSense y la aprobación de la cuenta son decisiones de
+          Google.
+        </p>
+
+        <h2 class="section-title pt-6">7. Servicios de terceros</h2>
+        <p>
+          Estos servicios pueden tratar datos como parte del funcionamiento del sitio. Cada uno tiene
+          su propia política de privacidad:
+        </p>
+        <ul class="list-disc space-y-1 pl-5">
+          <li>
+            <a
+              class="link-accent"
+              href="https://policies.google.com/privacy?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Política de Privacidad de Google</a>
+          </li>
+          <li>
+            <a
+              class="link-accent"
+              href="https://policies.google.com/technologies/partner-sites?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Cómo usa Google la información de sitios que utilizan sus servicios</a>
+          </li>
+          <li>
+            <a
+              class="link-accent"
+              href="https://policies.google.com/technologies/ads?hl=es"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Tecnologías publicitarias de Google</a>
+          </li>
+          <li>
+            <a
+              class="link-accent"
+              href="https://www.cloudflare.com/privacypolicy/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Política de Privacidad de Cloudflare</a>
+          </li>
+        </ul>
+
+        <h2 class="section-title pt-6">8. Conservación y seguridad</h2>
+        <p>
+          QSK Noticias no mantiene una base de datos propia de usuarios. La información que puedan
+          tratar los proveedores mencionados se conserva según los plazos y criterios definidos en sus
+          propias políticas.
+        </p>
+        <p>
+          Adoptamos medidas razonables para mantener el sitio y su infraestructura actualizados y
+          protegidos, pero ningún sistema es infalible: no es posible garantizar una seguridad
+          absoluta. El contenido periodístico publicado es público por su naturaleza.
+        </p>
+
+        <h2 class="section-title pt-6">9. Tus derechos</h2>
+        <p>
+          La legislación argentina de protección de datos personales (Ley 25.326 y su Decreto
+          reglamentario 1558/2001) reconoce el derecho a acceder, rectificar, actualizar y, cuando
+          corresponda, suprimir los datos personales. Estos derechos se ejercen de forma gratuita y
+          también se puede recurrir a la acción de habeas data prevista en el artículo 43 de la
+          Constitución Nacional.
+        </p>
+        <p>
+          Para ejercerlos, escribinos a{' '}
+          <a class="link-accent" href={`mailto:${contactEmail}?subject=Derechos%20de%20privacidad`}>{contactEmail}</a>{' '}
+          indicando tu solicitud y los datos necesarios para identificarla. Si la información en
+          cuestión estuviera en poder de un tercero —por ejemplo, Google—, la vía adecuada es la que
+          ofrece ese propio tercero.
+        </p>
+        <p>
+          La autoridad de control en materia de protección de datos personales en Argentina es la{' '}
+          <a
+            class="link-accent"
+            href="https://www.argentina.gob.ar/aaip"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Agencia de Acceso a la Información Pública (AAIP)</a>.
+        </p>
+
+        <h2 class="section-title pt-6">10. Menores de edad</h2>
+        <p>
+          El sitio no está dirigido específicamente a menores de edad y no solicita datos personales ni
+          crea perfiles de usuarios.
+        </p>
+
+        <h2 class="section-title pt-6">11. Cambios en esta política</h2>
+        <p>
+          Esta política puede actualizarse para reflejar cambios en el sitio o en su normativa
+          aplicable. La fecha de última actualización indicada al comienzo de esta página señala la
+          versión vigente.
+        </p>
+        <p class="text-sm text-text-secondary">
+          Esta política describe prácticas concretas del sitio y no constituye asesoramiento jurídico
+          ni una garantía de cumplimiento legal.
+        </p>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
