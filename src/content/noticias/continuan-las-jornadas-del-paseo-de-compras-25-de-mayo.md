@@ -6,8 +6,8 @@ section: "Actualidad"
 municipality: "Lanús"
 scope: "local"
 author: "Redacción QSK Noticias"
-publishedAt: "2026-10-14"
-status: "review"
+publishedAt: "2026-10-15"
+status: "published"
 featured: false
 sources:
   - name: "La Noticia Sur"
