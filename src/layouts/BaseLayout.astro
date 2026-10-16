@@ -13,9 +13,11 @@ interface Props {
   title: string;
   description: string;
   canonical?: string;
+  ogType?: string;
+  ogImage?: string;
 }
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, ogType, ogImage } = Astro.props;
 const canonicalUrl = canonical
   ? new URL(canonical, Astro.site)
   : undefined;
@@ -35,8 +37,9 @@ const canonicalUrl = canonical
     {canonicalUrl && <link rel="canonical" href={canonicalUrl.href} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType ?? "website"} />
     <meta property="og:locale" content="es_AR" />
+    {ogImage && <meta property="og:image" content={ogImage} />}
     <title>{title}</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5043640709806196"
      crossorigin="anonymous"></script>

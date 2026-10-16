@@ -58,6 +58,8 @@ const news = defineCollection({
           src: z.string(),
           alt: z.string().min(1, 'El alt text es obligatorio si hay imagen'),
           attribution: z.string().optional(),
+          license: z.string().optional(),
+          verificationStatus: z.enum(['pending', 'verified', 'rejected']).optional(),
         })
         .optional(),
     })

@@ -24,6 +24,20 @@ const municipalitySlug =
   variant === 'featured' && 'border-l-4 border-l-accent',
   variant === 'compact' && 'p-4',
 ]}>
+  {data.image && (
+    <div class="relative mb-4">
+      <img 
+        src={data.image.src} 
+        alt={data.image.alt} 
+        class:list={[
+          'w-full',
+          variant === 'featured' ? 'h-64' : variant === 'compact' ? 'h-32' : 'h-48',
+          'object-cover',
+          'rounded-t-lg',
+        ]}
+      />
+    </div>
+  )}
   <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
     <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
       {data.section}
