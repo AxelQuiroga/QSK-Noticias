@@ -77,6 +77,13 @@ export const LOCATIONS: readonly Location[] = [
     regionIds: ['region-zona-sur', 'region-amba'],
   },
   {
+  id: 'municipio-florencio-varela',
+  name: 'Florencio Varela',
+  type: 'municipio',
+  parentId: 'provincia-buenos-aires',
+  regionIds: ['region-zona-sur', 'region-amba'],
+},
+  {
     id: 'localidad-banfield',
     name: 'Banfield',
     type: 'localidad',
