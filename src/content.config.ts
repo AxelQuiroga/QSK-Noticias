@@ -2,12 +2,18 @@ import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 import { isKnownLocationName, type LocationType } from './data/locations';
+import { isKnownSection } from './data/sections';
 
 /**
  * Campos geográficos del frontmatter y el tipo de ubicación que deben
  * referenciar dentro del catálogo (`src/data/locations.ts`). Evita cadenas
  * libres: un `municipality: "AMBA"` (que es una región) o un municipio
  * inexistente rompen el build en vez de generar enlaces rotos en silencio.
+ *
+ * Lo mismo vale para `section`: se valida contra el catálogo editorial
+ * (`src/data/sections.ts`), que es la fuente de verdad de las rutas
+ * `/secciones/*`. Una sección fuera del catálogo generaría tarjetas que
+ * enlazan a una ruta que no existe.
  */
 const GEO_FIELDS: ReadonlyArray<{ field: 'municipality' | 'localidad' | 'region'; type: LocationType }> = [
   { field: 'municipality', type: 'municipio' },
@@ -56,6 +62,14 @@ const news = defineCollection({
         .optional(),
     })
     .superRefine((data, ctx) => {
+      if (!isKnownSection(data.section)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['section'],
+          message: `"${data.section}" no es una sección del catálogo editorial (src/data/sections.ts).`,
+        });
+      }
+
       for (const { field, type } of GEO_FIELDS) {
         const value = data[field];
         if (value === undefined) continue;

@@ -3,6 +3,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import yaml from 'js-yaml';
 import { findLocationByNameAndType, type LocationType } from '../src/data/locations';
+import { SECTIONS } from '../src/data/sections';
 
 const CONTENT_DIR = 'src/content/noticias';
 const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -131,6 +132,16 @@ describe('Content validation - artículos', () => {
           `"${value}" en ${field} no es un ${type} del catálogo (${data.slug ?? file})`,
         ).toBeDefined();
       }
+    }
+  });
+
+  it('las secciones declaradas existen en el catálogo editorial', () => {
+    for (const { file, data } of getAllArticles()) {
+      if (typeof data.section !== 'string') continue;
+      expect(
+        SECTIONS,
+        `"${data.section}" en section no es una sección del catálogo (${data.slug ?? file})`,
+      ).toContain(data.section);
     }
   });
 

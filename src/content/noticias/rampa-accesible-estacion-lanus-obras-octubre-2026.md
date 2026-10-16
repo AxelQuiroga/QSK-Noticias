@@ -2,7 +2,7 @@
 title: "Estación Lanús: obras en la rampa accesible y dudas sobre el cruce peatonal"
 description: "El Municipio inició una nueva etapa de trabajos para renovar la conexión entre Lanús Este y Oeste. La circulación por la rampa está interrumpida, según una observación directa, y no se encontró información pública sobre una alternativa accesible."
 slug: "rampa-accesible-estacion-lanus-obras-octubre-2026"
-section: "Actualidad"
+section: "Obras públicas"
 municipality: "Lanús"
 region: "Zona Sur"
 scope: "local"
