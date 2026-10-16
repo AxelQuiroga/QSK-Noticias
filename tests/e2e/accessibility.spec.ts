@@ -22,6 +22,24 @@ test.describe('Accesibilidad', () => {
     expect(critical).toEqual([]);
   });
 
+  test('header con un desplegable abierto no tiene violaciones críticas de axe', async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto('/');
+    await page
+      .locator('nav[aria-label="Navegación principal"]')
+      .getByRole('button', { name: 'Actualidad', exact: true })
+      .click();
+
+    const results = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze();
+
+    const critical = results.violations.filter((v) => v.impact === 'critical');
+    expect(critical).toEqual([]);
+  });
+
   test('navegación por teclado: tabReachMain', async ({ page }) => {
     await page.goto('/');
     await page.keyboard.press('Tab');

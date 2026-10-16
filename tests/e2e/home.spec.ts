@@ -32,7 +32,9 @@ test.describe('Portada', () => {
 
   test('el header tiene el logo QSK', async ({ page }) => {
     await page.goto('/');
-    const logo = page.locator('header a[href="/"]');
+    // El header tiene dos enlaces a "/": el logo y "Portada" (nav principal).
+    // Se acota por el nombre accesible del logo para no caer en strict mode.
+    const logo = page.locator('header').getByRole('link', { name: /QSK Noticias/i });
     await expect(logo).toBeVisible();
     await expect(logo).toHaveAttribute('aria-label', /QSK Noticias/i);
   });

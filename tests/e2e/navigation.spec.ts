@@ -8,9 +8,14 @@ test.describe('Navegación', () => {
 
     if (isMobile) {
       await page.locator('#menu-toggle').click();
-      await page.locator('#mobile-menu a', { hasText: 'Tránsito' }).click();
+      const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
+      // "Tránsito" vive dentro del grupo "Ciudad": hay que expandirlo.
+      await menu.getByRole('button', { name: 'Ciudad', exact: true }).click();
+      await menu.locator('a', { hasText: 'Tránsito' }).click();
     } else {
-      await page.locator('nav[aria-label="Navegación principal"] a', { hasText: 'Tránsito' }).click();
+      const nav = page.locator('nav[aria-label="Navegación principal"]');
+      await nav.getByRole('button', { name: 'Ciudad', exact: true }).click();
+      await nav.locator('a', { hasText: 'Tránsito' }).click();
     }
 
     await expect(page).toHaveURL(/\/secciones\/transito/);

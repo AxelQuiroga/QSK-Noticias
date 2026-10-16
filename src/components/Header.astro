@@ -1,9 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { slugify } from '../lib/utils';
-import { SECTIONS } from '../data/sections';
-
-const sections = SECTIONS;
+import { NAV_DIRECT, NAV_GROUPS } from '../data/sections';
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur">
@@ -12,7 +10,58 @@ const sections = SECTIONS;
       <Logo variant="header" />
 
       <nav class="hidden items-center gap-6 lg:flex" aria-label="Navegación principal">
-        {sections.map((section) => (
+        <a
+          href="/"
+          class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
+        >
+          Portada
+        </a>
+
+        {NAV_GROUPS.map((group) => (
+          <div class="relative" data-nav-group>
+            <button
+              type="button"
+              id={`nav-${slugify(group.label)}-button`}
+              class="group inline-flex items-center gap-1 text-sm font-medium text-text-secondary transition-colors hover:text-text aria-expanded:text-text"
+              aria-expanded="false"
+              aria-controls={`nav-${slugify(group.label)}-menu`}
+              data-nav-trigger
+            >
+              {group.label}
+              <svg
+                class="h-3 w-3 transition-transform group-aria-expanded:rotate-180"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+
+            <ul
+              id={`nav-${slugify(group.label)}-menu`}
+              class="absolute top-full left-0 z-50 mt-2 hidden min-w-44 rounded-lg border border-border bg-surface p-2 shadow-lg"
+              data-nav-menu
+            >
+              {group.sections.map((section) => (
+                <li>
+                  <a
+                    href={`/secciones/${slugify(section)}/`}
+                    class="block rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap text-text-secondary transition-colors hover:bg-bg hover:text-text"
+                  >
+                    {section}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        {NAV_DIRECT.map((section) => (
           <a
             href={`/secciones/${slugify(section)}/`}
             class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
@@ -20,7 +69,8 @@ const sections = SECTIONS;
             {section}
           </a>
         ))}
-<a
+
+        <a
           href="/buscar/"
           class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
         >
@@ -48,31 +98,76 @@ const sections = SECTIONS;
     aria-label="Navegación móvil"
   >
     <div class="container-editorial py-4">
-      <div class="space-y-5">
-        <div>
-          <p class="text-xs font-semibold uppercase tracking-wide text-text-secondary">Secciones</p>
-          <ul class="mt-2 flex flex-col gap-3">
-            {sections.map((section) => (
-              <li>
-                <a
-                  href={`/secciones/${slugify(section)}/`}
-                  class="block text-base font-medium text-text-secondary hover:text-text"
-                >
-                  {section}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
+      <ul class="flex flex-col">
+        <li>
+          <a
+            href="/"
+            class="flex min-h-11 items-center text-base font-medium text-text-secondary transition-colors hover:text-text"
+          >
+            Portada
+          </a>
+        </li>
+
+        {NAV_GROUPS.map((group) => (
+          <li data-nav-group>
+            <button
+              type="button"
+              id={`mobile-${slugify(group.label)}-button`}
+              class="group flex min-h-11 w-full items-center justify-between gap-2 text-left text-base font-medium text-text-secondary transition-colors hover:text-text aria-expanded:text-text"
+              aria-expanded="false"
+              aria-controls={`mobile-${slugify(group.label)}-menu`}
+              data-nav-trigger
+            >
+              {group.label}
+              <svg
+                class="h-4 w-4 shrink-0 transition-transform group-aria-expanded:rotate-180"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+
+            <ul id={`mobile-${slugify(group.label)}-menu`} class="hidden pb-1" data-nav-menu>
+              {group.sections.map((section) => (
+                <li>
+                  <a
+                    href={`/secciones/${slugify(section)}/`}
+                    class="flex min-h-11 items-center pl-4 text-base text-text-secondary transition-colors hover:text-text"
+                  >
+                    {section}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+
+        {NAV_DIRECT.map((section) => (
+          <li>
+            <a
+              href={`/secciones/${slugify(section)}/`}
+              class="flex min-h-11 items-center text-base font-medium text-text-secondary transition-colors hover:text-text"
+            >
+              {section}
+            </a>
+          </li>
+        ))}
+
+        <li>
           <a
             href="/buscar/"
-            class="block text-base font-medium text-text-secondary hover:text-text"
+            class="flex min-h-11 items-center text-base font-medium text-text-secondary transition-colors hover:text-text"
           >
             Buscar
           </a>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </nav>
 </header>
@@ -92,7 +187,68 @@ const sections = SECTIONS;
     });
   }
 
-  // Con ClientRouter el script corre una vez, pero el header se reemplaza
-  // en cada navegación: re-bindear en cada página (inicial y post-swap).
+  /**
+   * Desplegables de los grupos temáticos (escritorio y móvil).
+   *
+   * Los listeners se registran UNA sola vez por documento, a nivel de módulo:
+   * la delegación en `document` resuelve los nodos en cada clic, así que no hay
+   * nada que re-bindear cuando ClientRouter reemplaza el header.
+   *
+   * ⚠️ Es a propósito que NO se re-registren en `astro:page-load`. Un guard del
+   * tipo `documentElement.dataset.x = 'true'` NO sirve acá: ClientRouter
+   * reemplaza los atributos de <html> con los de la página nueva en cada
+   * navegación, así que la bandera se pierde, el registro se repite y se
+   * acumula un listener por navegación. Con N listeners el mismo clic alterna
+   * el grupo N veces: con N par el menú se abre y se cierra en el mismo clic y
+   * el desplegable "no abre" (bug reproducido: abría en 0 y 2 navegaciones,
+   * fallaba en 1 y 3).
+   *
+   * Patrón disclosure: el disparador es un <button> con `aria-expanded` +
+   * `aria-controls`. Enter/Space lo activan de forma nativa, Escape cierra y
+   * devuelve el foco al disparador, y un clic fuera o sobre una sección cierra
+   * todo. No hay hover: el menú es operable solo con teclado.
+   */
+  function setGroupOpen(trigger: HTMLElement, open: boolean) {
+    const group = trigger.closest<HTMLElement>('[data-nav-group]');
+    const menu = group?.querySelector<HTMLElement>('[data-nav-menu]');
+    trigger.setAttribute('aria-expanded', String(open));
+    if (menu) menu.classList.toggle('hidden', !open);
+  }
+
+  function closeAllGroups(except: HTMLElement | null) {
+    document.querySelectorAll<HTMLElement>('[data-nav-group]').forEach((group) => {
+      if (group === except) return;
+      const trigger = group.querySelector<HTMLElement>('[data-nav-trigger]');
+      if (!trigger) return;
+      if (trigger.getAttribute('aria-expanded') === 'true') setGroupOpen(trigger, false);
+    });
+  }
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const trigger = target.closest<HTMLElement>('[data-nav-trigger]');
+    if (trigger) {
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      // Un solo grupo abierto por vez: cerramos el resto antes de alternar.
+      closeAllGroups(trigger.closest<HTMLElement>('[data-nav-group]'));
+      setGroupOpen(trigger, !isOpen);
+      return;
+    }
+
+    closeAllGroups(null);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    const trigger = document.querySelector<HTMLElement>('[data-nav-trigger][aria-expanded="true"]');
+    if (!trigger) return;
+    setGroupOpen(trigger, false);
+    trigger.focus();
+  });
+
+  // El menú móvil sí se re-bindea: el header se reemplaza en cada navegación y
+  // el guard por elemento (`dataset.menuBound`) viaja con el nodo nuevo.
   document.addEventListener('astro:page-load', bindMenuToggle);
 </script>

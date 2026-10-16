@@ -1,13 +1,12 @@
 import { test, expect } from '@playwright/test';
-import { SECTIONS } from '../../src/data/sections';
+import { NAV_DIRECT, NAV_GROUPS, SECTIONS } from '../../src/data/sections';
 import { slugify } from '../../src/lib/utils';
 
 /**
- * Las expectativas se derivan del catálogo editorial, que es la fuente de
- * verdad de las rutas `/secciones/*`. Si alguien agrega o quita una sección,
- * estos tests lo reflejan sin listas duplicadas.
+ * Las expectativas se derivan del catálogo editorial y de la agrupación del
+ * header, que son la fuente de verdad de las rutas `/secciones/*`. Si alguien
+ * agrega o quita una sección, estos tests lo reflejan sin listas duplicadas.
  */
-const SECTION_SLUGS = SECTIONS.map((section) => slugify(section));
 const NEW_SECTIONS = ['Política', 'Servicios', 'Seguridad', 'Sociedad'];
 
 test.describe('Secciones nuevas — rutas', () => {
@@ -23,18 +22,35 @@ test.describe('Secciones nuevas — rutas', () => {
 test.describe('Navegación principal de escritorio', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test('lista todas las secciones del catálogo (sin regresiones)', async ({ page }) => {
+  test('mantiene alcanzable cada sección del catálogo (sin regresiones)', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
 
-    await expect(nav.locator('a[href^="/secciones/"]')).toHaveCount(SECTIONS.length);
+    // Todas las rutas siguen enlazadas desde el header: las agrupadas viven
+    // dentro de su desplegable (ocultas hasta abrirlo), no como enlaces sueltos.
+    const agrupadas = NAV_GROUPS.flatMap((group) => group.sections);
+    await expect(nav.locator('a[href^="/secciones/"]')).toHaveCount(
+      agrupadas.length + NAV_DIRECT.length,
+    );
 
-    for (const slug of SECTION_SLUGS) {
-      await expect(nav.locator(`a[href="/secciones/${slug}/"]`)).toBeVisible();
+    for (const group of NAV_GROUPS) {
+      await nav.getByRole('button', { name: group.label, exact: true }).click();
+      for (const section of group.sections) {
+        await expect(nav.locator(`a[href="/secciones/${slugify(section)}/"]`)).toBeVisible();
+      }
     }
+
+    for (const section of NAV_DIRECT) {
+      await expect(nav.locator(`a[href="/secciones/${slugify(section)}/"]`)).toBeVisible();
+    }
+
+    // La única sección sin entrada propia en el header es "Actualidad", que da
+    // nombre al grupo y se alcanza desde el sidebar de la portada y las tarjetas.
+    const enNav = new Set([...agrupadas, ...NAV_DIRECT]);
+    expect(SECTIONS.filter((section) => !enNav.has(section))).toEqual(['Actualidad']);
   });
 
-  test('el header no desborda horizontalmente con las 11 secciones', async ({ page }) => {
+  test('el header no desborda horizontalmente', async ({ page }) => {
     await page.goto('/');
     const { scrollWidth, clientWidth } = await page.evaluate(() => ({
       scrollWidth: document.documentElement.scrollWidth,
@@ -47,18 +63,17 @@ test.describe('Navegación principal de escritorio', () => {
 test.describe('Menú móvil', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
-  test('lista todas las secciones y navega a una nueva', async ({ page }) => {
+  test('agrupa las secciones y navega a una nueva', async ({ page }) => {
     await page.goto('/');
     await page.locator('#menu-toggle').click();
 
     const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
     await expect(menu).toBeVisible();
 
-    for (const slug of SECTION_SLUGS) {
-      await expect(menu.locator(`a[href="/secciones/${slug}/"]`)).toBeVisible();
-    }
-
+    // "Servicios" ahora vive dentro del grupo "Comunidad".
+    await menu.getByRole('button', { name: 'Comunidad', exact: true }).click();
     await menu.locator('a', { hasText: 'Servicios' }).click();
+
     await expect(page).toHaveURL(/\/secciones\/servicios/);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Servicios');
   });

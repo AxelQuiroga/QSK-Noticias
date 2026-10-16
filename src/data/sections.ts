@@ -46,3 +46,33 @@ export const SECTIONS: readonly string[] = [
 export function isKnownSection(name: string): boolean {
   return SECTIONS.includes(name);
 }
+
+/**
+ * Agrupación de la navegación principal del header.
+ *
+ * Los grupos son AGRUPACIONES DE NAVEGACIÓN, no secciones editoriales: no
+ * tienen ruta propia ni entran en `SECTIONS`, así que no existe (ni debe
+ * existir) `/secciones/comunidad/`. Cada entrada referencia el NOMBRE de una
+ * sección del catálogo: el slug y la ruta se derivan siempre de `SECTIONS` +
+ * `slugify()`, nunca se escriben a mano acá.
+ *
+ * ⚠️ `Actualidad` es la excepción: es sección del catálogo y a la vez el
+ * nombre de un grupo. El grupo navega a Política y Sociedad; la sección
+ * `Actualidad` se alcanza desde el sidebar de la portada y desde la etiqueta
+ * de cada tarjeta de noticia. Si se quisiera que el header también la enlace,
+ * alcanza con sumarla a `sections` del grupo (decisión editorial pendiente).
+ */
+export interface NavGroup {
+  readonly label: string;
+  readonly sections: readonly string[];
+}
+
+/** Grupos desplegables, en el orden en que se muestran en el header. */
+export const NAV_GROUPS: readonly NavGroup[] = [
+  { label: 'Actualidad', sections: ['Política', 'Sociedad'] },
+  { label: 'Comunidad', sections: ['Seguridad', 'Servicios', 'Salud', 'Educación'] },
+  { label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
+];
+
+/** Secciones con acceso directo en el header, sin desplegable. */
+export const NAV_DIRECT: readonly string[] = ['Economía', 'Deportes'];
