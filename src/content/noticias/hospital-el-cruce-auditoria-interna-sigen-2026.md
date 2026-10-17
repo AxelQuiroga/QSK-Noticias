@@ -13,6 +13,10 @@ sources:
   - name: "Argentina.gob.ar — El Hospital El Cruce y la SIGEN avanzan en la puesta en funcionamiento de la Unidad de Auditoría Interna"
     url: "https://www.argentina.gob.ar/noticias/el-hospital-el-cruce-y-la-sigen-avanzan-en-la-puesta-en-funcionamiento-de-la-unidad-de"
     description: "Comunicado oficial sobre la reunión entre las autoridades del Hospital El Cruce y la SIGEN, la designación del auditor interno y la planificación de la unidad para 2027."
+image:
+  src: "/images/noticias/hospital-el-cruce-auditoria-interna-sigen-2026.jpg"
+  alt: "Edificio del Hospital de Alta Complejidad en Red El Cruce, ubicado en Florencio Varela."
+  attribution: "Foto: Hospital El Cruce"    
 ---
 
 # El Hospital El Cruce avanza con la organización de su auditoría interna

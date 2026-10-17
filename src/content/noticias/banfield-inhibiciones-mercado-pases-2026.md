@@ -20,6 +20,11 @@ sources:
   - name: "Club Atlético Banfield — informe del mercado de pases del Clausura 2026"
     url: "https://clubabanfield.org/banfield-presenta-el-informe-del-mercado-de-pases-clausura-2026/"
     description: "Informe institucional sobre las operaciones del mercado de pases del Clausura 2026."
+image:
+  src: "/images/noticias/banfield-inhibiciones-mercado-pases-2026.jpg"
+  alt: "Bandera del Club Atlético Banfield con el escudo institucional, en el predio del club."
+  attribution: "Foto: Club Atlético Banfield"
+
 ---
 
 El Club Atlético Banfield informó en agosto de 2026 que destinó US$ 1.318.559,48 a regularizar obligaciones vinculadas con inhibiciones, multas y embargos judiciales. La institución también comunicó la cancelación de una deuda de $370 millones que mantenía embargada una cuenta bancaria.

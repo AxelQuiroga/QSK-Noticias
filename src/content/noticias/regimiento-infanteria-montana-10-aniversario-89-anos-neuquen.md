@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — El Ministro de Defensa participó del 89° aniversario del Regimiento de Infantería de Montaña 10"
     url: "https://www.argentina.gob.ar/noticias/el-ministro-de-defensa-participo-del-89deg-aniversario-del-regimiento-de-infanteria-de"
     description: "Comunicado oficial sobre el aniversario del regimiento, la participación del ministro de Defensa y sus declaraciones sobre la modernización de las Fuerzas Armadas."
+image:
+  src: "/images/noticias/regimiento-infanteria-montana-10-aniversario-89-anos-neuquen.jpg"
+  alt: "Personal militar formado frente al edificio histórico del Regimiento de Infantería de Montaña 10, en Covunco Centro, durante la ceremonia conmemorativa."
+  attribution: "Foto: Ministerio de Defensa / Argentina.gob.ar"    
 ---
 
 # El Regimiento de Infantería de Montaña 10 celebró 89 años de historia en Neuquén

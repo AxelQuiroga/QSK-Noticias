@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — Milei en la Cámara de Comercio de Estados Unidos"
     url: "https://www.argentina.gob.ar/noticias/milei-en-la-camara-de-comercio-de-estados-unidos-no-descansare-hasta-que-la-argentina-sea"
     description: "Comunicado oficial sobre el discurso del Presidente Javier Milei ante empresarios e inversores y la entrega del premio Global Champion of Free Enterprise."
+image:
+  src: "/images/noticias/milei-premio-estados-unidos-defensa-programa-economico-2026.jpg"
+  alt: "Javier Milei recibe el premio Global Champion of Free Enterprise junto a Suzanne Clark, presidenta y directora ejecutiva de la Cámara de Comercio de Estados Unidos."
+  attribution: "Foto: Presidencia de la Nación / Argentina.gob.ar"    
 ---
 
 # Milei recibió un premio en Estados Unidos y defendió su programa económico

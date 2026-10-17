@@ -3,6 +3,7 @@ import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 import { isKnownLocationName, type LocationType } from './data/locations';
 import { isKnownSection } from './data/sections';
+import { isValidNewsImageSrc, newsImageFileExists } from './lib/news-image';
 
 /**
  * Campos geográficos del frontmatter y el tipo de ubicación que deben
@@ -55,8 +56,19 @@ const news = defineCollection({
         .default([]),
       image: z
         .object({
-          src: z.string(),
-          alt: z.string().min(1, 'El alt text es obligatorio si hay imagen'),
+          src: z
+            .string()
+            .trim()
+            .min(1, 'La ruta de la imagen es obligatoria')
+            .refine(
+              isValidNewsImageSrc,
+              'La imagen debe usar una ruta local bajo /images/noticias/ sin segmentos ambiguos.',
+            )
+            .refine(
+              (src) => newsImageFileExists(src),
+              'El archivo de imagen debe existir dentro de public/images/noticias/.',
+            ),
+          alt: z.string().trim().min(1, 'El alt text es obligatorio si hay imagen'),
           attribution: z.string().optional(),
         })
         .optional(),

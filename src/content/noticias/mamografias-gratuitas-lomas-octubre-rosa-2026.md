@@ -14,6 +14,10 @@ sources:
   - name: "Municipalidad de Lomas de Zamora"
     url: "https://formularios.lomasdezamora.gov.ar/Noticias.aspx"
     description: "Portal municipal de noticias. Anuncio de mamografías gratuitas durante octubre en el CIS San Martín y el Hospital Alende."
+image:
+  src: "/images/noticias/mamografias-gratuitas-lomas-octubre-rosa-2026.webp"
+  alt: "Profesional de salud junto a un equipo de diagnóstico por imágenes durante un estudio mamario."
+  attribution: "Imagen publicada por Mirada360"    
 ---
 
 En el marco de Octubre Rosa, el Municipio de Lomas de Zamora anunció la realización de mamografías gratuitas sin cita previa durante octubre en dos establecimientos de salud del distrito: el Centro Integral de Salud (CIS) San Martín y el Hospital Materno Infantil Dr. Óscar Alende.

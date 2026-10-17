@@ -24,6 +24,12 @@ sources:
   - name: "Quilmes Informa — Trabajos de bacheo en hormigón en Ezpeleta"
     url: "https://quilmesinforma.com.ar/2026/10/05/trabajos-de-bacheo-en-hormigon-en-ezpeleta/"
     description: "Publicación del 5 de octubre con información sobre las obras y el programa municipal."
+
+image:
+  src: "/images/noticias/corte-transito-avenida-smith-ezpeleta-octubre-2026.jfif"
+  alt: "Maquinaria y personal trabajan en la reparación de la calzada de la avenida Oscar Smith, en Ezpeleta."
+  attribution: "Foto: Municipio de Quilmes"
+
 ---
 
 El Municipio de Quilmes anunció el cierre temporal de dos tramos de la avenida Oscar Smith, en Ezpeleta, por trabajos de bacheo con hormigón. La medida fue informada el lunes 5 de octubre, cuando comenzaron las tareas de reparación de la calzada.

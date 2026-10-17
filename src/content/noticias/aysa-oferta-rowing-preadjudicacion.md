@@ -24,6 +24,12 @@ sources:
   - name: "AySA"
     url: "https://www.aysa.com.ar/usuarios/Novedades/2025/06/puesta_en_marcha_del_sistema_riachuelo"
     description: "Información sobre el Sistema Riachuelo y la expansión del servicio."
+
+image:
+  src: "/images/noticias/aysa-sistema-riachuelo-privatizacion-2026.jpg"
+  alt: "Personal técnico trabaja en las instalaciones de tratamiento del Sistema Riachuelo de AySA."
+  attribution: "Foto: AySA"
+
 ---
 
 <!-- Pegar aquí el cuerpo de la noticia revisada. -->

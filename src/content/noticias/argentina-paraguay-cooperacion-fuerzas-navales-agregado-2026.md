@@ -12,6 +12,12 @@ sources:
   - name: "Argentina.gob.ar — La Prefectura recibió al nuevo Agregado Naval de Paraguay en la Argentina"
     url: "https://www.argentina.gob.ar/noticias/la-prefectura-recibio-al-nuevo-agregado-naval-de-paraguay-en-la-argentina-0"
     description: "Comunicado oficial sobre la audiencia protocolar entre las autoridades de la Prefectura Naval Argentina y el nuevo agregado naval de Paraguay, y los objetivos de cooperación bilateral."
+
+image:
+  src: "/images/noticias/argentina-paraguay-cooperacion-naval-2026.jpg"
+  alt: "El prefecto nacional naval argentino y un oficial naval paraguayo durante una audiencia protocolar en el Edificio Guardacostas."
+  attribution: "Foto: Prefectura Naval Argentina / Argentina.gob.ar"
+
 ---
 
 # Argentina y Paraguay buscan profundizar la cooperación entre sus fuerzas navales

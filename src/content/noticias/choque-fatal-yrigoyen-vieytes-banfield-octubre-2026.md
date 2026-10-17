@@ -24,6 +24,12 @@ sources:
   - name: "Diario Conurbano — Giro en el caso Jalil: un video muestra que el colectivo que lo atropelló cruzó en rojo"
     url: "https://diarioconurbano.com.ar/justicia/giro-en-el-caso-jalil-un-video-muestra-que-el-colectivo-que-lo-atropello-cruzo-en-rojo/"
     description: "Cobertura del 4 de octubre sobre el video y el pedido de la familia."
+
+image:
+  src: "/images/noticias/choque-fatal-yrigoyen-vieytes-banfield-2026.jpg"
+  alt: "Cruce de la avenida Hipólito Yrigoyen y la calle Vieytes, en Banfield, donde ocurrió el siniestro vial investigado."
+  attribution: "Foto: QSK Noticias"
+
 ---
 
 La investigación por la muerte de Cristian Jalil, un motociclista de 25 años que falleció tras chocar con un colectivo de la línea 51 en Banfield, sumó una novedad a comienzos de octubre: la difusión de un video de seguridad que, según medios locales, fue incorporado al expediente judicial.

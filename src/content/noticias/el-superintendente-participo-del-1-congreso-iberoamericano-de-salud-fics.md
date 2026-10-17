@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — El Superintendente participó del 1º Congreso Iberoamericano de Salud FICS"
     url: "https://www.argentina.gob.ar/noticias/el-superintendente-participo-del-1o-congreso-iberoamericano-de-salud-fics"
     description: "Comunicado oficial sobre el congreso organizado por la Fundación Iberoamericana Consenso Salud, sus participantes y los principales temas abordados."
+image:
+  src: "/images/noticias/congreso-iberoamericano-salud-financiamiento-innovacion-2026.webp"
+  alt: "Autoridades sanitarias durante la apertura del Congreso Iberoamericano de Salud FICS 2026."
+  attribution: "Foto: Consenso Salud"    
 ---
 
 # Referentes del sistema sanitario debatieron sobre financiamiento e innovación en un congreso iberoamericano

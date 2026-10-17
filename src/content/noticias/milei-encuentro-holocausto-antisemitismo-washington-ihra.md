@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — El Presidente Milei participó de la actividad en honor a la presidencia de la República Argentina de la Alianza para la Memoria del Holocausto (IHRA)"
     url: "https://www.argentina.gob.ar/noticias/el-presidente-milei-participo-de-la-actividad-en-honor-la-presidencia-de-la-republica"
     description: "Comunicado oficial sobre la participación del Presidente en el encuentro realizado en la Embajada argentina en Washington y la inauguración de una muestra digital sobre el Holocausto."
+image:
+  src: "/images/noticias/milei-encuentro-holocausto-antisemitismo-washington-ihra.jpg"
+  alt: "Javier Milei habla ante los asistentes durante una actividad de la Alianza Internacional para la Memoria del Holocausto en la Embajada argentina en Washington."
+  attribution: "Foto: Presidencia de la Nación / Argentina.gob.ar"    
 ---
 
 # Milei participó en Washington de un encuentro sobre el Holocausto y el antisemitismo

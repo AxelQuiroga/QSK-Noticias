@@ -6,12 +6,17 @@ section: "Deportes"
 scope: "nacional"
 author: "QSK Noticias"
 publishedAt: "2026-10-16"
-status: "draft"
+status: "published"
 featured: false
 sources:
   - name: "Argentina.gob.ar — Comenzó el Mundial de Pelota Vasca en Argentina"
     url: "https://www.argentina.gob.ar/noticias/comenzo-el-mundial-de-pelota-vasca-en-argentina"
     description: "Información oficial sobre el inicio del campeonato, las sedes, la cantidad de participantes y la delegación argentina."
+image:
+  src: "/images/noticias/mundial-pelota-vasca-argentina-2026.jpg"
+  alt: "Deportistas de la delegación argentina posan en una de las sedes del Mundial de Pelota Vasca de Buenos Aires 2026."
+  attribution: "Foto: Gobierno de la Ciudad de Buenos Aires"
+
 ---
 
 La Ciudad de Buenos Aires es sede por primera vez del Mundial de Pelota Vasca, cuya 20.ª edición comenzó el 15 de octubre y se extenderá hasta el 24. El campeonato reúne a 480 participantes de 15 delegaciones, que competirán en nueve modalidades femeninas y masculinas.

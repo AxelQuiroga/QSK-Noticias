@@ -20,6 +20,10 @@ sources:
   - name: "Municipio de Lanús — Obras en el Centro Educativo Municipal N.º 13"
     url: "https://www.lanus.gob.ar/documentos-oficiales/1400/ampliacion-y-refacciones-varias-en-ce-n013/descargar"
     description: "Pliego de obra con descripción de trabajos, presupuesto oficial y plazo previsto."
+image:
+  src: "/images/noticias/obras-escuelas-publicas-lanus-octubre-2026.jpeg"
+  alt: "Trabajador instala una estructura metálica durante las obras de ampliación de un establecimiento educativo de Lanús."
+  attribution: "Foto: Municipio de Lanús"    
 ---
 
 El Municipio de Lanús informó el 8 de octubre que continúan los trabajos de infraestructura en cuatro establecimientos educativos públicos del distrito: las escuelas primarias N.º 49, N.º 37 y N.º 27, y el Centro Educativo Municipal N.º 13.

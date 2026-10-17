@@ -12,6 +12,12 @@ sources:
   - name: "Argentina.gob.ar — Con medios militares ya desplegados en el litoral, el Ministerio de Defensa fortalece la coordinación federal ante el fenómeno de “El Niño”"
     url: "https://www.argentina.gob.ar/noticias/con-medios-militares-ya-desplegados-en-el-litoral-el-ministerio-de-defensa-fortalece-la"
     description: "Comunicado oficial del Ministerio de Defensa sobre el despliegue preventivo de la Armada, la preparación de las Fuerzas Armadas y la coordinación federal ante posibles emergencias climáticas."
+
+image:
+  src: "/images/noticias/despliegue-militar-litoral-emergencias-el-nino-2026.jpg"
+  alt: "Vista de embarcaciones militares amarradas en un puerto, en el marco del despliegue preventivo de la Armada Argentina."
+  attribution: "Foto: Ministerio de Defensa / Argentina.gob.ar"
+    
 ---
 
 El Ministerio de Defensa informó que desplegó medios de la Armada Argentina hacia el litoral y mantiene unidades del Ejército, la Armada y la Fuerza Aérea en apresto ante posibles emergencias vinculadas con el fenómeno climático de El Niño.
