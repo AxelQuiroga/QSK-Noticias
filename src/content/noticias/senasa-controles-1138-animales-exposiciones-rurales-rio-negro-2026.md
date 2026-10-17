@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — Se fiscalizó la sanidad de 1.138 animales durante las exposiciones rurales de primavera en Río Negro"
     url: "https://www.argentina.gob.ar/noticias/se-fiscalizo-la-sanidad-de-1138-animales-durante-las-exposiciones-rurales-de-primavera-en"
     description: "Información oficial del SENASA sobre los controles sanitarios y documentales realizados durante cinco exposiciones rurales en Río Negro."
+image:
+  src: "/images/noticias/senasa-controles-1138-animales-exposiciones-rurales-rio-negro-2026.jpg"
+  alt: "Bovinos en una exposición ganadera rural de Río Negro."
+  attribution: "Foto: https://dataportuaria.com/"    
 ---
 
 # El SENASA controló 1.138 animales en cinco exposiciones rurales de Río Negro

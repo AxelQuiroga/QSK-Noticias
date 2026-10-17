@@ -20,6 +20,10 @@ sources:
   - name: "Elonce"
     url: "https://www.elonce.com/amp/financiamiento-universitario-decanos-alertaron-por-la-perdida-de-docentes-y-falta-de-recursos.htm"
     description: "Declaraciones de autoridades universitarias sobre salarios y recursos."
+image:
+  src: "/images/noticias/financiamiento-universitario-multa-santilli-2026.jpg"
+  alt: "Diego Santilli, jefe de Gabinete de Ministros, alcanzado por la sanción judicial vinculada con el financiamiento universitario."
+  attribution: "Foto: NA / Claudio Fanchi, publicada por TN"    
 ---
 
 

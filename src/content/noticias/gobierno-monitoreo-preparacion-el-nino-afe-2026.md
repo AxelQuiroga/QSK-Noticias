@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — Monteoliva encabezó una mesa de control y monitoreo ante el fenómeno de El Niño"
     url: "https://www.argentina.gob.ar/noticias/monteoliva-encabezo-una-mesa-de-control-y-monitoreo-ante-el-fenomeno-de-el-nino"
     description: "Comunicado oficial del Ministerio de Seguridad Nacional sobre la coordinación federal y las herramientas de preparación ante el fenómeno de El Niño."
+image:
+  src: "/images/noticias/gobierno-monitoreo-preparacion-el-nino-afe-2026.jpeg"
+  alt: "Funcionarios observan una pantalla de monitoreo durante una reunión de coordinación ante posibles efectos del fenómeno de El Niño."
+  attribution: "Foto: Ministerio de Seguridad Nacional / Argentina.gob.ar"    
 ---
 
 # El Gobierno refuerza el monitoreo y la preparación ante posibles efectos de El Niño

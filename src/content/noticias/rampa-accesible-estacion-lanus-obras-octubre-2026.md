@@ -23,6 +23,10 @@ sources:
   - name: "El Diario Sur — Lanús: reabren las rampas para discapacitados en la estación"
     url: "https://www.eldiariosur.com/lanus/2021/11/12/lanus-reabren-las-rampas-para-discapacitados-en-la-estacion-50522.html"
     description: "Antecedente periodístico sobre la reapertura de las rampas en noviembre de 2021."
+image:
+  src: "/images/noticias/rampa-accesible-estacion-lanus-obras-octubre-2026.jpeg"
+  alt: "Personas observan documentación junto a la rampa y las escaleras mecánicas de la estación Lanús durante la segunda etapa de obras."
+  attribution: "Foto: MSA News"    
 ---
 
 El Municipio de Lanús comenzó una nueva etapa de obras en la estación ferroviaria para renovar la conexión peatonal entre Lanús Este y Lanús Oeste. Mientras avanzan los trabajos, la circulación por la rampa destinada a personas con discapacidad se encuentra interrumpida, según una observación directa compartida con QSK Noticias.

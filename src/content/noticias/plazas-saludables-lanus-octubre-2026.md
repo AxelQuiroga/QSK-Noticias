@@ -17,6 +17,10 @@ sources:
   - name: "La Defensa Digital"
     url: "https://www.ladefensadigital.com/2026/10/plazas-saludables_0564610876.html"
     description: "Cobertura local complementaria y referencia al nombre Plaza Güemes de Villa Obrera."
+image:
+  src: "/images/noticias/plazas-saludables-lanus-octubre-2026.jpg"
+  alt: "Personal de salud toma la presión arterial a un vecino durante un control en una posta sanitaria del programa Plazas Saludables."
+  attribution: "Foto: Municipio de Lanús"    
 ---
 
 El Municipio de Lanús anunció cuatro jornadas gratuitas del programa Plazas Saludables entre el martes 13 y el viernes 16 de octubre. Las actividades están previstas de 9 a 12 en espacios públicos de Lanús Este y Lanús Oeste, con controles básicos de salud, actividad física y orientación nutricional.

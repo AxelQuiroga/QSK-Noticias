@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — El Sello de Buen Diseño Argentino participará en la Barcelona Design Week 2026"
     url: "https://www.argentina.gob.ar/noticias/el-sello-de-buen-diseno-argentino-participara-en-la-barcelona-design-week-2026"
     description: "Información oficial sobre la selección de productos distinguidos con el Sello de Buen Diseño Argentino y las dos exhibiciones previstas en Barcelona."
+image:
+  src: "/images/noticias/productos-argentinos-barcelona-design-week-2026.jpg"
+  alt: "Productos de diseño argentino distinguidos con el Sello de Buen Diseño Argentino exhibidos en Barcelona durante la Design Week 2026."
+  attribution: "Foto: fuente original de la fotografía"    
 ---
 
 # Treinta y tres productos argentinos se exhiben en la Barcelona Design Week 2026

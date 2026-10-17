@@ -20,6 +20,10 @@ sources:
   - name: "Municipio de Lanús"
     url: "https://www.lanus.gob.ar/sel"
     description: "Información municipal publicada sobre la estructura y los servicios actuales del SEL."
+image:
+  src: "/images/noticias/lanus-sistema-emergencias-sel-2026.jpeg"
+  alt: "Unidad municipal de traslado crítico del Sistema de Emergencias de Lanús, equipada para la atención prehospitalaria."
+  attribution: "Foto: Municipio de Lanús"    
 ---
 
 El Concejo Deliberante de Lanús aprobó por mayoría la ordenanza que formaliza el Sistema de Emergencias de Lanús (SEL). La iniciativa contempla cambios en la organización del servicio sanitario municipal y una ampliación de recursos anunciada por el Ejecutivo. Sin embargo, todavía es necesario precisar cómo se implementarán esas medidas y cuál es la dotación que se encuentra efectivamente operativa.

@@ -12,6 +12,10 @@ sources:
   - name: "Argentina.gob.ar — La Serenísima y el Ministerio de Salud de la Nación firman un acuerdo de colaboración para promover una agenda de alimentación adecuada de la Argentina"
     url: "https://www.argentina.gob.ar/noticias/la-serenisima-y-el-ministerio-de-salud-de-la-nacion-firman-un-acuerdo-de-colaboracion-para"
     description: "Comunicado oficial sobre el convenio voluntario para reformular productos alimenticios y mejorar su perfil nutricional."
+image:
+  src: "/images/noticias/la-serenisima-salud-acuerdo-reformulacion-productos-2026.jpeg"
+  alt: "Representantes del Ministerio de Salud y de La Serenísima sentados a una mesa durante la reunión en la que se formalizó el acuerdo de colaboración."
+  attribution: "Foto: Argentina.gob.ar"    
 ---
 
 # La Serenísima acuerda con Salud reformular sus productos para mejorar su perfil nutricional

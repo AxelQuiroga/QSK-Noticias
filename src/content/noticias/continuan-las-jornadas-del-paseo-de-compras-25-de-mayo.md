@@ -13,6 +13,11 @@ sources:
   - name: "Municipio de Lanús"
     url: "https://www.lanus.gob.ar/noticias/4601-se-vienen-nuevas-jornadas-del-paseo-de-compras-25-de-mayo"
     description: "Fuente original consultada"
+image:
+  src: "/images/noticias/paseo-compras-25-mayo-lanus-octubre-2026.jpg"
+  alt: "Vecinos recorren los puestos de indumentaria y productos del Paseo de Compras 25 de Mayo, en Lanús."
+  attribution: "Foto: Municipio de Lanús"
+
 ---
 
 El Gobierno de Lanús informó que el Paseo de Compras 25 de Mayo continuará con dos jornadas, el miércoles 14 y el viernes 16 de octubre, en el horario de 13:30 a 16:30, en Santiago Plaul N° 3201, Lanús Oeste. Durante esas horas, los vecinos podrán recorrer los puestos de emprendedores y emprendedoras locales, donde se ofrecerán productos artesanales y elaboraciones de diversos rubros a precios accesibles.

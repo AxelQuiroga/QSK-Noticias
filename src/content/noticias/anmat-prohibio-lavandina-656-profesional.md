@@ -15,6 +15,10 @@ sources:
   - name: "ANMAT — Se prohibió la comercialización de agua lavandina 656 Profesional concentrada al 60%"
     url: "https://www.argentina.gob.ar/noticias/anmat-prohibio-la-comercializacion-de-agua-lavandina-656-profesional-concentrada-al-60"
     description: "Comunicado oficial del organismo con los motivos y el alcance de la medida."
+image:
+  src: "/images/noticias/anmat-prohibicion-lavandina-656-profesional.jpg"
+  alt: "Envase genérico de lavandina junto a elementos de limpieza. Imagen ilustrativa; no corresponde necesariamente al producto alcanzado por la prohibición."
+  attribution: "Imagen ilustrativa"    
 ---
 
 **La medida alcanza a todos los lotes de 656 Profesional. El organismo dispuso la prohibición de su elaboración, uso, venta, distribución y publicidad por falta de registro sanitario y porque no pudo identificar al establecimiento responsable de su fabricación.**

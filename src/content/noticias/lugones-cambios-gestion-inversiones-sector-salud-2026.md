@@ -13,6 +13,10 @@ sources:
 - name: "Argentina.gob.ar — Lugones: La moral como política de Estado es el norte que guía nuestras acciones"
   url: "https://www.argentina.gob.ar/noticias/lugones-la-moral-como-politica-de-estado-es-el-norte-que-guia-nuestras-acciones"
   description: "Comunicado del Ministerio de Salud sobre la participación de Mario Lugones en el Primer Congreso Iberoamericano de Salud y sus declaraciones sobre gestión, inversiones y producción sanitaria."
+image:
+  src: "/images/noticias/lugones-cambios-gestion-inversiones-sector-salud-2026.webp"
+  alt: "El ministro de Salud, Mario Lugones, habla desde el atril durante su conferencia en el Congreso Iberoamericano de Salud FICS 2026."
+  attribution: "Foto: Consenso Salud"  
 
 ---
 

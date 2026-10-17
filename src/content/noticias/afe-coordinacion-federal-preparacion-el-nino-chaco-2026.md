@@ -12,6 +12,12 @@ sources:
   - name: "Argentina.gob.ar — En Chaco la AFE realizó una nueva reunión de coordinación federal frente al Niño"
     url: "https://www.argentina.gob.ar/noticias/en-chaco-la-afe-realizo-una-nueva-reunion-de-coordinacion-federal-frente-al-nino"
     description: "Comunicado oficial sobre la reunión del Plan de Coordinación Federal ENOS 2026-2027, las jurisdicciones participantes y el análisis de escenarios meteorológicos y recursos para la respuesta ante emergencias."
+
+image:
+  src: "/images/noticias/afe-coordinacion-el-nino-chaco-2026.jpeg"
+  alt: "Autoridades nacionales y representantes provinciales participan de una reunión de coordinación federal ante posibles emergencias asociadas al fenómeno El Niño, en Resistencia, Chaco."
+  attribution: "Foto: Argentina.gob.ar"
+
 ---
 
 # La Agencia Federal de Emergencias coordinó con las provincias la preparación ante El Niño

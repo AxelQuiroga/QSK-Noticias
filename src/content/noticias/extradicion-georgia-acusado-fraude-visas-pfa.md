@@ -15,6 +15,10 @@ sources:
   - name: "Argentina.gob.ar — La Policía Federal Argentina detuvo un ciudadano georgiano acusado de fraude agravado"
     url: "https://www.argentina.gob.ar/noticias/la-policia-federal-argentina-detuvo-un-ciudadano-georgiano-acusado-de-fraude-agravado"
     description: "Información oficial publicada en septiembre de 2026 sobre la detención del sospechoso y las tareas de investigación previas a la extradición."
+image:
+  src: "/images/noticias/extradicion-georgia-acusado-fraude-visas-pfa.jpeg"
+  alt: "Agente de Interpol junto al hombre detenido en Argentina por un pedido de captura internacional vinculado con presunto fraude migratorio."
+  attribution: "Foto: Argentina.gob.ar"    
 ---
 
 # Extraditaron a Georgia a un hombre acusado de organizar un fraude con visas

@@ -80,6 +80,22 @@ const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
       </div>
     </header>
 
+    {data.image && (
+      <figure class="mx-auto mt-8 max-w-4xl">
+        <img
+          src={data.image.src}
+          alt={data.image.alt}
+          class="h-auto w-full rounded-lg object-cover"
+          loading="eager"
+        />
+        {data.image.attribution && (
+          <figcaption class="mt-2 text-sm text-text-secondary">
+            {data.image.attribution}
+          </figcaption>
+        )}
+      </figure>
+    )}
+
     <div class="mx-auto mt-8 max-w-3xl">
       <div class="prose-content text-base leading-relaxed text-text">
         <Content />

@@ -18,6 +18,10 @@ sources:
   - name: "El Diario Sur"
     url: "https://www.eldiariosur.com/lomas-de-zamora/2026/10/5/recuperaron-mas-de-70-cuadras-de-calles-empedradas-en-banfield-lomas-83590.html"
     description: "Cobertura periodística sobre las cuadras y la superficie de adoquinado informadas como recuperadas."
+image:
+  src: "/images/noticias/adoquines-banfield.jpg"
+  alt: "Trabajadores retiran y recolocan adoquines durante tareas de reparación de una calle en Banfield."
+  attribution: "Foto: Municipio de Lomas de Zamora"    
 ---
 
 El Municipio de Lomas de Zamora impulsa el programa Adoquinadores de la Comunidad, destinado a recuperar calles empedradas mediante trabajos sobre los adoquines y la base de las calzadas.

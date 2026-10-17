@@ -11,6 +11,10 @@ sources:
   - name: "Agua y Saneamientos Argentinos (AySA)"
     url: "https://www.aysa.com.ar/usuarios/Novedades/2026/10/inspeccion_rios_subterraneos_oeste_sur"
     description: "Avanza el Programa de Inspección de Ríos Subterráneos en el Oeste y Sur del AMBA, publicado el 15 de octubre de 2026."
+image:
+  src: "/images/noticias/aysa-inspeccion-rios-subterraneos-amba-2026.jpg"
+  alt: "Personal técnico realiza tareas de inspección en la red de ríos subterráneos que transporta agua potable en el AMBA."
+  attribution: "Foto: AySA"
 ---
 
 AySA realizará durante la noche de este jueves 15 de octubre una inspección en la red troncal de agua potable que podría provocar baja presión o inconvenientes en el suministro en distintas localidades del sur y oeste del Área Metropolitana de Buenos Aires (AMBA).

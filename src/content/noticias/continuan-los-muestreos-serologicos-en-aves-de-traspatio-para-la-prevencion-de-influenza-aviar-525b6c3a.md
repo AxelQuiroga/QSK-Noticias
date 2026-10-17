@@ -12,6 +12,11 @@ sources:
   - name: "Argentina.gob.ar — Continúan los muestreos serológicos en aves de traspatio para la prevención de Influenza aviar"
     url: "https://www.argentina.gob.ar/noticias/continuan-los-muestreos-serologicos-en-aves-de-traspatio-para-la-prevencion-de-influenza"
     description: "Comunicado del SENASA sobre los muestreos preventivos en aves domésticas, las medidas de bioseguridad y las vías de notificación ante posibles signos de la enfermedad."
+image:
+  src: "/images/noticias/senasa-muestreos-influenza-aviar-buenos-aires-2026.jpg"
+  alt: "Personal sanitario realiza tareas de vigilancia en aves domésticas como parte de los muestreos preventivos de influenza aviar."
+  attribution: "Foto: SENASA / Argentina.gob.ar"
+
 ---
 
 El Servicio Nacional de Sanidad y Calidad Agroalimentaria (SENASA) realizó nuevos muestreos preventivos en aves domésticas de cinco localidades de la provincia de Buenos Aires. Las tareas forman parte de la vigilancia epidemiológica destinada a prevenir el ingreso y la propagación de la influenza aviar altamente patógena (IAAP).
