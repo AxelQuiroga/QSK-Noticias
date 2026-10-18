@@ -2,6 +2,7 @@
 title: "Salud presentó un mapa que compara los riesgos cardiovasculares en las regiones argentinas"
 description: "La herramienta reúne datos sobre exceso de peso, sedentarismo, tabaquismo y controles preventivos. Según el mapa, nueve de cada diez infartos se relacionan con factores de riesgo prevenibles."
 slug: "mapa-regional-riesgos-cardiovasculares-argentina"
+primaryTopic: "Salud"
 section: "Salud"
 scope: "nacional"
 author: "Redacción QSK Noticias"

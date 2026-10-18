@@ -2,6 +2,7 @@
 title: "SENASA intensifica los controles preventivos de influenza aviar en Buenos Aires"
 description: "El organismo tomó muestras de aves domésticas en cinco localidades bonaerenses para vigilar la circulación del virus y reforzar las medidas de prevención."
 slug: "senasa-muestreos-preventivos-influenza-aviar-buenos-aires-2026"
+primaryTopic: "Salud"
 section: "Salud"
 scope: "nacional"
 author: "QSK Noticias"

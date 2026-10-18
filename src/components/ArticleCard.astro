@@ -9,7 +9,7 @@ interface Props {
 
 const { article, variant = 'default' } = Astro.props;
 const { data } = article;
-const sectionSlug = slugify(data.section);
+const sectionSlug = data.section ? slugify(data.section) : "";
 
 // Solo enlazamos si el valor del frontmatter pertenece al catálogo Y es un
 // municipio. Asi evitamos URLs rotas (p. ej. `municipality: "AMBA"`, que es

@@ -2,7 +2,7 @@ import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 import { isKnownLocationName, type LocationType } from './data/locations';
-import { isKnownSection } from './data/sections';
+import { isKnownSection, isKnownTopic } from './data/sections';
 import { isValidNewsImageSrc, newsImageFileExists } from './lib/news-image';
 
 /**
@@ -35,7 +35,15 @@ const news = defineCollection({
         .string()
         .min(1, 'El slug es obligatorio')
         .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'El slug debe ser URL-friendly'),
-      section: z.string().min(1, 'La sección es obligatoria'),
+      primaryTopic: z.string().optional(),
+      secondaryTopics: z
+        .array(z.string())
+        .optional()
+        .default([])
+        .refine((topics) => topics.length === 0 || topics.every(isKnownTopic), {
+          message: 'Los topics secundarios deben ser topics del catálogo editorial.',
+        }),
+      section: z.string().min(1, 'La sección es obligatoria').optional(),
       municipality: z.string().optional(),
       localidad: z.string().optional(),
       region: z.string().optional(),
@@ -74,7 +82,37 @@ const news = defineCollection({
         .optional(),
     })
     .superRefine((data, ctx) => {
-      if (!isKnownSection(data.section)) {
+      // Validate primaryTopic is a known topic (if present)
+      if (data.primaryTopic && !isKnownTopic(data.primaryTopic)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['primaryTopic'],
+          message: `"${data.primaryTopic}" no es un topic del catálogo editorial (src/data/sections.ts).`,
+        });
+      }
+
+      // Validate secondaryTopics are known topics and don't duplicate primaryTopic
+      if (data.secondaryTopics && data.secondaryTopics.length > 0) {
+        if (!data.secondaryTopics.every(isKnownTopic)) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['secondaryTopics'],
+            message: 'Los topics secundarios deben ser topics del catálogo editorial.',
+          });
+        }
+        // Check that secondary topics don't duplicate the primary topic
+        const primaryTopicIsInSecondaries = data.secondaryTopics?.includes(data.primaryTopic as string);
+        if (primaryTopicIsInSecondaries) {
+          ctx.addIssue({
+            code: 'custom',
+            path: ['secondaryTopics'],
+            message: 'Un topic no puede ser tanto primary como secondary. Elige uno como primary y los otros como secundarios.',
+          });
+        }
+      }
+
+      // Validate section against known sections (for backward compatibility during migration)
+      if (data.section && !isKnownSection(data.section)) {
         ctx.addIssue({
           code: 'custom',
           path: ['section'],

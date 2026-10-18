@@ -2,6 +2,7 @@
 title: "El SENASA controló 1.138 animales en cinco exposiciones rurales de Río Negro"
 description: "Los operativos verificaron requisitos sanitarios, documentación y condiciones de transporte durante el circuito ganadero de primavera de 2026."
 slug: "senasa-controles-1138-animales-exposiciones-rurales-rio-negro-2026"
+primaryTopic: "Economía"
 section: "Economía"
 scope: "provincial"
 author: "QSK Noticias"

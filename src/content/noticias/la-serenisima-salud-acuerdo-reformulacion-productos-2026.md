@@ -2,6 +2,7 @@
 title: "La Serenísima acuerda con Salud reformular sus productos para mejorar su perfil nutricional"
 description: "El convenio voluntario prevé reducir grasas y azúcares en determinados productos, con una mesa técnica para coordinar los cambios durante dos años."
 slug: "la-serenisima-salud-acuerdo-reformulacion-productos-2026"
+primaryTopic: "Salud"
 section: "Salud"
 scope: "nacional"
 author: "QSK Noticias"

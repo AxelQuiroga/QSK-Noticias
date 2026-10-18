@@ -2,6 +2,7 @@
 title: "AySA realizará inspecciones y podría bajar la presión del agua en seis distritos del sur y oeste del AMBA"
 description: "Los trabajos comenzarán este jueves por la noche y podrían afectar el suministro hasta la tarde del viernes. Entre las zonas alcanzadas figuran Lanús, Avellaneda y Lomas de Zamora."
 slug: "aysa-inspeccion-red-agua-baja-presion-amba"
+primaryTopic: "Servicios"
 section: "Servicios"
 municipality: "Lanús"
 publishedAt: "2026-10-15T21:00:00-03:00"

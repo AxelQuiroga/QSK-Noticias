@@ -3,6 +3,7 @@ title: "Financiamiento universitario: la Justicia fijó una multa diaria de $100
 description: "El juez Martín Cormick dispuso una multa diaria por el incumplimiento de una cautelar vinculada con salarios y becas universitarias."
 slug: "financiamiento-universitario-multa-diaria-diego-santilli"
 section: "Educación"
+primaryTopic: "Educación"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-15"
 status: "published"

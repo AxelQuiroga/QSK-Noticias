@@ -2,6 +2,7 @@
 title: "Banfield informó que destinó US$ 1,3 millones a regularizar obligaciones: qué dicen sus informes"
 description: "El club informó pagos vinculados con inhibiciones, multas y embargos judiciales. Qué detalló sobre el mercado de pases y qué cuestiones siguen pendientes de aclaración."
 slug: "banfield-inhibiciones-mercado-pases-2026"
+primaryTopic: "Deportes"
 section: "Deportes"
 municipality: "Lomas de Zamora"
 region: "Zona Sur"

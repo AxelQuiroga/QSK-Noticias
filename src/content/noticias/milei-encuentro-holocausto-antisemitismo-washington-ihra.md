@@ -2,6 +2,7 @@
 title: "Milei participó en Washington de un encuentro sobre el Holocausto y el antisemitismo"
 description: "El Presidente asistió a una actividad organizada durante la presidencia argentina de la IHRA y participó de la inauguración de una muestra digital sobre la relación del país con el Holocausto."
 slug: "milei-encuentro-holocausto-antisemitismo-washington-ihra"
+primaryTopic: "Política"
 section: "Política"
 scope: "nacional"
 author: "QSK Noticias"

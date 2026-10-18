@@ -2,6 +2,7 @@
 title: "Octubre Rosa en Lomas de Zamora: dónde realizarse mamografías gratuitas"
 description: "El Municipio de Lomas de Zamora anunció mamografías gratuitas sin turno previo durante octubre en el CIS San Martín y el Hospital Alende."
 slug: "mamografias-gratuitas-lomas-octubre-rosa-2026"
+primaryTopic: "Salud"
 section: "Salud"
 municipality: "Lomas de Zamora"
 region: "Zona Sur"
