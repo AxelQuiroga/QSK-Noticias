@@ -8,7 +8,7 @@ import { collectReferencedLocalidadSlugs, isIndexablePath } from './src/lib/site
 const referencedLocalidades = collectReferencedLocalidadSlugs('src/content/noticias');
 
 export default defineConfig({
-  site: 'https://qsk-noticias.pages.dev',
+  site: 'https://qsknoticias.site',
   output: 'static',
   integrations: [
     sitemap({

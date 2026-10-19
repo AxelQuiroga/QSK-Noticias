@@ -25,7 +25,7 @@ import {
 
 const DIST_DIR = 'dist';
 const CONTENT_DIR = 'src/content/noticias';
-const CANONICAL_BASE = 'https://qsk-noticias.pages.dev';
+const CANONICAL_BASE = 'https://qsknoticias.site';
 
 const failures = [];
 const fail = (message) => failures.push(message);

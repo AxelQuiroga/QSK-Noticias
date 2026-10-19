@@ -3,4 +3,4 @@ Allow: /
 Disallow: /404
 Disallow: /buscar/
 
-Sitemap: https://qsk-noticias.pages.dev/sitemap-index.xml
+Sitemap: https://qsknoticias.site/sitemap-index.xml
