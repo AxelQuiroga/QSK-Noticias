@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import { slugify } from '../lib/utils';
-import { NAV_DIRECT, NAV_GROUPS } from '../data/sections';
+import { NAV_ITEMS } from '../data/sections';
 ---
 
 <header class="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur">
@@ -17,58 +17,58 @@ import { NAV_DIRECT, NAV_GROUPS } from '../data/sections';
           Portada
         </a>
 
-        {NAV_GROUPS.map((group) => (
-          <div class="relative" data-nav-group>
-            <button
-              type="button"
-              id={`nav-${slugify(group.label)}-button`}
-              class="group inline-flex items-center gap-1 text-sm font-medium text-text-secondary transition-colors hover:text-text aria-expanded:text-text"
-              aria-expanded="false"
-              aria-controls={`nav-${slugify(group.label)}-menu`}
-              data-nav-trigger
-            >
-              {group.label}
-              <svg
-                class="h-3 w-3 transition-transform group-aria-expanded:rotate-180"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+        {NAV_ITEMS.map((item) =>
+          item.kind === 'group' ? (
+            <div class="relative" data-nav-group>
+              <button
+                type="button"
+                id={`nav-${slugify(item.label)}-button`}
+                class="group inline-flex items-center gap-1 text-sm font-medium text-text-secondary transition-colors hover:text-text aria-expanded:text-text"
+                aria-expanded="false"
+                aria-controls={`nav-${slugify(item.label)}-menu`}
+                data-nav-trigger
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
+                {item.label}
+                <svg
+                  class="h-3 w-3 transition-transform group-aria-expanded:rotate-180"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
 
-            <ul
-              id={`nav-${slugify(group.label)}-menu`}
-              class="absolute top-full left-0 z-50 mt-2 hidden min-w-44 rounded-lg border border-border bg-surface p-2 shadow-lg"
-              data-nav-menu
+              <ul
+                id={`nav-${slugify(item.label)}-menu`}
+                class="absolute top-full left-0 z-50 mt-2 hidden min-w-44 rounded-lg border border-border bg-surface p-2 shadow-lg"
+                data-nav-menu
+              >
+                {item.sections.map((section) => (
+                  <li>
+                    <a
+                      href={`/secciones/${slugify(section)}/`}
+                      class="block rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap text-text-secondary transition-colors hover:bg-bg hover:text-text"
+                    >
+                      {section}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : (
+            <a
+              href={`/secciones/${slugify(item.section)}/`}
+              class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
             >
-              {group.sections.map((section) => (
-                <li>
-                  <a
-                    href={`/secciones/${slugify(section)}/`}
-                    class="block rounded-md px-3 py-2 text-sm font-medium whitespace-nowrap text-text-secondary transition-colors hover:bg-bg hover:text-text"
-                  >
-                    {section}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-
-        {NAV_DIRECT.map((section) => (
-          <a
-            href={`/secciones/${slugify(section)}/`}
-            class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
-          >
-            {section}
-          </a>
-        ))}
+              {item.section}
+            </a>
+          ),
+        )}
 
         <a
           href="/buscar/"
@@ -108,56 +108,56 @@ import { NAV_DIRECT, NAV_GROUPS } from '../data/sections';
           </a>
         </li>
 
-        {NAV_GROUPS.map((group) => (
-          <li data-nav-group>
-            <button
-              type="button"
-              id={`mobile-${slugify(group.label)}-button`}
-              class="group flex min-h-11 w-full items-center justify-between gap-2 text-left text-base font-medium text-text-secondary transition-colors hover:text-text aria-expanded:text-text"
-              aria-expanded="false"
-              aria-controls={`mobile-${slugify(group.label)}-menu`}
-              data-nav-trigger
-            >
-              {group.label}
-              <svg
-                class="h-4 w-4 shrink-0 transition-transform group-aria-expanded:rotate-180"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
+        {NAV_ITEMS.map((item) =>
+          item.kind === 'group' ? (
+            <li data-nav-group>
+              <button
+                type="button"
+                id={`mobile-${slugify(item.label)}-button`}
+                class="group flex min-h-11 w-full items-center justify-between gap-2 text-left text-base font-medium text-text-secondary transition-colors hover:text-text aria-expanded:text-text"
+                aria-expanded="false"
+                aria-controls={`mobile-${slugify(item.label)}-menu`}
+                data-nav-trigger
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
+                {item.label}
+                <svg
+                  class="h-4 w-4 shrink-0 transition-transform group-aria-expanded:rotate-180"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.06l3.71-3.83a.75.75 0 1 1 1.08 1.04l-4.25 4.39a.75.75 0 0 1-1.08 0L5.21 8.27a.75.75 0 0 1 .02-1.06Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
 
-            <ul id={`mobile-${slugify(group.label)}-menu`} class="hidden pb-1" data-nav-menu>
-              {group.sections.map((section) => (
-                <li>
-                  <a
-                    href={`/secciones/${slugify(section)}/`}
-                    class="flex min-h-11 items-center pl-4 text-base text-text-secondary transition-colors hover:text-text"
-                  >
-                    {section}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        ))}
-
-        {NAV_DIRECT.map((section) => (
-          <li>
-            <a
-              href={`/secciones/${slugify(section)}/`}
-              class="flex min-h-11 items-center text-base font-medium text-text-secondary transition-colors hover:text-text"
-            >
-              {section}
-            </a>
-          </li>
-        ))}
+              <ul id={`mobile-${slugify(item.label)}-menu`} class="hidden pb-1" data-nav-menu>
+                {item.sections.map((section) => (
+                  <li>
+                    <a
+                      href={`/secciones/${slugify(section)}/`}
+                      class="flex min-h-11 items-center pl-4 text-base text-text-secondary transition-colors hover:text-text"
+                    >
+                      {section}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li>
+              <a
+                href={`/secciones/${slugify(item.section)}/`}
+                class="flex min-h-11 items-center text-base font-medium text-text-secondary transition-colors hover:text-text"
+              >
+                {item.section}
+              </a>
+            </li>
+          ),
+        )}
 
         <li>
           <a

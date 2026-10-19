@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { NAV_GROUPS } from '../../src/data/sections';
 
 test.describe('Accesibilidad', () => {
   test('portada no tiene violaciones críticas de axe', async ({ page }) => {
@@ -27,17 +28,22 @@ test.describe('Accesibilidad', () => {
   }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/');
-    await page
-      .locator('nav[aria-label="Navegación principal"]')
-      .getByRole('button', { name: 'Actualidad', exact: true })
-      .click();
+    const nav = page.locator('nav[aria-label="Navegación principal"]');
 
-    const results = await new AxeBuilder({ page })
-      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-      .analyze();
+    // Se auditan TODOS los grupos abiertos: el desplegable es el patrón que
+    // más fácil se rompe (foco, nombres accesibles de los ítems, contraste).
+    for (const label of NAV_GROUPS.map((group) => group.label)) {
+      await nav.getByRole('button', { name: label, exact: true }).click();
 
-    const critical = results.violations.filter((v) => v.impact === 'critical');
-    expect(critical).toEqual([]);
+      const results = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+        .analyze();
+
+      const critical = results.violations.filter((v) => v.impact === 'critical');
+      expect(critical, `Violaciones críticas con el grupo "${label}" abierto`).toEqual([]);
+
+      await page.keyboard.press('Escape');
+    }
   });
 
   test('navegación por teclado: tabReachMain', async ({ page }) => {

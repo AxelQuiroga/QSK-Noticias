@@ -83,7 +83,11 @@ export function isKnownSection(name: string): boolean {
 }
 
 /**
- * Agrupación de la navegación principal del header.
+ * Navegación principal del header.
+ *
+ * El header renderiza UNA lista ordenada de entradas (`NAV_ITEMS`): el orden
+ * del array es el orden en pantalla, así que la jerarquía editorial se lee en
+ * un solo lugar y reordenar el header no obliga a tocar el componente.
  *
  * Los grupos son AGRUPACIONES DE NAVEGACIÓN, no secciones editoriales: no
  * tienen ruta propia ni entran en `SECTIONS`, así que no existe (ni debe
@@ -91,23 +95,48 @@ export function isKnownSection(name: string): boolean {
  * sección del catálogo: el slug y la ruta se derivan siempre de `SECTIONS` +
  * `slugify()`, nunca se escriben a mano acá.
  *
- * ⚠️ `Actualidad` da nombre al primer grupo sin ser un topic: el desplegable
- * navega a Política y Sociedad, y la página `/secciones/actualidad/` (el
- * listado de últimos días) se alcanza desde el sidebar de la portada. Si se
- * quisiera que el header también la enlace, alcanza con sumarla a `sections`
- * del grupo (decisión editorial pendiente).
+ * ⚠️ `Actualidad` es un enlace DIRECTO aunque no sea un topic: es el feed de
+ * los últimos días (`src/lib/actualidad.ts`) y conserva su URL
+ * `/secciones/actualidad/`. No lleva desplegable porque no tiene subsecciones:
+ * colgarla de un grupo temático sería volver a tratarla como categoría.
  */
+export interface NavLink {
+  readonly kind: 'link';
+  /** Nombre de una sección del catálogo (`SECTIONS`). */
+  readonly section: string;
+}
+
 export interface NavGroup {
+  readonly kind: 'group';
   readonly label: string;
   readonly sections: readonly string[];
 }
 
-/** Grupos desplegables, en el orden en que se muestran en el header. */
-export const NAV_GROUPS: readonly NavGroup[] = [
-  { label: 'Actualidad', sections: ['Política', 'Sociedad'] },
-  { label: 'Comunidad', sections: ['Seguridad', 'Servicios', 'Salud', 'Educación'] },
-  { label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
+export type NavItem = NavLink | NavGroup;
+
+/**
+ * Orden exacto del header. "Portada" y "Buscar" son fijos en el componente:
+ * abren y cierran la navegación, así que no son entradas de este catálogo.
+ */
+export const NAV_ITEMS: readonly NavItem[] = [
+  { kind: 'link', section: ACTUALIDAD_SECTION },
+  { kind: 'group', label: 'Política y sociedad', sections: ['Política', 'Sociedad'] },
+  {
+    kind: 'group',
+    label: 'Comunidad',
+    sections: ['Seguridad', 'Servicios', 'Salud', 'Educación'],
+  },
+  { kind: 'group', label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
+  { kind: 'link', section: 'Economía' },
+  { kind: 'link', section: 'Deportes' },
 ];
 
-/** Secciones con acceso directo en el header, sin desplegable. */
-export const NAV_DIRECT: readonly string[] = ['Economía', 'Deportes'];
+/** Grupos desplegables del header, en orden. Derivado de `NAV_ITEMS`. */
+export const NAV_GROUPS: readonly NavGroup[] = NAV_ITEMS.filter(
+  (item): item is NavGroup => item.kind === 'group',
+);
+
+/** Secciones con acceso directo, sin desplegable. Derivado de `NAV_ITEMS`. */
+export const NAV_DIRECT: readonly string[] = NAV_ITEMS.filter(
+  (item): item is NavLink => item.kind === 'link',
+).map((item) => item.section);
