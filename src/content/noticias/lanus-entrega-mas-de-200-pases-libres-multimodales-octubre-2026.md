@@ -15,6 +15,9 @@ sources:
   - name: 'Municipalidad de Lanús'
     url: 'https://www.lanus.gob.ar/index.php/noticias/4607-lanus-gobierno-entrego-mas-de-200-pases-libres-multimodales'
     description: 'Comunicado municipal sobre la entrega de pases y la jornada de orientación.'
+  - name: 'Ministerio de Transporte de la Provincia de Buenos Aires'
+    url: 'https://gba.gob.ar/node/15960'
+    description: 'Información oficial sobre alcance y requisitos del Pase Libre Multimodal.'
 ---
 
 Lanús Gobierno informó que entregó **más de 200 Pases Libres Multimodales (PLM)** a vecinos y vecinas con discapacidad. La actividad se desarrolló en el marco del Programa de Promoción de Derechos de las Personas con Discapacidad.
@@ -25,6 +28,8 @@ El Municipio también informó que se dispuso un espacio de orientación para pe
 
 De acuerdo con la publicación oficial, participaron funcionarias y funcionarios del área de Desarrollo Social, de la Dirección Provincial de Políticas de Género y Estrategias Inclusivas y del área municipal de Discapacidad.
 
-Los Pases Libres Multimodales son una herramienta de acceso al transporte para personas que reúnen los requisitos del programa provincial. Para conocer las condiciones vigentes y cómo realizar el trámite, es importante consultar los canales oficiales correspondientes.
+El Pase Libre Multimodal es una credencial provincial que permite acceder a la gratuidad en el transporte público terrestre y fluvial a quienes acrediten las condiciones previstas por el programa. La Provincia incluye entre las personas beneficiarias a personas con discapacidad, trasplantadas y en lista de espera de trasplante.
 
-**Fuente:** [Municipalidad de Lanús: entrega de más de 200 Pases Libres Multimodales](https://www.lanus.gob.ar/index.php/noticias/4607-lanus-gobierno-entrego-mas-de-200-pases-libres-multimodales).
+Para consultar requisitos y conocer cómo iniciar el trámite, se puede recurrir al [sitio oficial del Pase Libre Multimodal de la Provincia de Buenos Aires](https://gba.gob.ar/node/15960).
+
+**Fuentes:** [Municipalidad de Lanús: entrega de más de 200 Pases Libres Multimodales](https://www.lanus.gob.ar/index.php/noticias/4607-lanus-gobierno-entrego-mas-de-200-pases-libres-multimodales) y [Ministerio de Transporte bonaerense: Pase Libre Multimodal](https://gba.gob.ar/node/15960).
