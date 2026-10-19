@@ -1,23 +1,35 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticlesBySection, slugify } from '../../lib/articles';
-import { SECTIONS } from '../../data/sections';
+import { getArticlesBySection, getArticlesByTopic, slugify } from '../../lib/articles';
+import { SECTIONS, TOPICS } from '../../data/sections';
 
 export async function getStaticPaths() {
+  // Rutas estáticas solo para secciones (compatibilidad existente, incluye Actualidad)
   return SECTIONS.map((section) => ({
-    params: { slug: slugify(section) },
-    props: { section },
-  }));
+  params: { slug: slugify(section) },
+  props: {
+    section,
+    topic: TOPICS.includes(section) ? section : undefined,
+  },
+}));
 }
 
-const { section } = Astro.props;
-const sorted = await getArticlesBySection(section);
+const { section, topic } = Astro.props as { section: string; topic?: string };
+
+// Determinar el tipo de página: topic o sección
+const isTopicPage = !!topic && TOPICS.includes(topic);
+const useTopic = isTopicPage;
+
+// Obtener artículos: si es página de topic, usar getArticlesByTopic; si es sección, usar getArticlesBySection
+const sorted = useTopic
+  ? await getArticlesByTopic(topic ?? '')
+  : await getArticlesBySection(section ?? '');
 ---
 
 <BaseLayout
-  title={`${section} — QSK Noticias`}
-  description={`Noticias de la sección ${section} en Zona Sur del conurbano bonaerense.`}
+  title={`${section ?? topic} — QSK Noticias`}
+  description={`Noticias de ${topic ?? section} en Zona Sur del conurbano bonaerense.`}
 >
   <div class="container-editorial py-10">
     <header>

@@ -57,3 +57,19 @@ export async function getArticlesByLocalidad(localidad: string): Promise<Article
   const articles = await getPublishedArticles();
   return articles.filter((a) => a.data.localidad === localidad);
 }
+
+/**
+ * Obtiene artículos que coinciden con un topic (primary o secondary).
+ * Devuelve cada artículo una sola vez, ordenado por fecha descendente.
+ * Los topics son independientes de la clasificación geográfica.
+ */
+export async function getArticlesByTopic(topic: string): Promise<Article[]> {
+  const articles = await getPublishedArticles();
+  return articles
+    .filter(
+      (a) =>
+        a.data.primaryTopic === topic ||
+        (a.data.secondaryTopics && a.data.secondaryTopics.includes(topic))
+    )
+    .sort(SECONDARY_SORT);
+}
