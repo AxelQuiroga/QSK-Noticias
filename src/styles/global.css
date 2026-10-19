@@ -1,44 +1,55 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg: #10151d;
-  --color-surface: #1a2230;
-  --color-text: #f4f6f8;
-  --color-text-secondary: #a9b4c3;
-  --color-accent: #d94841;
-  --color-border: #303946;
-  --color-info: #4a9eff;
+  /* QSK brand system: navy from the existing logo, supported by layered blues. */
+  --color-bg: #10243a;
+  --color-surface: #17314b;
+  --color-surface-raised: #1d3b58;
+  --color-text: #f4f7fb;
+  --color-text-secondary: #b5c5d6;
+  --color-accent: #69b5ff;
+  --color-border: #2c4b68;
+  --color-info: #9bcfff;
 
   --font-heading: 'Manrope', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
 }
 
 @layer base {
-  /*
-   * El sitio es de tema oscuro, así que hay que declarárselo al navegador: sin
-   * esto pinta los controles nativos con su esquema por defecto (claro) y
-   * desentonan sobre el fondo. Afecta, por ejemplo, al desplegable de
-   * sugerencias del `<datalist>` en /buscar/, a las scrollbars y al autofill.
-   * https://developer.mozilla.org/docs/Web/CSS/color-scheme
-   */
   :root {
     color-scheme: dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   html {
     scroll-behavior: smooth;
+    background: var(--color-bg);
   }
 
   body {
     @apply bg-bg text-text font-body antialiased;
+    min-width: 320px;
   }
 
   ::selection {
-    @apply bg-accent/30 text-text;
+    color: #10243a;
+    background: #9bcfff;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent;
+    @apply outline-2 outline-offset-4;
+    outline-color: var(--color-info);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+  }
+
+  img {
+    color: var(--color-text-secondary);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -58,15 +69,24 @@
 
 @layer components {
   .container-editorial {
-    @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
   .card {
-    @apply rounded-lg border border-border bg-surface p-5;
+    @apply rounded-xl border border-border bg-surface p-5;
+    transition: border-color 160ms ease, background-color 160ms ease;
+  }
+
+  .card:hover {
+    border-color: #42698c;
   }
 
   .section-title {
-    @apply font-heading text-xl font-bold tracking-tight;
+    @apply font-heading text-xl font-extrabold tracking-tight text-text sm:text-2xl;
+  }
+
+  .section-heading {
+    @apply mb-5 flex items-end justify-between gap-4 border-b border-border pb-3;
   }
 
   .meta-text {
@@ -74,15 +94,101 @@
   }
 
   .link-accent {
-    @apply text-accent underline-offset-4 hover:underline;
+    color: var(--color-accent);
+    text-underline-offset: 0.25em;
+  }
+
+  .link-accent:hover {
+    color: #b5ddff;
+    text-decoration: underline;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.16em];
+    color: var(--color-info);
+  }
+
+  .prose-content {
+    color: var(--color-text);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    overflow-wrap: anywhere;
+  }
+
+  .prose-content > * + * {
+    margin-top: 1.25em;
+  }
+
+  .prose-content h2,
+  .prose-content h3,
+  .prose-content h4 {
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
+
+  .prose-content h2 {
+    margin-top: 2em;
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+  }
+
+  .prose-content h3 {
+    margin-top: 1.7em;
+    font-size: 1.35rem;
+  }
+
+  .prose-content a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .prose-content a:hover {
+    color: #b5ddff;
+  }
+
+  .prose-content ul,
+  .prose-content ol {
+    padding-left: 1.5rem;
+  }
+
+  .prose-content ul {
+    list-style: disc;
+  }
+
+  .prose-content ol {
+    list-style: decimal;
+  }
+
+  .prose-content li + li {
+    margin-top: 0.45em;
+  }
+
+  .prose-content blockquote {
+    border-left: 3px solid var(--color-info);
+    padding-left: 1rem;
+    color: var(--color-text-secondary);
+  }
+
+  .prose-content hr {
+    border-color: var(--color-border);
+    margin-block: 2rem;
+  }
+
+  .prose-content img {
+    border-radius: 0.75rem;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .prose-content strong {
+    color: var(--color-text);
+    font-weight: 700;
   }
 }
 
-/*
- * Navegación editorial: fundido breve y sutil (150 ms) en el cambio de página.
- * Sin desplazamientos, zooms ni efectos llamativos. El header es idéntico en
- * todas las páginas, así que su crossfade es imperceptible y se ve estable.
- */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 150ms;
