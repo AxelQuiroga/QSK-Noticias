@@ -2,6 +2,7 @@
 title: "Adoquines en Banfield: qué calles fueron reparadas y qué diferencias hay en las cifras"
 description: "El programa municipal busca recuperar calles adoquinadas en Lomas de Zamora. Qué se informó sobre Banfield, qué cifras se difundieron y qué datos faltan confirmar."
 slug: "adoquines-banfield-obras-municipales-2026"
+primaryTopic: "Obras públicas"
 section: "Obras públicas"
 municipality: "Lomas de Zamora"
 localidad: "Banfield"

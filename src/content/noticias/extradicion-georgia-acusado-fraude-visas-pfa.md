@@ -2,6 +2,7 @@
 title: "Extraditaron a Georgia a un hombre acusado de organizar un fraude con visas"
 description: "La Policía Federal trasladó al ciudadano georgiano, de 28 años, requerido por la Justicia de su país. La investigación señala presuntas estafas vinculadas con trámites migratorios y documentación falsificada."
 slug: "extradicion-georgia-acusado-fraude-visas-pfa"
+primaryTopic: "Seguridad"
 section: "Seguridad"
 scope: "nacional"
 author: "QSK Noticias"

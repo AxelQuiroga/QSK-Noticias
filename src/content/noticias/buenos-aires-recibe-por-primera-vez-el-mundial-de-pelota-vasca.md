@@ -2,6 +2,7 @@
 title: "Buenos Aires recibe por primera vez el Mundial de Pelota Vasca"
 description: "La 20.ª edición del campeonato reúne a 480 participantes de 15 delegaciones y se disputa hasta el 24 de octubre en tres sedes."
 slug: "mundial-pelota-vasca-argentina-2026"
+primaryTopic: "Deportes"
 section: "Deportes"
 scope: "nacional"
 author: "QSK Noticias"

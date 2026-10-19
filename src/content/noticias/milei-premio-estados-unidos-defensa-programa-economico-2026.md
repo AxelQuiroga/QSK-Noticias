@@ -2,6 +2,7 @@
 title: "Milei recibió un premio en Estados Unidos y defendió su programa económico"
 description: "En la Cámara de Comercio de Estados Unidos, el Presidente destacó el equilibrio fiscal, la apertura comercial y la evolución de los indicadores sociales según las cifras que presentó."
 slug: "milei-premio-estados-unidos-defensa-programa-economico-2026"
+primaryTopic: "Economía"
 section: "Economía"
 scope: "nacional"
 author: "QSK Noticias"

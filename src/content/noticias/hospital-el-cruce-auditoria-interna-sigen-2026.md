@@ -2,6 +2,7 @@
 title: "El Hospital El Cruce avanza con la organización de su auditoría interna"
 description: "El hospital de Florencio Varela y la SIGEN trabajaron sobre la puesta en marcha de la Unidad de Auditoría Interna y su planificación para 2027."
 slug: "hospital-el-cruce-auditoria-interna-sigen-2026"
+primaryTopic: "Salud"
 section: "Salud"
 scope: "local"
 municipality: "Florencio Varela"

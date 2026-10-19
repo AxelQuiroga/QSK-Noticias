@@ -2,6 +2,7 @@
 title: "Ezpeleta: anunciaron un corte de 14 días por obras en la avenida Oscar Smith"
 description: "El Municipio de Quilmes informó trabajos de bacheo con hormigón en dos tramos de la avenida Oscar Smith. El cierre fue anunciado el 5 de octubre y no se encontró una actualización que confirme su estado actual."
 slug: "corte-transito-avenida-smith-ezpeleta-octubre-2026"
+primaryTopic: "Tránsito"
 section: "Tránsito"
 municipality: "Quilmes"
 localidad: "Ezpeleta"

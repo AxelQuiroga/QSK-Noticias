@@ -1,28 +1,53 @@
 /**
- * Secciones temáticas del portal: taxonomía editorial FIJA.
+ * Topics editoriales del portal: taxonomía de temas FIJA.
  *
- * Es la fuente de verdad para el nav, el sidebar y las rutas `/secciones/*`.
- * No se deriva de los artículos, así que aparece completa desde el día 1
- * (aunque todavía no haya nada publicado en alguna de ellas).
+ * Los artículos pueden tener un `primaryTopic` requerido y cero o más
+ * `secondaryTopics`. Un artículo sobre cortes de tráfico por obras
+ * municipales podría tener `primaryTopic: 'Obras públicas'` y
+ * `secondaryTopic: 'Tránsito'`.
  *
- * ⚠️ Si se agrega una sección nueva, hay que sumarla acá: un artículo cuyo
- * `section` no figure en esta lista enlazaría a una ruta inexistente. El
- * schema de contenido valida el campo contra este catálogo, así que un valor
- * desconocido rompe el build (ver `src/content.config.ts`).
+ * Geografía siempre es independiente: `municipality`, `localidad`, `region`
+ * siguen siendo los campos para expresar DÓNDE ocurre la noticia, no el topic.
  *
- * Criterios de las secciones incorporadas para clasificar noticias locales:
- * - Política  → decisiones de gobiernos municipales, concejos deliberantes,
- *               elecciones, legislación y gestión política.
- * - Servicios → agua, electricidad, gas, transporte, cortes programados,
- *               baja presión y funcionamiento de servicios públicos.
- * - Seguridad → hechos policiales, investigaciones y prevención del delito.
- * - Sociedad  → reclamos vecinales, organizaciones comunitarias, actividades
- *               e historias de interés local.
+ * ⚠️ Si un `primaryTopic` o `secondaryTopic` no figura en esta lista, el
+ * schema de contenido rompe el build. Es responsabilidad del editor elegir
+ * entre los topics catalogados.
  *
- * Orden: `Actualidad` primero (catch-all) y el resto alfabético. La sección
- * representa el TEMA de la noticia; DÓNDE ocurre se expresa con los campos
- * geográficos del frontmatter (`municipality`, `localidad`, `region`), no con
- * una sección por localidad.
+ * `Actualidad` fue removido de la taxonomía de topics: ya no es un tema de
+ * artículo. Se usa únicamente para artículos antiguos que aún no fueron
+ * migrados (ver migración abajo). El listado completo y estable permite
+ * URLs predictibles `/secciones/<topic>/` y navegación confiable.
+ */
+export const TOPICS: readonly string[] = [
+  'Deportes',
+  'Economía',
+  'Educación',
+  'Obras públicas',
+  'Política',
+  'Salud',
+  'Seguridad',
+  'Servicios',
+  'Sociedad',
+  'Tránsito',
+];
+
+/**
+ * `true` si `name` es un topic del catálogo editorial. Lo usa el schema de
+ * contenido para validar los nuevos campos `primaryTopic` y
+ * `secondaryTopic`.
+ */
+export function isKnownTopic(name: string): boolean {
+  return TOPICS.includes(name);
+}
+
+/**
+ * Secciones del catálogo editorial MANTENIDAS para compatibilidad con
+ * artículos existentes durante la migración. `Actualidad` figura aquí solo
+ * como sección de transición; los artículos nuevos deben usar `primaryTopic`.
+ *
+ * Nota: este catálogo se usa para la navegación `/secciones/*` y la validación
+ * de rutas. No representa la clasificación temática de los artículos en el
+ * nuevo modelo.
  */
 export const SECTIONS: readonly string[] = [
   'Actualidad',
@@ -41,7 +66,7 @@ export const SECTIONS: readonly string[] = [
 /**
  * `true` si `name` es una sección del catálogo editorial. Lo usa el schema de
  * contenido para rechazar categorías inexistentes antes de que generen
- * enlaces rotos en el sitio.
+ * enlaces rotos en el sitio (compatibilidad con artículos no migrados).
  */
 export function isKnownSection(name: string): boolean {
   return SECTIONS.includes(name);

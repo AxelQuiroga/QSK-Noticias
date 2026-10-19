@@ -2,6 +2,7 @@
 title: "Referentes del sistema sanitario debatieron sobre financiamiento e innovación en un congreso iberoamericano"
 description: "El encuentro se realizó en Buenos Aires con la participación del superintendente Horacio Guevara y funcionarios nacionales, y abordó los desafíos y las transformaciones del sistema de salud."
 slug: "congreso-iberoamericano-salud-financiamiento-innovacion-2026"
+primaryTopic: "Salud"
 section: "Salud"
 scope: "nacional"
 author: "QSK Noticias"

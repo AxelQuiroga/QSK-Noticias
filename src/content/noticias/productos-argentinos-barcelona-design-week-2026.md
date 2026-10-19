@@ -2,6 +2,7 @@
 title: "Treinta y tres productos argentinos se exhiben en la Barcelona Design Week 2026"
 description: "La selección fue realizada entre más de 230 postulaciones e incluye dos exhibiciones en Barcelona para impulsar la visibilidad internacional del diseño argentino."
 slug: "productos-argentinos-barcelona-design-week-2026"
+primaryTopic: "Economía"
 section: "Economía"
 scope: "nacional"
 author: "QSK Noticias"

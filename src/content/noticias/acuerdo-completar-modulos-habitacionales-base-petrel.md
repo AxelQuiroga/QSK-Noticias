@@ -2,6 +2,7 @@
 title: "Acuerdan completar dos módulos habitacionales de la Base Antártica Petrel"
 description: "Defensa y TANDANOR firmaron un acuerdo para completar el equipamiento interior y la instalación de los módulos 1 y 2 de la base argentina en la Antártida."
 slug: "acuerdo-completar-modulos-habitacionales-base-petrel"
+primaryTopic: "Obras públicas"
 section: "Obras públicas"
 scope: "nacional"
 author: "Redacción QSK Noticias"

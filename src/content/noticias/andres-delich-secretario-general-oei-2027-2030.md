@@ -3,6 +3,7 @@ title: "Andrés Delich fue elegido secretario general de la OEI para el período
 description: "La XV Asamblea General de la Organización de Estados Iberoamericanos se realizó en Buenos Aires. El encuentro también definió a Perú como sede de la próxima asamblea, prevista para 2030."
 slug: "andres-delich-secretario-general-oei-2027-2030"
 section: "Educación"
+primaryTopic: "Educación"
 scope: "nacional"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-17"
