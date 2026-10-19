@@ -7,9 +7,12 @@ import { SECTIONS, TOPICS } from '../../data/sections';
 export async function getStaticPaths() {
   // Rutas estáticas solo para secciones (compatibilidad existente, incluye Actualidad)
   return SECTIONS.map((section) => ({
-    params: { slug: slugify(section) },
-    props: { section },
-  }));
+  params: { slug: slugify(section) },
+  props: {
+    section,
+    topic: TOPICS.includes(section) ? section : undefined,
+  },
+}));
 }
 
 const { section, topic } = Astro.props as { section: string; topic?: string };
