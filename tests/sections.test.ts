@@ -4,6 +4,7 @@ import {
   LEGACY_SECTIONS,
   NAV_DIRECT,
   NAV_GROUPS,
+  NAV_ITEMS,
   SECTIONS,
   TOPICS,
   isKnownSection,
@@ -84,17 +85,42 @@ describe('isKnownSection', () => {
  * `SECTIONS` para que la ruta siga saliendo de `slugify()`. Estos tests fijan
  * la estructura acordada y evitan que se desincronice del catálogo.
  */
-describe('agrupación de la navegación principal', () => {
+describe('navegación principal del header', () => {
   const NAV_SECTIONS = [...NAV_GROUPS.flatMap((group) => group.sections), ...NAV_DIRECT];
 
   it('respeta la estructura acordada del header', () => {
-    expect(NAV_GROUPS.map((group) => group.label)).toEqual(['Actualidad', 'Comunidad', 'Ciudad']);
+    expect(NAV_GROUPS.map((group) => group.label)).toEqual([
+      'Política y sociedad',
+      'Comunidad',
+      'Ciudad',
+    ]);
     expect(NAV_GROUPS.map((group) => group.sections)).toEqual([
       ['Política', 'Sociedad'],
       ['Seguridad', 'Servicios', 'Salud', 'Educación'],
       ['Obras públicas', 'Tránsito'],
     ]);
-    expect(NAV_DIRECT).toEqual(['Economía', 'Deportes']);
+    expect(NAV_DIRECT).toEqual([ACTUALIDAD_SECTION, 'Economía', 'Deportes']);
+  });
+
+  it('respeta el orden acordado en pantalla', () => {
+    // El orden de `NAV_ITEMS` es el orden del header: el feed abre la
+    // navegación, los grupos van en el medio y los temas de mayor peso cierran
+    // como accesos directos.
+    expect(NAV_ITEMS.map((item) => (item.kind === 'group' ? item.label : item.section))).toEqual([
+      'Actualidad',
+      'Política y sociedad',
+      'Comunidad',
+      'Ciudad',
+      'Economía',
+      'Deportes',
+    ]);
+  });
+
+  it('enlaza "Actualidad" como acceso directo, no como grupo', () => {
+    // Es el feed de los últimos días, no una categoría: tiene URL propia
+    // (`/secciones/actualidad/`) y ninguna subsección que desplegar.
+    expect(NAV_DIRECT).toContain(ACTUALIDAD_SECTION);
+    expect(NAV_GROUPS.map((group) => group.label)).not.toContain(ACTUALIDAD_SECTION);
   });
 
   it('solo referencia secciones del catálogo', () => {
@@ -107,22 +133,19 @@ describe('agrupación de la navegación principal', () => {
     expect(new Set(NAV_SECTIONS).size).toBe(NAV_SECTIONS.length);
   });
 
-  it('no usa como grupo el nombre de una sección con ruta, salvo "Actualidad"', () => {
-    // "Comunidad" y "Ciudad" son agrupaciones visuales: no deben existir como
-    // sección, porque entonces el header estaría escondiendo una ruta real.
+  it('no usa como grupo el nombre de una sección con ruta', () => {
+    // "Política y sociedad", "Comunidad" y "Ciudad" son agrupaciones visuales:
+    // no deben existir como sección, porque entonces el desplegable estaría
+    // escondiendo una ruta real del catálogo.
     for (const label of NAV_GROUPS.map((group) => group.label)) {
-      if (label === 'Actualidad') continue;
       expect(isKnownSection(label), `"${label}" no debe ser una sección del catálogo`).toBe(false);
     }
   });
 
-  it('expone todas las secciones del catálogo salvo "Actualidad"', () => {
-    // "Actualidad" es sección y nombre de grupo a la vez: se llega desde el
-    // sidebar de la portada y desde la etiqueta de cada tarjeta, no desde el
-    // header. Es una decisión editorial documentada en `sections.ts`.
-    const sinEntradaEnElHeader = SECTIONS.filter(
-      (section) => section !== 'Actualidad' && !NAV_SECTIONS.includes(section),
-    );
+  it('expone todas las secciones del catálogo en el header', () => {
+    // Los temas van dentro de su desplegable y "Actualidad" como acceso
+    // directo: no queda ninguna ruta del catálogo sin entrada en la navegación.
+    const sinEntradaEnElHeader = SECTIONS.filter((section) => !NAV_SECTIONS.includes(section));
     expect(sinEntradaEnElHeader).toEqual([]);
   });
 

@@ -1,18 +1,28 @@
 import { test, expect, type Page } from '@playwright/test';
-import { NAV_DIRECT, NAV_GROUPS } from '../../src/data/sections';
+import { NAV_DIRECT, NAV_GROUPS, NAV_ITEMS, type NavGroup } from '../../src/data/sections';
 import { slugify } from '../../src/lib/utils';
 
 /**
  * Comportamiento de los desplegables del header. La estructura se deriva de
- * `NAV_GROUPS` / `NAV_DIRECT`, así que estos tests acompañan cualquier cambio
- * del catálogo sin listas de secciones duplicadas.
+ * `NAV_ITEMS` / `NAV_GROUPS` / `NAV_DIRECT`, así que estos tests acompañan
+ * cualquier cambio del catálogo sin listas de secciones duplicadas.
  */
 const sectionHref = (section: string) => `/secciones/${slugify(section)}/`;
 const SECCIONES_AGRUPADAS = NAV_GROUPS.flatMap((group) => group.sections);
 
+/** Etiquetas de las entradas del header, en el orden acordado (`NAV_ITEMS`). */
+const ETIQUETAS_NAV = NAV_ITEMS.map((item) => (item.kind === 'group' ? item.label : item.section));
+
+/** Grupo del nav en la posición `index` (noUncheckedIndexedAccess). */
+function grupoDe(index: number): NavGroup {
+  const grupo = NAV_GROUPS[index];
+  if (!grupo) throw new Error(`El nav no tiene un grupo en la posición ${index}`);
+  return grupo;
+}
+
 /** Primera sección del grupo `index`, con el tipo garantizado (noUncheckedIndexedAccess). */
 function primeraSeccionDe(index: number): string {
-  const seccion = NAV_GROUPS[index]?.sections[0];
+  const seccion = grupoDe(index).sections[0];
   if (!seccion) throw new Error(`El grupo ${index} del nav no tiene secciones`);
   return seccion;
 }
@@ -48,6 +58,26 @@ test.describe('Header de escritorio · grupos', () => {
     await expect(nav.locator(':scope > a[href^="/secciones/"]')).toHaveCount(NAV_DIRECT.length);
   });
 
+  test('ordena las entradas como lo acuerda el catálogo de navegación', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.locator('nav[aria-label="Navegación principal"]');
+
+    const entradas = await nav
+      .locator(':scope > a, :scope > div[data-nav-group]')
+      .evaluateAll((nodos) =>
+        nodos.map((nodo) => {
+          // Un grupo expone su etiqueta en el disparador: sus secciones viven
+          // en el desplegable y no cuentan como entradas de primer nivel.
+          const etiqueta = nodo.matches('[data-nav-group]')
+            ? nodo.querySelector('[data-nav-trigger]')?.textContent
+            : nodo.textContent;
+          return etiqueta?.trim() ?? '';
+        }),
+      );
+
+    expect(entradas).toEqual(['Portada', ...ETIQUETAS_NAV, 'Buscar']);
+  });
+
   test('cada grupo abre con clic y deja visibles solo sus secciones', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
@@ -77,16 +107,16 @@ test.describe('Header de escritorio · grupos', () => {
   test('mantiene un solo menú abierto a la vez', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
-    const actualidad = nav.getByRole('button', { name: 'Actualidad', exact: true });
+    const primerGrupo = nav.getByRole('button', { name: grupoDe(0).label, exact: true });
     const comunidad = nav.getByRole('button', { name: 'Comunidad', exact: true });
 
-    await actualidad.click();
-    await expect(actualidad).toHaveAttribute('aria-expanded', 'true');
+    await primerGrupo.click();
+    await expect(primerGrupo).toHaveAttribute('aria-expanded', 'true');
 
     await comunidad.click();
     await expect(comunidad).toHaveAttribute('aria-expanded', 'true');
-    await expect(actualidad).toHaveAttribute('aria-expanded', 'false');
-    await expect(nav.locator('a[href="/secciones/politica/"]')).toBeHidden();
+    await expect(primerGrupo).toHaveAttribute('aria-expanded', 'false');
+    await expect(nav.locator(`a[href="${sectionHref(primeraSeccionDe(0))}"]`)).toBeHidden();
   });
 
   test('cierra con Escape y devuelve el foco al disparador', async ({ page }) => {
@@ -123,7 +153,7 @@ test.describe('Header de escritorio · grupos', () => {
   test('se puede abrir y navegar solo con teclado', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
-    const trigger = nav.getByRole('button', { name: 'Actualidad', exact: true });
+    const trigger = nav.getByRole('button', { name: grupoDe(0).label, exact: true });
     const primera = primeraSeccionDe(0);
 
     await trigger.focus();

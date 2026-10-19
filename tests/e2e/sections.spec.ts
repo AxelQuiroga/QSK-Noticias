@@ -44,10 +44,11 @@ test.describe('Navegación principal de escritorio', () => {
       await expect(nav.locator(`a[href="/secciones/${slugify(section)}/"]`)).toBeVisible();
     }
 
-    // La única sección sin entrada propia en el header es "Actualidad", que da
-    // nombre al grupo y se alcanza desde el sidebar de la portada y las tarjetas.
+    // Ninguna sección del catálogo queda sin entrada en el header: los temas
+    // viven en su desplegable y "Actualidad" (el feed de últimos días) es un
+    // acceso directo, no una categoría.
     const enNav = new Set([...agrupadas, ...NAV_DIRECT]);
-    expect(SECTIONS.filter((section) => !enNav.has(section))).toEqual(['Actualidad']);
+    expect(SECTIONS.filter((section) => !enNav.has(section))).toEqual([]);
   });
 
   test('el header no desborda horizontalmente', async ({ page }) => {
