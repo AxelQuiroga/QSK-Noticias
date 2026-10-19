@@ -2,7 +2,10 @@
 title: "Milei y Marco Rubio dialogaron sobre comercio, inversiones y seguridad regional"
 description: "El Presidente mantuvo una conversación telefónica con el secretario de Estado estadounidense para profundizar la relación bilateral y analizar oportunidades de cooperación entre ambos países."
 slug: "milei-marco-rubio-comercio-inversiones-seguridad-regional"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Economía"
+section: "Política"
 scope: "nacional"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-17"

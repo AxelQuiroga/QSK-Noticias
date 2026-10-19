@@ -2,7 +2,10 @@
 title: "La Agencia Federal de Emergencias coordinó con las provincias la preparación ante El Niño"
 description: "La reunión se realizó en Resistencia, Chaco, con representantes de siete jurisdicciones para revisar escenarios de riesgo y fortalecer la planificación ante posibles emergencias climáticas."
 slug: "afe-coordinacion-federal-preparacion-el-nino-chaco-2026"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Sociedad"
+section: "Política"
 scope: "nacional"
 author: "QSK Noticias"
 publishedAt: "2026-10-16"

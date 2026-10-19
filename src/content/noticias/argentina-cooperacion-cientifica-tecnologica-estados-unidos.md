@@ -2,7 +2,10 @@
 title: "Argentina busca ampliar la cooperación tecnológica con Estados Unidos"
 description: "La secretaria de Innovación, Ciencia y Tecnología, Adriana Baravalle, mantuvo reuniones en Washington con organismos internacionales y autoridades estadounidenses para impulsar iniciativas de inteligencia artificial, ciberseguridad e innovación productiva."
 slug: "argentina-cooperacion-cientifica-tecnologica-estados-unidos"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Economía"
+section: "Política"
 scope: "nacional"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-17"

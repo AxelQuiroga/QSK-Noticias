@@ -2,7 +2,10 @@
 title: "El Gobierno refuerza el monitoreo y la preparación ante posibles efectos de El Niño"
 description: "La Agencia Federal de Emergencias coordina acciones para 2026-2027, con herramientas de monitoreo, modelos de riesgo para 18 municipios y actividades de capacitación."
 slug: "gobierno-monitoreo-preparacion-el-nino-afe-2026"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Sociedad"
+section: "Política"
 scope: "nacional"
 author: "QSK Noticias"
 publishedAt: "2026-10-16"

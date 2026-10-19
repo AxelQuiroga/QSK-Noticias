@@ -2,7 +2,10 @@
 title: "Banfield: un video reavivó el reclamo por el choque fatal de Yrigoyen y Vieytes"
 description: "La familia de Cristian Jalil pidió revisar la calificación de la causa tras la difusión de imágenes del choque con un colectivo de la línea 51. La investigación continúa."
 slug: "choque-fatal-yrigoyen-vieytes-banfield-octubre-2026"
-section: "Actualidad"
+primaryTopic: "Tránsito"
+secondaryTopics:
+  - "Seguridad"
+section: "Tránsito"
 municipality: "Lomas de Zamora"
 localidad: "Banfield"
 region: "Zona Sur"

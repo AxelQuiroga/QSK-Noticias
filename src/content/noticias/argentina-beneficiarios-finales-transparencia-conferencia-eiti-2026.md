@@ -2,7 +2,10 @@
 title: "Argentina expuso sobre beneficiarios finales y transparencia en la conferencia global EITI"
 description: "La Oficina Anticorrupción presentó el trabajo argentino para identificar a las personas que controlan empresas y mejorar la transparencia en las industrias extractivas."
 slug: "argentina-beneficiarios-finales-transparencia-conferencia-eiti-2026"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Economía"
+section: "Política"
 scope: "nacional"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-17"

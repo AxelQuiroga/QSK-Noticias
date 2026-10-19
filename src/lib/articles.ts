@@ -1,5 +1,6 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { slugify, formatDate } from './utils';
+import { isActualidadEligible } from './actualidad';
 
 export type Article = CollectionEntry<'news'>;
 
@@ -31,6 +32,23 @@ export async function getLatestArticles(count = 10): Promise<Article[]> {
 export async function getArticlesBySection(section: string): Promise<Article[]> {
   const articles = await getPublishedArticles();
   return articles.filter((a) => a.data.section === section);
+}
+
+/**
+ * Artículos de la página Actualidad: publicados y con `publishedAt` dentro de
+ * la ventana temporal (`src/lib/actualidad.ts`, fecha calendario argentina).
+ *
+ * No es una categoría editorial: un artículo sale de Actualidad cuando su
+ * fecha queda fuera de la ventana, sin perder su URL, su topic ni sus
+ * metadatos. Hereda el orden de `getPublishedArticles()` (fecha descendente y
+ * luego slug), así que el más nuevo queda primero.
+ *
+ * `referenceDate` existe para poder verificar la ventana con un reloj fijo:
+ * la página usa el valor por defecto (ahora).
+ */
+export async function getActualidadArticles(referenceDate: Date = new Date()): Promise<Article[]> {
+  const articles = await getPublishedArticles();
+  return articles.filter((article) => isActualidadEligible(article, referenceDate));
 }
 
 export async function getArticlesByMunicipality(municipality: string): Promise<Article[]> {
