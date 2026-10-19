@@ -2,6 +2,9 @@
 title: "Lugones defendió los cambios en salud y destacó inversiones en el sector"
 description: "En el Congreso Iberoamericano de Salud, el ministro repasó medidas de gestión, inversiones hospitalarias y proyectos vinculados con la producción de medicamentos y vacunas."
 slug: "lugones-cambios-gestion-inversiones-sector-salud-2026"
+primaryTopic: "Salud"
+secondaryTopics:
+  - "Economía"
 section: "Salud"
 scope: "nacional"
 author: "QSK Noticias"
@@ -9,7 +12,6 @@ publishedAt: "2026-10-16"
 status: "published"
 featured: false
 sources:
-
 - name: "Argentina.gob.ar — Lugones: La moral como política de Estado es el norte que guía nuestras acciones"
   url: "https://www.argentina.gob.ar/noticias/lugones-la-moral-como-politica-de-estado-es-el-norte-que-guia-nuestras-acciones"
   description: "Comunicado del Ministerio de Salud sobre la participación de Mario Lugones en el Primer Congreso Iberoamericano de Salud y sus declaraciones sobre gestión, inversiones y producción sanitaria."

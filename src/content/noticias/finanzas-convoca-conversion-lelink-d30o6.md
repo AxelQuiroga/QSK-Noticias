@@ -2,6 +2,7 @@
 title: "Finanzas convoca a convertir una letra del Tesoro que vence en octubre"
 description: "La Secretaría de Finanzas recibirá ofertas el 20 de octubre para canjear la LELINK D30O6 por instrumentos con vencimientos en noviembre de 2026 y enero o junio de 2027."
 slug: "finanzas-convoca-conversion-lelink-d30o6"
+primaryTopic: "Economía"
 section: "Economía"
 scope: "nacional"
 author: "Redacción QSK Noticias"

@@ -2,6 +2,9 @@
 title: "Lanús anunció obras en cuatro establecimientos educativos: qué se proyecta y cuánto se informó"
 description: "El Municipio informó trabajos en tres escuelas primarias y un centro educativo. Los documentos oficiales detallan ampliaciones, refacciones, presupuestos y plazos previstos para dos de los establecimientos."
 slug: "obras-escuelas-publicas-lanus-octubre-2026"
+primaryTopic: "Educación"
+secondaryTopics:
+  - "Obras públicas"
 section: "Educación"
 municipality: "Lanús"
 region: "Zona Sur"
