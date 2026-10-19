@@ -9,12 +9,16 @@ region: 'Zona Sur'
 scope: 'local'
 author: 'Redacción QSK Noticias'
 publishedAt: '2026-10-19T00:00:00-03:00'
-status: 'review'
+status: 'published'
 featured: false
 sources:
   - name: 'Municipalidad de Lanús'
     url: 'https://www.lanus.gob.ar/noticias/4616-continua-el-quirofano-movil-en-el-parque-general-san-martin'
     description: 'Información oficial sobre turnos, ubicación, requisitos y atención veterinaria.'
+image:
+  src: "/images/noticias/castracion-lanus.jpeg"
+  alt: "Castracion en Lanús."
+  attribution: "Foto: Municipio de Lanús"      
 ---
 
 El Municipio de Lanús anunció una nueva entrega de turnos para castraciones gratuitas de perros y gatos en el Quirófano Móvil del Parque Municipal General San Martín, en Valentín Alsina. La asignación será **este lunes 19 de octubre, desde las 9 y hasta agotar los cupos**.

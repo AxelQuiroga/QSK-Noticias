@@ -9,7 +9,7 @@ region: 'Zona Sur'
 scope: 'local'
 author: 'Redacción QSK Noticias'
 publishedAt: '2026-10-19T00:00:00-03:00'
-status: 'review'
+status: 'published'
 featured: false
 sources:
   - name: 'Municipalidad de Lanús'
@@ -18,6 +18,10 @@ sources:
   - name: 'Ministerio de Transporte de la Provincia de Buenos Aires'
     url: 'https://gba.gob.ar/node/15960'
     description: 'Información oficial sobre alcance y requisitos del Pase Libre Multimodal.'
+image:
+  src: "/images/noticias/municipio-lanus.png"
+  alt: "Muunicipalidad de Lanús."
+  attribution: "Foto: Municipio de Lanús"  
 ---
 
 Lanús Gobierno informó que entregó **más de 200 Pases Libres Multimodales (PLM)** a vecinos y vecinas con discapacidad. La actividad se desarrolló en el marco del Programa de Promoción de Derechos de las Personas con Discapacidad.
