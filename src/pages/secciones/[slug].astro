@@ -5,7 +5,7 @@ import { getArticlesBySection, getArticlesByTopic, slugify } from '../../lib/art
 import { SECTIONS, TOPICS } from '../../data/sections';
 
 export async function getStaticPaths() {
-  // Rutas estáticas solo para secciones (compatibilidad existente)
+  // Rutas estáticas solo para secciones (compatibilidad existente, incluye Actualidad)
   return SECTIONS.map((section) => ({
     params: { slug: slugify(section) },
     props: { section },
@@ -14,8 +14,11 @@ export async function getStaticPaths() {
 
 const { section, topic } = Astro.props as { section: string; topic?: string };
 
-// Usar topic si está definido y es un topic oficial, sino usar section
-const useTopic = !!topic && TOPICS.includes(topic);
+// Determinar el tipo de página: topic o sección
+const isTopicPage = !!topic && TOPICS.includes(topic);
+const useTopic = isTopicPage;
+
+// Obtener artículos: si es página de topic, usar getArticlesByTopic; si es sección, usar getArticlesBySection
 const sorted = useTopic
   ? await getArticlesByTopic(topic ?? '')
   : await getArticlesBySection(section ?? '');
