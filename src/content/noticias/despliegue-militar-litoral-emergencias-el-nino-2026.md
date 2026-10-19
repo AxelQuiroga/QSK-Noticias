@@ -2,7 +2,10 @@
 title: "El Gobierno despliega medios militares en el litoral ante posibles emergencias por El Niño"
 description: "La Armada inició un despliegue preventivo hacia Corrientes y las Fuerzas Armadas mantienen unidades preparadas para asistir ante posibles inundaciones y comunidades aisladas."
 slug: "despliegue-militar-litoral-emergencias-el-nino-2026"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Sociedad"
+section: "Política"
 scope: "nacional"
 author: "QSK Noticias"
 publishedAt: "2026-10-16"

@@ -2,7 +2,10 @@
 title: "Argentina y Paraguay buscan profundizar la cooperación entre sus fuerzas navales"
 description: "El prefecto nacional naval, Guillermo José Giménez Pérez, recibió al agregado naval paraguayo Francisco Heriberto Zucchini Benítez, quien cumplirá funciones en el país durante un año."
 slug: "argentina-paraguay-cooperacion-fuerzas-navales-agregado-2026"
-section: "Actualidad"
+primaryTopic: "Política"
+secondaryTopics:
+  - "Seguridad"
+section: "Política"
 scope: "nacional"
 author: "QSK Noticias"
 publishedAt: "2026-10-16"

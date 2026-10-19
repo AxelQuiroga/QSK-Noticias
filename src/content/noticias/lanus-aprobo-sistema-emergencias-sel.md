@@ -2,6 +2,9 @@
 title: "Lanús aprobó la formalización de su sistema de emergencias: qué cambia y qué falta aclarar"
 description: "El Concejo Deliberante aprobó por mayoría la ordenanza del Sistema de Emergencias de Lanús. El alcance de la ampliación anunciada y su implementación requieren más precisiones."
 slug: "lanus-aprobo-sistema-emergencias-sel"
+primaryTopic: "Salud"
+secondaryTopics:
+  - "Política"
 section: "Salud"
 municipality: "Lanús"
 region: "Zona Sur"

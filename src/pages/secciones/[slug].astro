@@ -1,11 +1,19 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticlesBySection, getArticlesByTopic, slugify } from '../../lib/articles';
-import { SECTIONS, TOPICS } from '../../data/sections';
+import {
+  getActualidadArticles,
+  getArticlesBySection,
+  getArticlesByTopic,
+  slugify,
+} from '../../lib/articles';
+import { ACTUALIDAD_SECTION, SECTIONS, TOPICS } from '../../data/sections';
+import { ACTUALIDAD_WINDOW_DAYS } from '../../lib/actualidad';
 
 export async function getStaticPaths() {
-  // Rutas estáticas solo para secciones (compatibilidad existente, incluye Actualidad)
+  // Rutas estáticas para todo el catálogo: los diez topics oficiales más las
+  // secciones de compatibilidad. `Actualidad` conserva su URL, aunque ya no
+  // sea una categoría editorial.
   return SECTIONS.map((section) => ({
   params: { slug: slugify(section) },
   props: {
@@ -17,19 +25,35 @@ export async function getStaticPaths() {
 
 const { section, topic } = Astro.props as { section: string; topic?: string };
 
-// Determinar el tipo de página: topic o sección
-const isTopicPage = !!topic && TOPICS.includes(topic);
+// `Actualidad` dejó de ser una sección con artículos propios: su página es el
+// listado de las noticias publicadas dentro de la ventana temporal
+// (`src/lib/actualidad.ts`).
+const isActualidad = section === ACTUALIDAD_SECTION;
+
+// Determinar el tipo de página: topic, sección de compatibilidad o Actualidad
+const isTopicPage = !isActualidad && !!topic && TOPICS.includes(topic);
 const useTopic = isTopicPage;
 
-// Obtener artículos: si es página de topic, usar getArticlesByTopic; si es sección, usar getArticlesBySection
-const sorted = useTopic
-  ? await getArticlesByTopic(topic ?? '')
-  : await getArticlesBySection(section ?? '');
+// Obtener artículos: Actualidad → ventana temporal; topic → clasificación
+// temática; sección de compatibilidad → campo `section` del frontmatter.
+const sorted = isActualidad
+  ? await getActualidadArticles()
+  : useTopic
+    ? await getArticlesByTopic(topic ?? '')
+    : await getArticlesBySection(section ?? '');
+
+const plural = sorted.length === 1 ? 'artículo' : 'artículos';
+const summary = isActualidad
+  ? `${sorted.length} ${plural} publicados en los últimos ${ACTUALIDAD_WINDOW_DAYS} días.`
+  : `${sorted.length} ${plural} en esta sección.`;
+const description = isActualidad
+  ? `Últimas noticias publicadas en QSK Noticias: los artículos de los últimos ${ACTUALIDAD_WINDOW_DAYS} días en Zona Sur del conurbano bonaerense.`
+  : `Noticias de ${topic ?? section} en Zona Sur del conurbano bonaerense.`;
 ---
 
 <BaseLayout
   title={`${section ?? topic} — QSK Noticias`}
-  description={`Noticias de ${topic ?? section} en Zona Sur del conurbano bonaerense.`}
+  description={description}
 >
   <div class="container-editorial py-10">
     <header>
@@ -37,7 +61,7 @@ const sorted = useTopic
         {section}
       </h1>
       <p class="mt-2 text-text-secondary">
-        {sorted.length} {sorted.length === 1 ? 'artículo' : 'artículos'} en esta sección.
+        {summary}
       </p>
     </header>
 
@@ -49,7 +73,9 @@ const sorted = useTopic
       </div>
     ) : (
       <p class="mt-8 text-text-secondary">
-        No hay artículos publicados en esta sección todavía.
+        {isActualidad
+          ? `No hay artículos publicados en los últimos ${ACTUALIDAD_WINDOW_DAYS} días.`
+          : 'No hay artículos publicados en esta sección todavía.'}
       </p>
     )}
   </div>

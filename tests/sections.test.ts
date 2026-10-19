@@ -1,5 +1,15 @@
 import { describe, it, expect } from 'vitest';
-import { SECTIONS, isKnownSection, NAV_DIRECT, NAV_GROUPS } from '../src/data/sections';
+import {
+  ACTUALIDAD_SECTION,
+  LEGACY_SECTIONS,
+  NAV_DIRECT,
+  NAV_GROUPS,
+  SECTIONS,
+  TOPICS,
+  isKnownSection,
+  isKnownTopic,
+  isLegacySection,
+} from '../src/data/sections';
 import { slugify } from '../src/lib/utils';
 
 /**
@@ -122,5 +132,50 @@ describe('agrupación de la navegación principal', () => {
     for (const id of ids) {
       expect(id).toMatch(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
     }
+  });
+});
+
+/**
+ * `Actualidad` dejó de ser un tema editorial: su página es el listado de las
+ * noticias publicadas en los últimos días (`src/lib/actualidad.ts`). Estos
+ * tests fijan la separación entre el catálogo de topics asignables y la
+ * sección de compatibilidad que sostiene la URL publicada.
+ */
+describe('topics oficiales vs. sección de compatibilidad', () => {
+  it('mantiene exactamente los diez topics oficiales', () => {
+    expect(TOPICS).toEqual([
+      'Deportes',
+      'Economía',
+      'Educación',
+      'Obras públicas',
+      'Política',
+      'Salud',
+      'Seguridad',
+      'Servicios',
+      'Sociedad',
+      'Tránsito',
+    ]);
+  });
+
+  it('no permite clasificar un artículo como "Actualidad"', () => {
+    expect(TOPICS).not.toContain('Actualidad');
+    expect(isKnownTopic('Actualidad')).toBe(false);
+    expect(isKnownTopic(ACTUALIDAD_SECTION)).toBe(false);
+  });
+
+  it('conserva "Actualidad" solo como sección de compatibilidad y ruta publicada', () => {
+    expect(ACTUALIDAD_SECTION).toBe('Actualidad');
+    expect(LEGACY_SECTIONS).toEqual([ACTUALIDAD_SECTION]);
+    expect(isLegacySection(ACTUALIDAD_SECTION)).toBe(true);
+    // La URL sigue existiendo: la página cambió de sentido, no de dirección.
+    expect(isKnownSection(ACTUALIDAD_SECTION)).toBe(true);
+    expect(SECTIONS).toEqual([...LEGACY_SECTIONS, ...TOPICS]);
+  });
+
+  it('no marca como compatibilidad a ningún topic del catálogo', () => {
+    for (const topic of TOPICS) {
+      expect(isLegacySection(topic), `"${topic}" no es una sección legacy`).toBe(false);
+    }
+    expect(isLegacySection('Cocina')).toBe(false);
   });
 });

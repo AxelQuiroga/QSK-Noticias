@@ -2,6 +2,7 @@
 title: "Plazas Saludables en Lanús: fechas, horarios y direcciones del 13 al 16 de octubre"
 description: "El Municipio de Lanús anunció cuatro jornadas gratuitas con controles básicos de salud, actividad física y orientación nutricional en plazas de Lanús Este y Oeste."
 slug: "plazas-saludables-lanus-octubre-2026"
+primaryTopic: "Salud"
 section: "Salud"
 municipality: "Lanús"
 region: "Zona Sur"

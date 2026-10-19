@@ -2,7 +2,10 @@
 title: "Continúan las jornadas del Paseo de Compras 25 de Mayo en Lanús"
 description: "El Gobierno de Lanús anunció que el Paseo de Compras 25 de Mayo se desarrollará el miércoles 14 y el viernes 16 de octubre, de 13:30 a 16:30, en Santiago Plaul N° 3201, Lanús Oeste, como espacio para que los vecinos visiten puestos de emprendedores locales con productos artesanales y elaboraciones a precios populares."
 slug: "continuan-las-jornadas-del-paseo-de-compras-25-de-mayo"
-section: "Actualidad"
+primaryTopic: "Economía"
+secondaryTopics:
+  - "Sociedad"
+section: "Economía"
 municipality: "Lanús"
 scope: "local"
 author: "Redacción QSK Noticias"

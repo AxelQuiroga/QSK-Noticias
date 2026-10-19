@@ -2,6 +2,7 @@
 title: "La mortalidad por cáncer de mama cayó un 14% en Argentina en diez años"
 description: "Entre 2014 y 2024, la tasa de mortalidad descendió de 17,76 a 15,36 defunciones por cada 100.000 mujeres. En 2024 se estimaron 20.750 nuevos casos en el país."
 slug: "mortalidad-cancer-mama-cayo-14-por-ciento-argentina"
+primaryTopic: "Salud"
 section: "Salud"
 scope: "nacional"
 author: "Redacción QSK Noticias"
