@@ -1,6 +1,8 @@
 # Módulo meteorológico de QSK Noticias
 
-El widget de portada muestra condiciones actuales para CABA y municipios de Zona Sur. Los datos se solicitan a una Cloudflare Pages Function para mantener la clave del proveedor fuera del navegador y del repositorio.
+La portada muestra una franja compacta con el clima actual de Lanús como ubicación predeterminada. El lector puede elegir otro municipio o CABA desde el selector; sensación térmica, probabilidad de lluvia, humedad y hora de actualización permanecen dentro de «Más datos». La franja consulta una localidad por vez y actualiza los datos en segundo plano cada 30 minutos mientras la página está abierta.
+
+Los datos se solicitan a una Cloudflare Pages Function para mantener la clave del proveedor fuera del navegador y del repositorio.
 
 ## Configuración en Cloudflare Pages
 
@@ -17,7 +19,8 @@ No colocar la clave en `src/`, en variables `PUBLIC_*` ni en archivos versionado
 - La ruta `/api/weather?location=<id>` valida la localidad contra una lista permitida.
 - La clave se utiliza exclusivamente desde `functions/api/weather.ts`.
 - Las respuestas se pueden cachear en el edge durante 30 minutos.
-- El widget consulta las localidades al cargar la portada y permite actualizar manualmente; reintenta cada 30 minutos mientras la página permanezca abierta.
+- Al abrir la portada se consulta solo la localidad seleccionada (Lanús inicialmente); cambiar el selector consulta el municipio elegido.
+- La actualización automática ocurre cada 30 minutos. No hay botón de recarga manual.
 - La probabilidad de lluvia representa el máximo informado para las próximas tres horas.
 - Si falta la clave o el proveedor falla, el widget muestra un estado no disponible en lugar de inventar datos.
 
@@ -28,4 +31,4 @@ Se utiliza WeatherAPI.com. El plan gratuito permite usos comerciales según sus 
 - https://www.weatherapi.com/terms
 - https://www.weatherapi.com/pricing.aspx
 
-El widget incluye la atribución y un aviso de uso orientativo. No debe presentarse como una estación meteorológica local ni como fuente oficial de alertas.
+La atribución y el aviso orientativo aparecen dentro de «Más datos». El widget no debe presentarse como una estación meteorológica local ni como fuente oficial de alertas.
