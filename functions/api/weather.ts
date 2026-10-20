@@ -71,6 +71,29 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   try {
     const upstream = await fetch(upstreamUrl, { signal: AbortSignal.timeout(8000) });
     if (!upstream.ok) {
+      // Log only safe diagnostic fields. Never log the request URL or API key.
+      let providerCode: number | undefined;
+      let providerMessage: string | undefined;
+
+      try {
+        const body = (await upstream.json()) as {
+          error?: { code?: unknown; message?: unknown };
+        };
+        if (typeof body.error?.code === 'number') providerCode = body.error.code;
+        if (typeof body.error?.message === 'string') {
+          providerMessage = body.error.message.slice(0, 200);
+        }
+      } catch {
+        // Some upstream failures do not return JSON.
+      }
+
+      console.error('[weather] Provider request failed', {
+        status: upstream.status,
+        providerCode,
+        providerMessage,
+        locationId,
+      });
+
       return Response.json(
         { error: 'El proveedor meteorológico no respondió correctamente.' },
         { status: 502, headers: { 'Cache-Control': 'no-store' } },
@@ -103,7 +126,12 @@ export async function onRequest(context: PagesContext): Promise<Response> {
 
     if (cache) await cache.put(cacheKey, response.clone());
     return response;
-  } catch {
+  } catch (error) {
+    console.error('[weather] Request failed', {
+      errorName: error instanceof Error ? error.name : 'UnknownError',
+      locationId,
+    });
+
     return Response.json(
       { error: 'No se pudieron obtener los datos meteorológicos.' },
       { status: 502, headers: { 'Cache-Control': 'no-store' } },
