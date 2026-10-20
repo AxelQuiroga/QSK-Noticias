@@ -1,20 +1,24 @@
 ---
-title: "La peperina serrana de Córdoba y San Luis obtuvo el sello de Indicación Geográfica"
-description: "La Resolución 201/2026 reconoce el vínculo entre la planta nativa y su zona de origen, y establece pautas para una cosecha que permita su regeneración."
-slug: "peperina-serrana-cordoba-san-luis-indicacion-geografica"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'La peperina serrana de Córdoba y San Luis obtuvo el sello de Indicación Geográfica'
+description: 'La Resolución 201/2026 reconoce el vínculo entre la planta nativa y su zona de origen, y establece pautas para una cosecha que permita su regeneración.'
+slug: 'peperina-serrana-cordoba-san-luis-indicacion-geografica'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Economía"
-secondarySection: "Sociedad"
-primaryTopic: "Economía"
-secondaryTopics:
-  - "Sociedad"
-sources:
-  - name: "Secretaría de Agricultura, Ganadería y Pesca"
-    url: "https://www.argentina.gob.ar/noticias/agricultura-reconocio-la-indicacion-geografica-para-la-peperina-serrana-de-cordoba-y-san"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'nacional'
+primarySection: 'Economía'
+secondarySection: 'Sociedad'
+primaryTopic: 'Economía'
+secondaryTopics: 
+- 'Sociedad'
+sources: 
+-
+  name: 'Secretaría de Agricultura, Ganadería y Pesca'
+  url: "https://www.argentina.gob.ar/noticias/agricultura-reconocio-la-indicacion-geografica-para-la-peperina-serrana-de-cordoba-y-san"
+image: 
+  src: '/images/noticias/peperina-serrana-indicacion-geografica.jpg'
+  alt: 'Peperina serrana de Córdoba y San Luis, especie nativa reconocida con el sello de Indicación Geográfica'
+publishedAt: "2026-10-20T19:25:31.048Z"
 ---
 
 La peperina serrana de Córdoba y San Luis recibió el reconocimiento de Indicación Geográfica (IG), una herramienta que protege productos ligados a un territorio y a sus formas tradicionales de producción. La medida fue aprobada mediante la Resolución 201/2026 de la Secretaría de Agricultura, Ganadería y Pesca.

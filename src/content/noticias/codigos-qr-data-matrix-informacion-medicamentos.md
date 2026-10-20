@@ -1,17 +1,21 @@
 ---
-title: "Los códigos QR y Data Matrix amplían el acceso a información sobre medicamentos"
-description: "Una disposición de ANMAT incorporó herramientas digitales en los envases para facilitar la consulta de prospectos actualizados y otra información sanitaria."
-slug: "codigos-qr-data-matrix-informacion-medicamentos"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'Los códigos QR y Data Matrix amplían el acceso a información sobre medicamentos'
+description: 'Una disposición de ANMAT incorporó herramientas digitales en los envases para facilitar la consulta de prospectos actualizados y otra información sanitaria.'
+slug: 'codigos-qr-data-matrix-informacion-medicamentos'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Salud"
-primaryTopic: "Salud"
-sources:
-  - name: "ANMAT / Argentina.gob.ar"
-    url: "https://www.argentina.gob.ar/noticias/el-uso-de-herramientas-digitales-facilita-el-acceso-la-informacion-sobre-los-medicamentos"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'nacional'
+primarySection: 'Salud'
+primaryTopic: 'Salud'
+sources: 
+-
+  name: 'ANMAT / Argentina.gob.ar'
+  url: "https://www.argentina.gob.ar/noticias/el-uso-de-herramientas-digitales-facilita-el-acceso-la-informacion-sobre-los-medicamentos"
+image: 
+  src: '/images/noticias/codigos-qr-data-matrix-informacion-medicamentos.jpg'
+  alt: 'Códigos QR y Data Matrix utilizados para acceder a información digital sobre medicamentos'
+publishedAt: "2026-10-20T19:25:31.040Z"
 ---
 
 Los códigos QR y Data Matrix incorporados en los envases de medicamentos permiten acceder a información sanitaria digital, incluidos prospectos actualizados. La herramienta busca facilitar la consulta de datos sobre los productos sin depender exclusivamente del folleto impreso.

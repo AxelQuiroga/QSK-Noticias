@@ -1,20 +1,24 @@
 ---
-title: "Recordaron a los 14 fallecidos en los accidentes del Neptune y un helicóptero en la Antártida"
-description: "Un acto en el Congreso conmemoró el siniestro del avión Neptune 2-P-103 en 1976 y las posteriores tareas de búsqueda y rescate."
-slug: "homenaje-50-aniversario-neptune-antartida"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'Recordaron a los 14 fallecidos en los accidentes del Neptune y un helicóptero en la Antártida'
+description: 'Un acto en el Congreso conmemoró el siniestro del avión Neptune 2-P-103 en 1976 y las posteriores tareas de búsqueda y rescate.'
+slug: 'homenaje-50-aniversario-neptune-antartida'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Sociedad"
-secondarySection: "Política"
-primaryTopic: "Sociedad"
-secondaryTopics:
-  - "Política"
-sources:
-  - name: "Armada Argentina / Argentina.gob.ar"
-    url: "https://www.argentina.gob.ar/noticias/homenaje-por-el-50deg-aniversario-del-accidente-del-neptune-2-p-103-en-la-antartida"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'nacional'
+primarySection: 'Sociedad'
+secondarySection: 'Política'
+primaryTopic: 'Sociedad'
+secondaryTopics: 
+- 'Política'
+sources: 
+-
+  name: 'Armada Argentina / Argentina.gob.ar'
+  url: "https://www.argentina.gob.ar/noticias/homenaje-por-el-50deg-aniversario-del-accidente-del-neptune-2-p-103-en-la-antartida"
+image: 
+  src: '/images/noticias/homenaje-50-aniversario-neptune-antartida.jpg'
+  alt: 'Homenaje por el 50.º aniversario del accidente del avión Neptune 2-P-103 en la Antártida'
+publishedAt: "2026-10-20T19:25:31.044Z"
 ---
 
 Un acto realizado en el Congreso de la Nación recordó a los 14 argentinos que murieron durante el accidente del avión de exploración Neptune 2-P-103 y las posteriores operaciones de búsqueda y rescate en la Antártida. La ceremonia se llevó a cabo en el salón auditorio Emar Acosta, del edificio Alfredo Palacios.

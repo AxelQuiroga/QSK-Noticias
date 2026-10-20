@@ -1,20 +1,24 @@
 ---
-title: "El INTA estudia el potencial del algarrobo blanco como alimento para el ganado"
-description: "Una investigación en plantaciones jóvenes del Chaco midió la producción de chauchas y su aporte nutricional, con resultados que podrían ayudar en épocas de escasez de forraje."
-slug: "inta-algarrobo-blanco-potencial-forrajero"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'El INTA estudia el potencial del algarrobo blanco como alimento para el ganado'
+description: 'Una investigación en plantaciones jóvenes del Chaco midió la producción de chauchas y su aporte nutricional, con resultados que podrían ayudar en épocas de escasez de forraje.'
+slug: 'inta-algarrobo-blanco-potencial-forrajero'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Economía"
-secondarySection: "Sociedad"
-primaryTopic: "Economía"
-secondaryTopics:
-  - "Sociedad"
-sources:
-  - name: "INTA / Argentina.gob.ar"
-    url: "https://www.argentina.gob.ar/noticias/algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'nacional'
+primarySection: 'Economía'
+secondarySection: 'Sociedad'
+primaryTopic: 'Economía'
+secondaryTopics: 
+- 'Sociedad'
+sources: 
+-
+  name: 'INTA / Argentina.gob.ar'
+  url: "https://www.argentina.gob.ar/noticias/algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles"
+image: 
+  src: '/images/noticias/inta-algarrobo-blanco-potencial-forrajero.jpg'
+  alt: 'Algarrobo blanco, especie estudiada por el INTA por su potencial como alimento para el ganado'
+publishedAt: "2026-10-20T19:25:31.044Z"
 ---
 
 Una investigación del Instituto Nacional de Tecnología Agropecuaria (INTA) analizó el potencial forrajero del algarrobo blanco en plantaciones jóvenes del Chaco. Sus frutos podrían aportar proteínas y energía a la alimentación del ganado, especialmente en períodos en los que escasea el forraje.

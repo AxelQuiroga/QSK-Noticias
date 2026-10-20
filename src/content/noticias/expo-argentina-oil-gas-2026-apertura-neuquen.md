@@ -1,17 +1,21 @@
 ---
-title: "La Expo Argentina Oil & Gas abrió en Neuquén con foco en inversiones y exportaciones"
-description: "En la apertura de la exposición energética, el Presidente destacó cifras de producción e inversiones anunciadas para el sector. Los montos y proyecciones corresponden al discurso oficial."
-slug: "expo-argentina-oil-gas-2026-apertura-neuquen"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'La Expo Argentina Oil & Gas abrió en Neuquén con foco en inversiones y exportaciones'
+description: 'En la apertura de la exposición energética, el Presidente destacó cifras de producción e inversiones anunciadas para el sector. Los montos y proyecciones corresponden al discurso oficial.'
+slug: 'expo-argentina-oil-gas-2026-apertura-neuquen'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Economía"
-primaryTopic: "Economía"
-sources:
-  - name: "Presidencia de la Nación / Argentina.gob.ar"
-    url: "https://www.argentina.gob.ar/noticias/con-datos-de-crecimiento-del-sector-milei-encabezo-en-neuquen-la-apertura-de-la-expo"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'nacional'
+primarySection: 'Economía'
+primaryTopic: 'Economía'
+sources: 
+-
+  name: 'Presidencia de la Nación / Argentina.gob.ar'
+  url: "https://www.argentina.gob.ar/noticias/con-datos-de-crecimiento-del-sector-milei-encabezo-en-neuquen-la-apertura-de-la-expo"
+image: 
+  src: '/images/noticias/expo-argentina-oil-gas-2026-apertura-neuquen.jpg'
+  alt: 'Apertura de la exposición Argentina Oil & Gas en Neuquén, con autoridades y representantes del sector energético'
+publishedAt: "2026-10-20T19:25:31.042Z"
 ---
 
 La Expo Argentina Oil & Gas 2026 abrió en Neuquén con un discurso del presidente Javier Milei centrado en el crecimiento del sector energético, las exportaciones y los proyectos de inversión vinculados con Vaca Muerta y la infraestructura para transportar hidrocarburos.

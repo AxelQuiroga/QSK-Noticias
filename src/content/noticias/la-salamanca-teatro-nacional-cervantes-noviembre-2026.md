@@ -1,20 +1,25 @@
 ---
-title: "La leyenda de La Salamanca llega al Teatro Nacional Cervantes con cuatro funciones"
-description: "La obra de danza-teatro se presentará en noviembre en la Sala María Guerrero, con funciones los días 4, 7, 8 y 11."
-slug: "la-salamanca-teatro-nacional-cervantes-noviembre-2026"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'La leyenda de La Salamanca llega al Teatro Nacional Cervantes con cuatro funciones'
+description: 'La obra de danza-teatro se presentará en noviembre en la Sala María Guerrero, con funciones los días 4, 7, 8 y 11.'
+slug: 'la-salamanca-teatro-nacional-cervantes-noviembre-2026'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "regional"
-primarySection: "Sociedad"
-secondarySection: "Educación"
-primaryTopic: "Sociedad"
-secondaryTopics:
-  - "Educación"
-sources:
-  - name: "Secretaría de Cultura / Argentina.gob.ar"
-    url: "https://www.argentina.gob.ar/noticias/mitos-y-leyendas-de-argentina-la-salamanca-llega-la-sala-principal-del-teatro-nacional"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'regional'
+primarySection: 'Sociedad'
+secondarySection: 'Educación'
+primaryTopic: 'Sociedad'
+secondaryTopics: 
+- 'Educación'
+sources: 
+-
+  name: 'Secretaría de Cultura / Argentina.gob.ar'
+  url: "https://www.argentina.gob.ar/noticias/mitos-y-leyendas-de-argentina-la-salamanca-llega-la-sala-principal-del-teatro-nacional"
+image: 
+  src: '/images/noticias/la-salamanca-teatro-nacional-cervantes-noviembre-2026.jpg'
+  alt: 'Presentación de la obra de danza-teatro La Salamanca en el Teatro Nacional Cervantes'
+  attribution: 'Secretaría de Cultura / Argentina.gob.ar'
+publishedAt: "2026-10-20T19:25:31.045Z"
 ---
 
 La leyenda popular de La Salamanca llegará al Teatro Nacional Cervantes con cuatro funciones de una obra de danza-teatro incluida en el ciclo “Mitos y leyendas de Argentina”. La propuesta se presentará en la Sala María Guerrero, en Libertad 815, Ciudad de Buenos Aires.

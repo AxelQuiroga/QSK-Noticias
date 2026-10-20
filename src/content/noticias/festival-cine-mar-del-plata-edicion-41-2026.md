@@ -1,20 +1,25 @@
 ---
 title: "El Festival de Cine de Mar del Plata anunció su edición 41: habrá 150 películas"
-description: "El encuentro se realizará del 5 al 15 de noviembre y proyectará largometrajes y cortos en diez salas. En la presentación reconocieron la trayectoria del compositor Emilio Kauderer."
-slug: "festival-cine-mar-del-plata-edicion-41-2026"
-status: "draft"
-author: "Redacción QSK Noticias"
+description: 'El encuentro se realizará del 5 al 15 de noviembre y proyectará largometrajes y cortos en diez salas. En la presentación reconocieron la trayectoria del compositor Emilio Kauderer.'
+slug: 'festival-cine-mar-del-plata-edicion-41-2026'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Sociedad"
-secondarySection: "Economía"
-primaryTopic: "Sociedad"
-secondaryTopics:
-  - "Economía"
-sources:
-  - name: "Secretaría de Cultura / INCAA"
-    url: "https://www.argentina.gob.ar/noticias/lanzaron-la-41a-edicion-del-festival-internacional-de-cine-de-mar-del-plata"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+scope: 'nacional'
+primarySection: 'Sociedad'
+secondarySection: 'Economía'
+primaryTopic: 'Sociedad'
+secondaryTopics: 
+- 'Economía'
+sources: 
+-
+  name: 'Secretaría de Cultura / INCAA'
+  url: "https://www.argentina.gob.ar/noticias/lanzaron-la-41a-edicion-del-festival-internacional-de-cine-de-mar-del-plata"
+image: 
+  src: '/images/noticias/festival-cine-mar-del-plata-edicion-41-2026.jpg'
+  alt: 'Presentación de la 41.ª edición del Festival Internacional de Cine de Mar del Plata'
+  attribution: 'Secretaría de Cultura / INCAA'
+publishedAt: "2026-10-20T19:25:31.043Z"
 ---
 
 La 41.ª edición del Festival Internacional de Cine de Mar del Plata se realizará del 5 al 15 de noviembre de 2026. La programación anunciada incluye 150 películas, entre largometrajes y cortometrajes, que se proyectarán en diez salas.

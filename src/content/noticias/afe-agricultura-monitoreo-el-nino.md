@@ -1,23 +1,22 @@
 ---
-title: "La AFE y Agricultura coordinan el seguimiento de los posibles impactos de El Niño"
-description: "Los organismos nacionales analizaron mapas de riesgo e información meteorológica, territorial y productiva para mejorar la preparación ante eventuales emergencias."
-slug: "afe-agricultura-monitoreo-el-nino"
-status: "draft"
-author: "Redacción QSK Noticias"
+title: 'La AFE y Agricultura coordinan el seguimiento de los posibles impactos de El Niño'
+description: 'Los organismos nacionales analizaron mapas de riesgo e información meteorológica, territorial y productiva para mejorar la preparación ante eventuales emergencias.'
+slug: 'afe-agricultura-monitoreo-el-nino'
+status: 'published'
+author: 'Redacción QSK Noticias'
 featured: false
-scope: "nacional"
-primarySection: "Servicios"
-secondarySection: "Economía"
-primaryTopic: "Servicios"
-secondaryTopics:
-  - "Economía"
-sources:
-  - name: "Agencia Federal de Emergencias / Argentina.gob.ar"
-    url: "https://www.argentina.gob.ar/noticias/la-afe-y-la-secretaria-de-agricultura-refuerzan-el-monitoreo-conjunto-frente-al-fenomeno-el"
-image:
-  src: "/images/noticias/afe-coordinacion-el-nino-chaco-2026.jpeg"
-  alt: "Funcionarios y representantes de organismos de emergencia reunidos para coordinar el seguimiento del fenómeno de El Niño"
-  attribution: "Agencia Federal de Emergencias / Argentina.gob.ar"
+scope: 'nacional'
+publishedAt: "2026-10-20T19:25:31.034Z"
+primaryTopic: 'Servicios'
+secondaryTopics: 
+- 'Economía'
+sources: 
+-
+  name: 'Agencia Federal de Emergencias / Argentina.gob.ar'
+  url: "https://www.argentina.gob.ar/noticias/la-afe-y-la-secretaria-de-agricultura-refuerzan-el-monitoreo-conjunto-frente-al-fenomeno-el"
+image: 
+  src: '/images/noticias/afe-monitoreo-el-nino.jpg'
+  alt: 'Reunión de organismos nacionales para coordinar el seguimiento de los posibles impactos del fenómeno de El Niño'
 ---
 
 La Agencia Federal de Emergencias (AFE) y la Secretaría de Agricultura, Ganadería y Pesca mantuvieron una reunión para reforzar el seguimiento de los escenarios asociados al fenómeno de El Niño y mejorar el intercambio de información entre áreas del Estado.
