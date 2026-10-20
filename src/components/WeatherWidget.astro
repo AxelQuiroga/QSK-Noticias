@@ -18,7 +18,7 @@ const locations = [
 <section class="mb-8 border-y border-border sm:mb-10" aria-label="El tiempo" data-weather-widget>
   <div class="flex flex-col gap-3 py-3 sm:flex-row sm:items-center sm:gap-5">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <span class="eyebrow shrink-0 !text-[0.65rem]">Clima</span>
+      <span class="eyebrow shrink-0 text-[0.65rem]">Clima</span>
       <span class="shrink-0 text-2xl leading-none" data-weather-symbol aria-hidden="true">☁</span>
       <strong class="shrink-0 font-heading text-3xl font-extrabold leading-none tracking-tight text-text" data-weather-temperature>--°</strong>
       <div class="min-w-0 flex-1">
@@ -37,7 +37,7 @@ const locations = [
                 data-location={location.id}
                 aria-pressed={location.id === 'lanus' ? 'true' : 'false'}
                 class:list={[
-                  'flex w-full items-center justify-between gap-3 rounded-md px-2.5 py-2 text-left text-sm transition-colors hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-info',
+                  'flex w-full items-center justify-between gap-3 rounded-md px-2.5 py-2 text-left text-sm transition-colors hover:bg-surface-raised focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-info',
                   location.id === 'lanus' ? 'font-semibold text-accent' : 'text-text',
                 ]}
               >
