@@ -1,7 +1,6 @@
 ---
 const locations = [
   { id: 'lanus', name: 'Lanús' },
-  { id: 'caba', name: 'CABA' },
   { id: 'avellaneda', name: 'Avellaneda' },
   { id: 'lomas-de-zamora', name: 'Lomas de Zamora' },
   { id: 'almirante-brown', name: 'Almirante Brown' },
@@ -12,91 +11,135 @@ const locations = [
   { id: 'ezeiza', name: 'Ezeiza' },
   { id: 'presidente-peron', name: 'Presidente Perón' },
   { id: 'san-vicente', name: 'San Vicente' },
+  { id: 'caba', name: 'CABA' },
 ];
 ---
 
-<section class="weather-panel" aria-labelledby="weather-heading" data-weather-widget>
-  <div class="weather-heading">
-    <div>
-      <p class="eyebrow">Servicio para la comunidad</p>
-      <h2 id="weather-heading">El tiempo en Zona Sur y CABA</h2>
-      <p class="weather-description">Condiciones actuales y probabilidad de lluvia para las próximas horas.</p>
-    </div>
-    <span class="weather-status" data-weather-status role="status" aria-live="polite">Consultando datos…</span>
-  </div>
-
-  <div class="weather-grid">
-    {locations.map((location) => (
-      <article class="weather-card" data-weather-location={location.id} aria-label={`Clima en ${location.name}`}>
-        <div class="weather-card-top">
-          <h3>{location.name}</h3>
-          <span class="weather-symbol" data-weather-symbol aria-hidden="true">☁</span>
-        </div>
-        <p class="weather-temperature" data-weather-temperature>--°</p>
-        <p class="weather-condition" data-weather-condition>Esperando datos</p>
-        <dl class="weather-details">
-          <div><dt>Sensación</dt><dd data-weather-feels-like>--°</dd></div>
-          <div><dt>Lluvia próximas 3 h</dt><dd data-weather-rain>--%</dd></div>
-          <div><dt>Humedad</dt><dd data-weather-humidity>--%</dd></div>
-        </dl>
+<section class="weather-strip" aria-label="El tiempo" data-weather-widget>
+  <div class="weather-main">
+    <span class="weather-label">EL TIEMPO</span>
+    <span class="weather-symbol" data-weather-symbol aria-hidden="true">☁</span>
+    <strong class="weather-temperature" data-weather-temperature>--°</strong>
+    <label class="weather-location-label">
+      <span class="sr-only">Consultar clima de</span>
+      <select data-weather-location-select aria-label="Consultar clima de otro municipio">
+        {locations.map((location) => <option value={location.id} selected={location.id === 'lanus'}>{location.name}</option>)}
+      </select>
+    </label>
+    <span class="weather-condition" data-weather-condition>Consultando…</span>
+    <span class="weather-status" data-weather-status role="status" aria-live="polite"></span>
+    <details class="weather-more">
+      <summary>Más datos <span aria-hidden="true">⌄</span></summary>
+      <div class="weather-details">
+        <p>Sensación térmica <strong data-weather-feels-like>--°</strong></p>
+        <p>Lluvia próximas 3 h <strong data-weather-rain>--%</strong></p>
+        <p>Humedad <strong data-weather-humidity>--%</strong></p>
         <p class="weather-updated" data-weather-updated>Actualización pendiente</p>
-      </article>
-    ))}
-  </div>
-
-  <div class="weather-footer">
-    <p>Datos meteorológicos provistos por <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Pronósticos orientativos; consultá los canales oficiales ante alertas meteorológicas.</p>
-    <button type="button" class="weather-refresh" data-weather-refresh>Actualizar ahora</button>
+        <p class="weather-attribution">Datos de <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Información orientativa; consultá los canales oficiales ante alertas meteorológicas.</p>
+      </div>
+    </details>
   </div>
 </section>
 
 <style>
-  .weather-panel {
-    margin-block: 2rem 2.5rem;
+  .weather-strip {
+    margin: 0 0 1.25rem;
     min-width: 0;
-    border: 1px solid var(--color-border, #26394b);
-    border-radius: 1rem;
-    background: var(--color-surface, #101f2e);
-    padding: clamp(1rem, 2.5vw, 1.5rem);
-  }
-  .weather-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
-  }
-  .weather-heading h2 {
-    margin-top: .35rem;
+    border-block: 1px solid var(--color-border, #26394b);
     color: var(--color-text, #f4f7fb);
-    font-size: clamp(1.25rem, 2.5vw, 1.7rem);
-    font-weight: 800;
-    letter-spacing: -.035em;
   }
-  .weather-description { margin-top: .35rem; color: var(--color-text-secondary, #a7b4c2); font-size: .875rem; }
-  .weather-status { flex: 0 0 auto; color: var(--color-text-secondary, #a7b4c2); font-size: .75rem; }
-  .weather-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
-  .weather-card { min-width: 0; border: 1px solid var(--color-border, #26394b); border-radius: .8rem; background: var(--color-surface-raised, #14283a); padding: .85rem; }
-  .weather-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .4rem; }
-  .weather-card h3 { color: var(--color-text, #f4f7fb); font-size: .875rem; font-weight: 700; line-height: 1.35; }
-  .weather-symbol { font-size: 1.25rem; line-height: 1; }
-  .weather-temperature { margin-top: .45rem; color: var(--color-text, #f4f7fb); font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -.06em; line-height: 1.1; }
-  .weather-condition { min-height: 2.25rem; margin-top: .35rem; color: var(--color-text-secondary, #a7b4c2); font-size: .75rem; overflow-wrap: anywhere; }
-  .weather-details { display: grid; gap: .4rem; margin-top: .8rem; }
-  .weather-details div { display: flex; justify-content: space-between; gap: .5rem; font-size: .72rem; }
-  .weather-details dt { color: var(--color-text-secondary, #a7b4c2); }
-  .weather-details dd { color: var(--color-text, #f4f7fb); font-weight: 600; text-align: right; }
-  .weather-updated { margin-top: .75rem; color: var(--color-text-secondary, #a7b4c2); font-size: .65rem; }
-  .weather-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; margin-top: 1rem; }
-  .weather-footer p { max-width: 52rem; color: var(--color-text-secondary, #a7b4c2); font-size: .7rem; line-height: 1.5; }
-  .weather-footer a { color: var(--color-accent, #69b9e8); text-decoration: underline; text-underline-offset: 2px; }
-  .weather-refresh { border: 1px solid var(--color-border, #26394b); border-radius: .55rem; padding: .55rem .75rem; color: var(--color-text, #f4f7fb); font-size: .75rem; font-weight: 600; }
-  .weather-refresh:hover { border-color: var(--color-info, #69b9e8); }
-  .weather-refresh:focus-visible { outline: 2px solid var(--color-info, #69b9e8); outline-offset: 3px; }
-  @media (min-width: 640px) { .weather-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; } .weather-card { padding: 1rem; } }
-  @media (min-width: 1024px) { .weather-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-  @media (max-width: 380px) { .weather-heading { flex-direction: column; } .weather-status { order: -1; } .weather-details div { font-size: .68rem; } }
-  @media (prefers-reduced-motion: no-preference) { .weather-card { transition: border-color .15s ease; } .weather-card:hover { border-color: var(--color-info, #69b9e8); } }
+  .weather-main {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .45rem .75rem;
+    min-width: 0;
+    padding: .55rem 0;
+  }
+  .weather-label {
+    flex: 0 0 auto;
+    color: var(--color-text-secondary, #a7b4c2);
+    font-size: .62rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+  }
+  .weather-symbol { flex: 0 0 auto; font-size: 1.15rem; line-height: 1; }
+  .weather-temperature {
+    flex: 0 0 auto;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -.04em;
+    line-height: 1.2;
+  }
+  .weather-location-label { min-width: 0; max-width: 100%; }
+  .weather-location-label select {
+    max-width: 100%;
+    border: 0;
+    border-radius: .25rem;
+    background: transparent;
+    color: var(--color-text, #f4f7fb);
+    font-size: .82rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .weather-location-label select:focus-visible,
+  .weather-more summary:focus-visible {
+    outline: 2px solid var(--color-info, #69b9e8);
+    outline-offset: 3px;
+  }
+  .weather-location-label option { color: #172536; background: #fff; }
+  .weather-condition {
+    min-width: 0;
+    color: var(--color-text-secondary, #a7b4c2);
+    font-size: .78rem;
+    overflow-wrap: anywhere;
+  }
+  .weather-status {
+    margin-left: auto;
+    color: var(--color-text-secondary, #a7b4c2);
+    font-size: .68rem;
+  }
+  .weather-more { flex: 0 0 auto; margin-left: auto; }
+  .weather-more summary {
+    color: var(--color-accent, #69b9e8);
+    font-size: .75rem;
+    font-weight: 700;
+    cursor: pointer;
+    list-style: none;
+    white-space: nowrap;
+  }
+  .weather-more summary::-webkit-details-marker { display: none; }
+  .weather-more[open] { flex-basis: 100%; }
+  .weather-more[open] summary { display: inline-block; margin-block: .2rem .65rem; }
+  .weather-details {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .45rem 1.1rem;
+    padding: .65rem .75rem .75rem;
+    border-radius: .5rem;
+    background: var(--color-surface, #101f2e);
+    font-size: .75rem;
+  }
+  .weather-details p { display: flex; gap: .35rem; align-items: baseline; }
+  .weather-details strong { font-weight: 700; }
+  .weather-updated, .weather-attribution {
+    color: var(--color-text-secondary, #a7b4c2);
+    font-size: .68rem;
+  }
+  .weather-attribution { flex-basis: 100%; line-height: 1.45; }
+  .weather-attribution a { color: var(--color-accent, #69b9e8); text-decoration: underline; text-underline-offset: 2px; }
+  @media (max-width: 520px) {
+    .weather-main { gap: .4rem .55rem; }
+    .weather-label { font-size: .58rem; }
+    .weather-condition { flex-basis: auto; }
+    .weather-status { display: none; }
+    .weather-more { margin-left: auto; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .weather-more summary { transition: color .15s ease; }
+    .weather-more summary:hover { color: var(--color-text, #f4f7fb); }
+  }
 </style>
 
 <script>
@@ -128,59 +171,58 @@ const locations = [
       : parsed.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
   };
 
-  const loadWeather = async (root: HTMLElement, locationId: string): Promise<boolean> => {
-    const card = root.querySelector<HTMLElement>(`[data-weather-location="${locationId}"]`);
-    if (!card) return false;
-    try {
-      const response = await fetch(`/api/weather?location=${encodeURIComponent(locationId)}`);
-      if (!response.ok) throw new Error('weather unavailable');
-      const weather = (await response.json()) as WeatherPayload;
-      const setText = (selector: string, value: string) => {
-        const element = card.querySelector<HTMLElement>(selector);
-        if (element) element.textContent = value;
-      };
-      setText('[data-weather-temperature]', `${Math.round(weather.temperatureC)}°`);
-      setText('[data-weather-feels-like]', `${Math.round(weather.feelsLikeC)}°`);
-      setText('[data-weather-rain]', weather.chanceOfRain === null ? 's/d' : `${weather.chanceOfRain}%`);
-      setText('[data-weather-humidity]', `${weather.humidity}%`);
-      setText('[data-weather-condition]', weather.condition);
-      setText('[data-weather-updated]', `Actualizado ${formatTime(weather.observedAt)}`);
-      setText('[data-weather-symbol]', conditionSymbol(weather.conditionCode));
-      card.dataset.weatherState = 'loaded';
-      return true;
-    } catch {
-      const condition = card.querySelector<HTMLElement>('[data-weather-condition]');
-      const updated = card.querySelector<HTMLElement>('[data-weather-updated]');
-      if (condition) condition.textContent = 'Datos no disponibles';
-      if (updated) updated.textContent = 'Intentá actualizar más tarde';
-      card.dataset.weatherState = 'error';
-      return false;
-    }
-  };
-
   const initWeatherWidget = (root: HTMLElement) => {
     if (root.dataset.weatherInitialized === 'true') return;
     root.dataset.weatherInitialized = 'true';
-    const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-weather-location]'));
+
+    const select = root.querySelector<HTMLSelectElement>('[data-weather-location-select]');
     const status = root.querySelector<HTMLElement>('[data-weather-status]');
-    const refreshButton = root.querySelector<HTMLButtonElement>('[data-weather-refresh]');
+    const temperature = root.querySelector<HTMLElement>('[data-weather-temperature]');
+    const symbol = root.querySelector<HTMLElement>('[data-weather-symbol]');
+    const condition = root.querySelector<HTMLElement>('[data-weather-condition]');
+    const feelsLike = root.querySelector<HTMLElement>('[data-weather-feels-like]');
+    const rain = root.querySelector<HTMLElement>('[data-weather-rain]');
+    const humidity = root.querySelector<HTMLElement>('[data-weather-humidity]');
+    const updated = root.querySelector<HTMLElement>('[data-weather-updated]');
     let isLoading = false;
+    let requestId = 0;
 
     const refresh = async () => {
-      if (isLoading) return;
+      if (isLoading || !select) return;
       isLoading = true;
-      if (refreshButton) refreshButton.disabled = true;
-      if (status) status.textContent = 'Actualizando…';
-      const results = await Promise.all(cards.map((card) => loadWeather(root, card.dataset.weatherLocation ?? '')));
-      const successCount = results.filter(Boolean).length;
-      if (status) status.textContent = successCount === cards.length
-        ? `Actualizado · ${new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}`
-        : `${successCount} de ${cards.length} localidades disponibles`;
-      if (refreshButton) refreshButton.disabled = false;
-      isLoading = false;
+      const currentRequestId = ++requestId;
+      const locationId = select.value;
+      if (status) status.textContent = 'Actualizando';
+      try {
+        const response = await fetch(`/api/weather?location=${encodeURIComponent(locationId)}`);
+        if (!response.ok) throw new Error('weather unavailable');
+        const weather = (await response.json()) as WeatherPayload;
+        if (currentRequestId !== requestId || locationId !== select.value) return;
+        if (temperature) temperature.textContent = `${Math.round(weather.temperatureC)}°`;
+        if (symbol) symbol.textContent = conditionSymbol(weather.conditionCode);
+        if (condition) condition.textContent = weather.condition;
+        if (feelsLike) feelsLike.textContent = `${Math.round(weather.feelsLikeC)}°`;
+        if (rain) rain.textContent = weather.chanceOfRain === null ? 's/d' : `${weather.chanceOfRain}%`;
+        if (humidity) humidity.textContent = `${weather.humidity}%`;
+        if (updated) updated.textContent = `Actualizado ${formatTime(weather.observedAt)}`;
+        if (status) status.textContent = '';
+        root.dataset.weatherState = 'loaded';
+      } catch {
+        if (currentRequestId === requestId) {
+          if (condition) condition.textContent = 'Datos no disponibles';
+          if (status) status.textContent = '';
+          if (updated) updated.textContent = 'Intentá nuevamente más tarde';
+          root.dataset.weatherState = 'error';
+        }
+      } finally {
+        if (currentRequestId === requestId) isLoading = false;
+      }
     };
 
-    refreshButton?.addEventListener('click', () => void refresh());
+    select?.addEventListener('change', () => {
+      if (condition) condition.textContent = 'Consultando…';
+      void refresh();
+    });
     void refresh();
     window.setInterval(() => void refresh(), 30 * 60 * 1000);
   };
