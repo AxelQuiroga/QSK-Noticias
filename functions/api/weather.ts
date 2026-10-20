@@ -1,4 +1,5 @@
 const LOCATIONS: Record<string, { name: string; latitude: number; longitude: number }> = {
+  caba: { name: 'CABA', latitude: -34.6037, longitude: -58.3816 },
   lanus: { name: 'Lanús', latitude: -34.7065, longitude: -58.3955 },
   caba: { name: 'CABA', latitude: -34.6037, longitude: -58.3816 },
   avellaneda: { name: 'Avellaneda', latitude: -34.6627, longitude: -58.3670 },
