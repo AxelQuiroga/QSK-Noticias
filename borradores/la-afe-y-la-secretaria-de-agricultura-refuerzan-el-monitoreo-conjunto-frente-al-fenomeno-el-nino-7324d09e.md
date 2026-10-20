@@ -14,7 +14,10 @@ secondaryTopics:
 sources:
   - name: "Agencia Federal de Emergencias / Argentina.gob.ar"
     url: "https://www.argentina.gob.ar/noticias/la-afe-y-la-secretaria-de-agricultura-refuerzan-el-monitoreo-conjunto-frente-al-fenomeno-el"
-# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
+image:
+  src: "/images/noticias/afe-coordinacion-el-nino-chaco-2026.jpeg"
+  alt: "Funcionarios y representantes de organismos de emergencia reunidos para coordinar el seguimiento del fenómeno de El Niño"
+  attribution: "Agencia Federal de Emergencias / Argentina.gob.ar"
 ---
 
 La Agencia Federal de Emergencias (AFE) y la Secretaría de Agricultura, Ganadería y Pesca mantuvieron una reunión para reforzar el seguimiento de los escenarios asociados al fenómeno de El Niño y mejorar el intercambio de información entre áreas del Estado.
