@@ -15,132 +15,42 @@ const locations = [
 ];
 ---
 
-<section class="weather-strip" aria-label="El tiempo" data-weather-widget>
-  <div class="weather-main">
-    <span class="weather-label">EL TIEMPO</span>
-    <span class="weather-symbol" data-weather-symbol aria-hidden="true">☁</span>
-    <strong class="weather-temperature" data-weather-temperature>--°</strong>
-    <label class="weather-location-label">
+<section class="mb-8 border-y border-border py-2.5 sm:mb-10" aria-label="El tiempo" data-weather-widget>
+  <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+    <span class="eyebrow shrink-0 !text-[0.65rem]">El tiempo</span>
+    <span class="shrink-0 text-lg leading-none" data-weather-symbol aria-hidden="true">☁</span>
+    <strong class="shrink-0 font-heading text-lg font-extrabold tracking-tight text-text" data-weather-temperature>--°</strong>
+    <label class="min-w-0 max-w-full">
       <span class="sr-only">Consultar clima de</span>
-      <select data-weather-location-select aria-label="Consultar clima de otro municipio">
+      <select
+        data-weather-location-select
+        aria-label="Consultar clima de otro municipio"
+        class="max-w-full cursor-pointer rounded-md border-0 bg-transparent py-1 pr-1 text-sm font-semibold text-text outline-offset-4 focus-visible:outline-2 focus-visible:outline-info"
+      >
         {locations.map((location) => <option value={location.id} selected={location.id === 'lanus'}>{location.name}</option>)}
       </select>
     </label>
-    <span class="weather-condition" data-weather-condition>Consultando…</span>
-    <span class="weather-status" data-weather-status role="status" aria-live="polite"></span>
-    <details class="weather-more">
-      <summary>Más datos <span aria-hidden="true">⌄</span></summary>
-      <div class="weather-details">
-        <p>Sensación térmica <strong data-weather-feels-like>--°</strong></p>
-        <p>Lluvia próximas 3 h <strong data-weather-rain>--%</strong></p>
-        <p>Humedad <strong data-weather-humidity>--%</strong></p>
-        <p class="weather-updated" data-weather-updated>Actualización pendiente</p>
-        <p class="weather-attribution">Datos de <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Información orientativa; consultá los canales oficiales ante alertas meteorológicas.</p>
+    <span class="min-w-0 text-sm text-text-secondary" data-weather-condition aria-live="polite">Consultando…</span>
+    <span class="ml-auto shrink-0 text-xs text-text-secondary" data-weather-status role="status"></span>
+    <details class="weather-details-toggle relative ml-auto shrink-0">
+      <summary class="cursor-pointer list-none whitespace-nowrap text-xs font-semibold text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-info">
+        Más datos
+        <span aria-hidden="true">⌄</span>
+      </summary>
+      <div class="absolute right-0 top-full z-20 mt-2 w-[min(19rem,calc(100vw-2rem))] rounded-xl border border-border bg-surface p-4 shadow-xl sm:w-80">
+        <dl class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+          <div><dt class="text-xs text-text-secondary">Sensación térmica</dt><dd class="mt-0.5 font-semibold text-text" data-weather-feels-like>--°</dd></div>
+          <div><dt class="text-xs text-text-secondary">Prob. de lluvia (3 h)</dt><dd class="mt-0.5 font-semibold text-text" data-weather-rain>--%</dd></div>
+          <div><dt class="text-xs text-text-secondary">Humedad</dt><dd class="mt-0.5 font-semibold text-text" data-weather-humidity>--%</dd></div>
+          <div><dt class="text-xs text-text-secondary">Actualizado</dt><dd class="mt-0.5 font-semibold text-text" data-weather-updated>—</dd></div>
+        </dl>
+        <p class="mt-3 border-t border-border pt-3 text-xs leading-relaxed text-text-secondary">
+          Datos de <a class="link-accent" href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Información orientativa; ante alertas, consultá los canales oficiales.
+        </p>
       </div>
     </details>
   </div>
 </section>
-
-<style>
-  .weather-strip {
-    margin: 0 0 1.25rem;
-    min-width: 0;
-    border-block: 1px solid var(--color-border, #26394b);
-    color: var(--color-text, #f4f7fb);
-  }
-  .weather-main {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: .45rem .75rem;
-    min-width: 0;
-    padding: .55rem 0;
-  }
-  .weather-label {
-    flex: 0 0 auto;
-    color: var(--color-text-secondary, #a7b4c2);
-    font-size: .62rem;
-    font-weight: 800;
-    letter-spacing: .09em;
-  }
-  .weather-symbol { flex: 0 0 auto; font-size: 1.15rem; line-height: 1; }
-  .weather-temperature {
-    flex: 0 0 auto;
-    font-size: 1.15rem;
-    font-weight: 800;
-    letter-spacing: -.04em;
-    line-height: 1.2;
-  }
-  .weather-location-label { min-width: 0; max-width: 100%; }
-  .weather-location-label select {
-    max-width: 100%;
-    border: 0;
-    border-radius: .25rem;
-    background: transparent;
-    color: var(--color-text, #f4f7fb);
-    font-size: .82rem;
-    font-weight: 700;
-    cursor: pointer;
-  }
-  .weather-location-label select:focus-visible,
-  .weather-more summary:focus-visible {
-    outline: 2px solid var(--color-info, #69b9e8);
-    outline-offset: 3px;
-  }
-  .weather-location-label option { color: #172536; background: #fff; }
-  .weather-condition {
-    min-width: 0;
-    color: var(--color-text-secondary, #a7b4c2);
-    font-size: .78rem;
-    overflow-wrap: anywhere;
-  }
-  .weather-status {
-    margin-left: auto;
-    color: var(--color-text-secondary, #a7b4c2);
-    font-size: .68rem;
-  }
-  .weather-more { flex: 0 0 auto; margin-left: auto; }
-  .weather-more summary {
-    color: var(--color-accent, #69b9e8);
-    font-size: .75rem;
-    font-weight: 700;
-    cursor: pointer;
-    list-style: none;
-    white-space: nowrap;
-  }
-  .weather-more summary::-webkit-details-marker { display: none; }
-  .weather-more[open] { flex-basis: 100%; }
-  .weather-more[open] summary { display: inline-block; margin-block: .2rem .65rem; }
-  .weather-details {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: .45rem 1.1rem;
-    padding: .65rem .75rem .75rem;
-    border-radius: .5rem;
-    background: var(--color-surface, #101f2e);
-    font-size: .75rem;
-  }
-  .weather-details p { display: flex; gap: .35rem; align-items: baseline; }
-  .weather-details strong { font-weight: 700; }
-  .weather-updated, .weather-attribution {
-    color: var(--color-text-secondary, #a7b4c2);
-    font-size: .68rem;
-  }
-  .weather-attribution { flex-basis: 100%; line-height: 1.45; }
-  .weather-attribution a { color: var(--color-accent, #69b9e8); text-decoration: underline; text-underline-offset: 2px; }
-  @media (max-width: 520px) {
-    .weather-main { gap: .4rem .55rem; }
-    .weather-label { font-size: .58rem; }
-    .weather-condition { flex-basis: auto; }
-    .weather-status { display: none; }
-    .weather-more { margin-left: auto; }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .weather-more summary { transition: color .15s ease; }
-    .weather-more summary:hover { color: var(--color-text, #f4f7fb); }
-  }
-</style>
 
 <script>
   type WeatherPayload = {
@@ -193,7 +103,10 @@ const locations = [
       if (status) status.textContent = 'Actualizando';
       try {
         const response = await fetch(`/api/weather?location=${encodeURIComponent(locationId)}`);
-        if (!response.ok) throw new Error('weather unavailable');
+        if (!response.ok) {
+          console.warn(`[QSK weather] API respondió HTTP ${response.status} para ${locationId}`);
+          throw new Error(`weather HTTP ${response.status}`);
+        }
         const weather = (await response.json()) as WeatherPayload;
         if (currentRequestId !== requestId || locationId !== select.value) return;
         if (temperature) temperature.textContent = `${Math.round(weather.temperatureC)}°`;
@@ -202,16 +115,16 @@ const locations = [
         if (feelsLike) feelsLike.textContent = `${Math.round(weather.feelsLikeC)}°`;
         if (rain) rain.textContent = weather.chanceOfRain === null ? 's/d' : `${weather.chanceOfRain}%`;
         if (humidity) humidity.textContent = `${weather.humidity}%`;
-        if (updated) updated.textContent = `Actualizado ${formatTime(weather.observedAt)}`;
+        if (updated) updated.textContent = formatTime(weather.observedAt);
         if (status) status.textContent = '';
         root.dataset.weatherState = 'loaded';
-      } catch {
-        if (currentRequestId === requestId) {
-          if (condition) condition.textContent = 'Datos no disponibles';
-          if (status) status.textContent = '';
-          if (updated) updated.textContent = 'Intentá nuevamente más tarde';
-          root.dataset.weatherState = 'error';
-        }
+      } catch (error) {
+        if (currentRequestId !== requestId) return;
+        console.error('[QSK weather] No se pudo actualizar el clima.', error);
+        if (condition) condition.textContent = 'Clima no disponible por el momento';
+        if (status) status.textContent = '';
+        if (updated) updated.textContent = 'Sin actualización';
+        root.dataset.weatherState = 'error';
       }
     };
 
