@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import WeatherWidget from '../components/WeatherWidget.astro';
 import { getFeaturedArticle, getLatestArticles } from '../lib/articles';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
@@ -34,6 +35,8 @@ const regiones = getLocationsByType('region');
         </p>
       </div>
     </section>
+
+    <WeatherWidget />
 
     <div class="grid items-start gap-10 lg:grid-cols-[minmax(0,1fr)_300px] xl:gap-12">
       <div class="min-w-0">
