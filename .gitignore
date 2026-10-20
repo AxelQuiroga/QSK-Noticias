@@ -6,3 +6,10 @@ playwright-report/
 .DS_Store
 *.local
 hs_err_pid*.log
+
+# Local secrets and Cloudflare development variables
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
