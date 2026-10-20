@@ -15,41 +15,62 @@ const locations = [
 ];
 ---
 
-<section class="mb-8 border-y border-border py-2.5 sm:mb-10" aria-label="El tiempo" data-weather-widget>
-  <div class="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-2 text-sm">
-    <span class="eyebrow shrink-0 !text-[0.65rem]">El tiempo</span>
-    <span class="shrink-0 text-lg leading-none" data-weather-symbol aria-hidden="true">☁</span>
-    <strong class="shrink-0 font-heading text-lg font-extrabold tracking-tight text-text" data-weather-temperature>--°</strong>
-    <label class="relative inline-flex min-w-0 max-w-full items-center">
-      <span class="sr-only">Consultar clima de</span>
-      <select
-        data-weather-location-select
-        aria-label="Consultar clima de otro municipio"
-        class="max-w-[11.5rem] appearance-none cursor-pointer rounded-lg border border-border bg-surface-raised py-1.5 pl-3 pr-8 text-sm font-semibold text-text transition-colors hover:border-info focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-info sm:max-w-none"
-      >
-        {locations.map((location) => <option value={location.id} selected={location.id === 'lanus'}>{location.name}</option>)}
-      </select>
-      <span class="pointer-events-none absolute right-2.5 text-xs text-text-secondary" aria-hidden="true">⌄</span>
-    </label>
-    <span class="min-w-0 text-sm text-text-secondary" data-weather-condition aria-live="polite">Consultando…</span>
-    <span class="ml-auto shrink-0 text-xs text-text-secondary" data-weather-status role="status"></span>
-    <details class="weather-details-toggle relative ml-auto shrink-0">
-      <summary class="cursor-pointer list-none whitespace-nowrap text-xs font-semibold text-accent hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-info">
-        Más datos
-        <span aria-hidden="true">⌄</span>
-      </summary>
-      <div class="absolute right-0 top-full z-20 mt-2 w-[min(19rem,calc(100vw-2rem))] rounded-xl border border-border bg-surface p-4 shadow-xl sm:w-80">
-        <dl class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-          <div><dt class="text-xs text-text-secondary">Sensación térmica</dt><dd class="mt-0.5 font-semibold text-text" data-weather-feels-like>--°</dd></div>
-          <div><dt class="text-xs text-text-secondary">Prob. de lluvia (3 h)</dt><dd class="mt-0.5 font-semibold text-text" data-weather-rain>--%</dd></div>
-          <div><dt class="text-xs text-text-secondary">Humedad</dt><dd class="mt-0.5 font-semibold text-text" data-weather-humidity>--%</dd></div>
-          <div><dt class="text-xs text-text-secondary">Actualizado</dt><dd class="mt-0.5 font-semibold text-text" data-weather-updated>—</dd></div>
-        </dl>
-        <p class="mt-3 border-t border-border pt-3 text-xs leading-relaxed text-text-secondary">
-          Datos de <a class="link-accent" href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Información orientativa; ante alertas, consultá los canales oficiales.
-        </p>
+<section class="mb-8 border-y border-border sm:mb-10" aria-label="El tiempo" data-weather-widget>
+  <div class="flex flex-col gap-3 py-3 sm:flex-row sm:items-center sm:gap-5">
+    <div class="flex min-w-0 flex-1 items-center gap-3">
+      <span class="eyebrow shrink-0 !text-[0.65rem]">Clima</span>
+      <span class="shrink-0 text-2xl leading-none" data-weather-symbol aria-hidden="true">☁</span>
+      <strong class="shrink-0 font-heading text-3xl font-extrabold leading-none tracking-tight text-text" data-weather-temperature>--°</strong>
+      <div class="min-w-0 flex-1">
+        <details class="weather-location-picker relative w-fit max-w-full">
+          <summary class="flex max-w-full cursor-pointer list-none items-center gap-1.5 rounded-md py-0.5 text-sm font-bold text-text outline-none transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-info [&::-webkit-details-marker]:hidden">
+            <span class="truncate" data-weather-location-label>Lanús</span>
+            <svg class="shrink-0 transition-transform [details[open]_&]:rotate-180" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="sr-only">Cambiar municipio</span>
+          </summary>
+          <div class="absolute left-0 top-full z-30 mt-2 max-h-[min(20rem,60vh)] w-64 max-w-[calc(100vw-2.5rem)] overflow-y-auto rounded-lg border border-border bg-surface p-1.5 shadow-xl">
+            <p class="px-2.5 pb-1.5 pt-2 text-[0.65rem] font-bold uppercase tracking-wider text-text-secondary">Consultar clima de</p>
+            {locations.map((location) => (
+              <button
+                type="button"
+                data-weather-location-option
+                data-location={location.id}
+                aria-pressed={location.id === 'lanus' ? 'true' : 'false'}
+                class:list={[
+                  'flex w-full items-center justify-between gap-3 rounded-md px-2.5 py-2 text-left text-sm transition-colors hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-info',
+                  location.id === 'lanus' ? 'font-semibold text-accent' : 'text-text',
+                ]}
+              >
+                <span>{location.name}</span>
+                <span data-location-check class:list={['text-accent', location.id === 'lanus' ? '' : 'invisible']} aria-hidden="true">✓</span>
+              </button>
+            ))}
+          </div>
+        </details>
+        <p class="mt-0.5 truncate text-sm text-text-secondary" data-weather-condition aria-live="polite">Consultando…</p>
       </div>
-    </details>
+    </div>
+
+    <div class="flex items-center justify-between gap-4 border-t border-border pt-2.5 sm:ml-auto sm:justify-end sm:border-0 sm:pt-0">
+      <span class="text-xs text-text-secondary" data-weather-status role="status"></span>
+      <details class="weather-details-toggle relative shrink-0">
+        <summary class="flex cursor-pointer list-none items-center gap-1.5 rounded-md border border-border px-3 py-2 text-xs font-semibold text-text transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-info [&::-webkit-details-marker]:hidden">
+          Más datos
+          <svg class="transition-transform [details[open]_&]:rotate-180" width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="absolute right-0 top-full z-20 mt-2 w-[min(19rem,calc(100vw-2rem))] rounded-xl border border-border bg-surface p-4 shadow-xl sm:w-80">
+          <dl class="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+            <div><dt class="text-xs text-text-secondary">Sensación térmica</dt><dd class="mt-0.5 font-semibold text-text" data-weather-feels-like>--°</dd></div>
+            <div><dt class="text-xs text-text-secondary">Prob. de lluvia (3 h)</dt><dd class="mt-0.5 font-semibold text-text" data-weather-rain>--%</dd></div>
+            <div><dt class="text-xs text-text-secondary">Humedad</dt><dd class="mt-0.5 font-semibold text-text" data-weather-humidity>--%</dd></div>
+            <div><dt class="text-xs text-text-secondary">Actualizado</dt><dd class="mt-0.5 font-semibold text-text" data-weather-updated>—</dd></div>
+          </dl>
+          <p class="mt-3 border-t border-border pt-3 text-xs leading-relaxed text-text-secondary">
+            Datos de <a class="link-accent" href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Información orientativa; ante alertas, consultá los canales oficiales.
+          </p>
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -86,7 +107,9 @@ const locations = [
     if (root.dataset.weatherInitialized === 'true') return;
     root.dataset.weatherInitialized = 'true';
 
-    const select = root.querySelector<HTMLSelectElement>('[data-weather-location-select]');
+    const locationPicker = root.querySelector<HTMLElement>('.weather-location-picker');
+    const locationLabel = root.querySelector<HTMLElement>('[data-weather-location-label]');
+    const locationOptions = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-weather-location-option]'));
     const status = root.querySelector<HTMLElement>('[data-weather-status]');
     const temperature = root.querySelector<HTMLElement>('[data-weather-temperature]');
     const symbol = root.querySelector<HTMLElement>('[data-weather-symbol]');
@@ -95,12 +118,12 @@ const locations = [
     const rain = root.querySelector<HTMLElement>('[data-weather-rain]');
     const humidity = root.querySelector<HTMLElement>('[data-weather-humidity]');
     const updated = root.querySelector<HTMLElement>('[data-weather-updated]');
+    let selectedLocation = 'lanus';
     let requestId = 0;
 
     const refresh = async () => {
-      if (!select) return;
       const currentRequestId = ++requestId;
-      const locationId = select.value;
+      const locationId = selectedLocation;
       if (status) status.textContent = 'Actualizando';
       try {
         const response = await fetch(`/api/weather?location=${encodeURIComponent(locationId)}`);
@@ -109,7 +132,7 @@ const locations = [
           throw new Error(`weather HTTP ${response.status}`);
         }
         const weather = (await response.json()) as WeatherPayload;
-        if (currentRequestId !== requestId || locationId !== select.value) return;
+        if (currentRequestId !== requestId || locationId !== selectedLocation) return;
         if (temperature) temperature.textContent = `${Math.round(weather.temperatureC)}°`;
         if (symbol) symbol.textContent = conditionSymbol(weather.conditionCode);
         if (condition) condition.textContent = weather.condition;
@@ -129,10 +152,30 @@ const locations = [
       }
     };
 
-    select?.addEventListener('change', () => {
-      if (condition) condition.textContent = 'Consultando…';
-      void refresh();
+    locationOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        const nextLocation = option.dataset.location;
+        if (!nextLocation || nextLocation === selectedLocation) {
+          if (locationPicker instanceof HTMLDetailsElement) locationPicker.open = false;
+          return;
+        }
+        selectedLocation = nextLocation;
+        if (locationLabel) locationLabel.textContent = option.querySelector('span')?.textContent?.trim() ?? nextLocation;
+        locationOptions.forEach((item) => {
+          const selected = item === option;
+          item.setAttribute('aria-pressed', String(selected));
+          item.classList.toggle('font-semibold', selected);
+          item.classList.toggle('text-accent', selected);
+          item.classList.toggle('text-text', !selected);
+          const check = item.querySelector<HTMLElement>('[data-location-check]');
+          check?.classList.toggle('invisible', !selected);
+        });
+        if (locationPicker instanceof HTMLDetailsElement) locationPicker.open = false;
+        if (condition) condition.textContent = 'Consultando…';
+        void refresh();
+      });
     });
+
     void refresh();
     window.setInterval(() => void refresh(), 30 * 60 * 1000);
   };
