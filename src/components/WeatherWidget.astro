@@ -1,0 +1,193 @@
+---
+const locations = [
+  { id: 'lanus', name: 'Lanús' },
+  { id: 'caba', name: 'CABA' },
+  { id: 'avellaneda', name: 'Avellaneda' },
+  { id: 'lomas-de-zamora', name: 'Lomas de Zamora' },
+  { id: 'almirante-brown', name: 'Almirante Brown' },
+  { id: 'quilmes', name: 'Quilmes' },
+  { id: 'berazategui', name: 'Berazategui' },
+  { id: 'florencio-varela', name: 'Florencio Varela' },
+  { id: 'esteban-echeverria', name: 'Esteban Echeverría' },
+  { id: 'ezeiza', name: 'Ezeiza' },
+  { id: 'presidente-peron', name: 'Presidente Perón' },
+  { id: 'san-vicente', name: 'San Vicente' },
+];
+---
+
+<section class="weather-panel" aria-labelledby="weather-heading" data-weather-widget>
+  <div class="weather-heading">
+    <div>
+      <p class="eyebrow">Servicio para la comunidad</p>
+      <h2 id="weather-heading">El tiempo en Zona Sur y CABA</h2>
+      <p class="weather-description">Condiciones actuales y probabilidad de lluvia para las próximas horas.</p>
+    </div>
+    <span class="weather-status" data-weather-status role="status" aria-live="polite">Consultando datos…</span>
+  </div>
+
+  <div class="weather-grid">
+    {locations.map((location) => (
+      <article class="weather-card" data-weather-location={location.id} aria-label={`Clima en ${location.name}`}>
+        <div class="weather-card-top">
+          <h3>{location.name}</h3>
+          <span class="weather-symbol" data-weather-symbol aria-hidden="true">☁</span>
+        </div>
+        <p class="weather-temperature" data-weather-temperature>--°</p>
+        <p class="weather-condition" data-weather-condition>Esperando datos</p>
+        <dl class="weather-details">
+          <div><dt>Sensación</dt><dd data-weather-feels-like>--°</dd></div>
+          <div><dt>Lluvia próximas 3 h</dt><dd data-weather-rain>--%</dd></div>
+          <div><dt>Humedad</dt><dd data-weather-humidity>--%</dd></div>
+        </dl>
+        <p class="weather-updated" data-weather-updated>Actualización pendiente</p>
+      </article>
+    ))}
+  </div>
+
+  <div class="weather-footer">
+    <p>Datos meteorológicos provistos por <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer">WeatherAPI.com</a>. Pronósticos orientativos; consultá los canales oficiales ante alertas meteorológicas.</p>
+    <button type="button" class="weather-refresh" data-weather-refresh>Actualizar ahora</button>
+  </div>
+</section>
+
+<style>
+  .weather-panel {
+    margin-block: 2rem 2.5rem;
+    min-width: 0;
+    border: 1px solid var(--color-border, #26394b);
+    border-radius: 1rem;
+    background: var(--color-surface, #101f2e);
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+  }
+  .weather-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .weather-heading h2 {
+    margin-top: .35rem;
+    color: var(--color-text, #f4f7fb);
+    font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: -.035em;
+  }
+  .weather-description { margin-top: .35rem; color: var(--color-text-secondary, #a7b4c2); font-size: .875rem; }
+  .weather-status { flex: 0 0 auto; color: var(--color-text-secondary, #a7b4c2); font-size: .75rem; }
+  .weather-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+  .weather-card { min-width: 0; border: 1px solid var(--color-border, #26394b); border-radius: .8rem; background: var(--color-surface-raised, #14283a); padding: .85rem; }
+  .weather-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .4rem; }
+  .weather-card h3 { color: var(--color-text, #f4f7fb); font-size: .875rem; font-weight: 700; line-height: 1.35; }
+  .weather-symbol { font-size: 1.25rem; line-height: 1; }
+  .weather-temperature { margin-top: .45rem; color: var(--color-text, #f4f7fb); font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 800; letter-spacing: -.06em; line-height: 1.1; }
+  .weather-condition { min-height: 2.25rem; margin-top: .35rem; color: var(--color-text-secondary, #a7b4c2); font-size: .75rem; overflow-wrap: anywhere; }
+  .weather-details { display: grid; gap: .4rem; margin-top: .8rem; }
+  .weather-details div { display: flex; justify-content: space-between; gap: .5rem; font-size: .72rem; }
+  .weather-details dt { color: var(--color-text-secondary, #a7b4c2); }
+  .weather-details dd { color: var(--color-text, #f4f7fb); font-weight: 600; text-align: right; }
+  .weather-updated { margin-top: .75rem; color: var(--color-text-secondary, #a7b4c2); font-size: .65rem; }
+  .weather-footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; margin-top: 1rem; }
+  .weather-footer p { max-width: 52rem; color: var(--color-text-secondary, #a7b4c2); font-size: .7rem; line-height: 1.5; }
+  .weather-footer a { color: var(--color-accent, #69b9e8); text-decoration: underline; text-underline-offset: 2px; }
+  .weather-refresh { border: 1px solid var(--color-border, #26394b); border-radius: .55rem; padding: .55rem .75rem; color: var(--color-text, #f4f7fb); font-size: .75rem; font-weight: 600; }
+  .weather-refresh:hover { border-color: var(--color-info, #69b9e8); }
+  .weather-refresh:focus-visible { outline: 2px solid var(--color-info, #69b9e8); outline-offset: 3px; }
+  @media (min-width: 640px) { .weather-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; } .weather-card { padding: 1rem; } }
+  @media (min-width: 1024px) { .weather-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 380px) { .weather-heading { flex-direction: column; } .weather-status { order: -1; } .weather-details div { font-size: .68rem; } }
+  @media (prefers-reduced-motion: no-preference) { .weather-card { transition: border-color .15s ease; } .weather-card:hover { border-color: var(--color-info, #69b9e8); } }
+</style>
+
+<script>
+  type WeatherPayload = {
+    location: string;
+    temperatureC: number;
+    feelsLikeC: number;
+    humidity: number;
+    chanceOfRain: number | null;
+    condition: string;
+    conditionCode: number;
+    observedAt: string;
+  };
+
+  const conditionSymbol = (code: number): string => {
+    if (code === 1000) return '☀';
+    if ([1003, 1006, 1009].includes(code)) return '☁';
+    if ([1030, 1135, 1147].includes(code)) return '🌫';
+    if ([1063, 1150, 1153, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246].includes(code)) return '🌧';
+    if ([1087, 1273, 1276, 1279, 1282].includes(code)) return '⛈';
+    if ([1066, 1069, 1072, 1114, 1117, 1210, 1213, 1216, 1219, 1222, 1225].includes(code)) return '🌨';
+    return '🌤';
+  };
+
+  const formatTime = (value: string): string => {
+    const parsed = new Date(value.replace(' ', 'T'));
+    return Number.isNaN(parsed.getTime())
+      ? value
+      : parsed.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
+  };
+
+  const loadWeather = async (root: HTMLElement, locationId: string): Promise<boolean> => {
+    const card = root.querySelector<HTMLElement>(`[data-weather-location="${locationId}"]`);
+    if (!card) return false;
+    try {
+      const response = await fetch(`/api/weather?location=${encodeURIComponent(locationId)}`);
+      if (!response.ok) throw new Error('weather unavailable');
+      const weather = (await response.json()) as WeatherPayload;
+      const setText = (selector: string, value: string) => {
+        const element = card.querySelector<HTMLElement>(selector);
+        if (element) element.textContent = value;
+      };
+      setText('[data-weather-temperature]', `${Math.round(weather.temperatureC)}°`);
+      setText('[data-weather-feels-like]', `${Math.round(weather.feelsLikeC)}°`);
+      setText('[data-weather-rain]', weather.chanceOfRain === null ? 's/d' : `${weather.chanceOfRain}%`);
+      setText('[data-weather-humidity]', `${weather.humidity}%`);
+      setText('[data-weather-condition]', weather.condition);
+      setText('[data-weather-updated]', `Actualizado ${formatTime(weather.observedAt)}`);
+      setText('[data-weather-symbol]', conditionSymbol(weather.conditionCode));
+      card.dataset.weatherState = 'loaded';
+      return true;
+    } catch {
+      const condition = card.querySelector<HTMLElement>('[data-weather-condition]');
+      const updated = card.querySelector<HTMLElement>('[data-weather-updated]');
+      if (condition) condition.textContent = 'Datos no disponibles';
+      if (updated) updated.textContent = 'Intentá actualizar más tarde';
+      card.dataset.weatherState = 'error';
+      return false;
+    }
+  };
+
+  const initWeatherWidget = (root: HTMLElement) => {
+    if (root.dataset.weatherInitialized === 'true') return;
+    root.dataset.weatherInitialized = 'true';
+    const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-weather-location]'));
+    const status = root.querySelector<HTMLElement>('[data-weather-status]');
+    const refreshButton = root.querySelector<HTMLButtonElement>('[data-weather-refresh]');
+    let isLoading = false;
+
+    const refresh = async () => {
+      if (isLoading) return;
+      isLoading = true;
+      if (refreshButton) refreshButton.disabled = true;
+      if (status) status.textContent = 'Actualizando…';
+      const results = await Promise.all(cards.map((card) => loadWeather(root, card.dataset.weatherLocation ?? '')));
+      const successCount = results.filter(Boolean).length;
+      if (status) status.textContent = successCount === cards.length
+        ? `Actualizado · ${new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}`
+        : `${successCount} de ${cards.length} localidades disponibles`;
+      if (refreshButton) refreshButton.disabled = false;
+      isLoading = false;
+    };
+
+    refreshButton?.addEventListener('click', () => void refresh());
+    void refresh();
+    window.setInterval(() => void refresh(), 30 * 60 * 1000);
+  };
+
+  const mountWeatherWidgets = () => {
+    document.querySelectorAll<HTMLElement>('[data-weather-widget]').forEach(initWeatherWidget);
+  };
+  mountWeatherWidgets();
+  document.addEventListener('astro:page-load', mountWeatherWidgets);
+</script>
