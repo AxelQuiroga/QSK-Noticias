@@ -67,6 +67,7 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   upstreamUrl.searchParams.set('days', '1');
   upstreamUrl.searchParams.set('aqi', 'no');
   upstreamUrl.searchParams.set('alerts', 'no');
+  upstreamUrl.searchParams.set('lang', 'es');
 
   try {
     const upstream = await fetch(upstreamUrl, { signal: AbortSignal.timeout(8000) });
