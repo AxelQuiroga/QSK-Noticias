@@ -135,7 +135,10 @@ const locations = [
         if (currentRequestId !== requestId || locationId !== selectedLocation) return;
         if (temperature) temperature.textContent = `${Math.round(weather.temperatureC)}°`;
         if (symbol) symbol.textContent = conditionSymbol(weather.conditionCode);
-        if (condition) condition.textContent = weather.condition;
+        if (condition) {
+  condition.textContent =
+    weather.condition === 'Cubierto' ? 'Cielo nublado' : weather.condition;
+}
         if (feelsLike) feelsLike.textContent = `${Math.round(weather.feelsLikeC)}°`;
         if (rain) rain.textContent = weather.chanceOfRain === null ? 's/d' : `${weather.chanceOfRain}%`;
         if (humidity) humidity.textContent = `${weather.humidity}%`;
