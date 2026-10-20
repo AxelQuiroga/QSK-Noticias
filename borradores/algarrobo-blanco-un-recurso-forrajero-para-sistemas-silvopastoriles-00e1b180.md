@@ -1,90 +1,28 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
+title: "El INTA estudia el potencial del algarrobo blanco como alimento para el ganado"
+description: "Una investigación en plantaciones jóvenes del Chaco midió la producción de chauchas y su aporte nutricional, con resultados que podrían ayudar en épocas de escasez de forraje."
+slug: "inta-algarrobo-blanco-potencial-forrajero"
 status: "draft"
-title: "Algarrobo blanco, un recurso forrajero para sistemas silvopastoriles"
-description: "Esta especie emblema del parque chaqueño es muy valorada por su madera, así como por sus frutos. Una investigación del INTA confirmó su potencial forrajero. Con buen manejo silvícola y selección de individuos de alta productividad, puede convertirse en un suplemento nativo estratégico para la ganadería chaqueña, aportando proteínas y energía en momentos de escasez."
-slug: "algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles"
-section: null
-scope: "nacional"
 author: "Redacción QSK Noticias"
-borrador:
-  generadoPor: "extraccion-ultimate"
-  metodo: "reglas-deterministas-sin-ia"
-  requiereRevision: true
-origen:
-  url: "https://www.argentina.gob.ar/noticias/algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles"
-  titulo: "Algarrobo blanco, un recurso forrajero para sistemas silvopastoriles"
-  fechaPublicacion: "2026-10-20T00:00:00-03:00"
-  organismos:
-    - "Instituto Nacional de Tecnología Agropecuaria"
+featured: false
+scope: "nacional"
+primarySection: "Economía"
+secondarySection: "Sociedad"
+primaryTopic: "Economía"
+secondaryTopics:
+  - "Sociedad"
+sources:
+  - name: "INTA / Argentina.gob.ar"
+    url: "https://www.argentina.gob.ar/noticias/algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles"
+# Imagen local pendiente: no se referencia un archivo hasta poder descargarlo y comprobarlo.
 ---
 
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
+Una investigación del Instituto Nacional de Tecnología Agropecuaria (INTA) analizó el potencial forrajero del algarrobo blanco en plantaciones jóvenes del Chaco. Sus frutos podrían aportar proteínas y energía a la alimentación del ganado, especialmente en períodos en los que escasea el forraje.
 
-## Estado del borrador
+El equipo del INTA Sáenz Peña, en Chaco, y de Montecarlo, en Misiones, estudió ejemplares de origen Campo Durán, Salta, plantados en el Chaco ocho años atrás. En la campaña de verano 2023-2024, la producción registrada varió entre 1,5 y 21 kilos de frutos por árbol, una diferencia que muestra la diversidad entre individuos.
 
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **sección propuesta:** _(sin clasificar; opciones: Actualidad, Deportes, Economía, Educación, Obras públicas, Salud, Tránsito)_
-- **alcance propuesto:** `nacional`
+Los análisis detectaron entre un 8 % y un 12 % de proteína bruta y cerca de 2,3 megacalorías de energía metabolizable por kilo de materia seca. Según los investigadores, las chauchas podrían aportar entre 6 y 82 kilos de proteína por hectárea en plantaciones jóvenes.
 
-## Síntesis extractiva de la fuente
+Los resultados no implican que el algarrobo pueda reemplazar por sí solo otros alimentos en cualquier sistema ganadero. El equipo plantea seguir identificando árboles con mayor producción y calidad nutricional, además de estudiar cómo varía su aporte a lo largo del año.
 
-> Fragmentos textuales del arranque de la nota oficial. NO son redacción propia.
-
-> "El algarrobo blanco (Neltuma alba) es una especie emblemática del parque chaqueño."
-> "Valorado por su madera dura y versátil, este árbol también ofrece frutos dulces y nutritivos que podrían convertirse en un suplemento clave para la ganadería en sistemas silvopastoriles."
-> "Con el objetivo de conocer su producción, morfología y calidad nutricional, un equipo de investigación del INTA Sáenz Peña -Chaco- y Montecarlo -Misiones- analizó plantaciones jóvenes de algarrobo blanco de origen “Campo Durán” (Salta), instalada hace ocho años en el Chaco."
-
-## Datos concretos detectados
-
-Detectados por patrones sobre el texto de la fuente. Verificar cada uno.
-
-- **cantidad** — "Ambos especialistas coincidieron en que los resultados obtenidos en el verano 2023-2024 fueron muy promisorios para una plantación joven: la producción por árbol varió entre 1,5 y 21 kg -lo que confirmó la gran variabilidad- y los frutos fueron más largos que los reportados en otras procedencias,…"
-- **cantidad** — "Además, se registró un contenido de proteína bruta que osciló entre el 8 y el 12 %, con valores de energía metabolizable cercanos a 2,3 Mcal/kg de materia seca."
-- **cantidad** — "En cuanto a las implicancias para la ganadería, los especialistas puntualizaron que “las chauchas podrían aportar entre 6 y 82 kg de proteína por hectárea, un refuerzo valioso en épocas críticas como el invierno”."
-
-## Estado de la medida
-
-**No determinado**
-
-Marcadores encontrados: ninguno.
-
-No se pudo separar "anunciado" de "ya implementado" con las formas verbales de la nota: revisar el texto original antes de titular.
-
-## Señales geográficas
-
-Solo el titular decide `municipality` / `localidad` / `region`. Las menciones del cuerpo se listan como evidencia, no como clasificación.
-
-- **Chaco** (provincia) — en el titular: no; menciones en el cuerpo: 3
-  - contexto: "…utricional, un equipo de investigación del INTA Sáenz Peña -Chaco- y Montecarlo -Misiones- analizó plantaciones jóvenes de al…"
-- **Misiones** (provincia) — en el titular: no; menciones en el cuerpo: 1
-  - contexto: "…de investigación del INTA Sáenz Peña -Chaco- y Montecarlo -Misiones- analizó plantaciones jóvenes de algarrobo blanco de origen…"
-- **Salta** (provincia) — en el titular: no; menciones en el cuerpo: 1
-  - contexto: "…ciones jóvenes de algarrobo blanco de origen “Campo Durán” (Salta), instalada hace ocho años en el Chaco. Según aseguró Marco…"
-
-## Datos a verificar o faltantes
-
-Puntos detectados automáticamente. No es una lista cerrada: la revisión editorial puede encontrar más.
-
-- [ ] El titular es textual de la fuente: reescribirlo con el estilo de QSK antes de publicar.
-- [ ] La bajada es textual de la fuente: revisar que describa la noticia publicada.
-- [ ] Sección sin clasificar: las reglas no encontraron evidencia suficiente para una sola sección. Secciones válidas de QSK: Actualidad, Deportes, Economía, Educación, Obras públicas, Salud, Tránsito.
-- [ ] No se pudo determinar si la medida está anunciada o ya implementada. Marcadores encontrados: ninguno.
-- [ ] Alcance `nacional` propuesto por defecto: el titular no menciona ninguna ubicación del catálogo de QSK.
-- [ ] Ubicaciones mencionadas en el cuerpo pero no en el titular; revisar si corresponde asignarles municipio, localidad o región: "Chaco" (provincia) en el cuerpo: 3 mención(es); "Misiones" (provincia) en el cuerpo: 1 mención(es); "Salta" (provincia) en el cuerpo: 1 mención(es).
-- [ ] El texto del borrador es extractivo: verificar cada dato contra la fuente y reescribirlo antes de publicar.
-
-## Fuente
-
-- **Título original:** Algarrobo blanco, un recurso forrajero para sistemas silvopastoriles
-- **URL:** <https://www.argentina.gob.ar/noticias/algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles>
-- **Fecha de publicación en la fuente:** 2026-10-20T00:00:00-03:00
-- **Organismo(s):** "Instituto Nacional de Tecnología Agropecuaria"
+**Fuente:** [INTA / Argentina.gob.ar](https://www.argentina.gob.ar/noticias/algarrobo-blanco-un-recurso-forrajero-para-sistemas-silvopastoriles).
