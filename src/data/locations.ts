@@ -44,6 +44,8 @@ export interface Location {
   regionIds?: readonly string[];
 }
 
+const ZONA_SUR_REGIONS = ['region-zona-sur', 'region-amba'] as const;
+
 export const LOCATIONS: readonly Location[] = [
   { id: 'pais-argentina', name: 'Argentina', type: 'pais' },
   {
@@ -56,33 +58,82 @@ export const LOCATIONS: readonly Location[] = [
   { id: 'region-zona-sur', name: 'Zona Sur', type: 'region' },
   { id: 'region-amba', name: 'AMBA', type: 'region' },
   {
-    id: 'municipio-lomas-de-zamora',
-    name: 'Lomas de Zamora',
+    id: 'municipio-avellaneda',
+    name: 'Avellaneda',
     type: 'municipio',
     parentId: 'provincia-buenos-aires',
-    regionIds: ['region-zona-sur', 'region-amba'],
-  },
-  {
-    id: 'municipio-quilmes',
-    name: 'Quilmes',
-    type: 'municipio',
-    parentId: 'provincia-buenos-aires',
-    regionIds: ['region-zona-sur', 'region-amba'],
+    regionIds: ZONA_SUR_REGIONS,
   },
   {
     id: 'municipio-lanus',
     name: 'Lanús',
     type: 'municipio',
     parentId: 'provincia-buenos-aires',
-    regionIds: ['region-zona-sur', 'region-amba'],
+    regionIds: ZONA_SUR_REGIONS,
   },
   {
-  id: 'municipio-florencio-varela',
-  name: 'Florencio Varela',
-  type: 'municipio',
-  parentId: 'provincia-buenos-aires',
-  regionIds: ['region-zona-sur', 'region-amba'],
-},
+    id: 'municipio-lomas-de-zamora',
+    name: 'Lomas de Zamora',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-almirante-brown',
+    name: 'Almirante Brown',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-quilmes',
+    name: 'Quilmes',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-berazategui',
+    name: 'Berazategui',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-florencio-varela',
+    name: 'Florencio Varela',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-esteban-echeverria',
+    name: 'Esteban Echeverría',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-ezeiza',
+    name: 'Ezeiza',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-presidente-peron',
+    name: 'Presidente Perón',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
+  {
+    id: 'municipio-san-vicente',
+    name: 'San Vicente',
+    type: 'municipio',
+    parentId: 'provincia-buenos-aires',
+    regionIds: ZONA_SUR_REGIONS,
+  },
   {
     id: 'localidad-banfield',
     name: 'Banfield',

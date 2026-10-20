@@ -270,6 +270,28 @@ describe('catálogo geográfico', () => {
     }
   });
 
+  it('incluye los municipios acordados para la cobertura de Zona Sur', () => {
+    const zonaSur = [
+      'Avellaneda',
+      'Lanús',
+      'Lomas de Zamora',
+      'Almirante Brown',
+      'Quilmes',
+      'Berazategui',
+      'Florencio Varela',
+      'Esteban Echeverría',
+      'Ezeiza',
+      'Presidente Perón',
+      'San Vicente',
+    ];
+    const municipalities = getLocationsByType('municipio');
+    for (const name of zonaSur) {
+      const location = municipalities.find((municipio) => municipio.name === name);
+      expect(location, `Falta el municipio ${name}`).toBeDefined();
+      expect(location?.regionIds).toEqual(expect.arrayContaining(['region-zona-sur', 'region-amba']));
+    }
+  });
+
   it('cada localidad pertenece a un municipio', () => {
     for (const localidad of getLocationsByType('localidad')) {
       expect(getAncestorOfType(localidad, 'municipio')?.type).toBe('municipio');
@@ -281,6 +303,6 @@ describe('catálogo geográfico', () => {
     expect(isKnownLocationName('AMBA', 'municipio')).toBe(false);
     expect(isKnownLocationName('AMBA', 'region')).toBe(true);
     expect(isKnownLocationName('Banfield', 'localidad')).toBe(true);
-    expect(isKnownLocationName('Avellaneda', 'municipio')).toBe(false);
+    expect(isKnownLocationName('Avellaneda', 'municipio')).toBe(true);
   });
 });
