@@ -54,7 +54,7 @@ export async function onRequest(context: PagesContext): Promise<Response> {
     );
   }
 
-  const cache = (globalThis as typeof globalThis & { caches?: CacheStorage }).caches?.default;
+  const cache = (globalThis as typeof globalThis & { caches?: CacheStorage & { default?: Cache } }).caches?.default;
   const cacheKey = new Request(new URL(context.request.url).toString(), { method: 'GET' });
   if (cache) {
     const cached = await cache.match(cacheKey);
