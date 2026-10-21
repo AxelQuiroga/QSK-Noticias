@@ -1,12 +1,12 @@
 ---
-import gacetillas from '../data/gacetillas.json';
+import { getGacetillas } from '../lib/gacetillas';
 
 interface Props {
   limit?: number;
 }
 
 const { limit = 4 } = Astro.props;
-const noticias = gacetillas.slice(0, limit);
+const noticias = getGacetillas(limit);
 ---
 
 <section class="mt-10 sm:mt-12" aria-labelledby="gacetillas-heading">
