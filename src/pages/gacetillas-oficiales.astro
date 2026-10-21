@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GacetillasProvincia from '../components/GacetillasProvincia.astro';
+---
+
+<BaseLayout
+  title="Gacetillas oficiales — QSK Noticias"
+  description="Las últimas gacetillas del Gobierno de la Provincia de Buenos Aires, reproducidas desde el listado oficial y enlazadas a su publicación original."
+>
+  <div class="container-editorial pb-14 pt-7 sm:pt-10">
+    <header class="mb-8 border-b border-border pb-6">
+      <p class="eyebrow">Contenido oficial · Fuente externa</p>
+      <h1 class="mt-3 font-heading text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Gacetillas oficiales</h1>
+      <p class="mt-3 max-w-2xl leading-relaxed text-text-secondary">Esta sección reproduce los títulos, bajadas e imágenes disponibles en el listado oficial del Gobierno de la Provincia de Buenos Aires. El contenido no es redactado por QSK Noticias; cada título lleva a la publicación original.</p>
+    </header>
+    <GacetillasProvincia limit={12} />
+  </div>
+</BaseLayout>
