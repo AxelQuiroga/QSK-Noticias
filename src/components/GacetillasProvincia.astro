@@ -61,22 +61,9 @@ const noticias = getGacetillas(limit);
 </section>
 
 <script>
-  function showImageFallback(image: HTMLImageElement): void {
-    image.classList.add('hidden');
-    const marker = image.parentElement?.querySelector<HTMLElement>('[data-gacetilla-img-fallback]');
-    marker?.classList.remove('hidden');
-  }
+  import { guardExternalImage } from '../lib/image-fallback';
 
-  function guardExternalImage(image: HTMLImageElement): void {
-    // Los <script> de módulo son diferidos: una imagen lazy puede fallar
-    // antes de que este script se ejecute, así que también revisamos el
-    // estado ya asentado (complete sin tamaño natural = fallo de carga).
-    if (image.complete && image.naturalWidth === 0) {
-      showImageFallback(image);
-      return;
-    }
-    image.addEventListener('error', () => showImageFallback(image), { once: true });
-  }
-
-  document.querySelectorAll<HTMLImageElement>('img[data-gacetilla-img]').forEach(guardExternalImage);
+  document
+    .querySelectorAll<HTMLImageElement>('img[data-gacetilla-img]')
+    .forEach((image) => guardExternalImage(image, '[data-gacetilla-img-fallback]'));
 </script>

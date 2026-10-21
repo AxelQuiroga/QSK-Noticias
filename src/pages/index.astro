@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import WeatherWidget from '../components/WeatherWidget.astro';
-import GacetillasProvincia from '../components/GacetillasProvincia.astro';
+import NovedadesOficialesCarousel from '../components/NovedadesOficialesCarousel.astro';
 import { getFeaturedArticle, getLatestArticles } from '../lib/articles';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
@@ -63,7 +63,7 @@ const regiones = getLocationsByType('region');
           </div>
         </section>
 
-        <GacetillasProvincia limit={4} />
+        <NovedadesOficialesCarousel limit={8} />
       </div>
 
       <aside class="grid gap-8 sm:grid-cols-2 lg:sticky lg:top-24 lg:grid-cols-1">
