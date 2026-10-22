@@ -1,5 +1,5 @@
 ---
-import { getGacetillas } from '../lib/gacetillas';
+import { getGacetillas, getGacetillasArchivo } from '../lib/gacetillas';
 
 interface Props {
   limit?: number;
@@ -7,6 +7,7 @@ interface Props {
 
 const { limit = 4 } = Astro.props;
 const noticias = getGacetillas(limit);
+const archivo = getGacetillasArchivo();
 ---
 
 <section class="mt-10 sm:mt-12" aria-labelledby="gacetillas-heading">
@@ -58,6 +59,18 @@ const noticias = getGacetillas(limit);
   ) : (
     <p class="rounded-xl border border-border p-5 text-sm text-text-secondary">Las gacetillas oficiales se actualizarán cuando la fuente vuelva a estar disponible.</p>
   )}
+  {
+    archivo.length > 0 && (
+      <div class="mt-4 text-right">
+        <a
+          href="/gacetillas-oficiales/archivo/"
+          class="text-sm font-semibold text-accent hover:underline"
+        >
+          Ver archivo ({archivo.length} gacetillas anteriores) <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    )
+  }
 </section>
 
 <script>
