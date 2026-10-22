@@ -183,6 +183,93 @@ export function getGacetillasRecientes(
 }
 
 /**
+ * Orden interno de una gacetilla dentro del array fuente original: se usa
+ * como desempate determinista cuando no hay fecha válida.
+ */
+function indiceEnFuente(gacetilla: Gacetilla, fuente: Gacetilla[]): number {
+  return fuente.indexOf(gacetilla);
+}
+
+/**
+ * Ordena gacetillas de una fuente: primero las que tienen fecha válida (de
+ * la más reciente a la más antigua), luego las que no tienen fecha, en el
+ * orden en que aparecen en el dataset original.
+ */
+function ordenarPorFechaYOrden(
+  lista: GacetillaConSlug[],
+  fuente: Gacetilla[],
+): GacetillaConSlug[] {
+  return [...lista].sort((a, b) => {
+    const fechaA = a.fecha ? new Date(a.fecha) : null;
+    const fechaB = b.fecha ? new Date(b.fecha) : null;
+    const validaA = fechaA && !Number.isNaN(fechaA.getTime());
+    const validaB = fechaB && !Number.isNaN(fechaB.getTime());
+
+    if (validaA && validaB) return fechaB!.getTime() - fechaA!.getTime();
+    if (validaA) return -1;
+    if (validaB) return 1;
+
+    return (
+      indiceEnFuente(a, fuente) - indiceEnFuente(b, fuente)
+    );
+  });
+}
+
+/**
+ * Selección representativa para el carrusel de portada.
+ *
+ * - Mezcla todas las fuentes que tienen datos.
+ * - Cuando la cantidad de fuentes es menor o igual al `limit`, garantiza al
+ *   menos una historia de cada fuente disponible.
+ * - Llena los restantes slots con las historias más recientes disponibles,
+ *   usando fecha válida cuando exista; sin inventar fechas.
+ * - No duplica historias ni cambia sus slugs persistentes.
+ * - Determinista: mismo dataset produce siempre la misma selección.
+ */
+export function getGacetillasDestacadas(
+  limit: number = CANTIDAD_RECIENTES,
+  fuente: Gacetilla[] = datos,
+): GacetillaConSlug[] {
+  const todas = buildGacetillasConSlug(fuente);
+  if (todas.length === 0 || limit <= 0) return [];
+
+  const fuentesConDatos = getFuentesConDatos(fuente);
+  if (fuentesConDatos.length === 0) return [];
+
+  // Todas las gacetillas ordenadas globalmente: fecha válida descendente,
+  // luego orden de aparición en el dataset.
+  const ordenGlobal = ordenarPorFechaYOrden(todas, fuente);
+
+  const seleccionados: GacetillaConSlug[] = [];
+  const usados = new Set<string>();
+
+  // 1. Garantizar al menos una de cada fuente cuando hay cupo.
+  if (fuentesConDatos.length <= limit) {
+    for (const fuenteInfo of fuentesConDatos) {
+      const primera = ordenGlobal.find(
+        (g) => (g.fuente ?? 'gba') === fuenteInfo.id && !usados.has(g.urlNoticia),
+      );
+      if (primera) {
+        usados.add(primera.urlNoticia);
+        seleccionados.push(primera);
+      }
+    }
+  }
+
+  // 2. Llenar restantes con las más recientes de cualquier fuente (orden global).
+  for (const gacetilla of ordenGlobal) {
+    if (seleccionados.length >= limit) break;
+    if (!usados.has(gacetilla.urlNoticia)) {
+      usados.add(gacetilla.urlNoticia);
+      seleccionados.push(gacetilla);
+    }
+  }
+
+  // 3. Orden final: fecha válida descendente, luego orden en dataset.
+  return ordenarPorFechaYOrden(seleccionados, fuente).slice(0, limit);
+}
+
+/**
  * El resto del historial: gacetillas que ya no están entre las recientes
  * pero conservan su página individual y aparecen en el archivo.
  */

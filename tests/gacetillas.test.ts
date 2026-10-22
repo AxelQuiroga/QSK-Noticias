@@ -7,6 +7,7 @@ import {
   getGacetillasArchivo,
   getGacetillasArchivoPorFuente,
   getGacetillasConSlug,
+  getGacetillasDestacadas,
   getGacetillasPorFuente,
   getGacetillasRecientes,
   getGacetillasRecientesPorFuente,
@@ -278,5 +279,87 @@ describe('FUENTES_GACETILLAS y rutas', () => {
 
   it('rutaFuenteGacetillas construye la URL de la sección per-fuente', () => {
     expect(rutaFuenteGacetillas('lanus')).toBe('/gacetillas-oficiales/fuente/lanus/');
+  });
+});
+
+/**
+ * Dataset para pruebas de mezcla de portada: GBA sin fecha, EE con fecha,
+ * Lanús sin fecha y un duplicado intencional de URL.
+ */
+const datosMezcla: Gacetilla[] = [
+  { ...gacetillaDePrueba(1), titulo: 'Noticia GBA una', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-1' },
+  { ...gacetillaDePrueba(2), titulo: 'Noticia GBA dos', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-2', fecha: null },
+  { ...gacetillaDePrueba(3), titulo: 'NOTICIA EE RECIENTE', fuente: 'esteban-echeverria', urlNoticia: 'https://www.estebanecheverria.gob.ar/noticias/ee-1', fecha: '2026-10-20' },
+  { ...gacetillaDePrueba(4), titulo: 'Noticia EE antigua', fuente: 'esteban-echeverria', urlNoticia: 'https://www.estebanecheverria.gob.ar/noticias/ee-2', fecha: '2026-10-16' },
+  { ...gacetillaDePrueba(5), titulo: 'Noticia Lanús', fuente: 'lanus', urlNoticia: 'https://www.lanus.gob.ar/noticias/lanus-1' },
+  // Duplicado intencional de URL de GBA uno para probar que no se repite.
+  { ...gacetillaDePrueba(6), titulo: 'Noticia GBA una (duplicada)', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-1' },
+];
+
+describe('getGacetillasDestacadas', () => {
+  it('incluye tanto GBA como Esteban Echeverría en las primeras 8 cuando ambos tienen datos', () => {
+    const seleccion = getGacetillasDestacadas(8, datosMezcla);
+    const fuentes = new Set(seleccion.map((g) => g.fuente ?? 'gba'));
+    expect(fuentes.has('gba')).toBe(true);
+    expect(fuentes.has('esteban-echeverria')).toBe(true);
+  });
+
+  it('garantiza al menos una historia de cada fuente cuando fuentes <= limit', () => {
+    const seleccion = getGacetillasDestacadas(3, datosMezcla);
+    const fuentes = new Set(seleccion.map((g) => g.fuente ?? 'gba'));
+    expect(fuentes.has('gba')).toBe(true);
+    expect(fuentes.has('esteban-echeverria')).toBe(true);
+    expect(fuentes.has('lanus')).toBe(true);
+    expect(seleccion).toHaveLength(3);
+  });
+
+  it('no duplica historias ni repite URLs', () => {
+    const seleccion = getGacetillasDestacadas(8, datosMezcla);
+    const urls = seleccion.map((g) => g.urlNoticia);
+    expect(new Set(urls).size).toBe(urls.length);
+  });
+
+  it('es determinista: mismo dataset produce misma selección', () => {
+    const primera = getGacetillasDestacadas(5, datosMezcla);
+    const segunda = getGacetillasDestacadas(5, datosMezcla);
+    expect(primera.map((g) => g.urlNoticia)).toEqual(segunda.map((g) => g.urlNoticia));
+  });
+
+  it('prioriza historias con fecha válida sin inventar fechas para las que la tienen null', () => {
+    const seleccion = getGacetillasDestacadas(2, [
+      { ...gacetillaDePrueba(1), titulo: 'Sin fecha', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/sin-fecha' },
+      { ...gacetillaDePrueba(2), titulo: 'Con fecha', fuente: 'esteban-echeverria', urlNoticia: 'https://www.estebanecheverria.gob.ar/noticias/con-fecha', fecha: '2026-10-20' },
+    ]);
+    expect(seleccion).toHaveLength(2);
+    const conFecha = seleccion.find((g) => g.fecha !== null);
+    expect(conFecha?.titulo).toBe('Con fecha');
+    const sinFecha = seleccion.find((g) => g.fecha === null);
+    expect(sinFecha?.titulo).toBe('Sin fecha');
+    expect(sinFecha?.fecha).toBeNull();
+  });
+
+  it('cuando hay más fuentes que el slot, no garantiza todas pero no duplica', () => {
+    const seleccion = getGacetillasDestacadas(2, datosMezcla);
+    expect(seleccion).toHaveLength(2);
+    const urls = seleccion.map((g) => g.urlNoticia);
+    expect(new Set(urls).size).toBe(2);
+  });
+
+  it('devuelve lista vacía cuando no hay datos', () => {
+    expect(getGacetillasDestacadas(8, [])).toEqual([]);
+    expect(getGacetillasDestacadas(0, datosMezcla)).toEqual([]);
+  });
+
+  it('mantiene slugs persistentes sin cambios y sin duplicados de URL', () => {
+    const seleccion = getGacetillasDestacadas(8, datosMezcla);
+    const urls = seleccion.map((g) => g.urlNoticia);
+    expect(new Set(urls).size).toBe(urls.length); // sin duplicados
+
+    const todos = getGacetillasConSlug(undefined, datosMezcla);
+    const slugsTotales = new Set(todos.map((g) => g.slug));
+    for (const g of seleccion) {
+      expect(g.slug).toMatch(/^[a-z0-9-]+$/);
+      expect(slugsTotales.has(g.slug)).toBe(true); // slug existe en el build completo
+    }
   });
 });

@@ -1,12 +1,12 @@
 ---
-import { getGacetillasConSlug } from '../lib/gacetillas';
+import { getGacetillasDestacadas, nombreFuente } from '../lib/gacetillas';
 
 interface Props {
   limit?: number;
 }
 
 const { limit = 8 } = Astro.props;
-const noticias = getGacetillasConSlug(limit);
+const noticias = getGacetillasDestacadas(limit);
 
 const TRACK_ID = 'novedades-oficiales-track';
 const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
@@ -86,7 +86,8 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
               </div>
             )}
             <div class="flex flex-1 flex-col p-4">
-              <h3 class="line-clamp-3 min-h-[3.75rem] font-heading text-base font-extrabold leading-tight tracking-tight text-text group-hover:underline">{noticia.titulo}</h3>
+              <p class="text-xs font-semibold text-text-secondary">Fuente: {nombreFuente(noticia.fuente)}</p>
+              <h3 class="mt-1 line-clamp-2 min-h-[3.75rem] font-heading text-base font-extrabold leading-tight tracking-tight text-text group-hover:underline">{noticia.titulo}</h3>
               {noticia.descripcion && (
                 <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-relaxed text-text-secondary">{noticia.descripcion}</p>
               )}

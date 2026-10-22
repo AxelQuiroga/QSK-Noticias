@@ -1,5 +1,5 @@
 ---
-import { getGacetillas, getGacetillasArchivo, getFuentesConDatos } from '../lib/gacetillas';
+import { getGacetillasDestacadas, getGacetillasArchivo, getFuentesConDatos } from '../lib/gacetillas';
 import GacetillasTarjetas from './GacetillasTarjetas.astro';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { limit = 4 } = Astro.props;
-const noticias = getGacetillas(limit);
+const noticias = getGacetillasDestacadas(limit);
 const archivo = getGacetillasArchivo();
 // Secciones por fuente para las municipalidades que ya tienen registros
 // (la sección provincial es esta misma).
