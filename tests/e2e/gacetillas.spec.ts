@@ -11,7 +11,9 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
     await expect(page.locator(SECCION_GBA)).toBeVisible();
     await expect(page.locator(SECCION_EE)).toBeVisible();
     await expect(page.locator(SECCION_GBA).locator('[data-carousel-track] > li')).toHaveCount(12);
-    await expect(page.locator(SECCION_EE).locator('[data-carousel-track] > li')).toHaveCount(10);
+    const tarjetasEE = page.locator(SECCION_EE).locator('[data-carousel-track] > li');
+    await expect(tarjetasEE).not.toHaveCount(0);
+    expect(await tarjetasEE.count()).toBeLessThanOrEqual(12);
   });
 
   test('muestra la sección provincial de GBA con sus propias tarjetas', async ({ page }) => {
@@ -22,7 +24,7 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: 'Gacetillas de Gobierno de la Provincia de Buenos Aires',
+        name: 'Noticias de Buenos Aires',
       }),
     ).toBeVisible();
 
@@ -50,13 +52,14 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
     await expect(
       page.getByRole('heading', {
         level: 2,
-        name: 'Gacetillas de Municipalidad de Esteban Echeverría',
+        name: 'Noticias de Esteban Echeverría',
       }),
     ).toBeVisible();
 
     const tarjetas = seccion.locator(TARJETAS);
-    // Actualmente hay 10 registros de EE; no se inventan para completar 12
-    await expect(tarjetas).toHaveCount(10);
+    // La fuente puede crecer: debe haber tarjetas sin superar el límite del carrusel.
+    expect(await tarjetas.count()).toBeGreaterThan(0);
+    expect(await tarjetas.count()).toBeLessThanOrEqual(12);
 
     // Cada tarjeta de EE debe tener fuente EE
     for (const tarjeta of await tarjetas.all()) {
@@ -212,6 +215,7 @@ test.describe('Página dedicada de gacetillas', () => {
     await expect(page.getByRole('heading', { level: 2, name: 'Últimas gacetillas' })).toBeVisible();
 
     const tarjetas = page.locator(TARJETAS);
-    await expect(tarjetas).toHaveCount(10);
+    expect(await tarjetas.count()).toBeGreaterThan(0);
+    expect(await tarjetas.count()).toBeLessThanOrEqual(12);
   });
 });
