@@ -10,6 +10,9 @@ const referencedLocalidades = collectReferencedLocalidadSlugs('src/content/notic
 export default defineConfig({
   site: 'https://qsknoticias.site',
   output: 'static',
+  build: {
+  inlineStylesheets: 'always',
+},
   integrations: [
     sitemap({
       filter: (page) => isIndexablePath(new URL(page).pathname, { referencedLocalidades }),
