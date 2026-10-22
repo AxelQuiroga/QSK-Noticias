@@ -158,7 +158,7 @@ export function getGacetillasRecientesPorFuente(
   fuente: Gacetilla[] = datos,
 ): GacetillaConSlug[] {
   const deLaFuente = getGacetillasPorFuente(id, fuente);
-  return ordenarPorFechaYOrden(deLaFuente, fuente).slice(0, limite);
+  return ordenarPorFechaYOrden(deLaFuente, crearMapaPosiciones(fuente)).slice(0, limite);
 }
 
 /** El archivo de una fuente: su historial menos las recientes. */
@@ -183,12 +183,13 @@ export function getGacetillasRecientes(
   return buildGacetillasConSlug(fuente).slice(0, limit);
 }
 
-/**
- * Orden interno de una gacetilla dentro del array fuente original: se usa
- * como desempate determinista cuando no hay fecha válida.
- */
-function indiceEnFuente(gacetilla: Gacetilla, fuente: Gacetilla[]): number {
-  return fuente.indexOf(gacetilla);
+/** Construye una posición estable por URL para desempatar fechas ausentes. */
+function crearMapaPosiciones(fuente: Gacetilla[]): Map<string, number> {
+  const posiciones = new Map<string, number>();
+  fuente.forEach((gacetilla, indice) => {
+    if (!posiciones.has(gacetilla.urlNoticia)) posiciones.set(gacetilla.urlNoticia, indice);
+  });
+  return posiciones;
 }
 
 /**
@@ -198,7 +199,7 @@ function indiceEnFuente(gacetilla: Gacetilla, fuente: Gacetilla[]): number {
  */
 function ordenarPorFechaYOrden(
   lista: GacetillaConSlug[],
-  fuente: Gacetilla[],
+  posiciones: Map<string, number>,
 ): GacetillaConSlug[] {
   return [...lista].sort((a, b) => {
     const fechaA = a.fecha ? new Date(a.fecha) : null;
@@ -211,7 +212,8 @@ function ordenarPorFechaYOrden(
     if (validaB) return 1;
 
     return (
-      indiceEnFuente(a, fuente) - indiceEnFuente(b, fuente)
+      (posiciones.get(a.urlNoticia) ?? Number.MAX_SAFE_INTEGER) -
+      (posiciones.get(b.urlNoticia) ?? Number.MAX_SAFE_INTEGER)
     );
   });
 }
@@ -239,7 +241,8 @@ export function getGacetillasDestacadas(
 
   // Todas las gacetillas ordenadas globalmente: fecha válida descendente,
   // luego orden de aparición en el dataset.
-  const ordenGlobal = ordenarPorFechaYOrden(todas, fuente);
+  const posiciones = crearMapaPosiciones(fuente);
+  const ordenGlobal = ordenarPorFechaYOrden(todas, posiciones);
 
   const seleccionados: GacetillaConSlug[] = [];
   const usados = new Set<string>();
@@ -267,7 +270,7 @@ export function getGacetillasDestacadas(
   }
 
   // 3. Orden final: fecha válida descendente, luego orden en dataset.
-  return ordenarPorFechaYOrden(seleccionados, fuente).slice(0, limit);
+  return ordenarPorFechaYOrden(seleccionados, posiciones).slice(0, limit);
 }
 
 /**
