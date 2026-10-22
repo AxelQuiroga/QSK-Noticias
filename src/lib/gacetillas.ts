@@ -151,13 +151,14 @@ export function getGacetillasPorFuente(id: string, fuente: Gacetilla[] = datos):
   return buildGacetillasConSlug(gacetillasDeFuente(id, fuente));
 }
 
-/** Las últimas `limite` gacetillas de una fuente. */
+/** Las últimas `limite` gacetillas de una fuente, ordenadas por fecha. */
 export function getGacetillasRecientesPorFuente(
   id: string,
   limite: number = CANTIDAD_RECIENTES,
   fuente: Gacetilla[] = datos,
 ): GacetillaConSlug[] {
-  return getGacetillasPorFuente(id, fuente).slice(0, limite);
+  const deLaFuente = getGacetillasPorFuente(id, fuente);
+  return ordenarPorFechaYOrden(deLaFuente, crearMapaPosiciones(fuente)).slice(0, limite);
 }
 
 /** El archivo de una fuente: su historial menos las recientes. */
@@ -180,6 +181,96 @@ export function getGacetillasRecientes(
   fuente: Gacetilla[] = datos,
 ): GacetillaConSlug[] {
   return buildGacetillasConSlug(fuente).slice(0, limit);
+}
+
+/** Construye una posición estable por URL para desempatar fechas ausentes. */
+function crearMapaPosiciones(fuente: Gacetilla[]): Map<string, number> {
+  const posiciones = new Map<string, number>();
+  fuente.forEach((gacetilla, indice) => {
+    if (!posiciones.has(gacetilla.urlNoticia)) posiciones.set(gacetilla.urlNoticia, indice);
+  });
+  return posiciones;
+}
+
+/**
+ * Ordena gacetillas de una fuente: primero las que tienen fecha válida (de
+ * la más reciente a la más antigua), luego las que no tienen fecha, en el
+ * orden en que aparecen en el dataset original.
+ */
+function ordenarPorFechaYOrden(
+  lista: GacetillaConSlug[],
+  posiciones: Map<string, number>,
+): GacetillaConSlug[] {
+  return [...lista].sort((a, b) => {
+    const fechaA = a.fecha ? new Date(a.fecha) : null;
+    const fechaB = b.fecha ? new Date(b.fecha) : null;
+    const validaA = fechaA && !Number.isNaN(fechaA.getTime());
+    const validaB = fechaB && !Number.isNaN(fechaB.getTime());
+
+    if (validaA && validaB) return fechaB!.getTime() - fechaA!.getTime();
+    if (validaA) return -1;
+    if (validaB) return 1;
+
+    return (
+      (posiciones.get(a.urlNoticia) ?? Number.MAX_SAFE_INTEGER) -
+      (posiciones.get(b.urlNoticia) ?? Number.MAX_SAFE_INTEGER)
+    );
+  });
+}
+
+/**
+ * Selección representativa para el carrusel de portada.
+ *
+ * - Mezcla todas las fuentes que tienen datos.
+ * - Cuando la cantidad de fuentes es menor o igual al `limit`, garantiza al
+ *   menos una historia de cada fuente disponible.
+ * - Llena los restantes slots con las historias más recientes disponibles,
+ *   usando fecha válida cuando exista; sin inventar fechas.
+ * - No duplica historias ni cambia sus slugs persistentes.
+ * - Determinista: mismo dataset produce siempre la misma selección.
+ */
+export function getGacetillasDestacadas(
+  limit: number = CANTIDAD_RECIENTES,
+  fuente: Gacetilla[] = datos,
+): GacetillaConSlug[] {
+  const todas = buildGacetillasConSlug(fuente);
+  if (todas.length === 0 || limit <= 0) return [];
+
+  const fuentesConDatos = getFuentesConDatos(fuente);
+  if (fuentesConDatos.length === 0) return [];
+
+  // Todas las gacetillas ordenadas globalmente: fecha válida descendente,
+  // luego orden de aparición en el dataset.
+  const posiciones = crearMapaPosiciones(fuente);
+  const ordenGlobal = ordenarPorFechaYOrden(todas, posiciones);
+
+  const seleccionados: GacetillaConSlug[] = [];
+  const usados = new Set<string>();
+
+  // 1. Garantizar al menos una de cada fuente cuando hay cupo.
+  if (fuentesConDatos.length <= limit) {
+    for (const fuenteInfo of fuentesConDatos) {
+      const primera = ordenGlobal.find(
+        (g) => (g.fuente ?? 'gba') === fuenteInfo.id && !usados.has(g.urlNoticia),
+      );
+      if (primera) {
+        usados.add(primera.urlNoticia);
+        seleccionados.push(primera);
+      }
+    }
+  }
+
+  // 2. Llenar restantes con las más recientes de cualquier fuente (orden global).
+  for (const gacetilla of ordenGlobal) {
+    if (seleccionados.length >= limit) break;
+    if (!usados.has(gacetilla.urlNoticia)) {
+      usados.add(gacetilla.urlNoticia);
+      seleccionados.push(gacetilla);
+    }
+  }
+
+  // 3. Orden final: fecha válida descendente, luego orden en dataset.
+  return ordenarPorFechaYOrden(seleccionados, posiciones).slice(0, limit);
 }
 
 /**
