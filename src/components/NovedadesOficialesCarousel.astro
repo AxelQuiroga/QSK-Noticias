@@ -25,6 +25,11 @@ const tituloSeccion = fuenteId === 'gba'
 const headingId = fuenteId ? `gacetillas-${fuenteId}-heading` : 'novedades-oficiales-heading';
 const trackId = fuenteId ? `gacetillas-${fuenteId}-track` : 'novedades-oficiales-track';
 const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
+const tarjetas = noticias.map((noticia) => ({
+  ...noticia,
+  tituloMostrado: formatearTitulo(noticia.titulo) ?? noticia.titulo,
+  descripcionMostrada: normalizarTexto(noticia.descripcion),
+}));
 ---
 
 <section class="mt-10 sm:mt-12" aria-labelledby={headingId} data-carousel>
@@ -82,7 +87,7 @@ const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion
       aria-label={fuenteId ? `Gacetillas de ${nombre}` : 'Novedades de las gacetillas oficiales'}
       class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
-      {noticias.map((noticia, index) => (
+      {tarjetas.map((noticia, index) => (
         <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
           <article class="overflow-hidden rounded-xl border border-border bg-surface">
             {noticia.imagenUrl && (
@@ -120,9 +125,9 @@ const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion
                   {formatearTitulo(noticia.titulo) ?? normalizarTexto(noticia.titulo) ?? noticia.titulo}
                 </a>
               </h3>
-              {normalizarTexto(noticia.descripcion) && (
+              {noticia.descripcionMostrada && (
                 <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-relaxed text-text-secondary">
-                  {normalizarTexto(noticia.descripcion)}
+                  {noticia.descripcionMostrada}
                 </p>
               )}
             </div>
