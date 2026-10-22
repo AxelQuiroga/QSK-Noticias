@@ -15,6 +15,13 @@ const noticias = fuenteId
   : getGacetillasDestacadas(limit);
 const fuenteInfo = fuenteId ? getFuenteInfo(fuenteId) : undefined;
 const nombre = fuenteId ? (fuenteInfo?.nombre ?? nombreFuente(fuenteId)) : 'Novedades oficiales';
+const tituloSeccion = fuenteId === 'gba'
+  ? 'Noticias de Buenos Aires'
+  : fuenteId === 'esteban-echeverria'
+    ? 'Noticias de Esteban Echeverría'
+    : fuenteId
+      ? `Noticias de ${nombre}`
+      : 'Novedades oficiales';
 const headingId = fuenteId ? `gacetillas-${fuenteId}-heading` : 'novedades-oficiales-heading';
 const trackId = fuenteId ? `gacetillas-${fuenteId}-track` : 'novedades-oficiales-track';
 const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
@@ -24,13 +31,13 @@ const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion
   <div class="section-heading">
     <div>
       <h2 id={headingId} class="section-title">
-        {fuenteId ? `Gacetillas de ${nombre}` : 'Novedades oficiales'}
+        {tituloSeccion}
       </h2>
-      <p class="mt-1 max-w-2xl text-sm text-text-secondary">
-        {fuenteId
-          ? `Contenido del listado oficial de ${nombre}.`
-          : 'Anuncios e información difundidos por fuentes oficiales.'}
-      </p>
+      {!fuenteId && (
+        <p class="mt-1 max-w-2xl text-sm text-text-secondary">
+          Anuncios e información difundidos por fuentes oficiales.
+        </p>
+      )}
     </div>
     <div class="flex shrink-0 items-center gap-3">
       {noticias.length > 0 && (
