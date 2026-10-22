@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import WeatherWidget from '../components/WeatherWidget.astro';
-import GacetillasPorFuente from '../components/GacetillasPorFuente.astro';
+import NovedadesOficialesCarousel from '../components/NovedadesOficialesCarousel.astro';
 import { getFeaturedArticle, getLatestArticles } from '../lib/articles';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
@@ -63,17 +63,8 @@ const regiones = getLocationsByType('region');
           </div>
         </section>
 
-        <section class="mt-10 sm:mt-12 border-t border-border pt-8" aria-labelledby="gacetillas-oficiales-heading">
-          <div class="section-heading">
-            <h2 id="gacetillas-oficiales-heading" class="section-title">Gacetillas oficiales</h2>
-            <p class="mt-1 text-sm text-text-secondary">
-              Contenido reproducido de los listados oficiales del Gobierno de la Provincia de Buenos Aires y de las municipalidades.
-            </p>
-          </div>
-
-          <GacetillasPorFuente fuenteId="gba" limit={12} />
-          <GacetillasPorFuente fuenteId="esteban-echeverria" limit={12} />
-        </section>
+        <NovedadesOficialesCarousel fuenteId="gba" limit={12} />
+        <NovedadesOficialesCarousel fuenteId="esteban-echeverria" limit={12} />
       </div>
 
       <aside class="grid gap-8 sm:grid-cols-2 lg:sticky lg:top-24 lg:grid-cols-1">

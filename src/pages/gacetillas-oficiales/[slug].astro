@@ -28,15 +28,15 @@ const descripcionMostrada = normalizarTexto(gacetilla.descripcion);
 
 const cuerpoParrafos = (gacetilla.cuerpo ?? '')
   .split(/\n\s*\n/)
-  .map((parrafo) => normalizarTexto(parrafo) ?? parrafo.trim())
-  .filter(Boolean);
+  .map((parrafo) => normalizarTexto(parrafo))
+  .filter((parrafo): parrafo is string => parrafo !== null);
 
 const fecha = gacetilla.fecha ? new Date(gacetilla.fecha) : null;
 const fechaValida = fecha && !Number.isNaN(fecha.getTime()) ? fecha : null;
 ---
 
 <BaseLayout
-  title={`${gacetilla.titulo} — Gacetillas oficiales — QSK Noticias`}
+  title={`${tituloMostrado} — Gacetillas oficiales — QSK Noticias`}
   description={descripcionMostrada ?? gacetilla.titulo}
   canonical={`/gacetillas-oficiales/${gacetilla.slug}/`}
 >

@@ -128,9 +128,11 @@ function decodificarEntidades(texto: string): string {
     if (token.startsWith('#')) {
       const esHex = token.startsWith('#x');
       const codigo = esHex ? parseInt(token.slice(2), 16) : parseInt(token.slice(1), 10);
-      if (!Number.isNaN(codigo)) {
+      if (Number.isInteger(codigo) && codigo >= 0 && codigo <= 0x10FFFF) {
         return String.fromCodePoint(codigo);
       }
+      // Mantener entidades numéricas inválidas como texto en lugar de lanzar
+      // RangeError durante el renderizado del sitio.
       return _match;
     }
     return ENTIDADES_NOMBRADAS[token] ?? _match;
@@ -191,5 +193,25 @@ export function formatearTitulo(titulo: string | null | undefined): string | nul
   if (limpio === null) return null;
   if (!estaEnMayusculas(limpio)) return limpio;
 
-  return limpio.charAt(0).toUpperCase() + limpio.slice(1).toLowerCase();
+  const resultado = limpio.charAt(0).toUpperCase() + limpio.slice(1).toLowerCase();
+
+  // En títulos íntegramente en mayúsculas no se puede inferir cualquier sigla
+  // automáticamente; preservamos las siglas institucionales frecuentes.
+  const siglas: Record<string, string> = {
+    ANSES: 'ANSES',
+    ARCA: 'ARCA',
+    COVID: 'COVID',
+    DNI: 'DNI',
+    GBA: 'GBA',
+    PAMI: 'PAMI',
+    SUBE: 'SUBE',
+    UBA: 'UBA',
+    UNLAM: 'UNLaM',
+    UNLP: 'UNLP',
+    UTN: 'UTN',
+  };
+  return resultado.replace(/\b(?:anses|arca|covid|dni|gba|pami|sube|uba|unlam|unlp|utn)\b/gi, (token) => {
+    const clave = token.toUpperCase();
+    return siglas[clave] ?? token;
+  });
 }
