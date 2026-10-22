@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getArticlesByRegion } from '../../lib/articles';
 import { getLocationsByType, locationSlug } from '../../data/locations';
+import GacetillasPorFuente from '../../components/GacetillasPorFuente.astro';
 
 export async function getStaticPaths() {
   return getLocationsByType('region').map((location) => ({
@@ -40,5 +41,11 @@ const sorted = await getArticlesByRegion(region);
         No hay artículos publicados de esta región todavía.
       </p>
     )}
+
+    {region === 'AMBA' && (
+  <section class="mt-10">
+    <GacetillasPorFuente fuenteId="gba" />
+  </section>
+)}
   </div>
 </BaseLayout>
