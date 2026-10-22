@@ -418,6 +418,19 @@ describe('getGacetillasDestacadas', () => {
     expect(new Set(urls).size).toBe(2);
   });
 
+  it('conserva el orden del dataset para historias sin fecha de distintas fuentes', () => {
+    const sinFechas: Gacetilla[] = [
+      { ...gacetillaDePrueba(30), titulo: 'Primera GBA', fuente: 'gba', fecha: null, urlNoticia: 'https://example.com/primera-gba' },
+      { ...gacetillaDePrueba(31), titulo: 'Segunda EE', fuente: 'esteban-echeverria', fecha: null, urlNoticia: 'https://example.com/segunda-ee' },
+      { ...gacetillaDePrueba(32), titulo: 'Tercera Lanús', fuente: 'lanus', fecha: null, urlNoticia: 'https://example.com/tercera-lanus' },
+    ];
+    expect(getGacetillasDestacadas(3, sinFechas).map((g) => g.titulo)).toEqual([
+      'Primera GBA',
+      'Segunda EE',
+      'Tercera Lanús',
+    ]);
+  });
+
   it('devuelve lista vacía cuando no hay datos', () => {
     expect(getGacetillasDestacadas(8, [])).toEqual([]);
     expect(getGacetillasDestacadas(0, datosMezcla)).toEqual([]);
