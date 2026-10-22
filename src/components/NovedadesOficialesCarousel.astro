@@ -199,6 +199,6 @@ const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion
   }
 
   document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(setupCarousel);
-  document.querySelectorAll<HTMLImageElement>('img[data-carousel-img')
+  document.querySelectorAll<HTMLImageElement>('img[data-carousel-img]')
     .forEach((image) => guardExternalImage(image, '[data-carousel-img-fallback]'));
 </script>
