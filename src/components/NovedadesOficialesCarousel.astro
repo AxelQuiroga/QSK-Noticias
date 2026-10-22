@@ -1,115 +1,139 @@
 ---
-import { getGacetillasDestacadas, nombreFuente } from '../lib/gacetillas';
+import { getGacetillasDestacadas, getGacetillasRecientesPorFuente, getFuenteInfo, nombreFuente, rutaFuenteGacetillas } from '../lib/gacetillas';
+import { normalizarTexto, formatearTitulo } from '../lib/normalizar-texto';
 
 interface Props {
   limit?: number;
+  /** Si se indica, el carrusel muestra exclusivamente esta fuente. */
+  fuenteId?: string;
 }
 
-const { limit = 8 } = Astro.props;
-const noticias = getGacetillasDestacadas(limit);
-
-const TRACK_ID = 'novedades-oficiales-track';
-const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
+const { limit = 8, fuenteId } = Astro.props;
+const noticias = fuenteId
+  ? getGacetillasRecientesPorFuente(fuenteId, limit)
+  : getGacetillasDestacadas(limit);
+const fuenteInfo = fuenteId ? getFuenteInfo(fuenteId) : undefined;
+const nombre = fuenteId ? (fuenteInfo?.nombre ?? nombreFuente(fuenteId)) : 'Novedades oficiales';
+const headingId = fuenteId ? `gacetillas-${fuenteId}-heading` : 'novedades-oficiales-heading';
+const trackId = fuenteId ? `gacetillas-${fuenteId}-track` : 'novedades-oficiales-track';
+const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
 ---
 
-<section class="mt-10 sm:mt-12" aria-labelledby="novedades-oficiales-heading" data-carousel>
+<section class="mt-10 sm:mt-12" aria-labelledby={headingId} data-carousel>
   <div class="section-heading">
     <div>
-      <h2 id="novedades-oficiales-heading" class="section-title">Novedades oficiales</h2>
+      <h2 id={headingId} class="section-title">
+        {fuenteId ? `Gacetillas de ${nombre}` : 'Novedades oficiales'}
+      </h2>
       <p class="mt-1 max-w-2xl text-sm text-text-secondary">
-        Anuncios e información difundidos por fuentes oficiales: el Gobierno de la Provincia de Buenos Aires y las municipalidades del sur del conurbano.
+        {fuenteId
+          ? `Contenido del listado oficial de ${nombre}.`
+          : 'Anuncios e información difundidos por fuentes oficiales.'}
       </p>
     </div>
-    {noticias.length > 0 && (
-      <div class="hidden shrink-0 items-center gap-2 sm:flex">
-        <button
-          type="button"
-          data-carousel-prev
-          aria-label="Ver novedades anteriores"
-          aria-controls={TRACK_ID}
-          class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
-            <path d="m15 18-6-6 6-6" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          data-carousel-next
-          aria-label="Ver más novedades"
-          aria-controls={TRACK_ID}
-          class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
-            <path d="m9 18 6-6-6-6" />
-          </svg>
-        </button>
-      </div>
-    )}
+    <div class="flex shrink-0 items-center gap-3">
+      {noticias.length > 0 && (
+        <div class="hidden items-center gap-2 sm:flex">
+          <button
+            type="button"
+            data-carousel-prev
+            aria-label={`Ver publicaciones anteriores de ${nombre}`}
+            aria-controls={trackId}
+            class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-carousel-next
+            aria-label={`Ver más publicaciones de ${nombre}`}
+            aria-controls={trackId}
+            class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      )}
+      {fuenteId && noticias.length > 0 && (
+        <a href={rutaFuenteGacetillas(fuenteId)} class="text-sm font-semibold text-accent hover:underline">
+          Ver todas <span aria-hidden="true">↗</span>
+        </a>
+      )}
+    </div>
   </div>
 
   {noticias.length > 0 ? (
     <ul
-      id={TRACK_ID}
+      id={trackId}
       data-carousel-track
       tabindex="0"
-      aria-label="Novedades de las gacetillas oficiales"
+      aria-label={fuenteId ? `Gacetillas de ${nombre}` : 'Novedades de las gacetillas oficiales'}
       class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {noticias.map((noticia, index) => (
         <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
-          <a
-            href={`/gacetillas-oficiales/${noticia.slug}/`}
-            class="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors hover:border-info"
-          >
-            {noticia.imagenUrl && (
-              <div class="relative aspect-[16/9] shrink-0 overflow-hidden bg-surface-raised">
-                <img
-                  {...(index === 0 ? { src: noticia.imagenUrl } : {})}
-                  {...(index > 0 ? { 'data-src': noticia.imagenUrl } : {})}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                  data-carousel-img
-                  class="h-full w-full object-cover"
-                />
-                <span data-carousel-img-fallback class="absolute inset-0 hidden">
-                  <span class="flex h-full w-full flex-col items-center justify-center gap-2 text-text-secondary/60">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-8" aria-hidden="true">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <path d="m21 15-5-5L5 21" />
-                    </svg>
-                    <span class="text-xs font-medium">Imagen no disponible</span>
+          <article class="overflow-hidden rounded-xl border border-border bg-surface">
+            <a
+              href={`/gacetillas-oficiales/${noticia.slug}/`}
+              class="group flex h-full flex-col overflow-hidden transition-colors hover:border-info"
+            >
+              {noticia.imagenUrl && (
+                <div class="relative aspect-[16/9] shrink-0 overflow-hidden bg-surface-raised">
+                  <img
+                    {...(index === 0 ? { src: noticia.imagenUrl } : {})}
+                    {...(index > 0 ? { 'data-src': noticia.imagenUrl } : {})}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    data-carousel-img
+                    class="h-full w-full object-cover"
+                  />
+                  <span data-carousel-img-fallback class="absolute inset-0 hidden">
+                    <span class="flex h-full w-full flex-col items-center justify-center gap-2 text-text-secondary/60">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-8" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="2" />
+                        <circle cx="8.5" cy="8.5" r="1.5" />
+                        <path d="m21 15-5-5L5 21" />
+                      </svg>
+                      <span class="text-xs font-medium">Imagen no disponible</span>
+                    </span>
                   </span>
-                </span>
-              </div>
-            )}
-            <div class="flex flex-1 flex-col p-4">
-              <p class="text-xs font-semibold text-text-secondary">Fuente: {nombreFuente(noticia.fuente)}</p>
-              <h3 class="mt-1 line-clamp-2 min-h-[3.75rem] font-heading text-base font-extrabold leading-tight tracking-tight text-text group-hover:underline">{noticia.titulo}</h3>
-              {noticia.descripcion && (
-                <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-relaxed text-text-secondary">{noticia.descripcion}</p>
+                </div>
               )}
-            </div>
-          </a>
+              <div class="flex flex-1 flex-col p-4">
+                <p class="text-xs font-semibold text-text-secondary">Fuente: {nombreFuente(noticia.fuente)}</p>
+                <h3 class="mt-1 line-clamp-2 min-h-[3.75rem] font-heading text-base font-extrabold leading-tight tracking-tight text-text group-hover:underline">
+                  {formatearTitulo(noticia.titulo) ?? normalizarTexto(noticia.titulo) ?? noticia.titulo}
+                </h3>
+                {normalizarTexto(noticia.descripcion) && (
+                  <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-relaxed text-text-secondary">
+                    {normalizarTexto(noticia.descripcion)}
+                  </p>
+                )}
+              </div>
+            </a>
+          </article>
         </li>
       ))}
     </ul>
   ) : (
     <p class="rounded-xl border border-border p-5 text-sm text-text-secondary">
-      Las novedades oficiales se actualizarán cuando las fuentes vuelvan a estar disponibles.
+      Todavía no hay gacetillas de {nombre} disponibles.
     </p>
   )}
 
   <p class="mt-4 text-sm">
     <a
-      href={FUENTE_OFICIAL_URL}
+      href={fuenteUrl}
       target="_blank"
       rel="noopener noreferrer"
       class="font-semibold text-accent underline decoration-accent/50 underline-offset-4 hover:no-underline"
     >
-      Consultar todas las gacetillas oficiales <span aria-hidden="true">↗</span>
+      Consultar fuente oficial <span aria-hidden="true">↗</span>
     </a>
   </p>
 </section>
@@ -126,13 +150,11 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
     if (!track) return;
 
     const scrollBehavior = (): ScrollBehavior => (prefersReducedMotion.matches ? 'auto' : 'smooth');
-
     const step = (): number => {
       const card = track.querySelector<HTMLElement>('li');
       const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
       return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
     };
-
     const updateControls = (): void => {
       if (!prev || !next) return;
       const maxScroll = track.scrollWidth - track.clientWidth;
@@ -140,31 +162,18 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
       next.disabled = track.scrollLeft >= maxScroll - 1;
     };
 
-    prev?.addEventListener('click', () => {
-      track.scrollBy({ left: -step(), behavior: scrollBehavior() });
-    });
-
-    next?.addEventListener('click', () => {
-      track.scrollBy({ left: step(), behavior: scrollBehavior() });
-    });
-
+    prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: scrollBehavior() }));
+    next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: scrollBehavior() }));
     track.addEventListener('keydown', (event: KeyboardEvent) => {
       if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
       event.preventDefault();
-      track.scrollBy({
-        left: event.key === 'ArrowRight' ? step() : -step(),
-        behavior: scrollBehavior(),
-      });
+      track.scrollBy({ left: event.key === 'ArrowRight' ? step() : -step(), behavior: scrollBehavior() });
     });
-
     track.addEventListener('scroll', updateControls, { passive: true });
     window.addEventListener('resize', updateControls);
     updateControls();
 
-    const deferredImages = Array.from(
-      track.querySelectorAll<HTMLImageElement>('img[data-src][data-carousel-img]'),
-    );
-
+    const deferredImages = Array.from(track.querySelectorAll<HTMLImageElement>('img[data-src][data-carousel-img]'));
     const loadDeferredImage = (image: HTMLImageElement): void => {
       const source = image.dataset.src;
       if (!source || image.hasAttribute('src')) return;
@@ -177,24 +186,19 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
       return;
     }
 
-    const imageObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          const image = entry.target as HTMLImageElement;
-          loadDeferredImage(image);
-          imageObserver.unobserve(image);
-        });
-      },
-      { root: track, rootMargin: '200px', threshold: 0.01 },
-    );
+    const imageObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const image = entry.target as HTMLImageElement;
+        loadDeferredImage(image);
+        imageObserver.unobserve(image);
+      });
+    }, { root: track, rootMargin: '200px', threshold: 0.01 });
 
     deferredImages.forEach((image) => imageObserver.observe(image));
   }
 
   document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(setupCarousel);
-
-  document
-    .querySelectorAll<HTMLImageElement>('img[data-carousel-img]')
+  document.querySelectorAll<HTMLImageElement>('img[data-carousel-img')
     .forEach((image) => guardExternalImage(image, '[data-carousel-img-fallback]'));
 </script>
