@@ -7,11 +7,12 @@ const TARJETAS = 'article.overflow-hidden.rounded-xl.border.border-border.bg-sur
 const PAGINA_DEDICADA = 'section[aria-labelledby="gacetillas-heading"]';
 
 test.describe('Novedades oficiales — portada (dos secciones separadas)', () => {
-  test('muestra la sección de gacetillas oficiales con su título', async ({ page }) => {
+  test('muestra dos carruseles independientes con títulos por fuente', async ({ page }) => {
     await page.goto('/');
-    await expect(
-      page.getByRole('heading', { level: 2, name: 'Gacetillas oficiales' }),
-    ).toBeVisible();
+    await expect(page.locator(SECCION_GBA)).toBeVisible();
+    await expect(page.locator(SECCION_EE)).toBeVisible();
+    await expect(page.locator(SECCION_GBA).locator('[data-carousel-track] > li')).toHaveCount(12);
+    await expect(page.locator(SECCION_EE).locator('[data-carousel-track] > li')).toHaveCount(10);
   });
 
   test('muestra la sección provincial de GBA con sus propias tarjetas', async ({ page }) => {
