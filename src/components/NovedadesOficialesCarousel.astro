@@ -77,45 +77,42 @@ const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion
       {noticias.map((noticia, index) => (
         <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
           <article class="overflow-hidden rounded-xl border border-border bg-surface">
-            <a
-              href={`/gacetillas-oficiales/${noticia.slug}/`}
-              class="group flex h-full flex-col overflow-hidden transition-colors hover:border-info"
-            >
-              {noticia.imagenUrl && (
-                <div class="relative aspect-[16/9] shrink-0 overflow-hidden bg-surface-raised">
-                  <img
-                    {...(index === 0 ? { src: noticia.imagenUrl } : {})}
-                    {...(index > 0 ? { 'data-src': noticia.imagenUrl } : {})}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                    data-carousel-img
-                    class="h-full w-full object-cover"
-                  />
-                  <span data-carousel-img-fallback class="absolute inset-0 hidden">
-                    <span class="flex h-full w-full flex-col items-center justify-center gap-2 text-text-secondary/60">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-8" aria-hidden="true">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <path d="m21 15-5-5L5 21" />
-                      </svg>
-                      <span class="text-xs font-medium">Imagen no disponible</span>
-                    </span>
+            {noticia.imagenUrl && (
+              <a href={`/gacetillas-oficiales/${noticia.slug}/`} tabindex="-1" aria-hidden="true" class="relative block aspect-[16/9] shrink-0 overflow-hidden bg-surface-raised">
+                <img
+                  {...(index === 0 ? { src: noticia.imagenUrl } : {})}
+                  {...(index > 0 ? { 'data-src': noticia.imagenUrl } : {})}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  data-carousel-img
+                  class="h-full w-full object-cover"
+                />
+                <span data-carousel-img-fallback class="absolute inset-0 hidden">
+                  <span class="flex h-full w-full flex-col items-center justify-center gap-2 text-text-secondary/60">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="size-8" aria-hidden="true">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <path d="m21 15-5-5L5 21" />
+                    </svg>
+                    <span class="text-xs font-medium">Imagen no disponible</span>
                   </span>
-                </div>
-              )}
-              <div class="flex flex-1 flex-col p-4">
-                <p class="text-xs font-semibold text-text-secondary">Fuente: {nombreFuente(noticia.fuente)}</p>
-                <h3 class="mt-1 line-clamp-2 min-h-[3.75rem] font-heading text-base font-extrabold leading-tight tracking-tight text-text group-hover:underline">
+                </span>
+              </a>
+            )}
+            <div class="flex flex-1 flex-col p-4">
+              <p class="text-xs font-semibold text-text-secondary">Fuente: {nombreFuente(noticia.fuente)}</p>
+              <h3 class="mt-1 line-clamp-2 min-h-[3.75rem] font-heading text-base font-extrabold leading-tight tracking-tight text-text">
+                <a href={`/gacetillas-oficiales/${noticia.slug}/`} class="hover:underline">
                   {formatearTitulo(noticia.titulo) ?? normalizarTexto(noticia.titulo) ?? noticia.titulo}
-                </h3>
-                {normalizarTexto(noticia.descripcion) && (
-                  <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-relaxed text-text-secondary">
-                    {normalizarTexto(noticia.descripcion)}
-                  </p>
-                )}
-              </div>
-            </a>
+                </a>
+              </h3>
+              {normalizarTexto(noticia.descripcion) && (
+                <p class="mt-2 line-clamp-3 min-h-[4.5rem] text-sm leading-relaxed text-text-secondary">
+                  {normalizarTexto(noticia.descripcion)}
+                </p>
+              )}
+            </div>
           </article>
         </li>
       ))}
