@@ -10,9 +10,7 @@ test.describe('Novedades oficiales — portada', () => {
     await page.goto('/');
 
     await expect(page.getByRole('heading', { level: 2, name: 'Novedades oficiales' })).toBeVisible();
-    await expect(
-      page.getByText('Anuncios e información difundidos por el Gobierno de la Provincia de Buenos Aires.'),
-    ).toBeVisible();
+    await expect(page.getByText('Anuncios e información difundidos por fuentes oficiales: el Gobierno de la Provincia de Buenos Aires y las municipalidades del sur del conurbano.').first()).toBeVisible();
   });
 
   test('muestra hasta 8 tarjetas en el carrusel', async ({ page }) => {
@@ -36,9 +34,12 @@ test.describe('Novedades oficiales — portada', () => {
     await page.goto('/');
 
     const card = page.locator(`${TRACK} > li`).first();
-    await expect(card.locator('img')).toHaveAttribute('src', /^https:\/\/www\.gba\.gob\.ar\//);
     await expect(card.locator('h3')).toBeVisible();
     await expect(card.locator('h3 + p')).toBeVisible();
+    // Si el registro oficial ofrece imagen, es un recurso embebido remoto:
+    if ((await card.locator('img').count()) > 0) {
+      await expect(card.locator('img')).toHaveAttribute('src', /^https:\/\//);
+    }
   });
 
   test('cada tarjeta abre una página propia dentro de QSK', async ({ page }) => {
@@ -142,11 +143,18 @@ test.describe('Página de detalle de una gacetilla', () => {
     await page.goto(href!);
 
     await expect(page.getByRole('heading', { level: 1 })).not.toBeEmpty();
+    // La fuente queda explicitada por registro (GBA, municipio o genérico):
+    await expect(page.locator('article p.eyebrow')).toHaveText(/^Gacetilla oficial · .+/);
     const figure = page.locator('article figure');
-    await expect(figure).toBeVisible();
-    await expect(figure.locator('img')).toHaveAttribute('src', /^https:\/\/www\.gba\.gob\.ar\//);
-    await expect(page.locator('[data-gacetilla-bajada]')).toBeVisible();
-    await expect(page.locator('article')).toContainText('Gobierno de la Provincia de Buenos Aires');
+    if ((await figure.count()) > 0) {
+      await expect(figure).toBeVisible();
+      await expect(figure.locator('img')).toHaveAttribute('src', /^https:\/\//);
+      await expect(figure.locator('figcaption')).toContainText(/^Imagen: .+/);
+    }
+    const bajada = page.locator('[data-gacetilla-bajada]');
+    if ((await bajada.count()) > 0) {
+      await expect(bajada).toBeVisible();
+    }
     await expect(page.getByRole('link', { name: /Volver a Novedades oficiales/ })).toBeVisible();
   });
 
@@ -157,7 +165,7 @@ test.describe('Página de detalle de una gacetilla', () => {
 
     const original = page.getByRole('link', { name: /Ver publicación original/ });
     await expect(original).toBeVisible();
-    await expect(original).toHaveAttribute('href', /^https:\/\/www\.gba\.gob\.ar\/comunicacion_publica\/gacetillas\//);
+    await expect(original).toHaveAttribute('href', /^https:\/\//);
     await expect(original).toHaveAttribute('target', '_blank');
     await expect(original).toHaveAttribute('rel', /noopener/);
   });
@@ -193,13 +201,13 @@ test.describe('Página dedicada de gacetillas', () => {
 
     const card = page.locator(`${GACETILLAS_SECTION} article`).first();
     await expect(card.locator('h3 a')).toBeVisible();
-    await expect(card.locator('h3 a')).toHaveAttribute('href', /^https:\/\/www\.gba\.gob\.ar\//);
+    await expect(card.locator('h3 a')).toHaveAttribute('href', /^https:\/\//);
     await expect(card.locator('h3 + p')).toBeVisible();
-    await expect(card).toContainText('Gobierno de la Provincia de Buenos Aires');
+    await expect(card).toContainText(/Fuente: .+/);
 
     const original = card.getByRole('link', { name: 'Publicación original' });
     await expect(original).toBeVisible();
-    await expect(original).toHaveAttribute('href', /^https:\/\/www\.gba\.gob\.ar\//);
+    await expect(original).toHaveAttribute('href', /^https:\/\//);
     await expect(original).toHaveAttribute('target', '_blank');
     await expect(original).toHaveAttribute('rel', /noopener/);
   });

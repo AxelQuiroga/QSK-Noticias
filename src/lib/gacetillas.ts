@@ -9,6 +9,13 @@ export interface Gacetilla {
   fecha: string | null;
   volanta: string | null;
   /**
+   * Identificador de la fuente (src/fuentes.ts del extractor): "gba",
+   * "lanus", "avellaneda", "esteban-echeverria". Los registros del
+   * extractor nuevo lo traen siempre; el legado previo a la migración no
+   * lo tiene y se interpreta como "gba" (única fuente que existía).
+   */
+  fuente?: string;
+  /**
    * Texto completo de la publicación oficial, cuando el extractor lo provea.
    * La data actual del listado solo trae título, bajada e imagen.
    */
@@ -78,6 +85,90 @@ export function buildGacetillasConSlug(fuente: Gacetilla[] = datos): GacetillaCo
 export function getGacetillasConSlug(limit?: number, fuente: Gacetilla[] = datos): GacetillaConSlug[] {
   const todas = buildGacetillasConSlug(fuente);
   return typeof limit === 'number' ? todas.slice(0, limit) : todas;
+}
+
+/** Ruta de la página per-fuente dentro del portal. */
+export function rutaFuenteGacetillas(id: string): string {
+  return `/gacetillas-oficiales/fuente/${id}/`;
+}
+
+/**
+ * Identidad de las fuentes oficiales que pueden aportar registros.
+ * Los ids coinciden con src/fuentes.ts del extractor; el nombre es el
+ * que se muestra en las tarjetas y las secciones.
+ */
+export interface FuenteInfo {
+  id: string;
+  nombre: string;
+  /** URL del listado/feed oficial que alimenta al extractor. */
+  listadoUrl: string;
+}
+
+export const FUENTES_GACETILLAS: FuenteInfo[] = [
+  {
+    id: 'gba',
+    nombre: 'Gobierno de la Provincia de Buenos Aires',
+    listadoUrl: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas',
+  },
+  {
+    id: 'lanus',
+    nombre: 'Municipalidad de Lanús',
+    listadoUrl: 'https://www.lanus.gob.ar/noticias',
+  },
+  {
+    id: 'avellaneda',
+    nombre: 'Municipalidad de Avellaneda',
+    listadoUrl: 'https://www.mda.gob.ar/noticias/',
+  },
+  {
+    id: 'esteban-echeverria',
+    nombre: 'Municipalidad de Esteban Echeverría',
+    listadoUrl: 'https://www.estebanecheverria.gob.ar/feed/',
+  },
+];
+
+export function getFuenteInfo(id: string): FuenteInfo | undefined {
+  return FUENTES_GACETILLAS.find((fuente) => fuente.id === id);
+}
+
+/**
+ * Nombre para la atribución en tarjetas y páginas. Sin fuente declarada
+ * (legado previo a la migración) se interpreta GBA, única fuente que
+ * existía; un id desconocido cae en "Fuente externa" sin inventar datos.
+ */
+export function nombreFuente(id: string | undefined): string {
+  if (!id) return FUENTES_GACETILLAS[0]?.nombre ?? 'Fuente externa';
+  return getFuenteInfo(id)?.nombre ?? 'Fuente externa';
+}
+
+/** Las gacetillas de una fuente; el legado sin campo `fuente` cuenta como GBA. */
+function gacetillasDeFuente(id: string, fuente: Gacetilla[] = datos): Gacetilla[] {
+  return fuente.filter((gacetilla) => (gacetilla.fuente ?? 'gba') === id);
+}
+
+/** Todas las gacetillas de una fuente (con slug resuelto por fuente). */
+export function getGacetillasPorFuente(id: string, fuente: Gacetilla[] = datos): GacetillaConSlug[] {
+  return buildGacetillasConSlug(gacetillasDeFuente(id, fuente));
+}
+
+/** Las últimas `limite` gacetillas de una fuente. */
+export function getGacetillasRecientesPorFuente(
+  id: string,
+  limite: number = CANTIDAD_RECIENTES,
+  fuente: Gacetilla[] = datos,
+): GacetillaConSlug[] {
+  return getGacetillasPorFuente(id, fuente).slice(0, limite);
+}
+
+/** El archivo de una fuente: su historial menos las recientes. */
+export function getGacetillasArchivoPorFuente(id: string, fuente: Gacetilla[] = datos): GacetillaConSlug[] {
+  return getGacetillasPorFuente(id, fuente).slice(CANTIDAD_RECIENTES);
+}
+
+/** Fuentes con al menos un registro en el dataset, en orden de registro. */
+export function getFuentesConDatos(fuente: Gacetilla[] = datos): FuenteInfo[] {
+  const presentes = new Set(fuente.map((gacetilla) => gacetilla.fuente ?? 'gba'));
+  return FUENTES_GACETILLAS.filter((fuenteInfo) => presentes.has(fuenteInfo.id));
 }
 
 /**

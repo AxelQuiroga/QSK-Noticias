@@ -17,7 +17,7 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
     <div>
       <h2 id="novedades-oficiales-heading" class="section-title">Novedades oficiales</h2>
       <p class="mt-1 max-w-2xl text-sm text-text-secondary">
-        Anuncios e información difundidos por el Gobierno de la Provincia de Buenos Aires.
+        Anuncios e información difundidos por fuentes oficiales: el Gobierno de la Provincia de Buenos Aires y las municipalidades del sur del conurbano.
       </p>
     </div>
     {noticias.length > 0 && (
@@ -53,7 +53,7 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
       id={TRACK_ID}
       data-carousel-track
       tabindex="0"
-      aria-label="Novedades oficiales del Gobierno de la Provincia de Buenos Aires"
+      aria-label="Novedades de las gacetillas oficiales"
       class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {noticias.map((noticia, index) => (
@@ -97,7 +97,7 @@ const FUENTE_OFICIAL_URL = 'https://www.gba.gob.ar/comunicacion_publica/gacetill
     </ul>
   ) : (
     <p class="rounded-xl border border-border p-5 text-sm text-text-secondary">
-      Las novedades oficiales se actualizarán cuando la fuente vuelva a estar disponible.
+      Las novedades oficiales se actualizarán cuando las fuentes vuelvan a estar disponibles.
     </p>
   )}
 
