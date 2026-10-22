@@ -2,10 +2,17 @@ import { describe, expect, it } from 'vitest';
 import {
   buildGacetillasConSlug,
   CANTIDAD_RECIENTES,
+  FUENTES_GACETILLAS,
   getGacetillas,
   getGacetillasArchivo,
+  getGacetillasArchivoPorFuente,
   getGacetillasConSlug,
+  getGacetillasPorFuente,
   getGacetillasRecientes,
+  getGacetillasRecientesPorFuente,
+  getFuentesConDatos,
+  nombreFuente,
+  rutaFuenteGacetillas,
   type Gacetilla,
 } from '../src/lib/gacetillas';
 import { slugify } from '../src/lib/utils';
@@ -158,5 +165,111 @@ describe('dataset completo (historial + archivo)', () => {
     const todas = buildGacetillasConSlug(fuente15);
     expect(getGacetillasArchivo(fuente15)).toEqual(todas.slice(CANTIDAD_RECIENTES));
     expect(todas).toEqual([...getGacetillasRecientes(CANTIDAD_RECIENTES, fuente15), ...getGacetillasArchivo(fuente15)]);
+  });
+});
+
+/**
+ * Dataset multi-fuente de prueba: 2 de GBA (1 con declaracion explícita y
+ * 1 del legado sin `fuente`, que se interpreta GBA), 15 de Lanús (colapsan
+ * recientes + archivo), 2 de Avellaneda y 0 de Esteban Echeverría.
+ */
+const datosMultiFuente: Gacetilla[] = [
+  { ...gacetillaDePrueba(1), titulo: 'Gaci provincial nueva', fuente: 'gba' },
+  { ...gacetillaDePrueba(2), titulo: 'Gaci municipal lanus', fuente: 'lanus' },
+  { ...gacetillaDePrueba(3), titulo: 'Gaci municipal lanus dos', fuente: 'lanus' },
+  ...Array.from({ length: 13 }, (_, i) => ({
+    ...gacetillaDePrueba(i + 10),
+    titulo: `Gaci lanus histórica ${i + 1}`,
+    fuente: 'lanus' as const,
+  })),
+  { ...gacetillaDePrueba(90), titulo: 'Gaci municipal avellaneda', fuente: 'avellaneda' },
+  { ...gacetillaDePrueba(91), titulo: 'Gaci municipal avellaneda dos', fuente: 'avellaneda' },
+  // Legado previo a la migración: sin campo `fuente`.
+  gacetillaDePrueba(99),
+];
+
+describe('getGacetillasPorFuente', () => {
+  it('filtra por la fuente declarada sin mezclar registros de otras', () => {
+    const lanus = getGacetillasPorFuente('lanus', datosMultiFuente);
+    expect(lanus).toHaveLength(15);
+    expect(lanus.every((g) => g.titulo.includes('lanus'))).toBe(true);
+  });
+
+  it('el legado sin campo fuente se interpreta como GBA (única fuente previa a la migración)', () => {
+    const gba = getGacetillasPorFuente('gba', datosMultiFuente);
+    expect(gba.map((g) => g.titulo)).toEqual(['Gaci provincial nueva', 'Gacetilla de prueba 99']);
+  });
+
+  it('devuelve lista vacía para una fuente sin registros (sin inventar datos)', () => {
+    expect(getGacetillasPorFuente('esteban-echeverria', datosMultiFuente)).toEqual([]);
+  });
+
+  it('resuelve slugs dentro del subconjunto de la fuente', () => {
+    const lanus = getGacetillasPorFuente('lanus', datosMultiFuente);
+    expect(lanus[0]?.slug).toBe('gaci-municipal-lanus');
+    expect(lanus[1]?.slug).toBe('gaci-municipal-lanus-dos');
+  });
+});
+
+describe('recientes y archivo por fuente', () => {
+  it('recientes respeta su límite dentro de la fuente', () => {
+    const recientes = getGacetillasRecientesPorFuente('lanus', CANTIDAD_RECIENTES, datosMultiFuente);
+    expect(recientes).toHaveLength(CANTIDAD_RECIENTES);
+    expect(recientes[0]?.titulo).toBe('Gaci municipal lanus');
+    expect(recientes.some((g) => g.titulo.includes('avellaneda'))).toBe(false);
+  });
+
+  it('archivo por fuente es el resto, independiente del de otras fuentes', () => {
+    const archivoLanus = getGacetillasArchivoPorFuente('lanus', datosMultiFuente);
+    expect(archivoLanus).toHaveLength(15 - CANTIDAD_RECIENTES);
+    expect(archivoLanus.every((g) => g.titulo.includes('lanus'))).toBe(true);
+  });
+
+  it('una fuente con pocas gacetillas tiene archivo vacío', () => {
+    expect(getGacetillasArchivoPorFuente('avellaneda', datosMultiFuente)).toEqual([]);
+    expect(getGacetillasRecientesPorFuente('avellaneda', CANTIDAD_RECIENTES, datosMultiFuente)).toHaveLength(2);
+  });
+});
+
+describe('getFuentesConDatos', () => {
+  it('lista solo las fuentes con al menos un registro, en orden de registro', () => {
+    expect(getFuentesConDatos(datosMultiFuente).map((f) => f.id)).toEqual([
+      'gba',
+      'lanus',
+      'avellaneda',
+    ]);
+  });
+
+  it('con el dataset actual (solo GBA) no inventa fuentes', () => {
+    const presentes = getFuentesConDatos();
+    expect(presentes).toHaveLength(1);
+    expect(presentes[0]?.id).toBe('gba');
+  });
+});
+
+describe('nombreFuente', () => {
+  it('resuelve nombres conocidos', () => {
+    expect(nombreFuente('lanus')).toBe('Municipalidad de Lanús');
+    expect(nombreFuente('gba')).toBe('Gobierno de la Provincia de Buenos Aires');
+  });
+
+  it('sin fuente (legado) cae en GBA y con id desconocido en genérico', () => {
+    expect(nombreFuente(undefined)).toBe('Gobierno de la Provincia de Buenos Aires');
+    expect(nombreFuente('fuente-fantasma')).toBe('Fuente externa');
+  });
+});
+
+describe('FUENTES_GACETILLAS y rutas', () => {
+  it('las cuatro fuentes registradas coinciden con el extractor', () => {
+    expect(FUENTES_GACETILLAS.map((f) => f.id)).toEqual([
+      'gba',
+      'lanus',
+      'avellaneda',
+      'esteban-echeverria',
+    ]);
+  });
+
+  it('rutaFuenteGacetillas construye la URL de la sección per-fuente', () => {
+    expect(rutaFuenteGacetillas('lanus')).toBe('/gacetillas-oficiales/fuente/lanus/');
   });
 });

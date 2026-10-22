@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../../../../layouts/BaseLayout.astro';
+import GacetillasTarjetas from '../../../../../components/GacetillasTarjetas.astro';
+import { getGacetillasArchivoPorFuente, getFuentesConDatos, type FuenteInfo } from '../../../../../lib/gacetillas';
+
+export function getStaticPaths() {
+  // Solo municipios: el archivo de GBA es el global de /gacetillas-oficiales/archivo/.
+  return getFuentesConDatos()
+    .filter((fuente) => fuente.id !== 'gba')
+    .map((fuente) => ({
+      params: { id: fuente.id },
+      props: { fuenteInfo: fuente },
+    }));
+}
+
+interface Props {
+  fuenteInfo: FuenteInfo;
+}
+
+const { fuenteInfo } = Astro.props;
+const nombre = fuenteInfo.nombre;
+const archivo = getGacetillasArchivoPorFuente(fuenteInfo.id);
+---
+
+<BaseLayout
+  title={`Archivo de gacetillas de ${nombre} — QSK Noticias`}
+  description={`Gacetillas anteriores de ${nombre}. Conservan su página y su enlace a la publicación original.`}
+  canonical={`/gacetillas-oficiales/fuente/${fuenteInfo.id}/archivo/`}
+>
+  <div class="container-editorial pb-14 pt-7 sm:pt-10">
+    <nav aria-label="Miga de pan" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+        <li><a href="/" class="hover:text-text">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/gacetillas-oficiales/" class="hover:text-text">Gacetillas oficiales</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href={`/gacetillas-oficiales/fuente/${fuenteInfo.id}/`} class="hover:text-text">{nombre}</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" class="font-medium text-text">Archivo</li>
+      </ol>
+    </nav>
+
+    <header class="mb-8 border-b border-border pb-6">
+      <p class="eyebrow">Contenido oficial · Fuente externa</p>
+      <h1 class="mt-3 font-heading text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Archivo de gacetillas de {nombre}</h1>
+      <p class="mt-3 max-w-2xl leading-relaxed text-text-secondary">Gacetillas de {nombre} que ya no están entre las más recientes. Cada una conserva su página propia y el enlace a su publicación original. El contenido no es redactado por QSK Noticias.</p>
+    </header>
+
+    <section aria-labelledby="archivo-fuente-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="archivo-fuente-heading" class="section-title">Gacetillas anteriores</h2>
+          <p class="mt-1 text-sm text-text-secondary">Ordenadas de la más reciente a la más antigua, tal como aparecen en el listado oficial.</p>
+        </div>
+        <a href={`/gacetillas-oficiales/fuente/${fuenteInfo.id}/`} class="text-sm font-semibold text-accent hover:underline">Ver las recientes <span aria-hidden="true">↗</span></a>
+      </div>
+
+      {
+        archivo.length > 0 ? (
+          <GacetillasTarjetas noticias={archivo} />
+        ) : (
+          <p class="rounded-xl border border-border p-5 text-sm text-text-secondary">Todavía no hay gacetillas en el archivo de esta fuente: las últimas doce siguen en su sección principal.</p>
+        )
+      }
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import { guardExternalImage } from '../../../../../lib/image-fallback';
+
+  document
+    .querySelectorAll<HTMLImageElement>('img[data-gacetilla-img]')
+    .forEach((image) => guardExternalImage(image, '[data-gacetilla-img-fallback]'));
+</script>
