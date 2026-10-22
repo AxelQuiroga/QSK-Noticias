@@ -9,10 +9,8 @@ import {
 } from '../../../../lib/gacetillas';
 
 export function getStaticPaths() {
-  // Solo municipios: GBA mantiene su sección global (/gacetillas-oficiales/)
-  // y su propio archivo; una página /fuente/gba/ sería un duplicado huérfano.
+  // Generar una ruta por cada fuente presente en los datos, incluida GBA.
   return getFuentesConDatos()
-    .filter((fuente) => fuente.id !== 'gba')
     .map((fuente) => ({
       params: { id: fuente.id },
       props: { fuenteInfo: fuente },
