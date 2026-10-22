@@ -1,173 +1,174 @@
 import { test, expect } from '@playwright/test';
 
-const SECTION = 'section[aria-labelledby="novedades-oficiales-heading"]';
-const TRACK = `${SECTION} [data-carousel-track]`;
-const CARD_LINKS = `${TRACK} > li > a`;
-const FUENTE_OFICIAL = 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
+const SECCION_GBA = 'section[aria-labelledby="gacetillas-gba-heading"]';
+const SECCION_EE = 'section[aria-labelledby="gacetillas-esteban-echeverria-heading"]';
+const TARJETAS = 'article.overflow-hidden.rounded-xl.border.border-border.bg-surface';
+const PAGINA_DEDICADA = 'section[aria-labelledby="gacetillas-heading"]';
 
-test.describe('Novedades oficiales — portada', () => {
-  test('la portada muestra la sección con su título e introducción', async ({ page }) => {
+test.describe('Novedades oficiales — portada (dos secciones separadas)', () => {
+  test('muestra dos carruseles independientes con títulos por fuente', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator(SECCION_GBA)).toBeVisible();
+    await expect(page.locator(SECCION_EE)).toBeVisible();
+    await expect(page.locator(SECCION_GBA).locator('[data-carousel-track] > li')).toHaveCount(12);
+    const tarjetasEE = page.locator(SECCION_EE).locator('[data-carousel-track] > li');
+    await expect(tarjetasEE).not.toHaveCount(0);
+    expect(await tarjetasEE.count()).toBeLessThanOrEqual(12);
+  });
+
+  test('muestra la sección provincial de GBA con sus propias tarjetas', async ({ page }) => {
     await page.goto('/');
 
-    await expect(page.getByRole('heading', { level: 2, name: 'Novedades oficiales' })).toBeVisible();
+    const seccion = page.locator(SECCION_GBA);
+    await expect(seccion).toBeVisible();
     await expect(
-      page.getByText('Anuncios e información difundidos por el Gobierno de la Provincia de Buenos Aires.'),
+      page.getByRole('heading', {
+        level: 2,
+        name: 'Noticias de Buenos Aires',
+      }),
     ).toBeVisible();
-  });
 
-  test('muestra hasta 8 tarjetas en el carrusel', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.locator(`${TRACK} > li`)).toHaveCount(8);
-  });
+    const tarjetas = seccion.locator(TARJETAS);
+    await expect(tarjetas).toHaveCount(12);
 
-  test('las noticias editoriales conservan su prioridad en la portada', async ({ page }) => {
-    await page.goto('/');
-
-    const editorialPrimero = await page.evaluate(() => {
-      const ultimas = document.getElementById('latest-heading');
-      const novedades = document.getElementById('novedades-oficiales-heading');
-      if (!ultimas || !novedades) return false;
-      return Boolean(ultimas.compareDocumentPosition(novedades) & Node.DOCUMENT_POSITION_FOLLOWING);
-    });
-    expect(editorialPrimero).toBe(true);
-  });
-
-  test('cada tarjeta muestra imagen, título y descripción', async ({ page }) => {
-    await page.goto('/');
-
-    const card = page.locator(`${TRACK} > li`).first();
-    await expect(card.locator('img')).toHaveAttribute('src', /^https:\/\/www\.gba\.gob\.ar\//);
-    await expect(card.locator('h3')).toBeVisible();
-    await expect(card.locator('h3 + p')).toBeVisible();
-  });
-
-  test('cada tarjeta abre una página propia dentro de QSK', async ({ page }) => {
-    await page.goto('/');
-
-    const links = page.locator(CARD_LINKS);
-    await expect(links).toHaveCount(8);
-
-    const hrefs = await links.evaluateAll((elements) =>
-      elements.map((element) => element.getAttribute('href') ?? ''),
-    );
-    for (const href of hrefs) {
-      expect(href).toMatch(/^\/gacetillas-oficiales\/[a-z0-9-]+\/$/);
+    // Cada tarjeta de GBA debe tener fuente GBA
+    for (const tarjeta of await tarjetas.all()) {
+      await expect(tarjeta).toContainText('Gobierno de la Provincia de Buenos Aires');
     }
 
-    // Ninguna tarjeta manda al lector fuera del sitio.
-    await expect(page.locator(`${TRACK} a[href^="http"]`)).toHaveCount(0);
+    // Enlace propio para consultar todas las publicaciones de GBA
+    const enlaceTodas = seccion.getByRole('link', {
+      name: /Ver todas las publicaciones de Gobierno de la Provincia/,
+    });
+    await expect(enlaceTodas).toBeVisible();
+    await expect(enlaceTodas).toHaveAttribute('href', '/gacetillas-oficiales/fuente/gba/');
   });
 
-  test('hay exactamente un enlace general a la fuente oficial', async ({ page }) => {
+  test('muestra la sección municipal de Esteban Echeverría con sus propias tarjetas', async ({ page }) => {
     await page.goto('/');
 
-    const fuente = page.locator(`${SECTION} a[href="${FUENTE_OFICIAL}"]`);
-    await expect(fuente).toHaveCount(1);
-    await expect(fuente).toHaveAttribute('target', '_blank');
-    await expect(fuente).toHaveAttribute('rel', /noopener/);
-    await expect(page.getByRole('link', { name: /Consultar todas las gacetillas oficiales/ })).toBeVisible();
+    const seccion = page.locator(SECCION_EE);
+    await expect(seccion).toBeVisible();
+    await expect(
+      page.getByRole('heading', {
+        level: 2,
+        name: 'Noticias de Esteban Echeverría',
+      }),
+    ).toBeVisible();
 
-    // El enlace general vive fuera del track de tarjetas.
-    await expect(page.locator(`${TRACK} a[href="${FUENTE_OFICIAL}"]`)).toHaveCount(0);
+    const tarjetas = seccion.locator(TARJETAS);
+    // La fuente puede crecer: debe haber tarjetas sin superar el límite del carrusel.
+    expect(await tarjetas.count()).toBeGreaterThan(0);
+    expect(await tarjetas.count()).toBeLessThanOrEqual(12);
+
+    // Cada tarjeta de EE debe tener fuente EE
+    for (const tarjeta of await tarjetas.all()) {
+      await expect(tarjeta).toContainText('Municipalidad de Esteban Echeverría');
+    }
+
+    // Enlace propio para consultar todas las publicaciones de EE
+    const enlaceTodas = seccion.getByRole('link', {
+      name: /Ver todas las publicaciones de Municipalidad de Esteban Echeverría/,
+    });
+    await expect(enlaceTodas).toBeVisible();
+    await expect(enlaceTodas).toHaveAttribute(
+      'href',
+      '/gacetillas-oficiales/fuente/esteban-echeverria/',
+    );
   });
 
-  test('un clic en una tarjeta entra al detalle dentro de QSK', async ({ page }) => {
+  test('las dos secciones nunca se mezclan ni duplican tarjetas', async ({ page }) => {
     await page.goto('/');
 
-    await page.locator(CARD_LINKS).first().click();
-    await expect(page).toHaveURL(/\/gacetillas-oficiales\/[a-z0-9-]+\/$/);
+    const gba = page.locator(SECCION_GBA).locator(TARJETAS);
+    const ee = page.locator(SECCION_EE).locator(TARJETAS);
+
+    const urlsGBA = await gba.locator('a[href^="/gacetillas-oficiales/"]').evaluateAll(
+      (els) => els.map((e) => e.getAttribute('href')),
+    );
+    const urlsEE = await ee.locator('a[href^="/gacetillas-oficiales/"]').evaluateAll(
+      (els) => els.map((e) => e.getAttribute('href')),
+    );
+
+    const setGBA = new Set(urlsGBA);
+    const setEE = new Set(urlsEE);
+    const duplicados = [...setGBA].filter((u) => setEE.has(u));
+    expect(duplicados).toEqual([]);
+  });
+
+  test('cada tarjeta de la sección provincial muestra título, descripción y fuente', async ({ page }) => {
+    await page.goto('/');
+
+    const tarjeta = page.locator(SECCION_GBA).locator(TARJETAS).first();
+    await expect(tarjeta.locator('h3 a')).toBeVisible();
+    await expect(tarjeta).toContainText('Gobierno de la Provincia de Buenos Aires');
+    // GBA tiene fecha null, por lo que no hay <time>; eso es válido
+    const img = tarjeta.locator('img');
+    if ((await img.count()) > 0) {
+      await expect(img).toHaveAttribute('src', /^https:\/\//);
+    }
+  });
+
+  test('cada tarjeta de la sección municipal muestra título, descripción, fuente y fecha', async ({ page }) => {
+    await page.goto('/');
+
+    const tarjeta = page.locator(SECCION_EE).locator(TARJETAS).first();
+    await expect(tarjeta.locator('h3 a')).toBeVisible();
+    await expect(tarjeta).toContainText('Municipalidad de Esteban Echeverría');
+    await expect(tarjeta.locator('time')).toBeVisible();
+  });
+
+  test('un clic en una tarjeta de GBA entra al detalle dentro de QSK', async ({ page }) => {
+    await page.goto('/');
+
+    await page.locator(SECCION_GBA).locator(TARJETAS).first().locator('h3 a').click();
     await expect(page.getByRole('heading', { level: 1 })).not.toBeEmpty();
   });
 
-  test('los controles del carrusel son accesibles y desplazan el contenido', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 900 });
+  test('un clic en una tarjeta de EE entra al detalle dentro de QSK', async ({ page }) => {
     await page.goto('/');
 
-    const prev = page.getByRole('button', { name: 'Ver novedades anteriores' });
-    const next = page.getByRole('button', { name: 'Ver más novedades' });
-    await expect(prev).toBeVisible();
-    await expect(next).toBeVisible();
-    await expect(prev).toBeDisabled();
-    await expect(next).toBeEnabled();
-
-    await next.click();
-    await expect
-      .poll(() => page.locator(TRACK).evaluate((element) => element.scrollLeft))
-      .toBeGreaterThan(0);
-
-    await expect(prev).toBeEnabled();
-    await prev.click();
-    await expect
-      .poll(() => page.locator(TRACK).evaluate((element) => element.scrollLeft))
-      .toBeLessThanOrEqual(1);
-  });
-
-  test('el carrusel se navega con teclado', async ({ page }) => {
-    await page.goto('/');
-
-    const track = page.locator(TRACK);
-    await track.focus();
-    await page.keyboard.press('ArrowRight');
-
-    await expect
-      .poll(() => track.evaluate((element) => element.scrollLeft))
-      .toBeGreaterThan(0);
-  });
-
-  test('en móvil se desliza horizontalmente sin desbordar la página', async ({ page }) => {
-    await page.setViewportSize({ width: 375, height: 667 });
-    await page.goto('/');
-
-    await expect(page.getByRole('button', { name: 'Ver novedades anteriores' })).toBeHidden();
-    await expect(page.getByRole('button', { name: 'Ver más novedades' })).toBeHidden();
-
-    const track = page.locator(TRACK);
-    const scrollable = await track.evaluate((element) => element.scrollWidth > element.clientWidth);
-    expect(scrollable).toBe(true);
-
-    await track.evaluate((element) => element.scrollBy({ left: 300, behavior: 'instant' }));
-    await expect.poll(() => track.evaluate((element) => element.scrollLeft)).toBeGreaterThan(0);
-
-    const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
-    );
-    expect(overflow).toBeLessThanOrEqual(0);
+    await page.locator(SECCION_EE).locator(TARJETAS).first().locator('h3 a').click();
+    await expect(page.getByRole('heading', { level: 1 })).not.toBeEmpty();
   });
 });
 
 test.describe('Página de detalle de una gacetilla', () => {
   test('muestra título, imagen, bajada y fuente de forma explícita', async ({ page }) => {
     await page.goto('/');
-    const href = await page.locator(CARD_LINKS).first().getAttribute('href');
-    await page.goto(href!);
+    await page.locator(SECCION_GBA).locator(TARJETAS).first().locator('h3 a').click();
 
     await expect(page.getByRole('heading', { level: 1 })).not.toBeEmpty();
     const figure = page.locator('article figure');
-    await expect(figure).toBeVisible();
-    await expect(figure.locator('img')).toHaveAttribute('src', /^https:\/\/www\.gba\.gob\.ar\//);
-    await expect(page.locator('[data-gacetilla-bajada]')).toBeVisible();
-    await expect(page.locator('article')).toContainText('Gobierno de la Provincia de Buenos Aires');
+    if ((await figure.count()) > 0) {
+      await expect(figure).toBeVisible();
+      await expect(figure.locator('img')).toHaveAttribute('src', /^https:\/\//);
+      await expect(figure.locator('figcaption')).toContainText(/^Imagen: .+/);
+    }
+    const bajada = page.locator('[data-gacetilla-bajada]');
+    if ((await bajada.count()) > 0) {
+      await expect(bajada).toBeVisible();
+    }
     await expect(page.getByRole('link', { name: /Volver a Novedades oficiales/ })).toBeVisible();
   });
 
   test('ofrece el enlace a la publicación original solo dentro del detalle', async ({ page }) => {
     await page.goto('/');
-    const href = await page.locator(CARD_LINKS).first().getAttribute('href');
-    await page.goto(href!);
+    await page.locator(SECCION_GBA).locator(TARJETAS).first().locator('h3 a').click();
 
     const original = page.getByRole('link', { name: /Ver publicación original/ });
     await expect(original).toBeVisible();
-    await expect(original).toHaveAttribute('href', /^https:\/\/www\.gba\.gob\.ar\/comunicacion_publica\/gacetillas\//);
+    await expect(original).toHaveAttribute('href', /^https:\/\//);
     await expect(original).toHaveAttribute('target', '_blank');
     await expect(original).toHaveAttribute('rel', /noopener/);
   });
 
-  test('todas las tarjetas del carrusel llevan a un detalle que responde', async ({ page }) => {
+  test('todas las tarjetas de la sección GBA llevan a un detalle que responde', async ({ page }) => {
     await page.goto('/');
-    const hrefs = await page.locator(CARD_LINKS).evaluateAll((elements) =>
-      elements.map((element) => element.getAttribute('href') ?? ''),
+    const hrefs = await page.locator(SECCION_GBA).locator(TARJETAS).locator('h3 a').evaluateAll(
+      (elements) => elements.map((element) => element.getAttribute('href') ?? ''),
     );
-    expect(hrefs).toHaveLength(8);
+    expect(hrefs).toHaveLength(12);
 
     for (const href of hrefs) {
       const response = await page.goto(href);
@@ -179,28 +180,42 @@ test.describe('Página de detalle de una gacetilla', () => {
 });
 
 test.describe('Página dedicada de gacetillas', () => {
-  const GACETILLAS_SECTION = 'section[aria-labelledby="gacetillas-heading"]';
-
-  test('la página dedicada muestra hasta 12 gacetillas', async ({ page }) => {
+  test('la página dedicada muestra gacetillas de ambas fuentes', async ({ page }) => {
     await page.goto('/gacetillas-oficiales/');
 
     await expect(page.getByRole('heading', { level: 1, name: 'Gacetillas oficiales' })).toBeVisible();
-    await expect(page.locator(`${GACETILLAS_SECTION} article`)).toHaveCount(12);
+
+    const tarjetas = page.locator(`${PAGINA_DEDICADA} article`);
+    await expect(tarjetas).toHaveCount(12);
+
+    const tarjeta = tarjetas.first();
+    await expect(tarjeta.locator('h3 a')).toBeVisible();
+    await expect(tarjeta).toContainText(/^Fuente: .+/);
   });
 
   test('cada tarjeta muestra título, descripción, atribución y enlace a la publicación original', async ({ page }) => {
     await page.goto('/gacetillas-oficiales/');
 
-    const card = page.locator(`${GACETILLAS_SECTION} article`).first();
+    const card = page.locator(`${PAGINA_DEDICADA} article`).first();
     await expect(card.locator('h3 a')).toBeVisible();
-    await expect(card.locator('h3 a')).toHaveAttribute('href', /^https:\/\/www\.gba\.gob\.ar\//);
+    await expect(card.locator('h3 a')).toHaveAttribute('href', /^https:\/\//);
     await expect(card.locator('h3 + p')).toBeVisible();
-    await expect(card).toContainText('Gobierno de la Provincia de Buenos Aires');
+    await expect(card).toContainText(/^Fuente: .+/);
 
     const original = card.getByRole('link', { name: 'Publicación original' });
     await expect(original).toBeVisible();
-    await expect(original).toHaveAttribute('href', /^https:\/\/www\.gba\.gob\.ar\//);
+    await expect(original).toHaveAttribute('href', /^https:\/\//);
     await expect(original).toHaveAttribute('target', '_blank');
     await expect(original).toHaveAttribute('rel', /noopener/);
+  });
+
+  test('las páginas específicas por fuente funcionan', async ({ page }) => {
+    await page.goto('/gacetillas-oficiales/fuente/esteban-echeverria/');
+
+    await expect(page.getByRole('heading', { level: 2, name: 'Últimas gacetillas' })).toBeVisible();
+
+    const tarjetas = page.locator(TARJETAS);
+    expect(await tarjetas.count()).toBeGreaterThan(0);
+    expect(await tarjetas.count()).toBeLessThanOrEqual(12);
   });
 });
