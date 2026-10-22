@@ -19,6 +19,8 @@ describe('normalizarTexto', () => {
     expect(normalizarTexto('hola&nbsp;mundo')).toBe('hola mundo'); // NBSP entre palabras → espacio
     expect(normalizarTexto('&#233;')).toBe('é');
     expect(normalizarTexto('&#xE1;')).toBe('á');
+    expect(normalizarTexto('&#1114112;')).toBe('&#1114112;');
+    expect(normalizarTexto('&#x110000;')).toBe('&#x110000;');
     expect(normalizarTexto('&iquest;')).toBe('¿');
   });
 
@@ -65,6 +67,15 @@ describe('formatearTitulo', () => {
   it('preserva acrónimos, números y signos en mayúsculas', () => {
     expect(formatearTitulo('PLAN 2° ETAPA: OBRAS Y MÁS')).toBe(
       'Plan 2° etapa: obras y más',
+    );
+  });
+
+  it('preserva siglas institucionales al normalizar títulos en mayúsculas', () => {
+    expect(formatearTitulo('OPERATIVO DE DNI Y ANSES EN EL BARRIO')).toBe(
+      'Operativo de DNI y ANSES en el barrio',
+    );
+    expect(formatearTitulo('OBRAS DE LA UTN Y LA UNLP')).toBe(
+      'Obras de la UTN y la UNLP',
     );
   });
 
