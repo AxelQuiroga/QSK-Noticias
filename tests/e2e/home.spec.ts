@@ -45,3 +45,25 @@ test.describe('Portada', () => {
     await expect(page.getByRole('link', { name: 'Contacto' })).toBeVisible();
   });
 });
+
+test.describe('Imágenes de la portada (rendimiento)', () => {
+  test('la imagen destacada carga con prioridad alta y marcado responsivo', async ({ page }) => {
+    await page.goto('/');
+    const featured = page.locator('article').first().locator('img');
+    await expect(featured).toBeVisible();
+    await expect(featured).toHaveAttribute('loading', 'eager');
+    await expect(featured).toHaveAttribute('fetchpriority', 'high');
+    await expect(featured).toHaveAttribute('srcset');
+    await expect(featured).toHaveAttribute('sizes');
+    await expect(featured).toHaveAttribute('alt', '');
+  });
+
+  test('las tarjetas no destacadas cargan diferidas (lazy) sin prioridad alta', async ({ page }) => {
+    await page.goto('/');
+    const normal = page.locator('main article').nth(1).locator('img');
+    await expect(normal).toBeVisible();
+    await expect(normal).toHaveAttribute('loading', 'lazy');
+    await expect(normal).not.toHaveAttribute('fetchpriority', 'high');
+    await expect(normal).toHaveAttribute('srcset');
+  });
+});

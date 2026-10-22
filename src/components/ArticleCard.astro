@@ -1,6 +1,7 @@
 ---
 import { formatDate, slugify, type Article } from '../lib/articles';
 import { findLocationByName, locationSlug } from '../data/locations';
+import { responsiveImage } from '../lib/responsive-image';
 
 interface Props {
   article: Article;
@@ -9,6 +10,15 @@ interface Props {
 
 const { article, variant = 'default' } = Astro.props;
 const { data } = article;
+const isFeatured = variant === 'featured';
+
+// Imagen responsiva: variantes WebP generadas en `public/images/noticias/optimized/`.
+const imageProps = data.image
+  ? responsiveImage(
+      data.image.src,
+      isFeatured ? '(min-width: 1024px) 520px, 100vw' : '(min-width: 768px) 480px, 100vw',
+    )
+  : null;
 const sectionSlug = data.section ? slugify(data.section) : "";
 
 const municipality = data.municipality ? findLocationByName(data.municipality) : undefined;
@@ -31,11 +41,14 @@ const municipalitySlug =
       aria-hidden="true"
     >
       <img
-        src={data.image.src}
+        src={imageProps?.src ?? data.image.src}
         alt=""
+        srcset={imageProps?.srcset}
+        sizes={imageProps?.sizes}
         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
-        loading={variant === 'featured' ? 'eager' : 'lazy'}
-        decoding="async"
+        loading={isFeatured ? 'eager' : 'lazy'}
+        fetchpriority={isFeatured ? 'high' : 'auto'}
+        decoding={isFeatured ? 'sync' : 'async'}
       />
     </a>
   )}
