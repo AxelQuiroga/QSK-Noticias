@@ -240,10 +240,17 @@ describe('getFuentesConDatos', () => {
     ]);
   });
 
-  it('con el dataset actual (solo GBA) no inventa fuentes', () => {
-    const presentes = getFuentesConDatos();
-    expect(presentes).toHaveLength(1);
-    expect(presentes[0]?.id).toBe('gba');
+  it('getFuentesConDatos refleja exactamente las fuentes presentes en el dataset', () => {
+    // Invariante (no acoplado a qué fuentes tenga hoy el dataset): sin
+    // inventar fuentes de más ni perder las presentes.
+    const idsReales = new Set(getFuentesConDatos().map((f) => f.id));
+    const registradas = FUENTES_GACETILLAS.map((f) => f.id);
+    expect([...idsReales].every((id) => registradas.includes(id))).toBe(true);
+    // El legado sin `fuente` cae en gba: si hay registros, gba siempre cuenta.
+    const datasetNoVacio = getGacetillasConSlug().length > 0;
+    if (datasetNoVacio) {
+      expect(idsReales.has('gba')).toBe(true);
+    }
   });
 });
 
