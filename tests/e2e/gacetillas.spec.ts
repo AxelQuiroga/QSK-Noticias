@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-const SECCION_OFICIALES = 'section[aria-labelledby="gacetillas-oficiales-heading"]';
 const SECCION_GBA = 'section[aria-labelledby="gacetillas-gba-heading"]';
 const SECCION_EE = 'section[aria-labelledby="gacetillas-esteban-echeverria-heading"]';
 const TARJETAS = 'article.overflow-hidden.rounded-xl.border.border-border.bg-surface';
