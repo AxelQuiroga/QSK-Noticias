@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getArticlesByMunicipality } from '../../lib/articles';
 import { getLocationsByType, locationSlug } from '../../data/locations';
+import GacetillasPorFuente from '../../components/GacetillasPorFuente.astro';
 
 export async function getStaticPaths() {
   return getLocationsByType('municipio').map((location) => ({
@@ -13,6 +14,7 @@ export async function getStaticPaths() {
 
 const { municipality } = Astro.props;
 const sorted = await getArticlesByMunicipality(municipality);
+
 ---
 
 <BaseLayout
@@ -40,5 +42,11 @@ const sorted = await getArticlesByMunicipality(municipality);
         No hay artículos publicados de este municipio todavía.
       </p>
     )}
+
+{municipality === 'Esteban Echeverría' && (
+  <section class="mt-10">
+    <GacetillasPorFuente fuenteId="esteban-echeverria" />
+  </section>
+)}
   </div>
 </BaseLayout>
