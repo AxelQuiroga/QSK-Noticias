@@ -232,6 +232,79 @@ describe('recientes y archivo por fuente', () => {
   });
 });
 
+describe('getGacetillasRecientesPorFuente (dos secciones separadas)', () => {
+  const datosDosSecciones: Gacetilla[] = [
+    // GBA: 4 registros, 2 con fecha y 2 sin fecha
+    { ...gacetillaDePrueba(1), titulo: 'GBA reciente con fecha', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-reciente-fecha', fecha: '2026-10-20' },
+    { ...gacetillaDePrueba(2), titulo: 'GBA antigua con fecha', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-antigua-fecha', fecha: '2026-10-16' },
+    { ...gacetillaDePrueba(3), titulo: 'GBA sin fecha uno', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-sin-fecha-1', fecha: null },
+    { ...gacetillaDePrueba(4), titulo: 'GBA sin fecha dos', fuente: 'gba', urlNoticia: 'https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-sin-fecha-2', fecha: null },
+    // Esteban Echeverría: 3 registros, 2 con fecha y 1 sin fecha
+    { ...gacetillaDePrueba(10), titulo: 'EE reciente con fecha', fuente: 'esteban-echeverria', urlNoticia: 'https://www.estebanecheverria.gob.ar/noticias/ee-reciente-fecha', fecha: '2026-10-20' },
+    { ...gacetillaDePrueba(11), titulo: 'EE antigua con fecha', fuente: 'esteban-echeverria', urlNoticia: 'https://www.estebanecheverria.gob.ar/noticias/ee-antigua-fecha', fecha: '2026-10-16' },
+    { ...gacetillaDePrueba(12), titulo: 'EE sin fecha', fuente: 'esteban-echeverria', urlNoticia: 'https://www.estebanecheverria.gob.ar/noticias/ee-sin-fecha', fecha: null },
+  ];
+
+  it('filtra solo publicaciones de GBA para la sección provincial', () => {
+    const gba = getGacetillasRecientesPorFuente('gba', 12, datosDosSecciones);
+    expect(gba).toHaveLength(4);
+    expect(gba.every((g) => (g.fuente ?? 'gba') === 'gba')).toBe(true);
+    expect(gba.some((g) => (g.fuente ?? 'gba') === 'esteban-echeverria')).toBe(false);
+  });
+
+  it('filtra solo publicaciones de Esteban Echeverría para la sección municipal', () => {
+    const ee = getGacetillasRecientesPorFuente('esteban-echeverria', 12, datosDosSecciones);
+    expect(ee).toHaveLength(3);
+    expect(ee.every((g) => (g.fuente ?? 'gba') === 'esteban-echeverria')).toBe(true);
+    expect(ee.some((g) => (g.fuente ?? 'gba') === 'gba')).toBe(false);
+  });
+
+  it('prioriza publicaciones con fecha válida (más recientes primero)', () => {
+    const gba = getGacetillasRecientesPorFuente('gba', 12, datosDosSecciones);
+    const conFecha = gba.filter((g) => g.fecha !== null);
+    const sinFecha = gba.filter((g) => g.fecha === null);
+    expect(conFecha.length).toBe(2);
+    expect(sinFecha.length).toBe(2);
+    // La más reciente con fecha debe estar primero
+    expect(conFecha[0]?.titulo).toBe('GBA reciente con fecha');
+    expect(conFecha[1]?.titulo).toBe('GBA antigua con fecha');
+  });
+
+  it('no excede el límite de 12 por fuente', () => {
+    const muchosGba = Array.from({ length: 15 }, (_, i) => ({
+      ...gacetillaDePrueba(i + 100),
+      titulo: `GBA ${i + 1}`,
+      fuente: 'gba' as const,
+      urlNoticia: `https://www.gba.gob.ar/comunicacion_publica/gacetillas/gba-masivo-${i + 1}`,
+    }));
+    const seleccion = getGacetillasRecientesPorFuente('gba', 12, muchosGba);
+    expect(seleccion).toHaveLength(12);
+  });
+
+  it('no duplica tarjetas entre fuentes', () => {
+    const gba = getGacetillasRecientesPorFuente('gba', 12, datosDosSecciones);
+    const ee = getGacetillasRecientesPorFuente('esteban-echeverria', 12, datosDosSecciones);
+    const urlsGba = new Set(gba.map((g) => g.urlNoticia));
+    const urlsEe = new Set(ee.map((g) => g.urlNoticia));
+    const duplicados = [...urlsGba].filter((u) => urlsEe.has(u));
+    expect(duplicados).toEqual([]);
+  });
+
+  it('devuelve lista vacía para una fuente sin registros', () => {
+    expect(getGacetillasRecientesPorFuente('lanus', 12, datosDosSecciones)).toEqual([]);
+    expect(getGacetillasRecientesPorFuente('avellaneda', 12, datosDosSecciones)).toEqual([]);
+  });
+
+  it('devuelve slugs persistentes válidos sin duplicar', () => {
+    const gba = getGacetillasRecientesPorFuente('gba', 12, datosDosSecciones);
+    const slugs = gba.map((g) => g.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const slug of slugs) {
+      expect(slug).toMatch(/^[a-z0-9-]+$/);
+    }
+  });
+});
+
 describe('getFuentesConDatos', () => {
   it('lista solo las fuentes con al menos un registro, en orden de registro', () => {
     expect(getFuentesConDatos(datosMultiFuente).map((f) => f.id)).toEqual([

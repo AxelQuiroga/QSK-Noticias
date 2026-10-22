@@ -151,13 +151,14 @@ export function getGacetillasPorFuente(id: string, fuente: Gacetilla[] = datos):
   return buildGacetillasConSlug(gacetillasDeFuente(id, fuente));
 }
 
-/** Las últimas `limite` gacetillas de una fuente. */
+/** Las últimas `limite` gacetillas de una fuente, ordenadas por fecha. */
 export function getGacetillasRecientesPorFuente(
   id: string,
   limite: number = CANTIDAD_RECIENTES,
   fuente: Gacetilla[] = datos,
 ): GacetillaConSlug[] {
-  return getGacetillasPorFuente(id, fuente).slice(0, limite);
+  const deLaFuente = getGacetillasPorFuente(id, fuente);
+  return ordenarPorFechaYOrden(deLaFuente, fuente).slice(0, limite);
 }
 
 /** El archivo de una fuente: su historial menos las recientes. */
