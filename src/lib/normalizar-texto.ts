@@ -210,7 +210,7 @@ export function formatearTitulo(titulo: string | null | undefined): string | nul
     UNLP: 'UNLP',
     UTN: 'UTN',
   };
-  return resultado.replace(/\\b(?:anses|arca|covid|dni|gba|pami|sube|uba|unlam|unlp|utn)\\b/gi, (token) => {
+  return resultado.replace(/\b(?:anses|arca|covid|dni|gba|pami|sube|uba|unlam|unlp|utn)\b/gi, (token) => {
     const clave = token.toUpperCase();
     return siglas[clave] ?? token;
   });
