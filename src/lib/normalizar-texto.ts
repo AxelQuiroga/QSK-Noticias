@@ -206,8 +206,7 @@ export function formatearTitulo(titulo: string | null | undefined): string | nul
     PAMI: 'PAMI',
     SUBE: 'SUBE',
     UBA: 'UBA',
-    UNLa: 'UNLa',
-    UNLaM: 'UNLaM',
+    UNLAM: 'UNLaM',
     UNLP: 'UNLP',
     UTN: 'UTN',
   };
