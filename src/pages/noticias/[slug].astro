@@ -2,6 +2,8 @@
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { formatDate, slugify } from '../../lib/articles';
+import { responsiveImage } from '../../lib/responsive-image';
+import { imageDimensions } from '../../lib/image-dimensions';
 
 export async function getStaticPaths() {
   const articles = await getCollection('news', ({ data }) => {
@@ -20,6 +22,28 @@ const { data } = article;
 
 const sectionSlug = data.section ? slugify(data.section) : "";
 const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
+
+// Imagen principal del artículo (por encima del doblez): es candidata a LCP,
+// por tanto se carga con prioridad alta y sin diferir el descodificado.
+// Las dimensiones intrínsecas reservan el espacio antes de cargar (evita CLS).
+const articleImage = data.image
+  ? await responsiveImageProps(data.image)
+  : null;
+
+async function responsiveImageProps(image: { src: string; alt: string; attribution?: string }) {
+  const sizes = '(min-width: 1024px) 840px, 100vw';
+  const { srcset, src, available } = responsiveImage(image.src, sizes);
+  const dimensions = await imageDimensions(image.src);
+  return {
+    src,
+    srcset,
+    sizes,
+    alt: image.alt,
+    width: dimensions?.width,
+    height: dimensions?.height,
+    hasOptimizedVariants: available.length > 0,
+  };
+}
 ---
 
 <BaseLayout
@@ -83,10 +107,16 @@ const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
     {data.image && (
       <figure class="mx-auto mt-8 max-w-4xl">
         <img
-          src={data.image.src}
-          alt={data.image.alt}
+          src={articleImage?.src ?? data.image.src}
+          alt={articleImage?.alt ?? data.image.alt}
+          srcset={articleImage?.srcset}
+          sizes={articleImage?.sizes}
+          width={articleImage?.width}
+          height={articleImage?.height}
           class="h-auto w-full rounded-lg object-cover"
           loading="eager"
+          fetchpriority="high"
+          decoding="sync"
         />
         {data.image.attribution && (
           <figcaption class="mt-2 text-sm text-text-secondary">

@@ -13,6 +13,12 @@ test.describe('Imágenes de noticias', () => {
     await expect(image).toBeVisible();
     await expect(image).toHaveAttribute('src', /^\/images\/noticias\//);
     await expect(image).toHaveAttribute('alt', /\S+/);
+    await expect(image).toHaveAttribute('width');
+    await expect(image).toHaveAttribute('height');
+    await expect(image).toHaveAttribute('srcset');
+    await expect(image).toHaveAttribute('sizes');
+    await expect(image).toHaveAttribute('loading', 'eager');
+    await expect(image).toHaveAttribute('fetchpriority', 'high');
     await expect(figure.locator('figcaption')).toContainText('Foto: Municipio de Quilmes');
 
     await expect
