@@ -22,7 +22,7 @@ sources:
 image:
   src: "/images/noticias/tormentas-buenos-aires.webp"
   alt: "Nubes de tormenta avanzando sobre Buenos Aires"
-gallery: # ✅ Cambiado de "images" a "gallery"
+gallery: 
   
   - src: "/images/noticias/lluvia-buenos-aires.webp"
     alt: "Lluvia intensa sobre una zona urbana de Buenos Aires"
