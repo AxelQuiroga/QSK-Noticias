@@ -29,6 +29,12 @@ const municipalitySlug = data.municipality ? slugify(data.municipality) : null;
 const articleImage = data.image
   ? await responsiveImageProps(data.image)
   : null;
+const articleGallery = await Promise.all(
+  (data.gallery ?? []).map(async (image) => ({
+    image,
+    responsive: await responsiveImageProps(image),
+  })),
+); 
 
 async function responsiveImageProps(image: { src: string; alt: string; attribution?: string }) {
   const sizes = '(min-width: 1024px) 840px, 100vw';
@@ -39,6 +45,7 @@ async function responsiveImageProps(image: { src: string; alt: string; attributi
     srcset,
     sizes,
     alt: image.alt,
+    attribution: image.attribution,
     width: dimensions?.width,
     height: dimensions?.height,
     hasOptimizedVariants: available.length > 0,
@@ -66,7 +73,7 @@ async function responsiveImageProps(image: { src: string; alt: string; attributi
       </ol>
     </nav>
 
-    <header class="mx-auto max-w-3xl">
+        <header class="mx-auto max-w-3xl">
       <div class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
         <a href={`/secciones/${sectionSlug}/`} class="font-medium text-accent hover:underline">
           {data.section}
@@ -104,28 +111,60 @@ async function responsiveImageProps(image: { src: string; alt: string; attributi
       </div>
     </header>
 
-    {data.image && (
+    {/* ✅ 1. IMAGEN PRINCIPAL (Portada): Va PRIMERO, optimizada para LCP */}
+       {/* ✅ IMAGEN PRINCIPAL (Portada) */}
+    {articleImage && (
       <figure class="mx-auto mt-8 max-w-4xl">
         <img
-          src={articleImage?.src ?? data.image.src}
-          alt={articleImage?.alt ?? data.image.alt}
-          srcset={articleImage?.srcset}
-          sizes={articleImage?.sizes}
-          width={articleImage?.width}
-          height={articleImage?.height}
+          src={articleImage.src}
+          alt={articleImage.alt}
+          srcset={articleImage.srcset}
+          sizes={articleImage.sizes}
+          width={articleImage.width}
+          height={articleImage.height}
           class="h-auto w-full rounded-lg object-cover"
           loading="eager"
           fetchpriority="high"
           decoding="sync"
         />
-        {data.image.attribution && (
-          <figcaption class="mt-2 text-sm text-text-secondary">
-            {data.image.attribution}
+        {articleImage.attribution && (
+          <figcaption class="mt-2 text-center text-sm text-text-secondary">
+            {articleImage.attribution}
           </figcaption>
         )}
       </figure>
     )}
 
+    {/* ✅ 2. GALERÍA: Va DESPUÉS, con carga diferida (lazy) */}
+    {articleGallery.length > 0 && (
+      <section
+        class="mx-auto mt-8 max-w-4xl space-y-8"
+        aria-label="Galería de imágenes de la noticia"
+      >
+        {articleGallery.map(({ image, responsive }) => (
+          <figure>
+            <img
+              src={responsive.src}
+              alt={responsive.alt}
+              srcset={responsive.srcset}
+              sizes={responsive.sizes}
+              width={responsive.width}
+              height={responsive.height}
+              class="h-auto w-full rounded-lg object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            {image.attribution && (
+              <figcaption class="mt-2 text-center text-sm text-text-secondary">
+                {image.attribution}
+              </figcaption>
+            )}
+          </figure>
+        ))}
+      </section>
+    )}
+
+    {/* ✅ 3. CONTENIDO DE LA NOTICIA */}
     <div class="mx-auto mt-8 max-w-3xl">
       <div class="prose-content text-base leading-relaxed text-text">
         <Content />

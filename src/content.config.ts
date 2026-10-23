@@ -63,23 +63,34 @@ const news = defineCollection({
         )
         .default([]),
       image: z
-        .object({
-          src: z
-            .string()
-            .trim()
-            .min(1, 'La ruta de la imagen es obligatoria')
-            .refine(
-              isValidNewsImageSrc,
-              'La imagen debe usar una ruta local bajo /images/noticias/ sin segmentos ambiguos.',
-            )
-            .refine(
-              (src) => newsImageFileExists(src),
-              'El archivo de imagen debe existir dentro de public/images/noticias/.',
-            ),
-          alt: z.string().trim().min(1, 'El alt text es obligatorio si hay imagen'),
-          attribution: z.string().optional(),
-        })
-        .optional(),
+  .object({
+    src: z
+      .string()
+      .trim()
+      .min(1, 'La ruta de la imagen es obligatoria')
+      .refine(isValidNewsImageSrc, 'Ruta no válida')
+      .refine((src) => newsImageFileExists(src), 'El archivo debe existir'),
+    alt: z.string().trim().min(1, 'El alt text es obligatorio'),
+    attribution: z.string().optional(),
+  })
+  .optional(), // ← Nota: .optional() a secas, NO es un array
+
+// ✅ 2. GALERÍA: Debe ser un ARRAY (.optional().default([]))
+gallery: z
+  .array(
+    z.object({
+      src: z
+        .string()
+        .trim()
+        .min(1, 'La ruta de la imagen es obligatoria')
+        .refine(isValidNewsImageSrc, 'Ruta no válida')
+        .refine((src) => newsImageFileExists(src), 'El archivo debe existir'),
+      alt: z.string().trim().min(1, 'El alt text es obligatorio'),
+      attribution: z.string().optional(),
+    })
+  )
+  .optional()
+  .default([]),
     })
     .superRefine((data, ctx) => {
       // Validate primaryTopic is a known topic (if present)
