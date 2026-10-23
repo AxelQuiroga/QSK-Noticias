@@ -48,5 +48,17 @@ const sorted = await getArticlesByMunicipality(municipality);
     <GacetillasPorFuente fuenteId="esteban-echeverria" />
   </section>
 )}
+
+{municipality === 'Lanús' && (
+  <section class="mt-10">
+    <GacetillasPorFuente fuenteId="lanus" />
+  </section>
+)}
+
+{municipality === 'Avellaneda' && (
+  <section class="mt-10">
+    <GacetillasPorFuente fuenteId="avellaneda" />
+  </section>
+)}
   </div>
 </BaseLayout>
