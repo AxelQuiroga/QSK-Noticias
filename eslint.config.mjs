@@ -21,6 +21,12 @@ export default tseslint.config(
 
   // Archivos .astro: parser + procesador + reglas específicas de Astro
   ...astro.configs['flat/recommended'],
+    {
+    files: ['scripts/convert-images.cjs'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+    },
+  },
 
   {
     languageOptions: {
