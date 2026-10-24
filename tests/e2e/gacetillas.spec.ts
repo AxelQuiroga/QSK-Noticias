@@ -38,7 +38,7 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
 
     // Enlace propio para consultar todas las publicaciones de GBA
     const enlaceTodas = seccion.getByRole('link', {
-      name: /Ver todas las publicaciones de Gobierno de la Provincia/,
+      name: 'Ver más ↗',
     });
     await expect(enlaceTodas).toBeVisible();
     await expect(enlaceTodas).toHaveAttribute('href', '/gacetillas-oficiales/fuente/gba/');
@@ -68,7 +68,7 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
 
     // Enlace propio para consultar todas las publicaciones de EE
     const enlaceTodas = seccion.getByRole('link', {
-      name: /Ver todas las publicaciones de Municipalidad de Esteban Echeverría/,
+      name: 'Ver más ↗',
     });
     await expect(enlaceTodas).toBeVisible();
     await expect(enlaceTodas).toHaveAttribute(
@@ -190,7 +190,9 @@ test.describe('Página dedicada de gacetillas', () => {
 
     const tarjeta = tarjetas.first();
     await expect(tarjeta.locator('h3 a')).toBeVisible();
-    await expect(tarjeta).toContainText(/^Fuente: .+/);
+    const fuente = tarjeta.locator('p').filter({ hasText: /^Fuente: / });
+    await expect(fuente).toHaveCount(1);
+    await expect(fuente).toHaveText(/^Fuente: .+/);
   });
 
   test('cada tarjeta muestra título, descripción, atribución y enlace a la publicación original', async ({ page }) => {
@@ -200,7 +202,9 @@ test.describe('Página dedicada de gacetillas', () => {
     await expect(card.locator('h3 a')).toBeVisible();
     await expect(card.locator('h3 a')).toHaveAttribute('href', /^https:\/\//);
     await expect(card.locator('h3 + p')).toBeVisible();
-    await expect(card).toContainText(/^Fuente: .+/);
+    const fuente = card.locator('p').filter({ hasText: /^Fuente: / });
+    await expect(fuente).toHaveCount(1);
+    await expect(fuente).toHaveText(/^Fuente: .+/);
 
     const original = card.getByRole('link', { name: 'Publicación original' });
     await expect(original).toBeVisible();
