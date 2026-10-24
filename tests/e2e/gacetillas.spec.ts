@@ -38,7 +38,7 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
 
     // Enlace propio para consultar todas las publicaciones de GBA
     const enlaceTodas = seccion.getByRole('link', {
-      name: 'Ver más ↗',
+      name: 'Ver más',
     });
     await expect(enlaceTodas).toBeVisible();
     await expect(enlaceTodas).toHaveAttribute('href', '/gacetillas-oficiales/fuente/gba/');
@@ -195,16 +195,23 @@ test.describe('Página dedicada de gacetillas', () => {
     await expect(fuente).toHaveText(/^Fuente: .+/);
   });
 
-  test('cada tarjeta muestra título, descripción, atribución y enlace a la publicación original', async ({ page }) => {
+  test('las tarjetas muestran título, bajada cuando existe, atribución y enlace original', async ({ page }) => {
     await page.goto('/gacetillas-oficiales/');
 
-    const card = page.locator(`${PAGINA_DEDICADA} article`).first();
+    const cards = page.locator(`${PAGINA_DEDICADA} article`);
+    const card = cards.first();
     await expect(card.locator('h3 a')).toBeVisible();
     await expect(card.locator('h3 a')).toHaveAttribute('href', /^https:\/\//);
-    await expect(card.locator('h3 + p')).toBeVisible();
     const fuente = card.locator('p').filter({ hasText: /^Fuente: / });
     await expect(fuente).toHaveCount(1);
     await expect(fuente).toHaveText(/^Fuente: .+/);
+
+    // La bajada es opcional en el dataset; comprobar una tarjeta que sí la tenga.
+    const cardWithDescription = cards.filter({
+      has: page.locator('h3 + p:not(:has(a))'),
+    }).first();
+    await expect(cardWithDescription).toBeVisible();
+    await expect(cardWithDescription.locator('h3 + p:not(:has(a))')).toBeVisible();
 
     const original = card.getByRole('link', { name: 'Publicación original' });
     await expect(original).toBeVisible();
