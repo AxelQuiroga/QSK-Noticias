@@ -68,7 +68,7 @@ test.describe('Novedades oficiales — portada (dos secciones separadas)', () =>
 
     // Enlace propio para consultar todas las publicaciones de EE
     const enlaceTodas = seccion.getByRole('link', {
-      name: 'Ver más ↗',
+      name: 'Ver más',
     });
     await expect(enlaceTodas).toBeVisible();
     await expect(enlaceTodas).toHaveAttribute(
