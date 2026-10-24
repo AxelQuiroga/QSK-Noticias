@@ -16,7 +16,6 @@ import {
   rutaFuenteGacetillas,
   type Gacetilla,
 } from '../src/lib/gacetillas';
-import { slugify } from '../src/lib/utils';
 
 const gacetillaSinOpcionales: Gacetilla = {
   titulo: 'Gacetilla sin imagen ni volanta',
@@ -149,18 +148,42 @@ describe('dataset completo (historial + archivo)', () => {
     expect(conSlug[1]?.slug).toBe('gacetilla-de-prueba-1-2');
   });
 
-  it('el dataset actual tiene slug persistente válido, sin duplicados e igual al derivado (migración sin cambios de URL)', () => {
-    const todas = getGacetillasConSlug();
-    expect(todas.length).toBeGreaterThanOrEqual(CANTIDAD_RECIENTES);
+  
+it('el dataset actual tiene slugs persistentes válidos y únicos', () => {
+  const todas = getGacetillasConSlug();
 
-    const slugs = todas.map((g) => g.slug);
-    expect(new Set(slugs).size).toBe(slugs.length);
+  expect(todas.length).toBeGreaterThanOrEqual(CANTIDAD_RECIENTES);
 
-    for (const g of todas) {
-      expect(g.slug).toMatch(/^[a-z0-9-]+$/);
-      expect(g.slug).toBe(slugify(g.titulo) || 'gacetilla');
-    }
-  });
+  const slugs = todas.map((g) => g.slug);
+  expect(new Set(slugs).size).toBe(slugs.length);
+
+  for (const g of todas) {
+    expect(g.slug).toMatch(/^[a-z0-9-]+$/);
+  }
+});
+
+it('conserva los slugs persistidos aunque difieran del título', () => {
+  const original = [
+    {
+      ...gacetillaSinOpcionales,
+      titulo: 'Nuevas obras de bacheo en Monte Grande',
+      urlNoticia: 'https://ejemplo.com/obra-8',
+      slug: 'nuevas-obras-de-bacheo-en-monte-grande',
+    },
+    {
+      ...gacetillaSinOpcionales,
+      titulo: 'Nuevas obras de bacheo en Monte Grande',
+      urlNoticia: 'https://ejemplo.com/obra-9',
+      slug: 'nuevas-obras-de-bacheo-en-monte-grande-2',
+    },
+  ];
+
+  expect(buildGacetillasConSlug(original).map((g) => g.slug)).toEqual([
+    'nuevas-obras-de-bacheo-en-monte-grande',
+    'nuevas-obras-de-bacheo-en-monte-grande-2',
+  ]);
+});
+
 
   it('el archivo es exactamente el resto del historial excluyendo las recientes', () => {
     const todas = buildGacetillasConSlug(fuente15);

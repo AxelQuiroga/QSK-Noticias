@@ -25,13 +25,14 @@ export const OUTPUT_FILE = 'public/search-index.json';
  */
 export function toPlainText(markdown) {
   return markdown
+    .replace(/\r\n?/g, '\n')
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/`([^`]*)`/g, '$1')
     .replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1')
     .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/^\s{0,3}#{1,6}\s+/gm, '')
-    .replace(/^\s{0,3}>\s?/gm, '')
-    .replace(/^\s{0,3}[-*+]\s+/gm, '')
+    .replace(/^[ \t]{0,3}#{1,6}[ \t]+/gm, '')
+    .replace(/^[ \t]{0,3}>[ \t]?/gm, '')
+    .replace(/^[ \t]{0,3}[-*+][ \t]+/gm, '')
     .replace(/\*\*([^*]+)\*\*/g, '$1')
     .replace(/__([^_]+)__/g, '$1')
     .replace(/(^|[\s(])\*([^*]+)\*/g, '$1$2')

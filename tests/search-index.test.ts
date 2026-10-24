@@ -93,4 +93,21 @@ describe('toPlainText', () => {
   it('colapsa espacios y saltos de línea', () => {
     expect(toPlainText('a\n\n   b\t c')).toBe('a b c');
   });
+
+  it('preserva la separación entre párrafos y encabezados con CRLF', () => {
+  const markdown = 'Primer párrafo.\r\n## Segundo apartado\r\nTexto final.';
+
+  expect(toPlainText(markdown)).toBe(
+    'Primer párrafo. Segundo apartado Texto final.',
+  );
+});
+
+it('preserva la separación entre párrafos, listas y citas con CRLF', () => {
+  const markdown =
+    'Antes.\r\n- Elemento uno\r\n> Una cita\r\nDespués.';
+
+  expect(toPlainText(markdown)).toBe(
+    'Antes. Elemento uno Una cita Después.',
+  );
+});
 });
