@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const CAROUSEL_SECTION = 'section[aria-labelledby="novedades-oficiales-heading"]';
+const CAROUSEL_SECTION = 'section[aria-labelledby="gacetillas-gba-heading"]';
 const GACETILLAS_SECTION = 'section[aria-labelledby="gacetillas-heading"]';
 
 test.describe('Fallback de imágenes oficiales', () => {
@@ -27,7 +27,7 @@ test.describe('Fallback de imágenes oficiales', () => {
     await expect(image).toBeHidden();
 
     // El contenedor conserva la proporción 16:9.
-    const box = await firstCard.locator('div.aspect-\\[16\\/9\\]').boundingBox();
+    const box = await firstCard.locator('a:has([data-carousel-img-fallback])').boundingBox();
     expect(box).not.toBeNull();
     expect(box!.width).toBeGreaterThan(0);
     expect(Math.abs(box!.width / box!.height - 16 / 9)).toBeLessThan(0.05);
