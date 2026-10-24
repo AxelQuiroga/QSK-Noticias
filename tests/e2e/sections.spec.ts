@@ -129,14 +129,19 @@ test.describe('Tarjetas y metadatos del artículo reclasificado', () => {
   });
 });
 
-test.describe('Sección sin artículos', () => {
-  test('muestra un estado vacío útil en vez de una página en blanco', async ({ page }) => {
-    // "Política" todavía no tiene artículos publicados al momento de escribir
-    // este test; lo que se verifica es que la ruta exista y sea informativa.
+test.describe('Estado de las secciones', () => {
+  test('una sección publicada muestra artículos o un estado vacío útil', async ({ page }) => {
+    // Política puede tener artículos publicados; no asumir que la sección sigue vacía.
     await page.goto('/secciones/politica/');
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Política');
-    await expect(
-      page.getByText('No hay artículos publicados en esta sección todavía.'),
-    ).toBeVisible();
+
+    const cards = page.locator('.container-editorial article');
+    const emptyState = page.getByText('No hay artículos publicados en esta sección todavía.');
+    if (await cards.count()) {
+      await expect(cards.first()).toBeVisible();
+      await expect(emptyState).toHaveCount(0);
+    } else {
+      await expect(emptyState).toBeVisible();
+    }
   });
 });
