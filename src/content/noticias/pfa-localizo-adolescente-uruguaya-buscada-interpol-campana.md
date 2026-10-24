@@ -11,6 +11,7 @@ secondarySection: 'Sociedad'
 primaryTopic: 'Seguridad'
 secondaryTopics: 
 - 'Sociedad'
+section: 'Seguridad'
 sources: 
 -
   name: 'Ministerio de Seguridad Nacional / Argentina.gob.ar'

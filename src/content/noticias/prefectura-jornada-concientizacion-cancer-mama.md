@@ -11,6 +11,7 @@ secondarySection: 'Sociedad'
 primaryTopic: 'Salud'
 secondaryTopics: 
 - 'Sociedad'
+section: 'Salud'
 sources: 
 -
   name: 'Prefectura Naval Argentina / Argentina.gob.ar'

@@ -9,6 +9,7 @@ scope: 'local'
 primaryTopic: 'Salud'
 secondaryTopics:
   - 'Servicios'
+section: 'Salud'
 image: 
   src: '/images/noticias/fumigacion-esteban-echeverria-octubre.jpg'
   alt: 'Operativo municipal de fumigación para prevenir la reproducción del mosquito transmisor del dengue.'

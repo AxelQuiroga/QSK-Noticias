@@ -8,6 +8,7 @@ featured: false
 scope: 'nacional'
 primarySection: 'Salud'
 primaryTopic: 'Salud'
+section: 'Salud'
 sources: 
 -
   name: 'ANMAT / Argentina.gob.ar'

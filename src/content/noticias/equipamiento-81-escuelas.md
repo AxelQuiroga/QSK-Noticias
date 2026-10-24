@@ -9,6 +9,7 @@ scope: 'local'
 primaryTopic: 'Educación'
 secondaryTopics:
   - 'Sociedad'
+section: 'Educación'
 image: 
   src: '/images/noticias/equipamiento-81-escuelas.jpg'
   alt: 'Entrega de equipamiento para cocinas y comedores escolares en Esteban Echeverría.'

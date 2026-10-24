@@ -10,6 +10,7 @@ publishedAt: "2026-10-20T19:25:31.034Z"
 primaryTopic: 'Servicios'
 secondaryTopics: 
 - 'Economía'
+section: 'Servicios'
 sources: 
 -
   name: 'Agencia Federal de Emergencias / Argentina.gob.ar'

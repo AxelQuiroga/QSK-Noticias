@@ -9,6 +9,7 @@ scope: 'local'
 primaryTopic: 'Seguridad'
 secondaryTopics:
   - 'Política'
+section: 'Seguridad'
 image: 
   src: '/images/noticias/banda-robo-vehiculos-autopartes.jpg'
   alt: 'Imagen oficial de la investigación policial por el robo de vehículos y autopartes en la zona sur.'
