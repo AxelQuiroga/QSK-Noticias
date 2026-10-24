@@ -6,7 +6,10 @@ const GACETILLAS_SECTION = 'section[aria-labelledby="gacetillas-heading"]';
 test.describe('Fallback de imágenes oficiales', () => {
   test.beforeEach(async ({ page }) => {
     // Simula el servidor de imágenes externo caído (timeout / 5xx / DNS).
-    await page.route('https://www.gba.gob.ar/**', (route) => route.abort());
+    await page.route('**/*', (route) => {
+      if (route.request().resourceType() === 'image') return route.abort();
+      return route.continue();
+    });
   });
 
   test('el carrusel de portada muestra el marcador 16:9 cuando la imagen falla', async ({ page }) => {
