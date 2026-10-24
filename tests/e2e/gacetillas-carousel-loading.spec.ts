@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const SECTION = 'section[aria-labelledby="novedades-oficiales-heading"]';
+const SECTION = 'section[aria-labelledby="gacetillas-gba-heading"]';
 const TRACK = `${SECTION} [data-carousel-track]`;
 
 test('el carrusel difiere las imágenes fuera del área visible y las carga al acercarse', async ({ page }) => {
@@ -9,7 +9,7 @@ test('el carrusel difiere las imágenes fuera del área visible y las carga al a
 
   const track = page.locator(TRACK);
   const images = track.locator('img[data-carousel-img]');
-  await expect(images).toHaveCount(8);
+  await expect(images).toHaveCount(12);
 
   const firstImage = images.first();
   await expect(firstImage).toHaveAttribute('src', /^https:\/\/www\.gba\.gob\.ar\//);
