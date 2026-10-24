@@ -37,8 +37,9 @@ test.describe('Fallback de imágenes oficiales', () => {
 
   test('la página de detalle también muestra el marcador cuando la imagen falla', async ({ page }) => {
     await page.goto('/');
+    // El enlace a la imagen está dentro de article; el li no tiene un <a> directo.
     const href = await page
-      .locator(`${CAROUSEL_SECTION} [data-carousel-track] > li > a`)
+      .locator(`${CAROUSEL_SECTION} [data-carousel-track] > li article > a[href^="/gacetillas-oficiales/"]`)
       .first()
       .getAttribute('href');
     await page.goto(href!);
