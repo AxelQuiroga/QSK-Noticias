@@ -51,6 +51,9 @@ describe('responsiveImage', () => {
       if (!srcset) continue;
       const candidatos = srcset.split(',').map((c) => c.trim().split(' ')[0]);
       for (const candidato of candidatos) {
+        if (candidato === undefined) {
+          continue; 
+      }
         const existe = existsSync(join(process.cwd(), 'public', candidato.slice(1)));
         expect(existe, `la variante referenciada no existe: ${candidato}`).toBe(true);
       }
