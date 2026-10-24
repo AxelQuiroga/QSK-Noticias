@@ -9,6 +9,7 @@ scope: 'local'
 primaryTopic: 'Obras públicas'
 secondaryTopics:
   - 'Tránsito'
+section: 'Obras públicas'
 image: 
   src: '/images/noticias/bacheo-monte-grande-cabo-corrientes.jpg'
   alt: 'Trabajos municipales de bacheo en calles de Monte Grande.'

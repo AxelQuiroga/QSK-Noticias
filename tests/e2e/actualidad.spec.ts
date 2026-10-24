@@ -117,7 +117,7 @@ const toSlug = (href: string): string => href.replace(/^\/noticias\//, '').repla
 /** Slugs de los artículos listados por las tarjetas de la página, en orden. */
 async function cardSlugs(page: Page): Promise<string[]> {
   const hrefs = await page
-    .locator('article a[href^="/noticias/"]')
+    .locator('article h3 a[href^="/noticias/"]')
     .evaluateAll((links) => links.map((link) => link.getAttribute('href') ?? ''));
 
   return hrefs.map(toSlug);

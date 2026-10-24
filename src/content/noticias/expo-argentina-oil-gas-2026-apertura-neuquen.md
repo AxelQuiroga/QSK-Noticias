@@ -8,6 +8,7 @@ featured: false
 scope: 'nacional'
 primarySection: 'Economía'
 primaryTopic: 'Economía'
+section: 'Economía'
 sources: 
 -
   name: 'Presidencia de la Nación / Argentina.gob.ar'

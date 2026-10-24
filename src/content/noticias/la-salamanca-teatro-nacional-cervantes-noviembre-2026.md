@@ -11,6 +11,7 @@ secondarySection: 'Educación'
 primaryTopic: 'Sociedad'
 secondaryTopics: 
 - 'Educación'
+section: 'Sociedad'
 sources: 
 -
   name: 'Secretaría de Cultura / Argentina.gob.ar'

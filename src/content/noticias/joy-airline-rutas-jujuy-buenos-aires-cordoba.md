@@ -11,6 +11,7 @@ secondarySection: 'Economía'
 primaryTopic: 'Servicios'
 secondaryTopics: 
 - 'Economía'
+section: 'Servicios'
 sources: 
 -
   name: 'Secretaría de Transporte / Argentina.gob.ar'

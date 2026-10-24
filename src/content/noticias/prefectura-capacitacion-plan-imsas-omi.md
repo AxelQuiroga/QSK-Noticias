@@ -11,6 +11,7 @@ secondarySection: 'Educación'
 primaryTopic: 'Sociedad'
 secondaryTopics: 
 - 'Educación'
+section: 'Sociedad'
 sources: 
 -
   name: 'Prefectura Naval Argentina / Argentina.gob.ar'

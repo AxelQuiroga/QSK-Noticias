@@ -11,6 +11,7 @@ secondarySection: 'Economía'
 primaryTopic: 'Sociedad'
 secondaryTopics: 
 - 'Economía'
+section: 'Sociedad'
 sources: 
 -
   name: 'Prefectura Naval Argentina / Argentina.gob.ar'

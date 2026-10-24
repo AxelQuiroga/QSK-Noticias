@@ -11,6 +11,7 @@ secondarySection: 'Sociedad'
 primaryTopic: 'Economía'
 secondaryTopics: 
 - 'Sociedad'
+section: 'Economía'
 sources: 
 -
   name: 'INTA / Argentina.gob.ar'

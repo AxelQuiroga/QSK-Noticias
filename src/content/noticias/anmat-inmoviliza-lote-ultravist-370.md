@@ -9,6 +9,7 @@ scope: 'nacional'
 publishedAt: "2026-10-20T19:25:31.037Z"
 primarySection: 'Salud'
 primaryTopic: 'Salud'
+section: 'Salud'
 sources: 
 -
   name: 'ANMAT'

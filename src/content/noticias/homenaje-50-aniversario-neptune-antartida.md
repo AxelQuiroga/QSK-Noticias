@@ -11,6 +11,7 @@ secondarySection: 'Política'
 primaryTopic: 'Sociedad'
 secondaryTopics: 
 - 'Política'
+section: 'Sociedad'
 sources: 
 -
   name: 'Armada Argentina / Argentina.gob.ar'
