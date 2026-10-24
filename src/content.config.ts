@@ -122,6 +122,15 @@ gallery: z
         }
       }
 
+      // Validate section is required for published articles
+      if (data.status === 'published' && !data.section) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['section'],
+          message: 'La sección es obligatoria para artículos publicados.',
+        });
+      }
+
       // Validate section against known sections (for backward compatibility during migration)
       if (data.section && !isKnownSection(data.section)) {
         ctx.addIssue({

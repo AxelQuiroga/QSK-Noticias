@@ -3,12 +3,142 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import yaml from 'js-yaml';
 import { findLocationByNameAndType, type LocationType } from '../src/data/locations';
-import { SECTIONS } from '../src/data/sections';
+import { SECTIONS, isKnownSection, isKnownTopic } from '../src/data/sections';
+import { z } from 'astro/zod';
 
 const CONTENT_DIR = 'src/content/noticias';
 const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VALID_STATUSES = ['draft', 'review', 'published'];
 const VALID_SCOPES = ['local', 'regional', 'provincial', 'nacional'];
+
+// Definir el schema Zod igual que en content.config.ts
+const newsSchema = z
+  .object({
+    title: z.string().min(1, 'El titular es obligatorio'),
+    description: z.string().min(1, 'La bajada es obligatoria'),
+    slug: z
+      .string()
+      .min(1, 'El slug es obligatorio')
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'El slug debe ser URL-friendly'),
+    primaryTopic: z.string().optional(),
+    secondaryTopics: z
+      .array(z.string())
+      .optional()
+      .default([])
+      .refine((topics) => topics.length === 0 || topics.every(isKnownTopic), {
+        message: 'Los topics secundarios deben ser topics del catálogo editorial.',
+      }),
+    section: z.string().min(1, 'La sección es obligatoria').optional(),
+    municipality: z.string().optional(),
+    localidad: z.string().optional(),
+    region: z.string().optional(),
+    scope: z.enum(['local', 'regional', 'provincial', 'nacional']).optional(),
+    author: z.string().min(1, 'El autor es obligatorio'),
+    publishedAt: z.coerce.date(),
+    updatedAt: z.coerce.date().optional(),
+    status: z.enum(['draft', 'review', 'published']),
+    featured: z.boolean().default(false),
+    sources: z
+      .array(
+        z.object({
+          name: z.string().min(1),
+          url: z.url(),
+          description: z.string().optional(),
+        }),
+      )
+      .default([]),
+    image: z
+      .object({
+        src: z
+          .string()
+          .trim()
+          .min(1, 'La ruta de la imagen es obligatoria')
+          .refine(() => true, 'Ruta no válida')
+          .refine(() => true, 'El archivo debe existir'),
+        alt: z.string().trim().min(1, 'El alt text es obligatorio'),
+        attribution: z.string().optional(),
+      })
+      .optional(),
+    gallery: z
+      .array(
+        z.object({
+          src: z
+            .string()
+            .trim()
+            .min(1, 'La ruta de la imagen es obligatoria')
+            .refine(() => true, 'Ruta no válida')
+            .refine(() => true, 'El archivo debe existir'),
+          alt: z.string().trim().min(1, 'El alt text es obligatorio'),
+          attribution: z.string().optional(),
+        }),
+      )
+      .optional()
+      .default([]),
+  })
+  .superRefine((data, ctx) => {
+    // Validate primaryTopic is a known topic (if present)
+    if (data.primaryTopic && !isKnownTopic(data.primaryTopic)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['primaryTopic'],
+        message: `"${data.primaryTopic}" no es un topic del catálogo editorial (src/data/sections.ts).`,
+      });
+    }
+
+    // Validate secondaryTopics are known topics and don't duplicate primaryTopic
+    if (data.secondaryTopics && data.secondaryTopics.length > 0) {
+      if (!data.secondaryTopics.every(isKnownTopic)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['secondaryTopics'],
+          message: 'Los topics secundarios deben ser topics del catálogo editorial.',
+        });
+      }
+      // Check that secondary topics don't duplicate the primary topic
+      const primaryTopicIsInSecondaries = data.secondaryTopics?.includes(data.primaryTopic as string);
+      if (primaryTopicIsInSecondaries) {
+        ctx.addIssue({
+          code: 'custom',
+          path: ['secondaryTopics'],
+          message: 'Un topic no puede ser tanto primary como secondary. Elige uno como primary y los otros como secundarios.',
+        });
+      }
+    }
+
+    // Validate section is required for published articles
+    if (data.status === 'published' && !data.section) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['section'],
+        message: 'La sección es obligatoria para artículos publicados.',
+      });
+    }
+
+    // Validate section against known sections (for backward compatibility during migration)
+    if (data.section && !isKnownSection(data.section)) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['section'],
+        message: `"${data.section}" no es una sección del catálogo editorial (src/data/sections.ts).`,
+      });
+    }
+
+    for (const { field, type } of [
+      { field: 'municipality' as const, type: 'municipio' as const },
+      { field: 'localidad' as const, type: 'localidad' as const },
+      { field: 'region' as const, type: 'region' as const },
+    ]) {
+      const value = data[field];
+      if (value === undefined) continue;
+      if (!findLocationByNameAndType(value, type)) {
+        ctx.addIssue({
+          code: 'custom',
+          path: [field],
+          message: `"${value}" no es un ${type} del catálogo de ubicaciones (src/data/locations.ts).`,
+        });
+      }
+    }
+  });
 
 interface RawSource {
   name?: string;
@@ -186,5 +316,86 @@ describe('Content validation - artículos', () => {
       if (data.featured === undefined) continue;
       expect(typeof data.featured, `featured no es booleano en ${data.slug}`).toBe('boolean');
     }
+  });
+
+  // Tests para la validación de 'section' solo para artículos publicados
+  describe('Validation - section mandatory for published articles', () => {
+    const validSection = isKnownSection('Actualidad') ? 'Actualidad' : SECTIONS[0]; // Usar una sección válida del catálogo
+
+    it('draft sin section debe pasar', () => {
+      const result = newsSchema.parse({
+        title: 'Draft sin section',
+        description: 'Descripción de prueba',
+        slug: 'draft-sin-section',
+        section: undefined,
+        author: 'Test',
+        publishedAt: '2026-10-20T00:00:00.000Z',
+        status: 'draft',
+      });
+
+      expect(result).toBeDefined();
+      expect(result.status).toBe('draft');
+      expect(result.section).toBeUndefined();
+    });
+
+    it('review sin section debe pasar', () => {
+      const result = newsSchema.parse({
+        title: 'Review sin section',
+        description: 'Descripción de prueba',
+        slug: 'review-sin-section',
+        section: undefined,
+        author: 'Test',
+        publishedAt: '2026-10-20T00:00:00.000Z',
+        status: 'review',
+      });
+
+      expect(result).toBeDefined();
+      expect(result.status).toBe('review');
+      expect(result.section).toBeUndefined();
+    });
+
+    it('published sin section debe fallar', () => {
+      expect(() =>
+        newsSchema.parse({
+          title: 'Published sin section',
+          description: 'Descripción de prueba',
+          slug: 'published-sin-section',
+          section: undefined,
+          author: 'Test',
+          publishedAt: '2026-10-20T00:00:00.000Z',
+          status: 'published',
+        })
+      ).toThrow();
+    });
+
+    it('published con section inválida debe fallar', () => {
+      expect(() =>
+        newsSchema.parse({
+          title: 'Published con section inválida',
+          description: 'Descripción de prueba',
+          slug: 'published-section-invalid',
+          section: 'Sección Inexistente',
+          author: 'Test',
+          publishedAt: '2026-10-20T00:00:00.000Z',
+          status: 'published',
+        })
+      ).toThrow();
+    });
+
+    it('published con section válida debe pasar', () => {
+      const result = newsSchema.parse({
+        title: 'Published con section válida',
+        description: 'Descripción de prueba',
+        slug: 'published-section-valid',
+        section: validSection,
+        author: 'Test',
+        publishedAt: '2026-10-20T00:00:00.000Z',
+        status: 'published',
+      });
+
+      expect(result).toBeDefined();
+      expect(result.status).toBe('published');
+      expect(result.section).toBe(validSection);
+    });
   });
 });
