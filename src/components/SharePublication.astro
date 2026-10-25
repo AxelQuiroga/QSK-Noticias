@@ -23,7 +23,7 @@ const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=
   <button
     type="button"
     data-share-native
-    class="inline-flex min-h-10 items-center gap-2 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg transition hover:brightness-110 focus-visible:outline-offset-4"
+    class="inline-flex min-h-10 items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-bold text-bg shadow-sm shadow-black/15 transition duration-150 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-md active:translate-y-0 focus-visible:outline-offset-4"
   >
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
       <circle cx="18" cy="5" r="3" />
@@ -38,7 +38,7 @@ const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Compartir por WhatsApp"
-    class="inline-flex min-h-10 items-center rounded-lg border border-border px-3 py-2 text-sm font-semibold text-text transition hover:border-accent hover:text-accent"
+    class="inline-flex min-h-10 items-center rounded-full border border-border bg-surface px-4 py-2 text-sm font-semibold text-text transition duration-150 hover:border-accent hover:bg-surface-raised hover:text-accent focus-visible:outline-offset-4"
   >
     WhatsApp
   </a>
