@@ -38,8 +38,18 @@ test.describe('Compartir contenido editorial', () => {
       () => (window as Window & { __shareCalls?: ShareData[] }).__shareCalls ?? [],
     );
     expect(calls).toHaveLength(1);
-    expect(calls[0].title).toContain('QSK Noticias');
-    expect(calls[0].url).toBe('https://qsknoticias.site/noticias/corte-transito-avenida-smith-ezpeleta-octubre-2026/');
+
+    const shareData = calls[0];
+    expect(shareData).toBeDefined();
+
+    if (!shareData) {
+      throw new Error('No se recibieron datos para compartir');
+    }
+
+    expect(shareData.title).toContain('QSK Noticias');
+    expect(shareData.url).toBe(
+      'https://qsknoticias.site/noticias/corte-transito-avenida-smith-ezpeleta-octubre-2026/',
+    );
   });
 
   test('las gacetillas oficiales también ofrecen compartir su detalle propio', async ({ page }) => {
