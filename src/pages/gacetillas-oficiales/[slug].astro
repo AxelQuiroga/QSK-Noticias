@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SharePublication from '../../components/SharePublication.astro';
 import { getGacetillasConSlug, getFuenteInfo, type GacetillaConSlug } from '../../lib/gacetillas';
 import { formatDate } from '../../lib/utils';
 import { normalizarTexto, formatearTitulo } from '../../lib/normalizar-texto';
@@ -63,6 +64,12 @@ const fechaValida = fecha && !Number.isNaN(fecha.getTime()) ? fecha : null;
         </p>
       )}
     </header>
+
+    <SharePublication
+      title={`${tituloMostrado} — Gacetillas oficiales — QSK Noticias`}
+      description={descripcionMostrada ?? gacetilla.titulo}
+      url={new URL(`/gacetillas-oficiales/${gacetilla.slug}/`, Astro.site ?? Astro.url).href}
+    />
 
     {gacetilla.imagenUrl && (
       <figure class="mx-auto mt-8 max-w-4xl">

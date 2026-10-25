@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import SharePublication from '../../components/SharePublication.astro';
 import { formatDate, slugify } from '../../lib/articles';
 import { responsiveImage } from '../../lib/responsive-image';
 import { imageDimensions } from '../../lib/image-dimensions';
@@ -110,6 +111,12 @@ async function responsiveImageProps(image: { src: string; alt: string; attributi
         )}
       </div>
     </header>
+
+    <SharePublication
+      title={`${data.title} — QSK Noticias`}
+      description={data.description}
+      url={new URL(`/noticias/${data.slug}/`, Astro.site ?? Astro.url).href}
+    />
 
     {/* ✅ 1. IMAGEN PRINCIPAL (Portada): Va PRIMERO, optimizada para LCP */}
        {/* ✅ IMAGEN PRINCIPAL (Portada) */}
