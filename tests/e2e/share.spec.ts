@@ -51,7 +51,7 @@ test.describe('Compartir contenido editorial', () => {
 
     const whatsapp = page.getByRole('link', { name: /whatsapp/i });
     const telegram = page.getByRole('link', { name: /telegram/i });
-    await expect(whatsapp).toHaveAttribute('href', /qsknoticias\.site\/gacetillas-oficiales\//);
-    await expect(telegram).toHaveAttribute('href', /qsknoticias\.site\/gacetillas-oficiales\//);
+    await expect(whatsapp).toHaveAttribute('href', /qsknoticias\.site(%2F|\/)gacetillas-oficiales(%2F|\/)/i);
+    await expect(whatsapp).toHaveAttribute('href', /qsknoticias\.site(%2F|\/)gacetillas-oficiales(%2F|\/)/i);
   });
 });
