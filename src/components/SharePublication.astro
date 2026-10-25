@@ -1,0 +1,106 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+}
+
+const { title, description, url } = Astro.props;
+const shareText = `${title} — ${url}`;
+const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+const telegramUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+---
+
+<section
+  class="mt-6 flex flex-wrap items-center gap-2 border-y border-border py-4"
+  aria-label="Compartir esta publicación"
+  data-share-controls
+  data-share-title={title}
+  data-share-description={description}
+  data-share-url={url}
+>
+  <span class="mr-1 text-sm font-semibold text-text-secondary">Compartir:</span>
+  <button
+    type="button"
+    data-share-native
+    class="inline-flex min-h-10 items-center gap-2 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg transition hover:brightness-110 focus-visible:outline-offset-4"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
+      <circle cx="18" cy="5" r="3" />
+      <circle cx="6" cy="12" r="3" />
+      <circle cx="18" cy="19" r="3" />
+      <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" />
+    </svg>
+    Compartir noticia
+  </button>
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Compartir por WhatsApp"
+    class="inline-flex min-h-10 items-center rounded-lg border border-border px-3 py-2 text-sm font-semibold text-text transition hover:border-accent hover:text-accent"
+  >
+    WhatsApp
+  </a>
+  <a
+    href={telegramUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Compartir por Telegram"
+    class="inline-flex min-h-10 items-center rounded-lg border border-border px-3 py-2 text-sm font-semibold text-text transition hover:border-accent hover:text-accent"
+  >
+    Telegram
+  </a>
+  <button
+    type="button"
+    data-share-copy
+    class="inline-flex min-h-10 items-center rounded-lg border border-border px-3 py-2 text-sm font-semibold text-text transition hover:border-accent hover:text-accent"
+  >
+    Copiar enlace
+  </button>
+  <p data-share-status class="w-full text-sm text-text-secondary" role="status" aria-live="polite"></p>
+</section>
+
+<script>
+  function initializeShareControls() {
+    document.querySelectorAll<HTMLElement>('[data-share-controls]').forEach((container) => {
+      if (container.dataset.shareInitialized === 'true') return;
+      container.dataset.shareInitialized = 'true';
+
+      const title = container.dataset.shareTitle ?? document.title;
+      const description = container.dataset.shareDescription ?? '';
+      const url = container.dataset.shareUrl ?? window.location.href;
+      const status = container.querySelector<HTMLElement>('[data-share-status]');
+      const shareButton = container.querySelector<HTMLButtonElement>('[data-share-native]');
+      const copyButton = container.querySelector<HTMLButtonElement>('[data-share-copy]');
+
+      const copyLink = async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          if (status) status.textContent = 'Enlace copiado.';
+        } catch {
+          if (status) status.textContent = 'No se pudo copiar automáticamente. Copiá la dirección desde el navegador.';
+        }
+      };
+
+      shareButton?.addEventListener('click', async () => {
+        if (typeof navigator.share !== 'function') {
+          await copyLink();
+          return;
+        }
+
+        try {
+          await navigator.share({ title, text: description, url });
+        } catch (error) {
+          if (error instanceof DOMException && error.name === 'AbortError') return;
+          if (status) status.textContent = 'No se pudo abrir el menú para compartir. Elegí WhatsApp, Telegram o copiá el enlace.';
+        }
+      });
+
+      copyButton?.addEventListener('click', copyLink);
+    });
+  }
+
+  initializeShareControls();
+  document.addEventListener('astro:page-load', initializeShareControls);
+</script>
