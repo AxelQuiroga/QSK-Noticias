@@ -22,10 +22,6 @@ image:
   src: '/images/noticias/piel-de-cristal-epidermolisis-ampollar.jpg'
   alt: 'Imagen principal sobre la epidermólisis ampollar, enfermedad conocida como piel de cristal'
   attribution: ''
-gallery:
-  - src: '/images/noticias/piel-de-cristal-cuidados.jpg'
-    alt: 'Cuidados y curaciones de la piel en personas con epidermólisis ampollar'
-    attribution: ''
 ---
 
 
@@ -50,6 +46,8 @@ No se trata de una enfermedad contagiosa. Su origen es genético y sus manifesta
 Identificar con precisión el tipo de epidermólisis ampollar es importante para orientar el seguimiento médico. La evaluación clínica puede complementarse con estudios genéticos y otras pruebas especializadas.
 
 Los cuidados pueden incluir curaciones, apósitos adecuados, prevención y tratamiento de infecciones, control del dolor y seguimiento nutricional. En las formas más complejas, la atención requiere la participación coordinada de profesionales de distintas especialidades.
+
+![Materiales e insumos utilizados en los cuidados de la epidermólisis ampollar](/images/noticias/piel-de-cristal-cuidados.jpg)
 
 El Hospital Garrahan informó en octubre de 2025 que su equipo multidisciplinario cuenta con más de dos décadas de experiencia y realiza el diagnóstico, tratamiento y seguimiento de entre 50 y 70 pacientes por año.
 
