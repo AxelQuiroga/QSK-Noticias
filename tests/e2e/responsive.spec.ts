@@ -83,7 +83,7 @@ test.describe('encabezados de gacetillas en portada', () => {
     await pwPage.setViewportSize({ width: 390, height: 900 });
     await pwPage.goto('/', { waitUntil: 'networkidle' });
 
-    const track = pwPage.locator('[data-carousel-track]');
+    const track = pwPage.locator('section[aria-labelledby="gacetillas-gba-heading"] [data-carousel-track]');
     if ((await track.count()) > 0) {
       await expect(track).toBeVisible();
       const scrollable = await track.evaluate(

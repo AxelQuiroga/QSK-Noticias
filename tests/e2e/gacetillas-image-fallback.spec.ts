@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-const CAROUSEL_SECTION = 'section[aria-labelledby="novedades-oficiales-heading"]';
+const CAROUSEL_SECTION = 'section[aria-labelledby="gacetillas-gba-heading"]';
 const GACETILLAS_SECTION = 'section[aria-labelledby="gacetillas-heading"]';
 
 test.describe('Fallback de imágenes oficiales', () => {
   test.beforeEach(async ({ page }) => {
     // Simula el servidor de imágenes externo caído (timeout / 5xx / DNS).
-    await page.route('https://www.gba.gob.ar/**', (route) => route.abort());
+    await page.route('**/*', (route) => {
+      if (route.request().resourceType() === 'image') return route.abort();
+      return route.continue();
+    });
   });
 
   test('el carrusel de portada muestra el marcador 16:9 cuando la imagen falla', async ({ page }) => {
@@ -24,7 +27,7 @@ test.describe('Fallback de imágenes oficiales', () => {
     await expect(image).toBeHidden();
 
     // El contenedor conserva la proporción 16:9.
-    const box = await firstCard.locator('div.aspect-\\[16\\/9\\]').boundingBox();
+    const box = await firstCard.locator('a:has([data-carousel-img-fallback])').boundingBox();
     expect(box).not.toBeNull();
     expect(box!.width).toBeGreaterThan(0);
     expect(Math.abs(box!.width / box!.height - 16 / 9)).toBeLessThan(0.05);
@@ -34,8 +37,9 @@ test.describe('Fallback de imágenes oficiales', () => {
 
   test('la página de detalle también muestra el marcador cuando la imagen falla', async ({ page }) => {
     await page.goto('/');
+    // El enlace a la imagen está dentro de article; el li no tiene un <a> directo.
     const href = await page
-      .locator(`${CAROUSEL_SECTION} [data-carousel-track] > li > a`)
+      .locator(`${CAROUSEL_SECTION} [data-carousel-track] > li article > a[href^="/gacetillas-oficiales/"]`)
       .first()
       .getAttribute('href');
     await page.goto(href!);
