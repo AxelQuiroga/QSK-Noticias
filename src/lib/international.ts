@@ -1,4 +1,4 @@
-import section from 'src/data/sections';
+import type  {Article}  from "./articles";
 
 /**
  * ISO 3166-1 alpha-2 country codes
@@ -243,8 +243,8 @@ export const COUNTRY_TO_REGION: Record<CountryCode, GeographicRegion> = {
  */
 export function isInternational(
   article: Article,
-): article is InternationalArticle {
-  return article.section === 'Internacional';
+): boolean {
+  return article.data.section === 'Internacional';
 }
 
 

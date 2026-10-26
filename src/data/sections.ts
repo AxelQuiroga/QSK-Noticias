@@ -32,6 +32,7 @@ export const TOPICS: readonly string[] = [
   'Servicios',
   'Sociedad',
   'Tránsito',
+  'Internacional',
 ];
 
 /**
