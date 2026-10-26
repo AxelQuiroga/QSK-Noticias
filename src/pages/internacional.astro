@@ -1,22 +1,24 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ArticleCard from '@/components/ArticleCard.astro';
-import { getCountryName, isInternational } from '@/lib/international';
-import { getPublishedArticles } from '../lib/articles';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+import { getCountryName, isInternational } from "@/lib/international";
+import { getPublishedArticles } from "../lib/articles";
 
 const internationalArticles = (await getPublishedArticles()).filter(
-  (article) => article.data.status === 'published' && isInternational(article),
+  (article) => article.data.status === "published" && isInternational(article),
 );
 
-const title = 'Internacional | QSK Noticias';
+const title = "Internacional | QSK Noticias";
 const description =
-  'Noticias internacionales: información y actualidad del mundo.';
+  "Noticias internacionales: información y actualidad del mundo.";
 ---
 
 <BaseLayout title={title} description={description}>
   <main class="mx-auto max-w-6xl px-4 py-10">
     <header class="mb-8">
-      <p class="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">
+      <p
+        class="mb-2 text-sm font-semibold uppercase tracking-wider text-primary"
+      >
         Cobertura internacional
       </p>
 
@@ -31,31 +33,33 @@ const description =
     </header>
 
     <section aria-label="Noticias internacionales">
-      {internationalArticles.length === 0 ? (
-        <div class="rounded-lg border border-border p-8 text-center">
-          <h2 class="mb-2 text-xl font-semibold">
-            Todavía no hay noticias internacionales
-          </h2>
-          <p class="text-muted-foreground">
-            Estamos preparando la cobertura internacional de QSK Noticias.
-          </p>
-        </div>
-      ) : (
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {internationalArticles.map((article) => (
-            <div>
-              {article.data.country && (
-                <p class="mb-2 text-sm font-medium text-primary">
-                  {getCountryName(article.data.country) ??
-                    article.data.country}
-                </p>
-              )}
+      {
+        internationalArticles.length === 0 ? (
+          <div class="rounded-lg border border-border p-8 text-center">
+            <h2 class="mb-2 text-xl font-semibold">
+              Todavía no hay noticias internacionales
+            </h2>
+            <p class="text-muted-foreground">
+              Estamos preparando la cobertura internacional de QSK Noticias.
+            </p>
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {internationalArticles.map((article) => (
+              <div class="relative">
+                {article.data.country && (
+                  <span class="absolute left-3 top-3 z-10 rounded bg-slate-900/90 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                    {getCountryName(article.data.country) ??
+                      article.data.country}
+                  </span>
+                )}
 
-              <ArticleCard article={article} />
-            </div>
-          ))}
-        </div>
-      )}
+                <ArticleCard article={article} />
+              </div>
+            ))}
+          </div>
+        )
+      }
     </section>
   </main>
 </BaseLayout>
