@@ -6,7 +6,7 @@ import {
   getCountryRegion,
   COUNTRY_CODES,
   GEOGRAPHIC_REGIONS,
-} from '@/lib/international';
+} from '../src/lib/international';
 
 describe('International utilities', () => {
   describe('isInternational', () => {

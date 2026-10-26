@@ -40,12 +40,14 @@ test.describe('Navegación', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Internacional');
   });
 
-  test('navega a un municipio', async ({ page }) =>
+  
+  test('navega a un municipio', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'Lomas de Zamora' }).first().click();
     await expect(page).toHaveURL(/\/municipios\/lomas-de-zamora/);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lomas de Zamora');
   });
+
 
   test('muestra 404 en página no encontrada', async ({ page }) => {
     const response = await page.goto('/pagina-inexistente/');
