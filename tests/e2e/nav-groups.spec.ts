@@ -7,7 +7,14 @@ import { slugify } from '../../src/lib/utils';
  * `NAV_ITEMS` / `NAV_GROUPS` / `NAV_DIRECT`, así que estos tests acompañan
  * cualquier cambio del catálogo sin listas de secciones duplicadas.
  */
-const sectionHref = (section: string) => `/secciones/${slugify(section)}/`;
+const sectionHref = (section: string) => {
+  const item = NAV_ITEMS.find(
+    (candidate) => candidate.kind === 'link' && candidate.section === section,
+  );
+  return item?.kind === 'link' && item.href
+    ? item.href
+    : `/secciones/${slugify(section)}/`;
+};
 const SECCIONES_AGRUPADAS = NAV_GROUPS.flatMap((group) => group.sections);
 
 /** Etiquetas de las entradas del header, en el orden acordado (`NAV_ITEMS`). */
@@ -55,7 +62,7 @@ test.describe('Header de escritorio · grupos', () => {
     await expect(nav.getByRole('link', { name: 'Buscar', exact: true })).toBeVisible();
 
     // Las secciones de los grupos no son enlaces sueltos de primer nivel.
-    await expect(nav.locator(':scope > a[href^="/secciones/"]')).toHaveCount(NAV_DIRECT.length);
+    await expect(nav.locator(':scope > a')).toHaveCount(NAV_DIRECT.length + 2);
   });
 
   test('ordena las entradas como lo acuerda el catálogo de navegación', async ({ page }) => {
@@ -231,10 +238,12 @@ test.describe('Header de escritorio · grupos', () => {
     const nav = page.locator('nav[aria-label="Navegación principal"]');
 
     const hrefs = await nav
-      .locator('a[href^="/secciones/"]')
+      .locator('a[href^="/"]')
       .evaluateAll((links) => [...new Set(links.map((link) => link.getAttribute('href') ?? ''))]);
 
-    expect(hrefs).toHaveLength(SECCIONES_AGRUPADAS.length + NAV_DIRECT.length);
+    // Portada y Buscar también son destinos de primer nivel; Internacional
+    // usa su ruta de hub explícita (/internacional/), no /secciones/*.
+    expect(hrefs).toHaveLength(SECCIONES_AGRUPADAS.length + NAV_DIRECT.length + 2);
 
     for (const href of hrefs) {
       const response = await page.request.get(new URL(href, page.url()).toString());
