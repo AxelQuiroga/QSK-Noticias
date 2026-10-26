@@ -51,7 +51,12 @@ test.describe('Fallback de imágenes oficiales', () => {
   test('la página dedicada también muestra el marcador cuando la imagen falla', async ({ page }) => {
     await page.goto('/gacetillas-oficiales/');
 
-    const firstCard = page.locator(`${GACETILLAS_SECTION} article`).first();
+    // Algunas tarjetas legítimamente no tienen imagen. Elegimos la primera
+    // que sí renderiza imagen y, por tanto, también su marcador de fallback.
+    const firstCard = page
+      .locator(`${GACETILLAS_SECTION} article:has(img[data-gacetilla-img])`)
+      .first();
+    await expect(firstCard).toBeVisible();
     await firstCard.scrollIntoViewIfNeeded();
 
     await expect(firstCard.locator('[data-gacetilla-img-fallback]')).toBeVisible();

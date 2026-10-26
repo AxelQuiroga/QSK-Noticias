@@ -9,8 +9,11 @@ test.describe('E2E: rutas existentes', () => {
     await expect(page).toHaveTitle(/QSK Noticias/);
   });
 
-  test('la página de noticias carga correctamente', async ({ page }) => {
-    const response = await page.goto('/noticias/');
+  test('una noticia publicada carga correctamente', async ({ page }) => {
+    // No existe un índice /noticias/: Astro genera páginas individuales por slug.
+    const response = await page.goto(
+      '/noticias/lula-reeleccion-brasil-repercusiones-internacionales/',
+    );
 
     expect(response?.status()).toBe(200);
   });
@@ -72,6 +75,10 @@ test.describe('E2E: página Internacional', () => {
   test('la navegación incluye el enlace a Internacional', async ({ page }) => {
     await page.goto('/');
 
+    // En móvil el enlace vive dentro del menú hamburguesa, oculto inicialmente.
+    const mobileToggle = page.locator('#menu-toggle');
+    if (await mobileToggle.isVisible()) await mobileToggle.click();
+
     const internationalLink = page.getByRole('link', {
       name: 'Internacional',
       exact: true,
@@ -88,6 +95,10 @@ test.describe('E2E: página Internacional', () => {
     page,
   }) => {
     await page.goto('/');
+
+    // El menú móvil debe abrirse antes de que el enlace pueda interactuarse.
+    const mobileToggle = page.locator('#menu-toggle');
+    if (await mobileToggle.isVisible()) await mobileToggle.click();
 
     await page.getByRole('link', {
       name: 'Internacional',
