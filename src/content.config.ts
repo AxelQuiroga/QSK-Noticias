@@ -4,7 +4,7 @@ import { glob } from "astro/loaders";
 import { isKnownLocationName, type LocationType } from "./data/locations";
 import { isKnownSection, isKnownTopic } from "./data/sections";
 import { isValidNewsImageSrc, newsImageFileExists } from "./lib/news-image";
-
+import { COUNTRY_CODES } from "./lib/international";
 /**
  * Campos geográficos del frontmatter y el tipo de ubicación que deben
  * referenciar dentro del catálogo (`src/data/locations.ts`). Evita cadenas
@@ -53,7 +53,10 @@ const news = defineCollection({
       region: z.string().optional(),
       country: z
         .string()
-        .regex(/^[A-Z]{2}$/, "El país debe ser un código ISO alfa-2")
+        .refine(
+          (code) => Object.hasOwn(COUNTRY_CODES, code),
+          "El código de país no existe en COUNTRY_CODES",
+        )
         .optional(),
       scope: z.enum(["local", "regional", "provincial", "nacional"]).optional(),
       author: z.string().min(1, "El autor es obligatorio"),

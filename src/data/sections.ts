@@ -124,7 +124,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   {
     kind: 'group',
     label: 'Comunidad',
-    sections: ['Seguridad', 'Servicios', 'Salud', 'Educación'],
+    sections: ['Seguridad', 'Servicios', 'Salud', 'Educación', 'Internacional'],
   },
   { kind: 'group', label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
   { kind: 'link', section: 'Economía' },
