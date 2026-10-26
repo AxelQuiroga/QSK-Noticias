@@ -10,30 +10,16 @@ import {
 
 describe('International utilities', () => {
   describe('isInternational', () => {
-    it('identifica una noticia de la sección Internacional', () => {
-      const article = {
-        section: 'Internacional',
-      };
-
-      expect(isInternational(article)).toBe(true);
+    it('identifica una noticia con alcance internacional', () => {
+      expect(isInternational({ data: { scope: 'internacional' } } as never)).toBe(true);
     });
 
     it('no identifica una noticia local como internacional', () => {
-      const article = {
-        section: 'Sociedad',
-        municipality: 'Lanús',
-        country: 'AR',
-      };
-
-      expect(isInternational(article)).toBe(false);
+      expect(isInternational({ data: { scope: 'local' } } as never)).toBe(false);
     });
 
-    it('no identifica como internacional una noticia sin sección', () => {
-      const article = {
-        country: 'JP',
-      };
-
-      expect(isInternational(article)).toBe(false);
+    it('no identifica como internacional una noticia sin alcance internacional', () => {
+      expect(isInternational({ data: { scope: undefined, country: 'JP' } } as never)).toBe(false);
     });
   });
 
@@ -48,6 +34,7 @@ describe('International utilities', () => {
 
     it('devuelve undefined para un código desconocido', () => {
       expect(getCountryName('XX')).toBeUndefined();
+      expect(getCountryName('toString')).toBeUndefined();
     });
   });
 
@@ -64,6 +51,7 @@ describe('International utilities', () => {
 
     it('devuelve undefined para un código desconocido', () => {
       expect(getCountryRegion('XX')).toBeUndefined();
+      expect(getCountryRegion('toString')).toBeUndefined();
     });
   });
 
@@ -74,6 +62,8 @@ describe('International utilities', () => {
       expect(COUNTRY_CODES).toHaveProperty('JP');
       expect(COUNTRY_CODES).toHaveProperty('EG');
       expect(COUNTRY_CODES).toHaveProperty('AU');
+      expect(COUNTRY_CODES).toHaveProperty('GB');
+      expect(COUNTRY_CODES).not.toHaveProperty('UK');
     });
 
     it('contiene códigos con formato ISO alfa-2', () => {

@@ -1,16 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
-import { getCountryName } from '@/lib/international';
+import { getCountryName, isInternational } from '@/lib/international';
 import { getPublishedArticles } from '../lib/articles';
 
-const internationalArticles = (await getPublishedArticles())
-  .filter((article) => article.data.section === 'Internacional')
-  .sort(
-    (a, b) =>
-      new Date(b.data.publishedAt).getTime() -
-      new Date(a.data.publishedAt).getTime(),
-  );
+const internationalArticles = (await getPublishedArticles()).filter(
+  (article) => article.data.status === 'published' && isInternational(article),
+);
 
 const title = 'Internacional | QSK Noticias';
 const description =

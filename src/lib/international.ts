@@ -34,7 +34,6 @@ export const COUNTRY_CODES = {
   FR: 'Francia',
   IT: 'Italia',
   DE: 'Alemania',
-  UK: 'Reino Unido',
   GB: 'Reino Unido',
   IE: 'Irlanda',
   NL: 'Países Bajos',
@@ -157,7 +156,6 @@ export const COUNTRY_TO_REGION: Record<CountryCode, GeographicRegion> = {
   FR: GEOGRAPHIC_REGIONS.EUROPE,
   IT: GEOGRAPHIC_REGIONS.EUROPE,
   DE: GEOGRAPHIC_REGIONS.EUROPE,
-  UK: GEOGRAPHIC_REGIONS.EUROPE,
   GB: GEOGRAPHIC_REGIONS.EUROPE,
   IE: GEOGRAPHIC_REGIONS.EUROPE,
   NL: GEOGRAPHIC_REGIONS.EUROPE,
@@ -235,16 +233,12 @@ export const COUNTRY_TO_REGION: Record<CountryCode, GeographicRegion> = {
 } as const;
 
 /**
- * Utility: detecta si una noticia es internacional
+ * Detecta noticias cuyo alcance geográfico es internacional.
+ * La sección editorial (Política, Economía, Deportes, etc.) sigue siendo
+ * independiente y no determina el alcance geográfico.
  */
-
-/**
- * Detecta si una noticia pertenece a la sección Internacional.
- */
-export function isInternational(
-  article: Article,
-): boolean {
-  return article.data.section === 'Internacional';
+export function isInternational(article: Article): boolean {
+  return article.data.scope === 'internacional';
 }
 
 
@@ -252,12 +246,12 @@ export function isInternational(
  * Utility: obtiene el nombre del país a partir del código
  */
 export function getCountryName(code: string): string | undefined {
-  return COUNTRY_CODES[code as CountryCode];
+  return Object.hasOwn(COUNTRY_CODES, code) ? COUNTRY_CODES[code as CountryCode] : undefined;
 }
 
 /**
  * Utility: obtiene la región geográfica de un país
  */
 export function getCountryRegion(code: string): GeographicRegion | undefined {
-  return COUNTRY_TO_REGION[code as CountryCode];
+  return Object.hasOwn(COUNTRY_TO_REGION, code) ? COUNTRY_TO_REGION[code as CountryCode] : undefined;
 }

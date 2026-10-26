@@ -58,7 +58,7 @@ const news = defineCollection({
           "El código de país no existe en COUNTRY_CODES",
         )
         .optional(),
-      scope: z.enum(["local", "regional", "provincial", "nacional"]).optional(),
+      scope: z.enum(["local", "regional", "provincial", "nacional", "internacional"]).optional(),
       author: z.string().min(1, "El autor es obligatorio"),
       publishedAt: z.coerce.date(),
       updatedAt: z.coerce.date().optional(),
@@ -141,6 +141,22 @@ const news = defineCollection({
               "Un topic no puede ser tanto primary como secondary. Elige uno como primary y los otros como secundarios.",
           });
         }
+      }
+
+      // International is a geographic scope, not an editorial topic.
+      if (data.scope === "internacional" && !data.country) {
+        ctx.addIssue({
+          code: "custom",
+          path: ["country"],
+          message: "Las noticias de alcance internacional deben indicar el país principal (country).",
+        });
+      }
+      if (data.country && data.scope !== "internacional") {
+        ctx.addIssue({
+          code: "custom",
+          path: ["scope"],
+          message: "El campo country solo puede usarse con scope: internacional.",
+        });
       }
 
       // Validate section is required for published articles

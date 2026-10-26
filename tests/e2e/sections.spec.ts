@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { NAV_DIRECT, NAV_GROUPS, SECTIONS } from '../../src/data/sections';
+import { NAV_DIRECT, NAV_GROUPS, NAV_ITEMS, SECTIONS } from '../../src/data/sections';
 import { slugify } from '../../src/lib/utils';
 
 /**
@@ -8,6 +8,12 @@ import { slugify } from '../../src/lib/utils';
  * agrega o quita una sección, estos tests lo reflejan sin listas duplicadas.
  */
 const NEW_SECTIONS = ['Política', 'Servicios', 'Seguridad', 'Sociedad'];
+const navHref = (section: string) => {
+  const item = NAV_ITEMS.find((candidate) => candidate.kind === 'link' && candidate.section === section);
+  return item?.kind === 'link' && item.href
+    ? item.href
+    : `/secciones/${slugify(section)}/`;
+};
 
 test.describe('Secciones nuevas — rutas', () => {
   for (const section of NEW_SECTIONS) {
@@ -22,6 +28,16 @@ test.describe('Secciones nuevas — rutas', () => {
 test.describe('Navegación principal de escritorio', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
+  test('Internacional tiene ruta editorial propia fuera del catálogo de topics', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.locator('nav[aria-label="Navegación principal"]');
+    await expect(nav.locator('a[href="/internacional/"]')).toHaveText('Internacional');
+
+    const response = await page.goto('/internacional/');
+    expect(response?.status()).toBe(200);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Internacional');
+  });
+
   test('mantiene alcanzable cada sección del catálogo (sin regresiones)', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
@@ -29,19 +45,20 @@ test.describe('Navegación principal de escritorio', () => {
     // Todas las rutas siguen enlazadas desde el header: las agrupadas viven
     // dentro de su desplegable (ocultas hasta abrirlo), no como enlaces sueltos.
     const agrupadas = NAV_GROUPS.flatMap((group) => group.sections);
+    const conventionalDirectLinks = NAV_DIRECT.filter((section) => navHref(section).startsWith('/secciones/'));
     await expect(nav.locator('a[href^="/secciones/"]')).toHaveCount(
-      agrupadas.length + NAV_DIRECT.length,
+      agrupadas.length + conventionalDirectLinks.length,
     );
 
     for (const group of NAV_GROUPS) {
       await nav.getByRole('button', { name: group.label, exact: true }).click();
       for (const section of group.sections) {
-        await expect(nav.locator(`a[href="/secciones/${slugify(section)}/"]`)).toBeVisible();
+        await expect(nav.locator(`a[href="${navHref(section)}"]`)).toBeVisible();
       }
     }
 
     for (const section of NAV_DIRECT) {
-      await expect(nav.locator(`a[href="/secciones/${slugify(section)}/"]`)).toBeVisible();
+      await expect(nav.locator(`a[href="${navHref(section)}"]`)).toBeVisible();
     }
 
     // Ninguna sección del catálogo queda sin entrada en el header: los temas

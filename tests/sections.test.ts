@@ -99,7 +99,7 @@ describe('navegación principal del header', () => {
       ['Seguridad', 'Servicios', 'Salud', 'Educación'],
       ['Obras públicas', 'Tránsito'],
     ]);
-    expect(NAV_DIRECT).toEqual([ACTUALIDAD_SECTION, 'Economía', 'Deportes']);
+    expect(NAV_DIRECT).toEqual([ACTUALIDAD_SECTION, 'Economía', 'Deportes', 'Internacional']);
   });
 
   it('respeta el orden acordado en pantalla', () => {
@@ -113,6 +113,7 @@ describe('navegación principal del header', () => {
       'Ciudad',
       'Economía',
       'Deportes',
+      'Internacional',
     ]);
   });
 
@@ -121,11 +122,21 @@ describe('navegación principal del header', () => {
     // (`/secciones/actualidad/`) y ninguna subsección que desplegar.
     expect(NAV_DIRECT).toContain(ACTUALIDAD_SECTION);
     expect(NAV_GROUPS.map((group) => group.label)).not.toContain(ACTUALIDAD_SECTION);
+    const international = NAV_ITEMS.find((item) => item.kind === 'link' && item.section === 'Internacional');
+    expect(international).toMatchObject({ kind: 'link', href: '/internacional/' });
+    expect(TOPICS).not.toContain('Internacional');
+    expect(SECTIONS).not.toContain('Internacional');
   });
 
-  it('solo referencia secciones del catálogo', () => {
-    for (const section of NAV_SECTIONS) {
-      expect(isKnownSection(section), `"${section}" no pertenece a SECTIONS`).toBe(true);
+  it('las secciones de los grupos y los enlaces convencionales pertenecen al catálogo', () => {
+    for (const item of NAV_ITEMS) {
+      if (item.kind === 'group') {
+        for (const section of item.sections) {
+          expect(isKnownSection(section), `"${section}" no pertenece a SECTIONS`).toBe(true);
+        }
+      } else if (!item.href) {
+        expect(isKnownSection(item.section), `"${item.section}" no pertenece a SECTIONS`).toBe(true);
+      }
     }
   });
 

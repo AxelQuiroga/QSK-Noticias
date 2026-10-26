@@ -4,12 +4,13 @@ import { join, extname } from 'node:path';
 import yaml from 'js-yaml';
 import { findLocationByNameAndType, type LocationType } from '../src/data/locations';
 import { SECTIONS, isKnownSection, isKnownTopic } from '../src/data/sections';
+import { COUNTRY_CODES } from '../src/lib/international';
 import { z } from 'astro/zod';
 
 const CONTENT_DIR = 'src/content/noticias';
 const SLUG_REGEX = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VALID_STATUSES = ['draft', 'review', 'published'];
-const VALID_SCOPES = ['local', 'regional', 'provincial', 'nacional'];
+const VALID_SCOPES = ['local', 'regional', 'provincial', 'nacional', 'internacional'];
 
 // Definir el schema Zod igual que en content.config.ts
 const newsSchema = z
@@ -32,7 +33,8 @@ const newsSchema = z
     municipality: z.string().optional(),
     localidad: z.string().optional(),
     region: z.string().optional(),
-    scope: z.enum(['local', 'regional', 'provincial', 'nacional']).optional(),
+    country: z.string().refine((code) => Object.hasOwn(COUNTRY_CODES, code), 'Código de país desconocido').optional(),
+    scope: z.enum(['local', 'regional', 'provincial', 'nacional', 'internacional']).optional(),
     author: z.string().min(1, 'El autor es obligatorio'),
     publishedAt: z.coerce.date(),
     updatedAt: z.coerce.date().optional(),
@@ -105,6 +107,21 @@ const newsSchema = z
       }
     }
 
+    if (data.scope === 'internacional' && !data.country) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['country'],
+        message: 'Las noticias de alcance internacional deben indicar el país principal (country).',
+      });
+    }
+    if (data.country && data.scope !== 'internacional') {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['scope'],
+        message: 'El campo country solo puede usarse con scope: internacional.',
+      });
+    }
+
     // Validate section is required for published articles
     if (data.status === 'published' && !data.section) {
       ctx.addIssue({
@@ -155,6 +172,7 @@ interface RawArticle {
   localidad?: string;
   region?: string;
   scope?: string;
+  country?: string;
   author?: string;
   publishedAt?: string;
   updatedAt?: string;
@@ -222,6 +240,25 @@ describe('Content validation - artículos', () => {
       if (typeof status !== 'string') continue;
       expect(VALID_STATUSES, `Estado inválido en ${data.slug}: ${status}`).toContain(status);
     }
+  });
+
+  it('las noticias internacionales requieren un país válido y un alcance coherente', () => {
+    const base = {
+      title: 'Noticia internacional',
+      description: 'Descripción de prueba',
+      slug: 'noticia-internacional',
+      section: 'Política',
+      author: 'Test',
+      publishedAt: '2026-10-20T00:00:00.000Z',
+      status: 'published',
+    };
+
+    expect(() => newsSchema.parse({ ...base, scope: 'internacional' })).toThrow();
+    expect(() => newsSchema.parse({ ...base, country: 'BR' })).toThrow();
+
+    const valid = newsSchema.parse({ ...base, scope: 'internacional', country: 'BR' });
+    expect(valid.scope).toBe('internacional');
+    expect(valid.country).toBe('BR');
   });
 
   it('el alcance geográfico es válido cuando está presente', () => {
