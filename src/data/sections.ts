@@ -129,6 +129,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { kind: 'group', label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
   { kind: 'link', section: 'Economía' },
   { kind: 'link', section: 'Deportes' },
+  { kind: 'link', section: 'Internacional' },
 ];
 
 /** Grupos desplegables del header, en orden. Derivado de `NAV_ITEMS`. */
