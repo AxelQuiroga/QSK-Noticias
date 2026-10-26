@@ -1,5 +1,5 @@
 ---
-import Logo from './Logo.astro';
+import Logo from "./Logo.astro";
 
 const year = new Date().getFullYear();
 ---
@@ -9,39 +9,68 @@ const year = new Date().getFullYear();
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
       <div>
         <Logo variant="footer" />
-        <p class="mt-2 text-sm text-text-secondary">
-          Zona Sur · Buenos Aires
-        </p>
+        <p class="mt-2 text-sm text-text-secondary">Zona Sur · Buenos Aires</p>
       </div>
 
       <nav aria-label="Enlaces institucionales">
-        <h2 class="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+        <h2
+          class="text-sm font-semibold uppercase tracking-wider text-text-secondary"
+        >
           Institucional
         </h2>
         <ul class="mt-3 space-y-2">
-          <li><a href="/quienes-somos/" class="text-sm text-text-secondary hover:text-text">Quiénes somos</a></li>
-          <li><a href="/contacto/" class="text-sm text-text-secondary hover:text-text">Contacto</a></li>
-          <li><a href="/criterios-editoriales/" class="text-sm text-text-secondary hover:text-text">Criterios editoriales</a></li>
-          <li><a href="/correcciones/" class="text-sm text-text-secondary hover:text-text">Correcciones</a></li>
-          <li><a href="/politica-de-privacidad/" class="text-sm text-text-secondary hover:text-text">Política de Privacidad</a></li>
+          <li>
+            <a
+              href="/quienes-somos/"
+              class="text-sm text-text-secondary hover:text-text"
+              >Quiénes somos</a>
+          </li>
+          <li>
+            <a
+              href="/contacto/"
+              class="text-sm text-text-secondary hover:text-text">Contacto</a>
+          </li>
+          <li>
+            <a
+              href="/criterios-editoriales/"
+              class="text-sm text-text-secondary hover:text-text"
+              >Criterios editoriales</a>
+          </li>
+          <li>
+            <a
+              href="/correcciones/"
+              class="text-sm text-text-secondary hover:text-text"
+              >Correcciones</a>
+          </li>
+          <li>
+            <a
+              href="/politica-de-privacidad/"
+              class="text-sm text-text-secondary hover:text-text"
+              >Política de Privacidad</a>
+          </li>
         </ul>
       </nav>
 
       <div>
-        <h2 class="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+        <h2
+          class="text-sm font-semibold uppercase tracking-wider text-text-secondary"
+        >
           Cobertura
         </h2>
         <p class="mt-3 text-sm text-text-secondary">
-          Zona Sur del conurbano bonaerense.
+          Zona Sur del GBA · Argentina · Internacional
         </p>
       </div>
 
       <div>
-        <h2 class="text-sm font-semibold uppercase tracking-wider text-text-secondary">
-          Estado del proyecto
+        <h2
+          class="text-sm font-semibold uppercase tracking-wider text-text-secondary"
+        >
+          Nuestra misión
         </h2>
         <p class="mt-3 text-sm text-text-secondary">
-          Versión inicial en desarrollo.
+          Información clara, fuentes verificables y actualidad para estar
+          informados.
         </p>
       </div>
     </div>

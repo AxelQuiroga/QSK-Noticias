@@ -62,7 +62,7 @@ import { NAV_ITEMS } from '../data/sections';
             </div>
           ) : (
             <a
-              href={`/secciones/${slugify(item.section)}/`}
+              href={item.href ?? `/secciones/${slugify(item.section)}/`}
               class="text-sm font-medium text-text-secondary transition-colors hover:text-text"
             >
               {item.section}
@@ -150,7 +150,7 @@ import { NAV_ITEMS } from '../data/sections';
           ) : (
             <li>
               <a
-                href={`/secciones/${slugify(item.section)}/`}
+                href={item.href ?? `/secciones/${slugify(item.section)}/`}
                 class="flex min-h-11 items-center text-base font-medium text-text-secondary transition-colors hover:text-text"
               >
                 {item.section}

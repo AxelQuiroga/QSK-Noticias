@@ -91,9 +91,9 @@ export function isKnownSection(name: string): boolean {
  *
  * Los grupos son AGRUPACIONES DE NAVEGACIÓN, no secciones editoriales: no
  * tienen ruta propia ni entran en `SECTIONS`, así que no existe (ni debe
- * existir) `/secciones/comunidad/`. Cada entrada referencia el NOMBRE de una
- * sección del catálogo: el slug y la ruta se derivan siempre de `SECTIONS` +
- * `slugify()`, nunca se escriben a mano acá.
+ * existir) `/secciones/comunidad/`. Los enlaces convencionales usan
+ * `/secciones/<slug>/`; los hubs editoriales independientes declaran su `href`
+ * explícitamente en `NAV_ITEMS`.
  *
  * ⚠️ `Actualidad` es un enlace DIRECTO aunque no sea un topic: es el feed de
  * los últimos días (`src/lib/actualidad.ts`) y conserva su URL
@@ -102,8 +102,10 @@ export function isKnownSection(name: string): boolean {
  */
 export interface NavLink {
   readonly kind: 'link';
-  /** Nombre de una sección del catálogo (`SECTIONS`). */
+  /** Nombre visible del enlace. */
   readonly section: string;
+  /** Ruta propia para enlaces que no pertenecen al catálogo `/secciones/*`. */
+  readonly href?: string;
 }
 
 export interface NavGroup {
@@ -129,6 +131,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { kind: 'group', label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
   { kind: 'link', section: 'Economía' },
   { kind: 'link', section: 'Deportes' },
+  { kind: 'link', section: 'Internacional', href: '/internacional/' },
 ];
 
 /** Grupos desplegables del header, en orden. Derivado de `NAV_ITEMS`. */

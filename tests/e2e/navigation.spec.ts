@@ -22,12 +22,32 @@ test.describe('Navegación', () => {
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Tránsito');
   });
 
+  test('navega al hub editorial Internacional', async ({ page }) => {
+    await page.goto('/');
+    const viewport = page.viewportSize();
+    const isMobile = viewport !== null && viewport.width < 768;
+
+    if (isMobile) {
+      await page.locator('#menu-toggle').click();
+      const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
+      await menu.getByRole('link', { name: 'Internacional', exact: true }).click();
+    } else {
+      const nav = page.locator('nav[aria-label="Navegación principal"]');
+      await nav.getByRole('link', { name: 'Internacional', exact: true }).click();
+    }
+
+    await expect(page).toHaveURL(/\/internacional\/$/);
+    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Internacional');
+  });
+
+  
   test('navega a un municipio', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('link', { name: 'Lomas de Zamora' }).first().click();
     await expect(page).toHaveURL(/\/municipios\/lomas-de-zamora/);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lomas de Zamora');
   });
+
 
   test('muestra 404 en página no encontrada', async ({ page }) => {
     const response = await page.goto('/pagina-inexistente/');
