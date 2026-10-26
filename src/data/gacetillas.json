@@ -120,6 +120,16 @@
     "slug": "la-muestra-vidas-submarinas-comienza-su-recorrido-por-la-provincia"
   },
   {
+    "titulo": "SIGUE EL PLAN DE PAVIMENTACIÓN EN EL BARRIO VILLA ARGERICH",
+    "descripcion": null,
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/sigue-el-plan-de-pavimentacion-en-el-barrio-villa-argerich-1-CBKH6.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4636-sigue-el-plan-de-pavimentacion-en-el-barrio-villa-argerich",
+    "fecha": "2026-10-26",
+    "volanta": "Obras Públicas",
+    "fuente": "lanus",
+    "slug": "sigue-el-plan-de-pavimentacion-en-el-barrio-villa-argerich"
+  },
+  {
     "titulo": "EL COLECTIVO SANITARIO LLEGARÁ A LA PLAZA ARIAS DE LANÚS OESTE",
     "descripcion": null,
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-26-at-102632-zQGAH.jpeg",
@@ -200,18 +210,8 @@
     "slug": "nueva-edicion-de-la-feria-hecho-en-lanus"
   },
   {
-    "titulo": "PUNTO DE CASTRACIÓN ITINERANTE: NUEVA JORNADA EN VALENTÍN ALSINA",
-    "descripcion": null,
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-22-at-091906-hs9hZ.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4627-punto-de-castracion-itinerante-nueva-jornada-en-valentin-alsina",
-    "fecha": "2026-10-22",
-    "volanta": "Salud",
-    "fuente": "lanus",
-    "slug": "punto-de-castracion-itinerante-nueva-jornada-en-valentin-alsina"
-  },
-  {
     "titulo": "La intendenta Sierra celebró los aniversarios de las orquestas “Creer es crear” y “El Docke musical”",
-    "descripcion": null,
+    "descripcion": "Estas formaciones musicales promueven el desarrollo social, cultural y educativo de las y los niños y adolescentes de Avellaneda.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-24-at-16.21.40-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/32300/",
     "fecha": "2026-10-24",
@@ -221,7 +221,7 @@
   },
   {
     "titulo": "La delegación de Avellaneda logró el tercer puesto en la Final de los Juegos Bonaerenses 2026",
-    "descripcion": null,
+    "descripcion": "Nuestros representantes cosecharon 35 medallas de Oro, 12 de Plata y 10 de Bronce.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/Proyecto-nuevo-1-2-350x240.jpg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/la-delegacion-de-avellaneda-logro-el-tercer-puesto-en-la-final-de-los-juegos-bonaerenses-2026/",
     "fecha": "2026-10-23",
@@ -231,7 +231,7 @@
   },
   {
     "titulo": "En el Municipio de Río Grande, Magdalena Sierra recorrió obras y visitó centros de cuidado",
-    "descripcion": null,
+    "descripcion": "La jefa comunal valoró el intercambió experiencias de gestión para seguir fortaleciendo las políticas públicas que se impulsan en Avellaneda.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-22-at-18.53.14-1-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/en-el-municipio-de-rio-grande-magdalena-sierra-recorrio-obras-y-visito-centros-de-cuidado/",
     "fecha": "2026-10-22",
@@ -241,7 +241,7 @@
   },
   {
     "titulo": "Magdalena Sierra participó de las “4tas Jornadas Municipales sobre Cuidados Igualitarios” en Tierra del Fuego",
-    "descripcion": null,
+    "descripcion": "Organizadas por el Municipio de Río Grande, representan espacios de reflexión y construcción colectiva para avanzar hacia una sociedad más justa e igualitaria.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-21-at-19.05.37-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/magdalena-sierra-participo-de-las-4tas-jornadas-municipales-sobre-cuidados-igualitarios-en-tierra-del-fuego/",
     "fecha": "2026-10-21",
@@ -251,7 +251,7 @@
   },
   {
     "titulo": "La delegación de Avellaneda viajó a Mar del Plata para las finales de los Juegos Bonaerenses 2026",
-    "descripcion": null,
+    "descripcion": "Magdalena Sierra y Jorge Ferraresi acompañaron a las y los vecinos que representarán a la ciudad en 106 disciplinas deportivas y culturales. El gobernador Axel Kicillof encabezó el acto de apertura.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-19-at-16.24.18-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/la-delegacion-de-avellaneda-viajo-a-mar-del-plata-para-las-finales-de-los-juegos-bonaerenses-2026/",
     "fecha": "2026-10-20",
@@ -271,7 +271,7 @@
   },
   {
     "titulo": "La intendenta Magdalena Sierra presentó el “Plan Hídrico 2026-2027”",
-    "descripcion": null,
+    "descripcion": "Con una inversión propia de más de $ 25.000 millones, el programa prevé un alcance territorial equivalente al 20,83% del total del partido de Avellaneda, con 64.309 beneficiarios directos.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-16-at-20.47.17-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/la-intendenta-magdalena-sierra-presento-el-plan-hidrico-2026-2027/",
     "fecha": "2026-10-16",
@@ -281,7 +281,7 @@
   },
   {
     "titulo": "Se extendió el plazo para regularizar las tasas vencidas",
-    "descripcion": null,
+    "descripcion": "El Estado eficiente se pone al frente de los momentos difíciles, para que la ciudad no detenga su motor. Cuáles son los beneficios y condiciones para adherirse.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/09/prorroga13_11-350x240.jpg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/plan-de-regulizacion-de-deudas-para-comercios-prestadores-de-servicios-e-industrias/",
     "fecha": "2026-10-14",
@@ -291,7 +291,7 @@
   },
   {
     "titulo": "Cronograma de las ferias itinerantes de la economía popular",
-    "descripcion": null,
+    "descripcion": "El programa “Ahorremos en el barrio” ofrece productos de la canasta básica a precios accesibles y apoya a los emprendimientos locales.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/09/ahorremos-en-elbarrio-1-350x240.jpg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/ahorremos-en-el-barrio/",
     "fecha": "2026-10-12",
@@ -301,7 +301,7 @@
   },
   {
     "titulo": "El Teatro Roma celebra sus 122 años con el concierto “Indio Eterno – Una Misa Sinfónica”",
-    "descripcion": null,
+    "descripcion": "Durante dos fechas, la Orquesta Sinfónica Municipal y el Coro del Instituto Municipal de Música de Avellaneda presentan un espectáculo dedicado a la música del Indio Solari.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-09-at-22.48.45-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/el-teatro-roma-celebra-sus-122-anos-con-el-concierto-indio-eterno-una-misa-sinfonica/",
     "fecha": "2026-10-09",
@@ -311,7 +311,7 @@
   },
   {
     "titulo": "Magdalena Sierra inauguró obras en instituciones de la ciudad",
-    "descripcion": null,
+    "descripcion": "La jefa comunal estuvo presente en el Centro de Jubilados Amanecer, la Cooperativa Unión Solidaria de Trabajadores, y en el Club Deportivo Domínico.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-09-at-20.16.28-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/magdalena-sierra-inauguro-obras-en-instituciones-de-la-ciudad/",
     "fecha": "2026-10-09",
@@ -321,7 +321,7 @@
   },
   {
     "titulo": "El Municipio entregó subsidios a escuelas públicas de Avellaneda",
-    "descripcion": null,
+    "descripcion": "“Invertimos en educación publica para que todos los chicos tengan las mismas oportunidades”, aseguró la intendenta Sierra.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-06-at-15.17.03-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/el-municipio-entrego-subsidios-a-escuelas-publicas-de-avellaneda/",
     "fecha": "2026-10-08",
@@ -428,6 +428,16 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "avanzan-las-tareas-de-fumigacion-en-esteban-echeverria"
+  },
+  {
+    "titulo": "PUNTO DE CASTRACIÓN ITINERANTE: NUEVA JORNADA EN VALENTÍN ALSINA",
+    "descripcion": null,
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-22-at-091906-hs9hZ.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4627-punto-de-castracion-itinerante-nueva-jornada-en-valentin-alsina",
+    "fecha": "2026-10-22",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "punto-de-castracion-itinerante-nueva-jornada-en-valentin-alsina"
   },
   {
     "titulo": "NUEVO ESPACIO RECREATIVO EN EL BARRIO VILLA TALLERES",
