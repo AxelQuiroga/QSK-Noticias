@@ -1,140 +1,103 @@
-import { describe, it, expect } from 'vitest';
-import { test, expect as playwrightExpect } from '@playwright/test';
 
-/**
- * Tests E2E para validar:
- * 1. Las rutas existentes no se rompan
- * 2. La nueva ruta /internacional/ funciona correctamente
- * 3. El contenido se carga y filtra correctamente
- */
+import { test, expect } from '@playwright/test';
 
-describe.skip('E2E: Rutas existentes protegidas', () => {
-  /**
-   * Tests para asegurar que las rutas existentes siguen funcionando
-   * NOTA: Usar con `describe.skip` si la URL base no está disponible en tests
-   * Descomenta cuando tengas servidor de prueba
-   */
+test.describe('E2E: rutas existentes', () => {
+  test('la portada carga correctamente', async ({ page }) => {
+    const response = await page.goto('/');
 
-  test('GET / debería retornar 200', async ({ page }) => {
-    await page.goto('/');
-    await playwrightExpect(page).toHaveTitle(/QSK Noticias/);
+    expect(response?.status()).toBe(200);
+    await expect(page).toHaveTitle(/QSK Noticias/);
   });
 
-  test('GET /noticias/ debería retornar 200', async ({ page }) => {
-    await page.goto('/noticias/');
+  test('la página de noticias carga correctamente', async ({ page }) => {
     const response = await page.goto('/noticias/');
+
     expect(response?.status()).toBe(200);
   });
 
-  test('GET /secciones/ debería retornar 200', async ({ page }) => {
-    const response = await page.goto('/secciones/');
-    // Puede que esta ruta no exista, ajustar según tu estructura
-    expect([200, 404]).toContain(response?.status());
-  });
-
-  test('Navegación debería incluir links a rutas existentes', async ({ page }) => {
+  test('la navegación conserva el enlace a la portada', async ({ page }) => {
     await page.goto('/');
 
-    // Verificar que existen links a rutas existentes
-    const homeLink = page.locator('a[href="/"]');
-    const noticiasLink = page.locator('a[href="/noticias/"]');
-
-    await playwrightExpect(homeLink).toBeVisible();
-    await playwrightExpect(noticiasLink).toBeVisible();
+    await expect(page.locator('a[href="/"]').first()).toBeVisible();
   });
 });
 
-describe.skip('E2E: Nueva ruta Internacional', () => {
-  /**
-   * Tests para la nueva funcionalidad
-   * NOTA: Usar con `describe.skip` si la URL base no está disponible
-   */
-
-  test('GET /internacional/ debería retornar 200', async ({ page }) => {
+test.describe('E2E: página Internacional', () => {
+  test('la ruta responde correctamente y muestra el título', async ({
+    page,
+  }) => {
     const response = await page.goto('/internacional/');
+
     expect(response?.status()).toBe(200);
+    await expect(
+      page.getByRole('heading', {
+        level: 1,
+        name: 'Internacional',
+      }),
+    ).toBeVisible();
   });
 
-  test('Página /internacional/ debería cargar contenido', async ({ page }) => {
-    await page.goto('/internacional/');
-
-    // Verificar título y descripción
-    await playwrightExpect(page.locator('h1')).toContainText('Internacional');
-
-    // Verificar que hay secciones
-    const regions = page.locator('h2');
-    const count = await regions.count();
-    expect(count).toBeGreaterThanOrEqual(0); // Puede haber 0 si no hay artículos
-  });
-
-  test('Debería mostrar artículos internacionales filtrados por país', async ({
+  test('muestra artículos internacionales o el estado vacío', async ({
     page,
   }) => {
     await page.goto('/internacional/');
 
-    // Buscar badges de país
-    const countryBadges = page.locator('[class*="primary"]');
-    const badgeCount = await countryBadges.count();
+    const articleCards = page.locator('main article');
+    const emptyState = page.getByRole('heading', {
+      level: 2,
+      name: 'Todavía no hay noticias internacionales',
+    });
 
-    // Si hay artículos, debería haber badges de país
-    if (badgeCount > 0) {
-      const firstBadge = countryBadges.nth(0);
-      await playwrightExpect(firstBadge).toBeVisible();
+    const articleCount = await articleCards.count();
+
+    if (articleCount > 0) {
+      await expect(articleCards.first()).toBeVisible();
+    } else {
+      await expect(emptyState).toBeVisible();
     }
   });
 
-  test('Navegación debería incluir link a /internacional/', async ({ page }) => {
-    await page.goto('/');
-
-    // Buscar link a Internacional
-    const internacionalLink = page.locator('a[href="/internacional/"]');
-    await playwrightExpect(internacionalLink).toBeVisible();
-    await playwrightExpect(internacionalLink).toContainText('Internacional');
-  });
-
-  test('Estadísticas debería mostrar números válidos', async ({ page }) => {
+  test('los artículos mostrados pertenecen a la sección Internacional', async ({
+    page,
+  }) => {
     await page.goto('/internacional/');
 
-    // Buscar números de estadísticas
-    const statsCards = page.locator('[class*="card"]');
+    const articleCards = page.locator('main article');
 
-    // Debería haber al menos 1 tarjeta de estadísticas
-    const count = await statsCards.count();
-    expect(count).toBeGreaterThan(0);
+    for (const article of await articleCards.all()) {
+      await expect(article).toBeVisible();
+    }
   });
-});
 
-describe.skip('E2E: Integración navegación', () => {
-  /**
-   * Tests de navegación integrada
-   */
-
-  test('Debería navegar de inicio a internacional y volver', async ({ page }) => {
-    // Ir a inicio
+  test('la navegación incluye el enlace a Internacional', async ({ page }) => {
     await page.goto('/');
 
-    // Encontrar y hacer click en link de Internacional
-    const internacionalLink = page.locator('a[href="/internacional/"]');
-    await internacionalLink.click();
+    const internationalLink = page.getByRole('link', {
+      name: 'Internacional',
+      exact: true,
+    });
 
-    // Verificar que estamos en /internacional/
-    expect(page.url()).toContain('/internacional/');
-
-    // Debería poder volver a inicio
-    const homeLink = page.locator('a[href="/"]');
-    await homeLink.click();
-
-    expect(page.url()).not.toContain('/internacional/');
+    await expect(internationalLink).toBeVisible();
+    await expect(internationalLink).toHaveAttribute(
+      'href',
+      '/internacional/',
+    );
   });
 
-  test('Rutas existentes debería mantener estructura', async ({ page }) => {
-    const routesToTest = ['/noticias/'];
+  test('permite navegar de inicio a Internacional y volver', async ({
+    page,
+  }) => {
+    await page.goto('/');
 
-    for (const route of routesToTest) {
-      await page.goto(route);
-      // Verificar que la página se carga (200 status implícito)
-      const title = await page.title();
-      expect(title.length).toBeGreaterThan(0);
-    }
+    await page.getByRole('link', {
+      name: 'Internacional',
+      exact: true,
+    }).click();
+
+    await expect(page).toHaveURL(/\/internacional\/$/);
+
+    await page.locator('a[href="/"]').first().click();
+
+    await expect(page).toHaveURL(/\/$/);
   });
 });

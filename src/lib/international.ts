@@ -1,4 +1,4 @@
-import { z } from 'astro/zod';
+import section from 'src/data/sections';
 
 /**
  * ISO 3166-1 alpha-2 country codes
@@ -235,77 +235,18 @@ export const COUNTRY_TO_REGION: Record<CountryCode, GeographicRegion> = {
 } as const;
 
 /**
- * Schema base para todas las noticias
- * Mantiene los campos existentes
- */
-export const baseArticleSchema = z.object({
-  title: z.string(),
-  description: z.string(),
-  slug: z.string(),
-  section: z.string(),
-  author: z.string().optional(),
-  status: z.enum(['draft', 'review', 'published']).default('draft'),
-  featured: z.boolean().default(false),
-  sources: z.array(z.string()).optional(),
-  publishedAt: z.date().optional(),
-  updatedAt: z.date().optional(),
-});
-
-/**
- * Schema para noticias locales/nacionales
- * Incluye campos `municipality` y `region` (Zona Sur, GBA, etc)
- */
-export const localArticleSchema = baseArticleSchema.extend({
-  municipality: z.string(),
-  region: z.string().optional(), // "Zona Sur", "GBA", "Buenos Aires", etc
-  country: z.literal('AR').optional(), // Argentina implícita
-});
-
-/**
- * Schema para noticias internacionales
- * Requiere `country` (código ISO), opcionalmente `region` (geográfica)
- * NO incluye `municipality` ni `region` local
- */
-export const internationalArticleSchema = baseArticleSchema.extend({
-  country: z.enum(Object.keys(COUNTRY_CODES) as [CountryCode, ...CountryCode[]]),
-  geographicRegion: z.enum(
-    Object.values(GEOGRAPHIC_REGIONS) as [GeographicRegion, ...GeographicRegion[]]
-  ).optional(),
-  // Excluir campos de noticias locales
-  municipality: z.never().optional(),
-  region: z.never().optional(),
-});
-
-/**
- * Schema unificado: elige automáticamente entre local e international
- */
-export const articleSchema = z.union([
-  localArticleSchema,
-  internationalArticleSchema,
-]).refine(
-  (data) => {
-    // Validación: si tiene `country` ≠ 'AR', no puede tener `municipality`
-    if (data.country && data.country !== 'AR' && 'municipality' in data) {
-      return false;
-    }
-    return true;
-  },
-  {
-    message:
-      'Las noticias internacionales no pueden usar el campo "municipality". Usa "country" e "geographicRegion" en su lugar.',
-  }
-);
-
-export type LocalArticle = z.infer<typeof localArticleSchema>;
-export type InternationalArticle = z.infer<typeof internationalArticleSchema>;
-export type Article = z.infer<typeof articleSchema>;
-
-/**
  * Utility: detecta si una noticia es internacional
  */
-export function isInternational(article: Article): article is InternationalArticle {
-  return 'country' in article && article.country !== 'AR';
+
+/**
+ * Detecta si una noticia pertenece a la sección Internacional.
+ */
+export function isInternational(
+  article: Article,
+): article is InternationalArticle {
+  return article.section === 'Internacional';
 }
+
 
 /**
  * Utility: obtiene el nombre del país a partir del código

@@ -1,33 +1,23 @@
-
 ---
-/**
- * Página: /internacional/
- * Muestra noticias internacionales publicadas.
- */
-
-import { getCollection } from 'astro:content';
-import PageLayout from '@/layouts/PageLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import ArticleCard from '@/components/ArticleCard.astro';
 import { getCountryName } from '@/lib/international';
+import { getPublishedArticles } from '../lib/articles';
 
-const internationalArticles = (
-  await getCollection('news', ({ data }) =>
-    data.status === 'published' &&
-    data.section === 'Internacional'
-  )
-).sort((a, b) => {
-  const dateA = new Date(a.data.publishedAt).getTime();
-  const dateB = new Date(b.data.publishedAt).getTime();
-
-  return dateB - dateA;
-});
+const internationalArticles = (await getPublishedArticles())
+  .filter((article) => article.data.section === 'Internacional')
+  .sort(
+    (a, b) =>
+      new Date(b.data.publishedAt).getTime() -
+      new Date(a.data.publishedAt).getTime(),
+  );
 
 const title = 'Internacional | QSK Noticias';
 const description =
   'Noticias internacionales: información y actualidad del mundo.';
 ---
 
-<PageLayout title={title} description={description}>
+<BaseLayout title={title} description={description}>
   <main class="mx-auto max-w-6xl px-4 py-10">
     <header class="mb-8">
       <p class="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">
@@ -57,7 +47,7 @@ const description =
       ) : (
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {internationalArticles.map((article) => (
-            <article>
+            <div>
               {article.data.country && (
                 <p class="mb-2 text-sm font-medium text-primary">
                   {getCountryName(article.data.country) ??
@@ -65,11 +55,11 @@ const description =
                 </p>
               )}
 
-              <ArticleCard article={article} slug={article.slug} />
-            </article>
+              <ArticleCard article={article} />
+            </div>
           ))}
         </div>
       )}
     </section>
   </main>
-</PageLayout>
+</BaseLayout>
