@@ -5,6 +5,10 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - "borradores/**/*.md"
+      - ".github/scripts/agente-editorial.py"
+      - ".github/scripts/test_agente_editorial.py"
+      - ".github/workflows/agente-editorial.yml"
+      - "prompts/agente-editorial.md"
 
 permissions:
   contents: write
@@ -16,18 +20,21 @@ concurrency:
 
 jobs:
   redactar-borradores:
-    name: Proponer redacción para revisión humana
+    name: Validar y proponer redacción para revisión humana
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      # El workflow y el script se leen desde la rama base confiable.
-      - name: Checkout de la rama base
+      # El checkout base mantiene confiables el script y el prompt usados con secretos.
+      - name: Checkout de la rama base confiable
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.base.ref }}
           fetch-depth: 0
+
+      - name: Instalar parser YAML para el agente
+        run: python3 -m pip install --disable-pip-version-check PyYAML==6.0.3
 
       - name: Preparar una copia aislada del PR
         env:
@@ -36,23 +43,33 @@ jobs:
           git fetch origin "$PR_HEAD_SHA"
           git worktree add --detach /tmp/qsk-pr "$PR_HEAD_SHA"
 
-      - name: Identificar los borradores modificados por este PR
+      - name: Probar contrato y validadores del PR
+        run: python3 -m unittest discover -s /tmp/qsk-pr/.github/scripts -p 'test_agente_editorial.py' -v
+
+      - name: Identificar borradores modificados por este PR
         id: changed
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
+          # Evita volver a invocar el modelo por el commit generado por el propio agente.
+          LAST_AUTHOR_EMAIL="$(git -C /tmp/qsk-pr log -1 --format='%ae')"
+          if [ "$LAST_AUTHOR_EMAIL" = "41898282+github-actions[bot]@users.noreply.github.com" ]; then
+            echo "El último commit es del agente; se evita el bucle de reescritura."
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- borradores/ \
             | grep -E '^borradores/.+\.md$' > /tmp/qsk-changed-files.txt || true
           if [ ! -s /tmp/qsk-changed-files.txt ]; then
-            echo "No hay archivos Markdown de borradores para procesar."
+            echo "No hay borradores Markdown para procesar en este evento."
             echo "has_files=false" >> "$GITHUB_OUTPUT"
           else
             cat /tmp/qsk-changed-files.txt
             echo "has_files=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Redactar con Cloudflare Workers AI
+      - name: Redactar y validar con Cloudflare Workers AI
         if: steps.changed.outputs.has_files == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -63,7 +80,7 @@ jobs:
           export EDITORIAL_CHANGED_FILES="$(cat /tmp/qsk-changed-files.txt)"
           python3 .github/scripts/agente-editorial.py
 
-      - name: Commit de la propuesta en la rama del PR
+      - name: Commit de la propuesta validada en la rama del PR
         if: steps.changed.outputs.has_files == 'true'
         env:
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
