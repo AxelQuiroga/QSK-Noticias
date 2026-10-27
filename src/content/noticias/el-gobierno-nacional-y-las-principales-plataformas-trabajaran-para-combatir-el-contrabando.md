@@ -14,6 +14,10 @@ publishedAt: "2026-10-27"
 sources:
 - name: Industria
   url: https://www.argentina.gob.ar/noticias/el-gobierno-nacional-y-las-principales-plataformas-trabajaran-para-combatir-el-contrabando
+image:
+  src: "/images/noticias/acuerdos-plataformas-contrabando.jpg"
+  alt: "Acuerdos entre el Gobierno nacional y plataformas digitales para combatir el contrabando"
+  attribution: "Argentina.gob.ar"
 ---
 La Secretaría de Industria, Comercio y PyME del Ministerio de Economía firmó acuerdos marco con las principales cámaras del sector y grandes plataformas digitales con el objetivo de detectar y erradicar el contrabando. La iniciativa busca prevenir prácticas comerciales ilícitas que perjudican a los consumidores y distorsionan el mercado.
 
