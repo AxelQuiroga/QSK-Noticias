@@ -307,10 +307,10 @@ class EditorialAgentTests(unittest.TestCase):
         self.assertEqual([call.args[0] for call in sleeper.call_args_list], [2, 5])
 
     def test_exhausted_timeout_is_a_per_draft_error(self):
-        with patch.object(agent.urllib.request, "urlopen", side_effect=TimeoutError("read timed out")) as mocked, \\
-             patch.object(agent.time, "sleep"):
-            with self.assertRaises(agent.TransientWorkersAIError):
-                agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
+        with patch.object(agent.urllib.request, "urlopen", side_effect=TimeoutError("read timed out")) as mocked:
+            with patch.object(agent.time, "sleep"):
+                with self.assertRaises(agent.TransientWorkersAIError):
+                    agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
         self.assertEqual(mocked.call_count, agent.WORKERS_AI_MAX_ATTEMPTS)
 
     def test_process_files_continues_after_transient_timeout_exhaustion(self):
