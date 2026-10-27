@@ -78,7 +78,7 @@ class EditorialAgentTests(unittest.TestCase):
         self.assertEqual(result, OUTPUT.strip())
         self.assertEqual(mocked.call_count, 2)
 
-    def test_stops_after_second_unrecognized_workers_ai_response(self):
+    def test_stops_after_third_unrecognized_workers_ai_response(self):
         class FakeResponse:
             def __enter__(self):
                 return self
@@ -87,10 +87,12 @@ class EditorialAgentTests(unittest.TestCase):
             def read(self):
                 return json.dumps({"success": True, "result": {"unexpected": "shape"}}).encode("utf-8")
 
-        with patch.object(agent.urllib.request, "urlopen", return_value=FakeResponse()) as mocked:
-            with self.assertRaisesRegex(agent.EditorialError, "segundo intento también falló"):
+        with patch.object(agent.urllib.request, "urlopen", side_effect=[
+            FakeResponse(), FakeResponse(), FakeResponse(),
+        ]) as mocked, patch.object(agent.time, "sleep"):
+            with self.assertRaisesRegex(agent.EditorialError, "Se agotaron los reintentos"):
                 agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
-        self.assertEqual(mocked.call_count, 2)
+        self.assertEqual(mocked.call_count, agent.WORKERS_AI_MAX_ATTEMPTS)
 
     def test_reads_real_catalogs(self):
         self.assertIn("Obras públicas", CATALOGS.topics)
