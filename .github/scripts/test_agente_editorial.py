@@ -5,6 +5,7 @@ import sys
 import unittest
 from unittest.mock import patch
 import json
+import tempfile
 from pathlib import Path
 
 SCRIPT = Path(__file__).with_name("agente-editorial.py")
@@ -218,18 +219,17 @@ class EditorialAgentTests(unittest.TestCase):
             'title: El organismo anunció: una medida para el sector',
         )
         with patch.object(agent, "call_model", side_effect=[malformed, OUTPUT]) as mocked:
-            with patch.object(agent, "parse_frontmatter", wraps=agent.parse_frontmatter):
-                with __import__("tempfile").TemporaryDirectory() as directory:
-                    path = Path(directory) / "borrador.md"
-                    path.write_text(SOURCE, encoding="utf-8")
-                    rewritten = agent.rewrite_file(path, "prompt", "token", "account", CATALOGS)
+            with tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / "borrador.md"
+                path.write_text(SOURCE, encoding="utf-8")
+                rewritten = agent.rewrite_file(path, "prompt", "token", "account", CATALOGS)
         self.assertIn("El organismo anunció una medida", rewritten)
         self.assertEqual(mocked.call_count, 2)
         self.assertEqual(mocked.call_args_list[1].kwargs["repair_context"]["output"], malformed)
         self.assertIn("YAML inválido", mocked.call_args_list[1].kwargs["repair_context"]["error"])
 
     def test_process_files_continues_after_one_invalid_news_item(self):
-        with __import__("tempfile").TemporaryDirectory() as directory:
+        with tempfile.TemporaryDirectory() as directory:
             first = Path(directory) / "first.md"
             second = Path(directory) / "second.md"
             first.write_text(SOURCE, encoding="utf-8")
