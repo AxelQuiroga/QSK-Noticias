@@ -13,6 +13,10 @@ status: draft
 sources:
 - name: Centro Regional Santa Fe
   url: https://www.argentina.gob.ar/noticias/informa-ya-inta-oliveros
+image:
+  src: "/images/noticias/inta-oliveros-maiz-tardio.jpg"
+  alt: "Resultados de la Red de maíz tardío del INTA Oliveros, campaña 2025-2026"
+  attribution: "INTA / Argentina.gob.ar"
 ---
 La Estación Experimental Agropecuaria INTA Oliveros presentó la nueva edición del Informa YA con los resultados de la Red de maíz tardío correspondiente a la campaña 2025-2026.
 
