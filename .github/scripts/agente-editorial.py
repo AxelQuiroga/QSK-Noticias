@@ -250,6 +250,18 @@ def restore_immutable_metadata(output_metadata, original_metadata):
     return output_metadata
 
 
+def normalize_scope_country(output_metadata):
+    """Evita que un country incidental contradiga un alcance no internacional.
+
+    No convierte una noticia doméstica en internacional: si el scope no es
+    internacional, country no corresponde y se elimina antes de validar.
+    El caso inverso (scope internacional sin country válido) sigue fallando.
+    """
+    if output_metadata.get("scope") != "internacional":
+        output_metadata.pop("country", None)
+    return output_metadata
+
+
 def rewrite_markdown(original, model_output, catalogs, label="borrador"):
     original_metadata, _ = parse_frontmatter(original, label + " original")
     if original_metadata.get("status") != "draft":
@@ -262,6 +274,9 @@ def rewrite_markdown(original, model_output, catalogs, label="borrador"):
     # No se rechaza una noticia solo porque el LLM haya alterado un campo protegido:
     # se descartan esos valores y se restaura exactamente lo que llegó en el borrador.
     output_metadata = restore_immutable_metadata(output_metadata, original_metadata)
+    # country solo corresponde al alcance internacional. Nunca elevamos scope
+    # automáticamente para conservar un país sugerido por el modelo.
+    output_metadata = normalize_scope_country(output_metadata)
     validate_document(output_metadata, output_body, original_metadata, catalogs, label)
     return serialize_markdown(output_metadata, output_body)
 
