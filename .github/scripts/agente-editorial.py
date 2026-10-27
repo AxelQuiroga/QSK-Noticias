@@ -158,7 +158,18 @@ def main():
         print("No existe borradores/ en este PR; no hay trabajo.")
         return
     prompt = prompt_path.read_text(encoding="utf-8")
-    files = sorted(draft_dir.rglob("*.md"))
+    changed_paths = os.environ.get("EDITORIAL_CHANGED_FILES", "").splitlines()
+    if changed_paths:
+        files = []
+        root = draft_dir.resolve()
+        for relative in changed_paths:
+            candidate = (root.parent / relative).resolve()
+            if root not in candidate.parents or candidate.suffix != ".md" or not candidate.is_file():
+                continue
+            files.append(candidate)
+        files = sorted(set(files))
+    else:
+        files = sorted(draft_dir.rglob("*.md"))
     changed = 0
     for path in files:
         changed += rewrite_file(path, prompt, token, account_id)
