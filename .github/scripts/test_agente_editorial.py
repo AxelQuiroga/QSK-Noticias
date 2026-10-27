@@ -71,6 +71,24 @@ class EditorialAgentTests(unittest.TestCase):
         self.assertIn("El organismo oficial informó", body)
         self.assertNotIn("Síntesis extractiva", body)
 
+    def test_restores_model_modified_slug_from_original(self):
+        invalid = OUTPUT.replace('slug: "noticia-oficial-prueba"', 'slug: "slug-inventado-por-el-modelo"')
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["slug"], "noticia-oficial-prueba")
+
+    def test_restores_model_modified_sources_from_original(self):
+        invalid = OUTPUT.replace("https://www.argentina.gob.ar/noticias/prueba", "https://example.com/inventada")
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["sources"], agent.parse_frontmatter(SOURCE)[0]["sources"])
+
+    def test_removes_protected_field_not_present_in_original(self):
+        invalid = OUTPUT.replace('scope: "nacional"', 'scope: "nacional"\nfeatured: true')
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertNotIn("featured", metadata)
+
     def test_rejects_json_instead_of_markdown(self):
         with self.assertRaises(agent.EditorialError):
             agent.rewrite_markdown(SOURCE, '{"title":"noticia"}', CATALOGS)
@@ -105,25 +123,28 @@ class EditorialAgentTests(unittest.TestCase):
         with self.assertRaisesRegex(agent.EditorialError, "country"):
             agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
 
-    def test_rejects_source_changes(self):
+    def test_restores_source_changes(self):
         invalid = OUTPUT.replace("https://www.argentina.gob.ar/noticias/prueba", "https://example.com/noticia")
-        with self.assertRaisesRegex(agent.EditorialError, "sources"):
-            agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["sources"], agent.parse_frontmatter(SOURCE)[0]["sources"])
 
-    def test_rejects_status_change(self):
+    def test_restores_status_change(self):
         invalid = OUTPUT.replace("status: draft", "status: published")
-        with self.assertRaisesRegex(agent.EditorialError, "status"):
-            agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["status"], "draft")
 
     def test_rejects_unknown_frontmatter_field(self):
         invalid = OUTPUT.replace('scope: "nacional"', 'scope: "nacional"\nmunicipioNuevo: "X"')
         with self.assertRaisesRegex(agent.EditorialError, "no admitidos"):
             agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
 
-    def test_rejects_added_published_date(self):
+    def test_removes_added_published_date(self):
         invalid = OUTPUT.replace('scope: "nacional"', 'scope: "nacional"\npublishedAt: "2026-10-27"')
-        with self.assertRaisesRegex(agent.EditorialError, "publishedAt"):
-            agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertNotIn("publishedAt", metadata)
 
     def test_rejects_legacy_actualidad_section(self):
         invalid = OUTPUT.replace('section: "Obras públicas"', 'section: "Actualidad"')
