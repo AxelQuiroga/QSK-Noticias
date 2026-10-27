@@ -93,6 +93,18 @@ class EditorialAgentTests(unittest.TestCase):
         with self.assertRaises(agent.EditorialError):
             agent.rewrite_markdown(SOURCE, '{"title":"noticia"}', CATALOGS)
 
+    def test_reports_safe_diagnostic_for_unrecognized_workers_response(self):
+        payload = {
+            "success": True,
+            "result": {"status": "incomplete", "usage": {"tokens": 3}},
+        }
+        with self.assertRaisesRegex(agent.EditorialError, "top_level_keys"):
+            agent.response_text(payload)
+
+    def test_rejects_empty_workers_response_text(self):
+        with self.assertRaisesRegex(agent.EditorialError, "result_keys"):
+            agent.response_text({"success": True, "result": {"response": "   "}})
+
     def test_rejects_invalid_yaml(self):
         invalid = OUTPUT.replace('title: "El organismo anunció una medida para el sector"', 'title: [sin cerrar')
         with self.assertRaises(agent.EditorialError):
