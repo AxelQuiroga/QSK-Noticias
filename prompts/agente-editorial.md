@@ -26,7 +26,7 @@ Respondé exclusivamente con un objeto JSON válido, sin Markdown ni comentarios
 {
   "title": "título propuesto",
   "description": "bajada propuesta",
-  "body": "cuerpo periodístico en Markdown, con \\n para saltos de línea",
+  "body": "cuerpo periodístico en Markdown; representá los saltos de línea con la secuencia JSON \\n",
   "review_notes": ["punto concreto que el editor debe verificar"]
 }
 
