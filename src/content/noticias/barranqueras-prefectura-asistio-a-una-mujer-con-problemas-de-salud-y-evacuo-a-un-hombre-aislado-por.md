@@ -19,6 +19,10 @@ origen:
   fechaPublicacion: "2026-10-26T16:15:07-03:00"
   organismos:
     - "Noticias de la PNA"
+image:
+  src: "/images/noticias/prefectura-asistencia-barranqueras.jpg"
+  alt: "Operativo de asistencia de Prefectura Naval Argentina en Barranqueras"
+  attribution: "Prefectura Naval Argentina / Argentina.gob.ar"
 ---
 
 El procedimiento se llevó adelante en el riacho Barranqueras, bajo los lineamientos del Plan de Inundaciones PIR-95 y del Plan de Coordinación Cuenca del Plata 2026/2027, en articulación con la Agencia Federal de Emergencias (AFE).
