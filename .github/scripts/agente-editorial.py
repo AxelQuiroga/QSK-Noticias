@@ -240,6 +240,16 @@ def call_model(prompt, markdown, token, account_id, catalogs):
         raise EditorialError("Workers AI informó un error: " + json.dumps(payload.get("errors", []), ensure_ascii=False))
     return response_text(payload)
 
+def restore_immutable_metadata(output_metadata, original_metadata):
+    """La salida del modelo nunca es fuente de verdad para metadatos protegidos."""
+    for field in IMMUTABLE_FIELDS:
+        if field in original_metadata:
+            output_metadata[field] = original_metadata[field]
+        else:
+            output_metadata.pop(field, None)
+    return output_metadata
+
+
 def rewrite_markdown(original, model_output, catalogs, label="borrador"):
     original_metadata, _ = parse_frontmatter(original, label + " original")
     if original_metadata.get("status") != "draft":
@@ -249,25 +259,28 @@ def rewrite_markdown(original, model_output, catalogs, label="borrador"):
     if MARKER in original:
         raise EditorialError(f"{label}: ya fue procesado por esta versión del agente.")
     output_metadata, output_body = parse_frontmatter(model_output, label + " generado")
+    # No se rechaza una noticia solo porque el LLM haya alterado un campo protegido:
+    # se descartan esos valores y se restaura exactamente lo que llegó en el borrador.
+    output_metadata = restore_immutable_metadata(output_metadata, original_metadata)
     validate_document(output_metadata, output_body, original_metadata, catalogs, label)
     return serialize_markdown(output_metadata, output_body)
 
 
 def rewrite_file(path, prompt, token, account_id, catalogs):
+    """Genera y valida una propuesta sin escribirla todavía."""
     original = path.read_text(encoding="utf-8")
     if MARKER in original:
         print("SKIP ya procesado: " + str(path))
-        return False
+        return None
     original_metadata, _ = parse_frontmatter(original, str(path))
     if original_metadata.get("status") != "draft":
         print("SKIP status distinto de draft: " + str(path))
-        return False
+        return None
     if len(original) > MAX_INPUT_CHARS:
         raise EditorialError(f"{path}: supera el límite de entrada; requiere revisión manual.")
     rewritten = rewrite_markdown(original, call_model(prompt, original, token, account_id, catalogs), catalogs, str(path))
-    path.write_text(rewritten, encoding="utf-8")
     print("OK reescrito y validado: " + str(path))
-    return True
+    return rewritten
 
 
 def main():
@@ -300,13 +313,22 @@ def main():
         files = sorted(set(files))
     else:
         files = sorted(draft_dir.rglob("*.md"))
-    changed = 0
+    # Primero se generan y validan todas las propuestas en memoria. Si una falla,
+    # no se escribe ningún archivo y el workflow no puede dejar un lote parcial.
+    proposals = []
     try:
         for path in files:
-            changed += rewrite_file(path, prompt, token, account_id, catalogs)
+            rewritten = rewrite_file(path, prompt, token, account_id, catalogs)
+            if rewritten is not None:
+                proposals.append((path, rewritten))
     except (EditorialError, OSError) as exc:
         fail(str(exc))
-    print("Resumen: " + str(changed) + " borradores reescritos de " + str(len(files)) + " archivos Markdown.")
+    try:
+        for path, rewritten in proposals:
+            path.write_text(rewritten, encoding="utf-8")
+    except OSError as exc:
+        fail("no se pudieron escribir todas las propuestas validadas: " + str(exc))
+    print("Resumen: " + str(len(proposals)) + " borradores reescritos de " + str(len(files)) + " archivos Markdown.")
 
 
 if __name__ == "__main__":
