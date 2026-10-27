@@ -108,6 +108,30 @@ class EditorialAgentTests(unittest.TestCase):
         self.assertIn("El organismo oficial informó", body)
         self.assertNotIn("Síntesis extractiva", body)
 
+    def test_accepts_short_article_without_editorial_body_gate(self):
+        metadata, _ = agent.parse_frontmatter(OUTPUT)
+        short_output = agent.serialize_markdown(metadata, "El municipio anunció una obra.")
+        rewritten = agent.rewrite_markdown(SOURCE, short_output, CATALOGS)
+        _, body = agent.parse_frontmatter(rewritten)
+        self.assertEqual(body, "El municipio anunció una obra.")
+
+    def test_preserves_article_body_instead_of_normalizing_its_content(self):
+        metadata, _ = agent.parse_frontmatter(OUTPUT)
+        article_body = "\n\nTexto redactado por la IA.  \n"
+        model_output = agent.serialize_markdown(metadata, article_body)
+        rewritten = agent.rewrite_markdown(SOURCE, model_output, CATALOGS)
+        _, body = agent.parse_frontmatter(rewritten)
+        self.assertEqual(body, article_body)
+
+    def test_section_and_primary_topic_can_be_valid_independently(self):
+        independent = OUTPUT.replace(
+            'primaryTopic: "Obras públicas"', 'primaryTopic: "Sociedad"'
+        ).replace('  - "Sociedad"', '  - "Educación"')
+        rewritten = agent.rewrite_markdown(SOURCE, independent, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["primaryTopic"], "Sociedad")
+        self.assertEqual(metadata["section"], "Obras públicas")
+
     def test_restores_model_modified_slug_from_original(self):
         invalid = OUTPUT.replace('slug: "noticia-oficial-prueba"', 'slug: "slug-inventado-por-el-modelo"')
         rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
