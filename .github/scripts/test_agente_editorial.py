@@ -123,6 +123,28 @@ class EditorialAgentTests(unittest.TestCase):
         with self.assertRaisesRegex(agent.EditorialError, "country"):
             agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
 
+    def test_removes_country_from_domestic_ushuaia_story(self):
+        # Una noticia argentina sobre el puerto de Ushuaia no es internacional
+        # por incluir un country incidental en la salida del modelo.
+        invalid = OUTPUT.replace(
+            'scope: "nacional"',
+            'scope: "nacional"\ncountry: "AR"',
+        )
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["scope"], "nacional")
+        self.assertNotIn("country", metadata)
+
+    def test_accepts_country_for_international_scope(self):
+        international = OUTPUT.replace(
+            'scope: "nacional"',
+            'scope: "internacional"\ncountry: "BR"',
+        )
+        rewritten = agent.rewrite_markdown(SOURCE, international, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["scope"], "internacional")
+        self.assertEqual(metadata["country"], "BR")
+
     def test_restores_source_changes(self):
         invalid = OUTPUT.replace("https://www.argentina.gob.ar/noticias/prueba", "https://example.com/noticia")
         rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
