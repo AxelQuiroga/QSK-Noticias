@@ -59,7 +59,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           EDITORIAL_DRAFT_DIR: /tmp/qsk-pr/borradores
           EDITORIAL_PROMPT_PATH: prompts/agente-editorial.md
-          EDITORIAL_CHANGED_FILES: ${{ steps.changed.outputs.has_files && '' || '' }}
         run: |
           export EDITORIAL_CHANGED_FILES="$(cat /tmp/qsk-changed-files.txt)"
           python3 .github/scripts/agente-editorial.py
