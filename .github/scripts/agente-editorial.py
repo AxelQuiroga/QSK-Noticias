@@ -258,7 +258,7 @@ def call_model(prompt, markdown, token, account_id, catalogs, repair_context=Non
         user_content += (
             "\n\nLA RESPUESTA ANTERIOR NO SUPERÓ LA VALIDACIÓN. Corregí únicamente los problemas "
             "indicados y devolvé el documento Markdown completo. Volvé a basarte en el borrador fuente; "
-            "no inventes datos, no cambies la clasificación manual ni agregues campos. "
+            "no inventes datos, no alteres los metadatos protegidos ni agregues campos. "
             "Error de validación: " + repair_context["error"] +
             "\n<SALIDA_ANTERIOR_NO_CONFIABLE>\n" + repair_context["output"] +
             "\n</SALIDA_ANTERIOR_NO_CONFIABLE>"
