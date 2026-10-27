@@ -16,6 +16,10 @@ origen:
 
 publishedAt: "2026-10-27"
 
+image:
+  src: "/images/noticias/informes-eiti-argentina.jpg"
+  alt: "Informes de EITI Argentina sobre transparencia de los sectores extractivos"
+  attribution: "EITI Argentina / Argentina.gob.ar"
 ---
 
 
