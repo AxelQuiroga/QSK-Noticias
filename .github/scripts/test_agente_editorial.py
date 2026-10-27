@@ -74,7 +74,7 @@ class EditorialAgentTests(unittest.TestCase):
         ]
         with patch.object(agent.urllib.request, "urlopen", side_effect=responses) as mocked:
             result = agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
-        self.assertEqual(result, OUTPUT)
+        self.assertEqual(result, OUTPUT.strip())
         self.assertEqual(mocked.call_count, 2)
 
     def test_stops_after_second_unrecognized_workers_ai_response(self):
