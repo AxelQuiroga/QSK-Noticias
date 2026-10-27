@@ -71,6 +71,24 @@ class EditorialAgentTests(unittest.TestCase):
         self.assertIn("El organismo oficial informó", body)
         self.assertNotIn("Síntesis extractiva", body)
 
+    def test_restores_model_modified_slug_from_original(self):
+        invalid = OUTPUT.replace('slug: "noticia-oficial-prueba"', 'slug: "slug-inventado-por-el-modelo"')
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["slug"], "noticia-oficial-prueba")
+
+    def test_restores_model_modified_sources_from_original(self):
+        invalid = OUTPUT.replace("https://www.argentina.gob.ar/noticias/prueba", "https://example.com/inventada")
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertEqual(metadata["sources"], agent.parse_frontmatter(SOURCE)[0]["sources"])
+
+    def test_removes_protected_field_not_present_in_original(self):
+        invalid = OUTPUT.replace('scope: "nacional"', 'scope: "nacional"\nfeatured: true')
+        rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+        metadata, _ = agent.parse_frontmatter(rewritten)
+        self.assertNotIn("featured", metadata)
+
     def test_rejects_json_instead_of_markdown(self):
         with self.assertRaises(agent.EditorialError):
             agent.rewrite_markdown(SOURCE, '{"title":"noticia"}', CATALOGS)
