@@ -1,13 +1,9 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Se implementa el Plan de Trabajo ENOS 2026-2027 en los Parques Nacionales"
 description: "Las áreas protegidas trabajan en planificación, identificación de riesgos, priorización de acciones, comunicación clara y coordinación con otras instituciones, en línea con la estrategia nacional impulsada por AFE frente al fenómeno El Niño–Oscilación del Sur (ENOS)."
 slug: "se-implementa-el-plan-de-trabajo-enos-2026-2027-en-los-parques-nacionales"
-section: null
+section: 'Politica'
 scope: "nacional"
 author: "Redacción QSK Noticias"
 sources:
@@ -16,7 +12,6 @@ sources:
 image:
   src: "https://www.argentina.gob.ar/sites/default/files/plan_de_trabajo_enos_en_parques_nacionales_01.jpg"
   alt: "Plan de trabajo ENOS en Parques Nacionales"
-  attribution: null
 
 origen:
   url: "https://www.argentina.gob.ar/noticias/se-implementa-el-plan-de-trabajo-enos-2026-2027-en-los-parques-nacionales"

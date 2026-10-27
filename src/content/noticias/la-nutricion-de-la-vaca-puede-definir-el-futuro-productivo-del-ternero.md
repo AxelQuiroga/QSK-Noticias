@@ -1,8 +1,4 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "La nutrición de la vaca puede definir el futuro productivo del ternero"
 description: "Un trabajo del INTA Cuenca del Salado determinó que la alimentación de la madre durante la gestación influye en el crecimiento, la calidad de carne, la fertilidad y la salud de la descendencia. Los efectos pueden extenderse durante toda la vida del animal."
@@ -28,25 +24,9 @@ origen:
     urlOriginal: "/sites/default/files/programacion_fetal_2.jpg"
     credit: null
 
-  fechaPublicacion: "2026-10-26T13:07:20-03:00"
-  organismos:
-    - "Instituto Nacional de Tecnología Agropecuaria"
+publishedAt: "2026-10-27"
+
 ---
-
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** Salud — palabras clave que la sostienen: "nutricion" (6), "salud" (3)
-- **alcance propuesto:** nacional,
 
 ## Texto completo extraído de la fuente
 

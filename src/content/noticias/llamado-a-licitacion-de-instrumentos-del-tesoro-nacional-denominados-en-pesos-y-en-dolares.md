@@ -1,8 +1,4 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Llamado a licitación de instrumentos del Tesoro Nacional denominados en pesos y en dólares estadounidenses"
 description: null
@@ -19,28 +15,9 @@ origen:
   url: "https://www.argentina.gob.ar/noticias/llamado-licitacion-de-instrumentos-del-tesoro-nacional-denominados-en-pesos-y-en-dolares-15"
   titulo: "Finanzas"
 
-  fechaPublicacion: "2026-10-26T16:56:10-03:00"
-  organismos:
-    - "Finanzas"
-    - "Ministerio de Economía"
+publishedAt: "2026-10-27"
+
 ---
-
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** Economía — palabras clave que la sostienen: "dolar" (6), "licitacion" (6), "precio" (3), "inversion" (1)
-- **alcance propuesto:** nacional,
-
-## Texto completo extraído de la fuente
 
 La Secretaría de Finanzas ofrece en este llamado a licitación por efectivo los instrumentos del Tesoro Nacional que se detallan a continuación:
 

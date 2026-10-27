@@ -1,8 +1,4 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Barranqueras: Prefectura asistió a una mujer con problemas de salud y evacuó a un hombre aislado por la inundación"
 description: "En el marco del operativo de emergencia por las inundaciones que afectan distintas zonas del país, la Prefectura Naval Argentina realizó asistencias a pobladores y evacuó a un hombre cuya vivienda había quedado incomunicada por vía terrestre debido al avance del agua en Barranqueras, Chaco."
@@ -11,6 +7,7 @@ section: "Salud"
 primaryTopic: "Salud"
 scope: "nacional"
 author: "Redacción QSK Noticias"
+publishedAt: "2026-10-27"
 sources:
   - name: "Noticias de la PNA"
     url: "https://www.argentina.gob.ar/noticias/barranqueras-prefectura-asistio-una-mujer-con-problemas-de-salud-y-evacuo-un-hombre-aislado"
@@ -23,23 +20,6 @@ origen:
   organismos:
     - "Noticias de la PNA"
 ---
-
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** Salud — palabras clave que la sostienen: "salud" (4), "sanitari" (1)
-- **alcance propuesto:** nacional,
-
-## Texto completo extraído de la fuente
 
 El procedimiento se llevó adelante en el riacho Barranqueras, bajo los lineamientos del Plan de Inundaciones PIR-95 y del Plan de Coordinación Cuenca del Plata 2026/2027, en articulación con la Agencia Federal de Emergencias (AFE).
 

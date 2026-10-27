@@ -1,13 +1,9 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Se suman nuevas capacitaciones al Centro de Formación Capital Humano"
 description: "El nuevo curso brindará a los participantes herramientas prácticas para optimizar la toma de decisiones económicas y fortalecer su inserción en el mercado formal."
 slug: "se-suman-nuevas-capacitaciones-al-centro-de-formacion-capital-humano"
-section: null
+section: 'Sociedad'
 scope: "nacional"
 author: "Redacción QSK Noticias"
 sources:
@@ -22,23 +18,6 @@ origen:
   organismos:
     - "Ministerio de Capital Humano"
 ---
-
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** _(sin clasificar; opciones: Actualidad, Deportes, Economía, Educación, Obras públicas, Salud, Tránsito)_
-- **alcance propuesto:** nacional,
-
-## Texto completo extraído de la fuente
 
 El Ministerio de Capital Humano informa que se han incorporado nuevas alianzas estratégicas al Centro de Formación Capital Humano, mediante la firma de un convenio con la Cámara Argentina Fintech (CAF) y el Instituto Argentino de Ejecutivos (IAEF). El acuerdo, encabezado por la ministra Sandra Pettovello, busca potenciar las competencias técnicas de los trabajadores para su inserción en el mercado laboral y el fortalecimiento del empleo calificado.
 

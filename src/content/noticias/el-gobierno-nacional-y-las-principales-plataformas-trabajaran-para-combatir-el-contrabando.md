@@ -7,9 +7,10 @@ secondaryTopics:
 - Seguridad
 section: Economía
 scope: nacional
-slug: el-gobierno-nacional-y-las-principales-plataformas-trabajaran-para-combatir-el-contrabando
+slug: "el-gobierno-nacional-y-las-principales-plataformas-trabajaran-para-combatir-el-contrabando"
 author: Redacción QSK Noticias
 status: draft
+publishedAt: "2026-10-27"
 sources:
 - name: Industria
   url: https://www.argentina.gob.ar/noticias/el-gobierno-nacional-y-las-principales-plataformas-trabajaran-para-combatir-el-contrabando

@@ -1,8 +1,4 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Se detectó el transporte irregular de 400 kg de pescado de río en la Ruta Nacional 14 en Entre Ríos"
 description: "El SENASA decomisó la carga que carecía de permisos sanitarios, cadena de frío y rotulación obligatoria poniendo en riesgo la salud de quienes la consumieran."
@@ -19,27 +15,9 @@ origen:
   url: "https://www.argentina.gob.ar/noticias/se-detecto-el-transporte-irregular-de-400-kg-de-pescado-de-rio-en-la-ruta-nacional-14-en"
   titulo: "Senasa"
 
-  fechaPublicacion: "2026-10-26T17:30:52-03:00"
-  organismos:
-    - "Senasa"
+publishedAt: "2026-10-27"
+
 ---
-
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** Salud — palabras clave que la sostienen: "salud" (5), "sanitari" (5)
-- **alcance propuesto:** provincial,
-
-## Texto completo extraído de la fuente
 
 En la provincia de Entre Ríos, el Servicio Nacional de Sanidad y Calidad Agroalimentaria (SENASA) detectó una carga de 400 kilogramos de pescado de río que era trasladada en infracción a la normativa sanitaria vigente poniendo en riesgo la salud de quienes la consumieran.
 

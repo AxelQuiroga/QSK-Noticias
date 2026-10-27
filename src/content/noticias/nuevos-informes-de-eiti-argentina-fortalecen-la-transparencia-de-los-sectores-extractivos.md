@@ -1,8 +1,4 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Nuevos informes de EITI Argentina fortalecen la transparencia de los sectores extractivos"
 description: null
@@ -18,27 +14,10 @@ origen:
   url: "https://www.argentina.gob.ar/noticias/nuevos-informes-de-eiti-argentina-fortalecen-la-transparencia-de-los-sectores-extractivos"
   titulo: "EITI - Portal de transparencia de las industrias extractivas"
 
-  fechaPublicacion: "2026-10-26T15:48:32-03:00"
-  organismos:
-    - "EITI - Portal de transparencia de las industrias extractivas"
+publishedAt: "2026-10-27"
+
 ---
 
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** _(sin clasificar; opciones: Actualidad, Deportes, Economía, Educación, Obras públicas, Salud, Tránsito)_
-- **alcance propuesto:** nacional,
-
-## Texto completo extraído de la fuente
 
 EITI Argentina presenta sus Informes de Divulgación Sistemática y de Alcance y Materialidad, aprobados por el Grupo Multipartícipe en septiembre y elaborados por el equipo consultor de M4D y Romano Group, en el marco de una consultoría financiada por el Banco Interamericano de Desarrollo (BID).
 

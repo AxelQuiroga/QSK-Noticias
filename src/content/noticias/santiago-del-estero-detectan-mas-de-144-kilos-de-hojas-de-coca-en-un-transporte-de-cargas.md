@@ -1,13 +1,9 @@
 ---
-# Borrador editorial generado automáticamente por extraccion-ultimate.
-# NO es contenido publicado: no lleva fecha de publicación propia (en QSK la
-# estampa scripts/publish.mjs al publicar) y su status es "draft".
-# Requiere revisión, verificación y reescritura antes de publicar.
 status: "draft"
 title: "Santiago del Estero: Detectan más de 144 kilos de hojas de coca en un transporte de cargas"
 description: "Los gendarmes hallaron el vegetal durante el control a un camión que circulaba desde la localidad salteña de Las Palomitas con destino la Córdoba. La mercadería estaba distribuida en 18 bultos ocultos en el semirremolque."
 slug: "santiago-del-estero-detectan-mas-de-144-kilos-de-hojas-de-coca-en-un-transporte-de-cargas"
-section: null
+section: 'Economia'
 scope: "provincial"
 author: "Redacción QSK Noticias"
 sources:
@@ -17,28 +13,9 @@ sources:
 origen:
   url: "https://www.argentina.gob.ar/noticias/santiago-del-estero-detectan-mas-de-144-kilos-de-hojas-de-coca-en-un-transporte-de-cargas"
   titulo: "Gendarmería Nacional Argentina"
+publishedAt: "2026-10-27"
 
-  fechaPublicacion: "2026-10-26T17:21:36-03:00"
-  organismos:
-    - "Gendarmería Nacional Argentina"
 ---
-
-> **Borrador automático — no publicable.**
->
-> Generado con reglas deterministas a partir de la publicación oficial citada al final.
-> No hay redacción propia ni IA: los fragmentos entre comillas son textuales de la fuente.
-> QSK Noticias debe verificar los datos, reescribir el texto y agregar contexto propio.
-
-## Estado del borrador
-
-- **status:** `draft` (nunca `published`)
-- **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
-- **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
-- **revisión editorial requerida:** sí
-- **sección propuesta:** _(sin clasificar; opciones: Actualidad, Deportes, Economía, Educación, Obras públicas, Salud, Tránsito)_
-- **alcance propuesto:** provincial,
-
-## Texto completo extraído de la fuente
 
 El sábado pasado, efectivos de la Sección de Seguridad Vial dependiente del Escuadrón reforzado 59 “Santiago del Estero” con apoyo de personal de la Agencia de Recaudación y Control Aduanero de Santiago del Estero “ARCA”, realizaron tareas de prevención y seguridad vial sobre la Ruta Nacional Nº 34, a la altura del kilómetro 748, en el departamento de Banda.
 

@@ -7,14 +7,15 @@ section: Seguridad
 scope: nacional
 status: draft
 author: Redacción QSK Noticias
+publishedAt: "2026-10-27"
 sources:
 - name: Novedades GNA
   url: https://www.argentina.gob.ar/noticias/aniversario-de-creacion-de-las-direcciones-nacionales-de-personal-operaciones-y-apoyo-de
 image:
   src: https://www.argentina.gob.ar/sites/default/files/aniversario_de_creacion_de_las_direcciones_nacionales_de_personal_operaciones_y_apoyo_de_gendarmeria_nacional_1_2.jpeg
   alt: Aniversario de creación de las Direcciones Nacionales de Personal, Operaciones y Apoyo de Gendarmería Nacional
-  attribution: null
-slug: aniversario-de-creacion-de-las-direcciones-nacionales-de-personal-operaciones-y-apoyo-de
+
+slug: "aniversario-de-creacion-de-las-direcciones-nacionales-de-personal-operaciones-y-apoyo-de"
 ---
 Esta mañana se conmemoró el aniversario de la creación de las Direcciones Nacionales de Personal, Operaciones y Apoyo de la Gendarmería Nacional. El acto central fue presidido por el Subjefe de la Fuerza, Comandante General Aníbal Ariel Bronzetti, quien contó con la presencia de los titulares de esas dependencias: los Comandantes Generales Germán Carlos Wacker, Gabriel Horacio Calleja y Víctor Hugo Ocampo.
 

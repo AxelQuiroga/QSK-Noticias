@@ -5,9 +5,10 @@ primaryTopic: Economía
 secondaryTopics: []
 section: Economía
 scope: provincial
-region: AMBA
-slug: informa-ya-inta-oliveros
+region: Nacional
+slug: "informa-ya-inta-oliveros"
 author: Redacción QSK Noticias
+publishedAt: "2026-10-27"
 status: draft
 sources:
 - name: Centro Regional Santa Fe
