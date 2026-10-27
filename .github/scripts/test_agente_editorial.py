@@ -162,6 +162,14 @@ class EditorialAgentTests(unittest.TestCase):
         with self.assertRaisesRegex(agent.EditorialError, "no admitidos"):
             agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
 
+    def test_rejects_extractor_only_origen_metadata(self):
+        invalid = OUTPUT.replace(
+            'scope: "nacional"',
+            'scope: "nacional"\norigen:\n  url: "https://www.argentina.gob.ar/noticias/prueba"',
+        )
+        with self.assertRaisesRegex(agent.EditorialError, "origen"):
+            agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+
     def test_removes_added_published_date(self):
         invalid = OUTPUT.replace('scope: "nacional"', 'scope: "nacional"\npublishedAt: "2026-10-27"')
         rewritten = agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
