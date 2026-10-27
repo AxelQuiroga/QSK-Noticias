@@ -13,6 +13,10 @@ publishedAt: "2026-10-27"
 sources:
 - name: Sindicatura General de la Nación
   url: https://www.argentina.gob.ar/noticias/26-de-octubre-dia-del-auditor-interno-gubernamental
+image:
+  src: "/images/noticias/dia-auditor-interno-gubernamental.jpg"
+  alt: "Conmemoración del Día del Auditor Interno Gubernamental"
+  attribution: "SIGEN / Argentina.gob.ar"
 ---
 El 26 de octubre se conmemora el Día del Auditor Interno Gubernamental, fecha que recuerda la promulgación de la Ley N.º 24.156 en 1992. La Sindicatura General de la Nación (SIGEN) recuerda esta jornada para reconocer el aporte de los auditores internos a la mejora continua de las organizaciones públicas.
 
