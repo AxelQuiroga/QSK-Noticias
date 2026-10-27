@@ -15,7 +15,6 @@ import yaml
 
 MODEL = "@cf/zai-org/glm-4.7-flash"
 MAX_INPUT_CHARS = 60000
-MAX_OUTPUT_CHARS = 60000
 MAX_REPAIR_ATTEMPTS = 2
 ALLOWED_FIELDS = {
     "title", "description", "slug", "primaryTopic", "secondaryTopics",
