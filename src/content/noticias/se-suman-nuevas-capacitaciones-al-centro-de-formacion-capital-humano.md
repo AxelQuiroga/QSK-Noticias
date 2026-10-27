@@ -17,6 +17,10 @@ origen:
   fechaPublicacion: "2026-10-26T15:20:46-03:00"
   organismos:
     - "Ministerio de Capital Humano"
+image:
+  src: "/images/noticias/capacitaciones-capital-humano.jpg"
+  alt: "Nuevas propuestas de formación del Centro de Formación Capital Humano"
+  attribution: "Ministerio de Capital Humano / Argentina.gob.ar"
 ---
 
 El Ministerio de Capital Humano informa que se han incorporado nuevas alianzas estratégicas al Centro de Formación Capital Humano, mediante la firma de un convenio con la Cámara Argentina Fintech (CAF) y el Instituto Argentino de Ejecutivos (IAEF). El acuerdo, encabezado por la ministra Sandra Pettovello, busca potenciar las competencias técnicas de los trabajadores para su inserción en el mercado laboral y el fortalecimiento del empleo calificado.
