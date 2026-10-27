@@ -22,3 +22,8 @@ Completá los campos editoriales usando los catálogos válidos que recibís en 
 Conservá exactamente los valores originales de `slug`, `author`, `status`, `sources`, `image`, `gallery`, `publishedAt`, `updatedAt` y `featured`. Si alguno no existía, no lo agregues. El estado debe seguir siendo `draft`. No copies al frontmatter campos auxiliares del extractor como `origen`.
 
 No agregues claves distintas de las admitidas por el esquema de QSK. Si no hay evidencia suficiente para asignar un campo geográfico opcional, omitilo. La noticia es una propuesta pendiente de revisión humana.
+
+
+## Si la validación rechaza tu respuesta
+
+Si el mensaje incluye un error de validación y una salida anterior, corregí ese problema concreto y devolvé el documento Markdown completo. Volvé a contrastar los hechos con el borrador fuente. No inventes datos, no cambies campos protegidos y no agregues campos nuevos. La salida corregida volverá a pasar por todas las validaciones automáticas; no intentes eludirlas.
