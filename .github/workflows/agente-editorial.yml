@@ -43,8 +43,10 @@ jobs:
           git fetch origin "$PR_HEAD_SHA"
           git worktree add --detach /tmp/qsk-pr "$PR_HEAD_SHA"
 
-      - name: Probar contrato y validadores del PR
-        run: python3 -m unittest discover -s /tmp/qsk-pr/.github/scripts -p 'test_agente_editorial.py' -v
+      # No ejecutar código Python aportado por el PR en el job que dispone de permisos
+      # de escritura y secretos. Estos tests importan el agente de la rama base confiable.
+      - name: Probar contrato y validadores de la rama base confiable
+        run: python3 -m unittest discover -s .github/scripts -p 'test_agente_editorial.py' -v
 
       - name: Identificar borradores modificados por este PR
         id: changed
