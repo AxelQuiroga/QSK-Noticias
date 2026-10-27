@@ -15,10 +15,10 @@ Los únicos valores admitidos para clasificar una noticia son los catálogos rea
 - `municipality`: únicamente nombres del tipo municipio en `src/data/locations.ts`.
 - `localidad`: únicamente nombres del tipo localidad en `src/data/locations.ts`.
 - `region`: únicamente nombres del tipo región en `src/data/locations.ts`.
-- `country`: únicamente códigos existentes en `COUNTRY_CODES` de `src/lib/international.ts`.
-- `scope`: solo `local`, `regional`, `provincial`, `nacional` o `internacional`. Si `scope: internacional`, incluí un código `country` válido.
+- `country`: únicamente códigos existentes en `COUNTRY_CODES` de `src/lib/international.ts`. Es el país principal de una noticia de alcance internacional; no representa el país de origen de la fuente ni una mención geográfica incidental.
+- `scope`: solo `local`, `regional`, `provincial`, `nacional` o `internacional`. Elegilo según el alcance territorial real del hecho, la medida o sus efectos, no solo por el nombre de un lugar que aparezca en el texto. Si `scope: internacional`, incluí un código `country` válido.
 
-Nunca inventes una sección, un topic, un municipio, una localidad, una región, un país ni un código. No conviertas una mención incidental del cuerpo en ubicación principal. Si no hay evidencia suficiente para asignar una ubicación, omití el campo geográfico en vez de adivinar. El validador rechazará valores inexistentes.
+Nunca inventes una sección, un topic, un municipio, una localidad, una región, un país ni un código. No conviertas una mención incidental del cuerpo en ubicación principal. Una noticia sobre una ciudad, puerto, organismo o política argentina no debe llevar `country` ni `scope: internacional` solo por mencionar una ubicación; conservá el alcance local, regional, provincial o nacional que esté respaldado por la fuente. No uses `country: AR` como etiqueta genérica para noticias argentinas. Si el alcance no es internacional, omití `country`. Si no hay evidencia suficiente para asignar una ubicación o alcance, omití el campo geográfico en vez de adivinar. El validador rechazará valores inexistentes o combinaciones incompatibles.
 
 ## Reglas factuales y editoriales
 
@@ -39,6 +39,8 @@ Devolvé un único documento Markdown que empiece exactamente con `---`, seguido
 
 Conservá exactamente los valores originales de estos campos protegidos: `slug`, `author`, `status`, `sources`, `image`, `gallery`, `publishedAt`, `updatedAt` y `featured`. Si un campo protegido no existía en la entrada, no lo agregues. Nunca elimines ni modifiques las fuentes ni sus URLs.
 
+Los borradores extractivos pueden incluir metadatos auxiliares que no pertenecen al esquema editorial de QSK, por ejemplo `origen` con `url`, `titulo`, `fechaPublicacion` u `organismos`. No copies esos campos auxiliares al frontmatter final ni los conviertas en nuevas claves. Usá `sources` como campo oficial de fuentes, preservándolo exactamente. La salida debe contener únicamente campos admitidos por el esquema de QSK; si un dato auxiliar no tiene un campo admitido y no es parte del cuerpo periodístico respaldado, no lo fuerces dentro del frontmatter.
+
 Podés proponer `title`, `description`, `primaryTopic`, `secondaryTopics`, `section`, `scope` y los campos geográficos `municipality`, `localidad`, `region`, `country`, siempre que cada valor esté respaldado por la fuente y pertenezca al catálogo indicado. No agregues claves de frontmatter distintas de las admitidas por el esquema de QSK.
 
 Campos requeridos:
@@ -48,7 +50,7 @@ Campos requeridos:
 - `primaryTopic`: uno de los topics válidos del catálogo.
 - `secondaryTopics`: lista YAML de cero o más topics válidos, sin duplicados ni repetición de `primaryTopic`.
 - `section`: el mismo valor que `primaryTopic` para mantener compatibilidad con rutas existentes.
-- `scope`: uno de los valores admitidos y respaldado por la noticia.
+- `scope`: uno de los valores admitidos y respaldado por la noticia. No lo cambies a `internacional` para justificar un `country`; si el alcance no es internacional, no incluyas `country`.
 - `author`: preservá exactamente el original.
 - `status`: preservá exactamente `draft`.
 - `sources`: preservá exactamente la lista original.
