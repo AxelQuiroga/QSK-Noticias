@@ -78,7 +78,7 @@ class EditorialAgentTests(unittest.TestCase):
         self.assertEqual(result, OUTPUT.strip())
         self.assertEqual(mocked.call_count, 2)
 
-    def test_stops_after_second_unrecognized_workers_ai_response(self):
+    def test_stops_after_third_unrecognized_workers_ai_response(self):
         class FakeResponse:
             def __enter__(self):
                 return self
@@ -87,10 +87,12 @@ class EditorialAgentTests(unittest.TestCase):
             def read(self):
                 return json.dumps({"success": True, "result": {"unexpected": "shape"}}).encode("utf-8")
 
-        with patch.object(agent.urllib.request, "urlopen", return_value=FakeResponse()) as mocked:
-            with self.assertRaisesRegex(agent.EditorialError, "segundo intento también falló"):
+        with patch.object(agent.urllib.request, "urlopen", side_effect=[
+            FakeResponse(), FakeResponse(), FakeResponse(),
+        ]) as mocked, patch.object(agent.time, "sleep"):
+            with self.assertRaisesRegex(agent.EditorialError, "Se agotaron los reintentos"):
                 agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
-        self.assertEqual(mocked.call_count, 2)
+        self.assertEqual(mocked.call_count, agent.WORKERS_AI_MAX_ATTEMPTS)
 
     def test_reads_real_catalogs(self):
         self.assertIn("Obras públicas", CATALOGS.topics)
@@ -286,6 +288,50 @@ class EditorialAgentTests(unittest.TestCase):
         invalid = OUTPUT.replace('section: "Obras públicas"', 'section: "Actualidad"')
         with self.assertRaisesRegex(agent.EditorialError, "section"):
             agent.rewrite_markdown(SOURCE, invalid, CATALOGS)
+
+
+    def test_retries_transient_timeout_and_succeeds(self):
+        class FakeResponse:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self):
+                return json.dumps({"success": True, "result": {"response": OUTPUT}}).encode("utf-8")
+
+        with patch.object(
+            agent.urllib.request, "urlopen",
+            side_effect=[TimeoutError("read timed out"), TimeoutError("read timed out"), FakeResponse()],
+        ) as mocked, patch.object(agent.time, "sleep") as sleeper:
+            result = agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
+        self.assertEqual(result, OUTPUT.strip())
+        self.assertEqual(mocked.call_count, 3)
+        self.assertEqual([call.args[0] for call in sleeper.call_args_list], [2, 5])
+
+    def test_exhausted_timeout_is_a_per_draft_error(self):
+        with patch.object(agent.urllib.request, "urlopen", side_effect=TimeoutError("read timed out")) as mocked:
+            with patch.object(agent.time, "sleep"):
+                with self.assertRaises(agent.TransientWorkersAIError):
+                    agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
+        self.assertEqual(mocked.call_count, agent.WORKERS_AI_MAX_ATTEMPTS)
+
+    def test_process_files_continues_after_transient_timeout_exhaustion(self):
+        with tempfile.TemporaryDirectory() as directory:
+            first = Path(directory) / "first.md"
+            second = Path(directory) / "second.md"
+            first.write_text(SOURCE, encoding="utf-8")
+            second.write_text(SOURCE, encoding="utf-8")
+            with patch.object(agent, "rewrite_file", side_effect=[
+                agent.TransientWorkersAIError("Workers AI timeout agotado"),
+                OUTPUT,
+            ]) as mocked:
+                result = agent.process_files([first, second], "prompt", "token", "account", CATALOGS)
+            self.assertEqual(mocked.call_count, 2)
+            self.assertEqual(len(result["failures"]), 1)
+            self.assertIn("timeout agotado", result["failures"][0])
+            self.assertEqual(first.read_text(encoding="utf-8"), SOURCE)
+            self.assertIn("El organismo anunció una medida", second.read_text(encoding="utf-8"))
+
 
 
 if __name__ == "__main__":

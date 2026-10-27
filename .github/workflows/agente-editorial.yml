@@ -83,7 +83,7 @@ jobs:
           python3 .github/scripts/agente-editorial.py
 
       - name: Commit de la propuesta validada en la rama del PR
-        if: steps.changed.outputs.has_files == 'true'
+        if: always() && steps.changed.outputs.has_files == 'true'
         env:
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
