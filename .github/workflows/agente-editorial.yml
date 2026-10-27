@@ -1,0 +1,80 @@
+name: Agente editorial GLM
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "borradores/**/*.md"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: agente-editorial-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  redactar-borradores:
+    name: Proponer redacción para revisión humana
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      # El workflow y el script se leen desde la rama base confiable.
+      - name: Checkout de la rama base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+
+      - name: Preparar una copia aislada del PR
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git fetch origin "$PR_HEAD_SHA"
+          git worktree add --detach /tmp/qsk-pr "$PR_HEAD_SHA"
+
+      - name: Identificar los borradores modificados por este PR
+        id: changed
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- borradores/ \
+            | grep -E '^borradores/.+\.md$' > /tmp/qsk-changed-files.txt || true
+          if [ ! -s /tmp/qsk-changed-files.txt ]; then
+            echo "No hay archivos Markdown de borradores para procesar."
+            echo "has_files=false" >> "$GITHUB_OUTPUT"
+          else
+            cat /tmp/qsk-changed-files.txt
+            echo "has_files=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Redactar con Cloudflare Workers AI
+        if: steps.changed.outputs.has_files == 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          EDITORIAL_DRAFT_DIR: /tmp/qsk-pr/borradores
+          EDITORIAL_PROMPT_PATH: prompts/agente-editorial.md
+          EDITORIAL_CHANGED_FILES: ${{ steps.changed.outputs.has_files && '' || '' }}
+        run: |
+          export EDITORIAL_CHANGED_FILES="$(cat /tmp/qsk-changed-files.txt)"
+          python3 .github/scripts/agente-editorial.py
+
+      - name: Commit de la propuesta en la rama del PR
+        if: steps.changed.outputs.has_files == 'true'
+        env:
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git -C /tmp/qsk-pr add -- borradores/
+          if git -C /tmp/qsk-pr diff --cached --quiet; then
+            echo "No hay cambios nuevos para guardar."
+            exit 0
+          fi
+          git -C /tmp/qsk-pr config user.name "github-actions[bot]"
+          git -C /tmp/qsk-pr config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C /tmp/qsk-pr commit -m "chore(editorial-agent): propose AI-assisted drafts"
+          git -C /tmp/qsk-pr push origin "HEAD:${PR_HEAD_REF}"
