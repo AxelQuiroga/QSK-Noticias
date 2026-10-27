@@ -17,6 +17,10 @@ origen:
 
 publishedAt: "2026-10-27"
 
+image:
+  src: "/images/noticias/licitacion-tesoro-octubre-2026.jpg"
+  alt: "Llamado a licitación de instrumentos del Tesoro Nacional"
+  attribution: "Ministerio de Economía / Argentina.gob.ar"
 ---
 
 La Secretaría de Finanzas ofrece en este llamado a licitación por efectivo los instrumentos del Tesoro Nacional que se detallan a continuación:
