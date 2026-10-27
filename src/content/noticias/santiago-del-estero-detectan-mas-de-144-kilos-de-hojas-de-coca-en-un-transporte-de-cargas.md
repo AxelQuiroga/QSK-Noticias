@@ -15,6 +15,10 @@ origen:
   titulo: "Gendarmería Nacional Argentina"
 publishedAt: "2026-10-27"
 
+image:
+  src: "/images/noticias/decomiso-hojas-coca-santiago-del-estero.jpg"
+  alt: "Procedimiento de Gendarmería por el transporte de hojas de coca en Santiago del Estero"
+  attribution: "Gendarmería Nacional Argentina / Argentina.gob.ar"
 ---
 
 El sábado pasado, efectivos de la Sección de Seguridad Vial dependiente del Escuadrón reforzado 59 “Santiago del Estero” con apoyo de personal de la Agencia de Recaudación y Control Aduanero de Santiago del Estero “ARCA”, realizaron tareas de prevención y seguridad vial sobre la Ruta Nacional Nº 34, a la altura del kilómetro 748, en el departamento de Banda.
