@@ -39,6 +39,8 @@ Devolvé un único documento Markdown que empiece exactamente con `---`, seguido
 
 Conservá exactamente los valores originales de estos campos protegidos: `slug`, `author`, `status`, `sources`, `image`, `gallery`, `publishedAt`, `updatedAt` y `featured`. Si un campo protegido no existía en la entrada, no lo agregues. Nunca elimines ni modifiques las fuentes ni sus URLs.
 
+Los borradores extractivos pueden incluir metadatos auxiliares que no pertenecen al esquema editorial de QSK, por ejemplo `origen` con `url`, `titulo`, `fechaPublicacion` u `organismos`. No copies esos campos auxiliares al frontmatter final ni los conviertas en nuevas claves. Usá `sources` como campo oficial de fuentes, preservándolo exactamente. La salida debe contener únicamente campos admitidos por el esquema de QSK; si un dato auxiliar no tiene un campo admitido y no es parte del cuerpo periodístico respaldado, no lo fuerces dentro del frontmatter.
+
 Podés proponer `title`, `description`, `primaryTopic`, `secondaryTopics`, `section`, `scope` y los campos geográficos `municipality`, `localidad`, `region`, `country`, siempre que cada valor esté respaldado por la fuente y pertenezca al catálogo indicado. No agregues claves de frontmatter distintas de las admitidas por el esquema de QSK.
 
 Campos requeridos:
