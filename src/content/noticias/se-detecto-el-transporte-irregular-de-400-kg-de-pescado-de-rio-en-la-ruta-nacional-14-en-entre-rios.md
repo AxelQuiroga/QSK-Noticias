@@ -17,6 +17,10 @@ origen:
 
 publishedAt: "2026-10-27"
 
+image:
+  src: "/images/noticias/decomiso-pescado-rio-entre-rios.jpg"
+  alt: "Procedimiento de control sanitario de productos pesqueros en Entre Ríos"
+  attribution: "SENASA / Argentina.gob.ar"
 ---
 
 En la provincia de Entre Ríos, el Servicio Nacional de Sanidad y Calidad Agroalimentaria (SENASA) detectó una carga de 400 kilogramos de pescado de río que era trasladada en infracción a la normativa sanitaria vigente poniendo en riesgo la salud de quienes la consumieran.
