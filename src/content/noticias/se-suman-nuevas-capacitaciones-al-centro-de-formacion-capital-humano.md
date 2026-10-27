@@ -1,5 +1,5 @@
 ---
-status: "draft"
+status: "published"
 title: "Se suman nuevas capacitaciones al Centro de Formación Capital Humano"
 description: "El nuevo curso brindará a los participantes herramientas prácticas para optimizar la toma de decisiones económicas y fortalecer su inserción en el mercado formal."
 slug: "se-suman-nuevas-capacitaciones-al-centro-de-formacion-capital-humano"
@@ -9,18 +9,11 @@ author: "Redacción QSK Noticias"
 sources:
   - name: "Ministerio de Capital Humano"
     url: "https://www.argentina.gob.ar/noticias/se-suman-nuevas-capacitaciones-al-centro-de-formacion-capital-humano"
-
-origen:
-  url: "https://www.argentina.gob.ar/noticias/se-suman-nuevas-capacitaciones-al-centro-de-formacion-capital-humano"
-  titulo: "Ministerio de Capital Humano"
-
-  fechaPublicacion: "2026-10-26T15:20:46-03:00"
-  organismos:
-    - "Ministerio de Capital Humano"
 image:
   src: "/images/noticias/capacitaciones-capital-humano.jpg"
   alt: "Nuevas propuestas de formación del Centro de Formación Capital Humano"
   attribution: "Ministerio de Capital Humano / Argentina.gob.ar"
+publishedAt: "2026-10-27"
 ---
 
 El Ministerio de Capital Humano informa que se han incorporado nuevas alianzas estratégicas al Centro de Formación Capital Humano, mediante la firma de un convenio con la Cámara Argentina Fintech (CAF) y el Instituto Argentino de Ejecutivos (IAEF). El acuerdo, encabezado por la ministra Sandra Pettovello, busca potenciar las competencias técnicas de los trabajadores para su inserción en el mercado laboral y el fortalecimiento del empleo calificado.

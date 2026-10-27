@@ -5,11 +5,11 @@ primaryTopic: Economía
 secondaryTopics: []
 section: Economía
 scope: provincial
-region: Nacional
+provincia: Santa Fe
 slug: "informa-ya-inta-oliveros"
 author: Redacción QSK Noticias
 publishedAt: "2026-10-27"
-status: draft
+status: published
 sources:
 - name: Centro Regional Santa Fe
   url: https://www.argentina.gob.ar/noticias/informa-ya-inta-oliveros

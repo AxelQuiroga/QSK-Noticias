@@ -8,14 +8,13 @@ section: Obras públicas
 scope: nacional
 publishedAt: "2026-10-27"
 author: Redacción QSK Noticias
-status: draft
+status: published
 sources:
 - name: Vialidad Nacional
   url: https://www.argentina.gob.ar/noticias/avanza-la-transformacion-integral-de-la-ruta-nacional-51-0
 image:
-  src: https://www.argentina.gob.ar/sites/default/files/salta-rn-51-integral.jpg
-  alt: Avanza la transformación integral de la Ruta Nacional 51
-  attribution: null
+  src: "/images/noticias/avanza-la-transformacion-integral-de-la-ruta-nacional-51-0.jpg"
+  alt: "Avanza la transformación integral de la Ruta Nacional 51"
 slug: "avanza-la-transformacion-integral-de-la-ruta-nacional-51"
 ---
 Vialidad Nacional informó que continúan las obras de pavimentación y mejora de trazado sobre la Ruta Nacional 51, en dos sectores estratégicos del corredor bioceánico. Los trabajos se desarrollan en la sección II, entre Mina La Poma y Alto Chorrillos, y en la sección III, entre Alto Chorrillos y Campo Amarillo.

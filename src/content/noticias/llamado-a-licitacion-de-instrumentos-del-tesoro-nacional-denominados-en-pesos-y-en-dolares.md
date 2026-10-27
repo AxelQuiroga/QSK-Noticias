@@ -1,7 +1,7 @@
 ---
-status: "draft"
+status: "published"
 title: "Llamado a licitación de instrumentos del Tesoro Nacional denominados en pesos y en dólares estadounidenses"
-description: null
+description: "La Secretaría de Finanzas ofrece en este llamado a licitación por efectivo los instrumentos del Tesoro Nacional que se detallan a continuación:"
 slug: "llamado-a-licitacion-de-instrumentos-del-tesoro-nacional-denominados-en-pesos-y-en-dolares"
 section: "Economía"
 primaryTopic: "Economía"
@@ -10,11 +10,6 @@ author: "Redacción QSK Noticias"
 sources:
   - name: "Finanzas"
     url: "https://www.argentina.gob.ar/noticias/llamado-licitacion-de-instrumentos-del-tesoro-nacional-denominados-en-pesos-y-en-dolares-15"
-
-origen:
-  url: "https://www.argentina.gob.ar/noticias/llamado-licitacion-de-instrumentos-del-tesoro-nacional-denominados-en-pesos-y-en-dolares-15"
-  titulo: "Finanzas"
-
 publishedAt: "2026-10-27"
 
 image:

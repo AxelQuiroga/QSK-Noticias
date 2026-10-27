@@ -9,7 +9,7 @@ section: Economía
 scope: nacional
 slug: "el-gobierno-nacional-y-las-principales-plataformas-trabajaran-para-combatir-el-contrabando"
 author: Redacción QSK Noticias
-status: draft
+status: published
 publishedAt: "2026-10-27"
 sources:
 - name: Industria

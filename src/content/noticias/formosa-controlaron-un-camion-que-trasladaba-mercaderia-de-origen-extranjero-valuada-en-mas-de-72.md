@@ -8,14 +8,13 @@ section: Seguridad
 scope: provincial
 author: Redacción QSK Noticias
 publishedAt: "2026-10-27"
-status: draft
+status: published
 sources:
 - name: Gendarmería Nacional Argentina
   url: https://www.argentina.gob.ar/noticias/formosa-controlaron-un-camion-que-trasladaba-mercaderia-de-origen-extranjero-valuada-en-mas
 image:
-  src: https://www.argentina.gob.ar/sites/default/files/contrabando_72_millones_1_formosa.jpeg
+  src: "/images/noticias/formosa-controlaron-un-camion-que-trasladaba-mercaderia-de-origen-extranjero-valuada-en-mas.jpg"
   alt: 'Formosa: Controlaron un camión que trasladaba mercadería de origen extranjero valuada en más de 72 millones de pesos'
-  attribution: null
 slug: "formosa-controlaron-un-camion-que-trasladaba-mercaderia-de-origen-extranjero-valuada-en-mas-de-72"
 ---
 Personal del Escuadrón 5 “Pirané” de la Gendarmería Nacional Argentina decomisó una carga de mercadería de origen extranjero sin documentación legal en la Ruta Provincial Nº 1, en la localidad de El Colorado, en la provincia de Formosa.

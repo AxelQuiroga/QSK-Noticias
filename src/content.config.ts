@@ -17,12 +17,13 @@ import { COUNTRY_CODES } from "./lib/international";
  * enlazan a una ruta que no existe.
  */
 const GEO_FIELDS: ReadonlyArray<{
-  field: "municipality" | "localidad" | "region";
+  field: "municipality" | "localidad" | "region" | "provincia";
   type: LocationType;
 }> = [
   { field: "municipality", type: "municipio" },
   { field: "localidad", type: "localidad" },
   { field: "region", type: "region" },
+  { field: "provincia", type: "provincia" },
 ];
 
 const news = defineCollection({
@@ -51,6 +52,7 @@ const news = defineCollection({
       municipality: z.string().optional(),
       localidad: z.string().optional(),
       region: z.string().optional(),
+      provincia: z.string().optional(),
       country: z
         .string()
         .refine(

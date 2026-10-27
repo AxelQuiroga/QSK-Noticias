@@ -11,7 +11,7 @@ author: Redacción QSK Noticias
 sources:
 - name: Agencia Nacional de Puertos y Navegación
   url: https://www.argentina.gob.ar/noticias/avanza-la-renovacion-de-las-instalaciones-del-puerto-de-ushuaia-de-cara-la-temporada-de
-status: draft
+status: published
 slug: "avanza-la-renovacion-de-las-instalaciones-del-puerto-de-ushuaia-de-cara-a-la-temporada-de-cruceros"
 image:
   src: "/images/noticias/renovacion-puerto-ushuaia.jpg"

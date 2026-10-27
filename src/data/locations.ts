@@ -54,6 +54,12 @@ export const LOCATIONS: readonly Location[] = [
     type: 'provincia',
     parentId: 'pais-argentina',
   },
+    {
+    id: 'provincia-santa-fe',
+    name: 'Santa Fe',
+    type: 'provincia',
+    parentId: 'pais-argentina',
+  },
   // Regiones editoriales: agrupaciones de cobertura, no jurisdicciones.
   { id: 'region-zona-sur', name: 'Zona Sur', type: 'region' },
   { id: 'region-amba', name: 'AMBA', type: 'region' },

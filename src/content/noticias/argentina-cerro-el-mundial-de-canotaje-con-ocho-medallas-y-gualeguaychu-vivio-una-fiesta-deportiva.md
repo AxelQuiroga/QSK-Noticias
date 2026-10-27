@@ -6,15 +6,14 @@ secondaryTopics: []
 section: Deportes
 publishedAt: "2026-10-27"
 scope: nacional
-status: draft
+status: published
 author: Redacción QSK Noticias
 sources:
 - name: Subsecretaría de Deportes
   url: https://www.argentina.gob.ar/noticias/argentina-cerro-el-mundial-de-canotaje-con-ocho-medallas-y-gualeguaychu-vivio-una-fiesta
 image:
-  src: https://www.argentina.gob.ar/sites/default/files/dgfgjhjk.jpeg
-  alt: Argentina cerró el Mundial de Canotaje con ocho medallas y Gualeguaychú vivió una fiesta deportiva internacional
-  attribution: null
+  src: "/images/noticias/argentina-cerro-el-mundial-de-canotaje.jpeg"
+  alt: "Argentina cerró el Mundial de Canotaje con ocho medallas y Gualeguaychú vivió una fiesta deportiva internacional"
 slug: "argentina-cerro-el-mundial-de-canotaje-con-ocho-medallas-y-gualeguaychu-vivio-una-fiesta-deportiva"
 ---
 Gualeguaychú cerró este fin de semana el Mundial de Canotaje Maratón con una gran convocatoria y un resultado deportivo destacado para la delegación argentina. La delegación nacional finalizó la competencia en el quinto puesto del medallero general, con un total de ocho medallas, repartidas en cuatro de plata y cuatro de bronce, en categorías de élite y paracanotaje.

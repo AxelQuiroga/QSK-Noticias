@@ -1,5 +1,5 @@
 ---
-status: "draft"
+status: "published"
 title: "Se detectó el transporte irregular de 400 kg de pescado de río en la Ruta Nacional 14 en Entre Ríos"
 description: "El SENASA decomisó la carga que carecía de permisos sanitarios, cadena de frío y rotulación obligatoria poniendo en riesgo la salud de quienes la consumieran."
 slug: "se-detecto-el-transporte-irregular-de-400-kg-de-pescado-de-rio-en-la-ruta-nacional-14-en-entre-rios"

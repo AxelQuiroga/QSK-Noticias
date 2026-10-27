@@ -1,5 +1,5 @@
 ---
-status: "draft"
+status: "published"
 title: "La nutrición de la vaca puede definir el futuro productivo del ternero"
 description: "Un trabajo del INTA Cuenca del Salado determinó que la alimentación de la madre durante la gestación influye en el crecimiento, la calidad de carne, la fertilidad y la salud de la descendencia. Los efectos pueden extenderse durante toda la vida del animal."
 slug: "la-nutricion-de-la-vaca-puede-definir-el-futuro-productivo-del-ternero"
@@ -11,18 +11,8 @@ sources:
   - name: "Instituto Nacional de Tecnología Agropecuaria"
     url: "https://www.argentina.gob.ar/noticias/la-nutricion-de-la-vaca-puede-definir-el-futuro-productivo-del-ternero"
 image:
-  src: "https://www.argentina.gob.ar/sites/default/files/programacion_fetal_2.jpg"
+  src: "/images/noticias/programacion_fetal_2.jpg"
   alt: "La nutrición de la vaca puede definir el futuro productivo del ternero"
-  attribution: null
-
-origen:
-  url: "https://www.argentina.gob.ar/noticias/la-nutricion-de-la-vaca-puede-definir-el-futuro-productivo-del-ternero"
-  titulo: "Instituto Nacional de Tecnología Agropecuaria"
-  imagen:
-    src: "https://www.argentina.gob.ar/sites/default/files/programacion_fetal_2.jpg"
-    alt: ""
-    urlOriginal: "/sites/default/files/programacion_fetal_2.jpg"
-    credit: null
 
 publishedAt: "2026-10-27"
 

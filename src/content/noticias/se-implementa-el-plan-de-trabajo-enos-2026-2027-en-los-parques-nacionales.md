@@ -1,30 +1,20 @@
 ---
-status: "draft"
+status: "published"
 title: "Se implementa el Plan de Trabajo ENOS 2026-2027 en los Parques Nacionales"
 description: "Las áreas protegidas trabajan en planificación, identificación de riesgos, priorización de acciones, comunicación clara y coordinación con otras instituciones, en línea con la estrategia nacional impulsada por AFE frente al fenómeno El Niño–Oscilación del Sur (ENOS)."
 slug: "se-implementa-el-plan-de-trabajo-enos-2026-2027-en-los-parques-nacionales"
-section: 'Politica'
+section: 'Política'
 scope: "nacional"
 author: "Redacción QSK Noticias"
 sources:
   - name: "Parques Nacionales"
     url: "https://www.argentina.gob.ar/noticias/se-implementa-el-plan-de-trabajo-enos-2026-2027-en-los-parques-nacionales"
 image:
-  src: "https://www.argentina.gob.ar/sites/default/files/plan_de_trabajo_enos_en_parques_nacionales_01.jpg"
+  src: "/images/noticias/plan_de_trabajo_enos_en_parques_nacionales_01.jpg"
   alt: "Plan de trabajo ENOS en Parques Nacionales"
+ 
 
-origen:
-  url: "https://www.argentina.gob.ar/noticias/se-implementa-el-plan-de-trabajo-enos-2026-2027-en-los-parques-nacionales"
-  titulo: "Parques Nacionales"
-  imagen:
-    src: "https://www.argentina.gob.ar/sites/default/files/plan_de_trabajo_enos_en_parques_nacionales_01.jpg"
-    alt: "Plan de trabajo ENOS en Parques Nacionales"
-    urlOriginal: "/sites/default/files/plan_de_trabajo_enos_en_parques_nacionales_01.jpg"
-    credit: null
-
-  fechaPublicacion: "2026-10-26T15:12:05-03:00"
-  organismos:
-    - "Parques Nacionales"
+publishedAt: "2026-10-26T15:12:05-03:00"
 ---
 
 > **Borrador automático — no publicable.**
@@ -35,7 +25,7 @@ origen:
 
 ## Estado del borrador
 
-- **status:** `draft` (nunca `published`)
+- **status:** `published` (nunca `published`)
 - **fecha de publicación propia:** sin definir a propósito — no se fabrica una fecha
 - **tipo del extractor:** extraccion-ultimate / método reglas-deterministas-sin-ia
 - **revisión editorial requerida:** sí

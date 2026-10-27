@@ -8,7 +8,7 @@ section: Política
 scope: nacional
 slug: "26-de-octubre-dia-del-auditor-interno-gubernamental"
 author: Redacción QSK Noticias
-status: draft
+status: published
 publishedAt: "2026-10-27"
 sources:
 - name: Sindicatura General de la Nación

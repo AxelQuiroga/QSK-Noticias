@@ -1,5 +1,5 @@
 ---
-status: "draft"
+status: "published"
 title: "Barranqueras: Prefectura asistió a una mujer con problemas de salud y evacuó a un hombre aislado por la inundación"
 description: "En el marco del operativo de emergencia por las inundaciones que afectan distintas zonas del país, la Prefectura Naval Argentina realizó asistencias a pobladores y evacuó a un hombre cuya vivienda había quedado incomunicada por vía terrestre debido al avance del agua en Barranqueras, Chaco."
 slug: "barranqueras-prefectura-asistio-a-una-mujer-con-problemas-de-salud-y-evacuo-a-un-hombre-aislado-por"

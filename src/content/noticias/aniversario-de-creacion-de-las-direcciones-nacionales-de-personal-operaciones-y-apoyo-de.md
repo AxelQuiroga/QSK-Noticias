@@ -5,14 +5,14 @@ primaryTopic: Seguridad
 secondaryTopics: []
 section: Seguridad
 scope: nacional
-status: draft
+status: published
 author: Redacción QSK Noticias
 publishedAt: "2026-10-27"
 sources:
 - name: Novedades GNA
   url: https://www.argentina.gob.ar/noticias/aniversario-de-creacion-de-las-direcciones-nacionales-de-personal-operaciones-y-apoyo-de
 image:
-  src: https://www.argentina.gob.ar/sites/default/files/aniversario_de_creacion_de_las_direcciones_nacionales_de_personal_operaciones_y_apoyo_de_gendarmeria_nacional_1_2.jpeg
+  src: "/images/noticias/aniversario_de_creacion_de_las_direcciones_nacionales_de_personal_operaciones_y_apoyo_de_gendarmeria_nacional_1_2.jpeg"
   alt: Aniversario de creación de las Direcciones Nacionales de Personal, Operaciones y Apoyo de Gendarmería Nacional
 
 slug: "aniversario-de-creacion-de-las-direcciones-nacionales-de-personal-operaciones-y-apoyo-de"

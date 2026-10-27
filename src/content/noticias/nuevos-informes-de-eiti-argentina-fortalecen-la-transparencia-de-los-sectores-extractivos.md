@@ -1,19 +1,14 @@
 ---
-status: "draft"
+status: "published"
 title: "Nuevos informes de EITI Argentina fortalecen la transparencia de los sectores extractivos"
-description: null
+description: "El Informe de Divulgación Sistemática releva el estado actual de la publicación de información y el grado de cumplimiento de los requisitos establecidos por el Estándar EITI"
 slug: "nuevos-informes-de-eiti-argentina-fortalecen-la-transparencia-de-los-sectores-extractivos"
-section: null
+section: 'Política'
 scope: "nacional"
 author: "Redacción QSK Noticias"
 sources:
   - name: "EITI - Portal de transparencia de las industrias extractivas"
     url: "https://www.argentina.gob.ar/noticias/nuevos-informes-de-eiti-argentina-fortalecen-la-transparencia-de-los-sectores-extractivos"
-
-origen:
-  url: "https://www.argentina.gob.ar/noticias/nuevos-informes-de-eiti-argentina-fortalecen-la-transparencia-de-los-sectores-extractivos"
-  titulo: "EITI - Portal de transparencia de las industrias extractivas"
-
 publishedAt: "2026-10-27"
 
 image:
