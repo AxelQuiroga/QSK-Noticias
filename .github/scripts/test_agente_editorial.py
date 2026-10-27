@@ -3,6 +3,8 @@
 import importlib.util
 import sys
 import unittest
+from unittest.mock import patch
+import json
 from pathlib import Path
 
 SCRIPT = Path(__file__).with_name("agente-editorial.py")
@@ -55,6 +57,40 @@ Según la información difundida por el organismo, la iniciativa seguirá las et
 
 
 class EditorialAgentTests(unittest.TestCase):
+    def test_retries_once_when_workers_ai_response_has_no_text(self):
+        class FakeResponse:
+            def __init__(self, payload):
+                self.payload = payload
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self):
+                return json.dumps(self.payload).encode("utf-8")
+
+        responses = [
+            FakeResponse({"success": True, "result": {"unexpected": "shape"}}),
+            FakeResponse({"success": True, "result": {"response": OUTPUT}}),
+        ]
+        with patch.object(agent.urllib.request, "urlopen", side_effect=responses) as mocked:
+            result = agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
+        self.assertEqual(result, OUTPUT)
+        self.assertEqual(mocked.call_count, 2)
+
+    def test_stops_after_second_unrecognized_workers_ai_response(self):
+        class FakeResponse:
+            def __enter__(self):
+                return self
+            def __exit__(self, *args):
+                return False
+            def read(self):
+                return json.dumps({"success": True, "result": {"unexpected": "shape"}}).encode("utf-8")
+
+        with patch.object(agent.urllib.request, "urlopen", return_value=FakeResponse()) as mocked:
+            with self.assertRaisesRegex(agent.EditorialError, "segundo intento también falló"):
+                agent.call_model("prompt", SOURCE, "token", "account", CATALOGS)
+        self.assertEqual(mocked.call_count, 2)
+
     def test_reads_real_catalogs(self):
         self.assertIn("Obras públicas", CATALOGS.topics)
         self.assertIn("Lanús", CATALOGS.municipalities)
