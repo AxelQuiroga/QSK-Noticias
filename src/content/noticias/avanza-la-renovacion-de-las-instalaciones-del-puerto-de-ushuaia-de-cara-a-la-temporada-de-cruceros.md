@@ -13,6 +13,10 @@ sources:
   url: https://www.argentina.gob.ar/noticias/avanza-la-renovacion-de-las-instalaciones-del-puerto-de-ushuaia-de-cara-la-temporada-de
 status: draft
 slug: "avanza-la-renovacion-de-las-instalaciones-del-puerto-de-ushuaia-de-cara-a-la-temporada-de-cruceros"
+image:
+  src: "/images/noticias/renovacion-puerto-ushuaia.jpg"
+  alt: "Obras de renovación de las instalaciones del puerto de Ushuaia"
+  attribution: "Argentina.gob.ar"
 ---
 La Agencia Nacional de Puertos y Navegación avanzó en una importante etapa de renovación de las instalaciones del Puerto de Ushuaia para dar respuesta a la demanda de la próxima temporada de cruceros. El objetivo es recibir a más de 550 naves y miles de pasajeros con estándares de calidad y seguridad operativa.
 
