@@ -183,18 +183,38 @@ def validate_document(metadata, body, original_metadata, catalogs, label="salida
 
 
 def response_text(payload):
+    """Extrae texto de los formatos conocidos y da diagnóstico sin volcar contenido."""
     result = payload.get("result", payload)
     if isinstance(result, dict):
-        if isinstance(result.get("response"), str):
-            return result["response"]
+        response = result.get("response")
+        if isinstance(response, str) and response.strip():
+            return response.strip()
         choices = result.get("choices")
         if isinstance(choices, list) and choices:
             message = choices[0].get("message", {})
-            if isinstance(message, dict) and isinstance(message.get("content"), str):
-                return message["content"]
-        if isinstance(result.get("output_text"), str):
-            return result["output_text"]
-    raise EditorialError("Workers AI devolvió una respuesta sin texto reconocible.")
+            if isinstance(message, dict):
+                content = message.get("content")
+                if isinstance(content, str) and content.strip():
+                    return content.strip()
+        output_text = result.get("output_text")
+        if isinstance(output_text, str) and output_text.strip():
+            return output_text.strip()
+
+    top_keys = sorted(str(key) for key in payload) if isinstance(payload, dict) else []
+    result_type = type(result).__name__
+    result_keys = sorted(str(key) for key in result) if isinstance(result, dict) else []
+    errors = payload.get("errors") if isinstance(payload, dict) else None
+    detail = {
+        "top_level_keys": top_keys,
+        "result_type": result_type,
+        "result_keys": result_keys,
+    }
+    if errors:
+        detail["errors"] = errors
+    raise EditorialError(
+        "Workers AI devolvió una respuesta sin texto reconocible; diagnóstico: "
+        + json.dumps(detail, ensure_ascii=False)[:1500]
+    )
 
 
 def call_model(prompt, markdown, token, account_id, catalogs):
