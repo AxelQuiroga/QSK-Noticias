@@ -6,9 +6,36 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Quiénes somos — QSK Noticias"
   description="Información institucional sobre QSK Noticias."
 >
-  <div class="container-editorial py-10">
-    <article class="mx-auto max-w-3xl">
-      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+  <section class="intro-section" aria-label="Presentación de QSK Noticias" data-intro>
+    <video
+      class="intro-video"
+      data-mobile-src="/videos/qsk-intro-vertical.mp4"
+      data-desktop-src="/videos/qsk-intro.mp4"
+      muted
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+      tabindex="-1"
+    ></video>
+    <div class="intro-overlay" aria-hidden="true"></div>
+
+    <div class="intro-content container-editorial">
+      <p class="intro-eyebrow">QSK NOTICIAS <span></span> ZONA SUR · AMBA</p>
+      <p class="intro-subtitle">Una mirada cerca de vos.</p>
+      <div class="intro-hint">
+        <span class="intro-hint-line"></span>
+        <span>Deslizá para conocernos</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 4v15m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section container-editorial" aria-labelledby="about-title">
+    <article class="about-article">
+      <p class="about-eyebrow">EL MEDIO</p>
+      <h1 id="about-title" class="font-heading text-3xl font-extrabold tracking-tight text-text">
         Quiénes somos
       </h1>
 
@@ -32,5 +59,243 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
     </article>
-  </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .intro-section {
+    --intro-progress: 0;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: 34rem;
+    height: 84svh;
+    max-height: 58rem;
+    align-items: center;
+    overflow: hidden;
+    background: #071321;
+    opacity: calc(1 - var(--intro-progress) * 0.22);
+    transform: translateY(calc(var(--intro-progress) * -0.75rem));
+    transition: opacity 120ms linear, transform 120ms linear;
+    will-change: opacity, transform;
+  }
+
+  .intro-video,
+  .intro-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .intro-video {
+    z-index: -2;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    background: #071321;
+  }
+
+  .intro-overlay {
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgb(7 19 33 / 88%) 0%, rgb(7 19 33 / 64%) 48%, rgb(7 19 33 / 22%) 100%),
+      linear-gradient(0deg, rgb(7 19 33 / 78%) 0%, transparent 48%, rgb(7 19 33 / 24%) 100%);
+  }
+
+  .intro-content {
+    width: 100%;
+    padding-block: 4rem;
+  }
+
+  .intro-eyebrow,
+  .about-eyebrow {
+    margin: 0;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .intro-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #d8eaff;
+  }
+
+  .intro-eyebrow span {
+    width: 1.75rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .intro-title {
+    max-width: 56rem;
+    margin: 1.25rem 0 0;
+    color: #fff;
+    font-family: var(--font-heading, inherit);
+    font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+    font-weight: 850;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .intro-subtitle {
+    margin: 1.5rem 0 0;
+    color: #d4e0ed;
+    font-size: clamp(1rem, 1.7vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  .intro-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: clamp(3rem, 9vh, 6rem) 0 0;
+    color: #e0eaf5;
+    font-size: 0.75rem;
+    letter-spacing: 0.045em;
+  }
+
+  .intro-hint-line {
+    width: 2rem;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .intro-hint svg {
+    width: 1rem;
+    height: 1rem;
+    animation: intro-bob 1.8s ease-in-out infinite;
+  }
+
+  .about-section {
+    padding-block: clamp(3rem, 7vw, 5.5rem) 5rem;
+  }
+
+  .about-article {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .about-article h1 {
+    margin-top: 0.5rem;
+  }
+
+  @keyframes intro-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+  }
+
+  @media (max-width: 640px) {
+    .intro-section {
+      min-height: 32rem;
+      height: 74svh;
+      max-height: 48rem;
+    }
+
+    .intro-overlay {
+      background:
+        linear-gradient(90deg, rgb(7 19 33 / 76%) 0%, rgb(7 19 33 / 42%) 100%),
+        linear-gradient(0deg, rgb(7 19 33 / 84%) 0%, transparent 75%);
+    }
+
+    .intro-title {
+      font-size: clamp(2.65rem, 12vw, 4.4rem);
+    }
+
+    .intro-content {
+      padding-block: 3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro-section {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+
+    .intro-hint svg {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const intro = document.querySelector<HTMLElement>('[data-intro]');
+    const video = intro?.querySelector('video');
+
+    if (!intro || !video || intro.dataset.initialized === 'true') return;
+    intro.dataset.initialized = 'true';
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobileViewport = window.matchMedia('(max-width: 640px)');
+    let observer: IntersectionObserver | undefined;
+
+    const updateVideoSource = () => {
+      const source = mobileViewport.matches ? video.dataset.mobileSrc : video.dataset.desktopSrc;
+      if (!source || video.getAttribute('src') === source) return;
+
+      video.src = source;
+      video.load();
+    };
+
+    const onViewportChange = () => {
+      updateVideoSource();
+
+      const bounds = intro.getBoundingClientRect();
+      const isVisible = bounds.bottom > 0 && bounds.top < window.innerHeight;
+      if (isVisible && !reducedMotion.matches) {
+        void video.play().catch(() => {
+          // Si el navegador bloquea la reproducción automática, la página sigue siendo usable.
+        });
+      }
+    };
+
+    updateVideoSource();
+    mobileViewport.addEventListener('change', onViewportChange);
+
+    const updateIntro = () => {
+      if (!intro.isConnected) return;
+      const progress = Math.min(Math.max(window.scrollY / 320, 0), 1);
+      intro.style.setProperty('--intro-progress', String(progress));
+    };
+
+    const onVisibilityChange = ([entry]: IntersectionObserverEntry[]) => {
+      if (!entry) return;
+
+      if (!entry.isIntersecting || reducedMotion.matches) {
+        video.pause();
+      } else if (video.paused) {
+        void video.play().catch(() => {
+          // Si el navegador bloquea la reproducción automática, la página sigue siendo usable.
+        });
+      }
+    };
+
+    if (!reducedMotion.matches) {
+      observer = new IntersectionObserver(onVisibilityChange, { threshold: 0.15 });
+      observer.observe(intro);
+      window.addEventListener('scroll', updateIntro, { passive: true });
+      updateIntro();
+    } else {
+      video.pause();
+    }
+
+    const cleanup = () => {
+      observer?.disconnect();
+      mobileViewport.removeEventListener('change', onViewportChange);
+      window.removeEventListener('scroll', updateIntro);
+      document.removeEventListener('astro:before-swap', cleanup);
+      video.pause();
+    };
+
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  });
+</script>

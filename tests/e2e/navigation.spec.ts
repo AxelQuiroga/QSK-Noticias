@@ -54,9 +54,35 @@ test.describe('Navegación', () => {
     expect(response?.status()).toBe(404);
   });
 
-  test('página institucional: quiénes somos', async ({ page }) => {
+  test('página institucional: quiénes somos e intro audiovisual', async ({ page }) => {
     await page.goto('/quienes-somos/');
+
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Quiénes somos');
+
+    const introVideo = page.locator('[data-intro] video');
+    await expect(introVideo).toHaveAttribute('data-mobile-src', '/videos/qsk-intro-vertical.mp4');
+    await expect(introVideo).toHaveAttribute('data-desktop-src', '/videos/qsk-intro.mp4');
+
+    const expectedVideo =
+      (page.viewportSize()?.width ?? 1280) <= 640
+        ? '/videos/qsk-intro-vertical.mp4'
+        : '/videos/qsk-intro.mp4';
+    await expect
+      .poll(() =>
+        introVideo.evaluate((video: HTMLVideoElement) =>
+          video.currentSrc ? new URL(video.currentSrc).pathname : '',
+        ),
+      )
+      .toBe(expectedVideo);
+
+    await expect(introVideo).toHaveAttribute('muted', '');
+    await expect(introVideo).toHaveAttribute('playsinline', '');
+    await expect(introVideo).not.toHaveAttribute('controls');
+    await expect(introVideo).toHaveAttribute('aria-hidden', 'true');
+    await expect(introVideo).toHaveAttribute('tabindex', '-1');
+
+    await expect(page.getByText('es un medio digital independiente en sus comienzos.')).toBeVisible();
+    await expect(page.getByText('Nuestra misión es acercar información clara')).toBeVisible();
   });
 
   test('página institucional: contacto', async ({ page }) => {
