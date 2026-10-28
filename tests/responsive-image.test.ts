@@ -39,6 +39,16 @@ describe('responsiveImage', () => {
     expect(result.src).toBe('/images/noticias/municipio-lanus.png');
   });
 
+  it('devuelve las URLs HTTPS externas sin intentar generar variantes locales', () => {
+    const src = 'https://cdn.example.com/imagen.jpg?size=large&v=2';
+    const result = responsiveImage(src, '100vw');
+
+    expect(result.src).toBe(src);
+    expect(result.srcset).toBe('');
+    expect(result.sizes).toBe('100vw');
+    expect(result.available).toEqual([]);
+  });
+
   it('todas las variantes referenciadas en el srcset existen en el disco público', () => {
     const noticiasDir = join(process.cwd(), 'public', 'images', 'noticias');
     const fuentes = readdirSync(noticiasDir).filter((f) =>
@@ -46,7 +56,7 @@ describe('responsiveImage', () => {
     );
 
     for (const fuente of fuentes) {
-      const src = `/images/noticias/${fuente}`;
+      const src = '/images/noticias/' + fuente;
       const { srcset } = responsiveImage(src, '100vw');
       if (!srcset) continue;
       const candidatos = srcset.split(',').map((c) => c.trim().split(' ')[0]);
@@ -55,7 +65,7 @@ describe('responsiveImage', () => {
           continue; 
       }
         const existe = existsSync(join(process.cwd(), 'public', candidato.slice(1)));
-        expect(existe, `la variante referenciada no existe: ${candidato}`).toBe(true);
+        expect(existe, 'la variante referenciada no existe: ' + candidato).toBe(true);
       }
     }
   });

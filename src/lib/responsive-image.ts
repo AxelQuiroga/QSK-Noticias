@@ -21,17 +21,20 @@ export const IMAGE_WIDTHS = [400, 600, 800, 1200] as const;
 export type ImageWidth = (typeof IMAGE_WIDTHS)[number];
 
 /**
- * Genera los atributos de imagen responsiva (`srcset`, `sizes` y `src` de
- * respaldo) para una imagen de noticia bajo `/images/noticias/`.
- *
- * Solo se incluyen en el `srcset` las variantes que realmente existen en
- * disco (es decir, variantes sin escalar hacia arriba). El atributo `src`
- * apunta a la imagen original para preservar la calidad en navegadores que
- * no soportan `srcset` (minoría residual); los navegadores modernos usan el
- * `srcset` y no descargan el `src`.
+ * Genera atributos de imagen responsiva para imágenes locales.
+ * Las URLs HTTPS externas se devuelven sin srcset porque no hay variantes
+ * locales verificables; el navegador solicita la imagen directamente al host.
  */
 export function responsiveImage(src: string, sizes: string) {
-  const name = src.split('/').pop()!.replace(/\.[^/.]+$/, '');
+  if (src.startsWith('https://')) {
+    return { srcset: '', sizes, src, available: [] as ImageWidth[] };
+  }
+
+  const name = src.split('/').pop()?.replace(/\.[^/.]+$/, '');
+  if (!name) {
+    return { srcset: '', sizes, src, available: [] as ImageWidth[] };
+  }
+
   const optimizedDir = join(PUBLIC_DIR, 'images', 'noticias', 'optimized');
 
   const available = IMAGE_WIDTHS.filter((w) =>

@@ -3,13 +3,16 @@ import { resolve } from 'node:path';
 import sharp from 'sharp';
 
 /**
- * Lee las dimensiones intrínsecas de una imagen local bajo `/images/noticias/`.
+ * Lee las dimensiones intrínsecas de una imagen local bajo /images/noticias/.
  *
  * Se usa en tiempo de compilación (componentes de Astro) para asignar
- * `width`/`height` y reservar espacio antes de que la imagen cargue, evitando
- * cambios de diseño (CLS). Devuelve `null` si el archivo no existe.
+ * width/height y reservar espacio antes de que la imagen cargue, evitando
+ * cambios de diseño (CLS). Para URLs externas devuelve null: no se descarga
+ * el recurso remoto durante el build.
  */
 export async function imageDimensions(src: string): Promise<{ width: number; height: number } | null> {
+  if (src.startsWith('https://')) return null;
+
   const filePath = resolve(process.cwd(), 'public', src.slice(1));
   if (!existsSync(filePath)) return null;
 

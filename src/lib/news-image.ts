@@ -3,13 +3,25 @@ import { isAbsolute, relative, resolve, sep } from 'node:path';
 
 const NEWS_IMAGE_PREFIX = '/images/noticias/';
 
+function isHttpsImageUrl(src: string): boolean {
+  try {
+    const url = new URL(src);
+    return url.protocol === 'https:' && url.hostname.length > 0 && !url.username && !url.password;
+  } catch {
+    return false;
+  }
+}
+
 /**
- * Valida el formato de una ruta pública de imagen de noticias.
- * Sólo admite rutas locales bajo /images/noticias/ y segmentos simples,
- * sin traversal, barras invertidas, query strings ni fragmentos.
+ * Valida el origen de una imagen de noticia.
+ * Admite rutas locales seguras bajo /images/noticias/ y URLs HTTPS externas.
+ * Las rutas locales no permiten traversal, barras invertidas, query strings
+ * ni fragmentos; las URLs externas deben ser absolutas y no llevar credenciales.
  */
 export function isValidNewsImageSrc(src: string): boolean {
-  if (!src.startsWith(NEWS_IMAGE_PREFIX) || /[\\\\%?#\s]/.test(src)) {
+  if (isHttpsImageUrl(src)) return true;
+
+  if (!src.startsWith(NEWS_IMAGE_PREFIX) || /[\\%?#\s]/.test(src)) {
     return false;
   }
 
@@ -26,14 +38,16 @@ export function isValidNewsImageSrc(src: string): boolean {
 }
 
 /**
- * Comprueba que la ruta válida apunte a un archivo dentro de
- * public/images/noticias. El directorio público puede inyectarse en tests.
+ * Comprueba que una ruta local válida apunte a un archivo dentro de
+ * public/images/noticias. Para URLs HTTPS solo valida el formato: el archivo
+ * remoto no se descarga ni puede comprobarse durante el build.
  */
 export function newsImageFileExists(
   src: string,
   publicDirectory = resolve(process.cwd(), 'public'),
 ): boolean {
   if (!isValidNewsImageSrc(src)) return false;
+  if (isHttpsImageUrl(src)) return true;
 
   const imageDirectory = resolve(publicDirectory, 'images', 'noticias');
   const filePath = resolve(publicDirectory, src.slice(1));
@@ -42,7 +56,7 @@ export function newsImageFileExists(
   if (
     relativePath === '' ||
     relativePath === '..' ||
-    relativePath.startsWith(`..${sep}`) ||
+    relativePath.startsWith('..' + sep) ||
     isAbsolute(relativePath)
   ) {
     return false;
