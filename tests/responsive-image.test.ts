@@ -9,6 +9,7 @@ describe('responsiveImage', () => {
 
     expect(result.srcset).toContain('fumigacion-esteban-echeverria-octubre-w400.webp 400w');
     expect(result.srcset).toContain('fumigacion-esteban-echeverria-octubre-w800.webp 800w');
+    // Cada candidato termina con su descriptor de ancho.
     result.srcset.split(',').forEach((candidate) => {
       expect(candidate.trim()).toMatch(/\.webp\s+\d+w$/);
     });
@@ -16,6 +17,7 @@ describe('responsiveImage', () => {
   });
 
   it('solo incluye variantes que existen en disco (sin escalar hacia arriba)', () => {
+    // hospital-el-cruce tiene solo variante w400 (origen 408x544).
     const result = responsiveImage('/images/noticias/hospital-el-cruce-auditoria-interna-sigen-2026.jpg', '100vw');
     expect(result.srcset).toContain('hospital-el-cruce-auditoria-interna-sigen-2026-w400.webp 400w');
     expect(result.srcset).not.toContain('600w');
@@ -31,6 +33,7 @@ describe('responsiveImage', () => {
   });
 
   it('resuelve src de respaldo a la imagen original cuando no hay variantes', () => {
+    // municipio-lanus.png no tiene variantes WebP generadas (origen pequeño PNG).
     const result = responsiveImage('/images/noticias/municipio-lanus.png', '100vw');
     expect(result.srcset).toBe('');
     expect(result.src).toBe('/images/noticias/municipio-lanus.png');
@@ -58,7 +61,9 @@ describe('responsiveImage', () => {
       if (!srcset) continue;
       const candidatos = srcset.split(',').map((c) => c.trim().split(' ')[0]);
       for (const candidato of candidatos) {
-        if (candidato === undefined) continue;
+        if (candidato === undefined) {
+          continue; 
+      }
         const existe = existsSync(join(process.cwd(), 'public', candidato.slice(1)));
         expect(existe, 'la variante referenciada no existe: ' + candidato).toBe(true);
       }
