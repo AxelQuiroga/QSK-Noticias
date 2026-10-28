@@ -53,14 +53,14 @@ describe('responsiveImage', () => {
     );
 
     for (const fuente of fuentes) {
-      const src = \`/images/noticias/\${fuente}\`;
+      const src = '/images/noticias/' + fuente;
       const { srcset } = responsiveImage(src, '100vw');
       if (!srcset) continue;
       const candidatos = srcset.split(',').map((c) => c.trim().split(' ')[0]);
       for (const candidato of candidatos) {
         if (candidato === undefined) continue;
         const existe = existsSync(join(process.cwd(), 'public', candidato.slice(1)));
-        expect(existe, \`la variante referenciada no existe: \${candidato}\`).toBe(true);
+        expect(existe, 'la variante referenciada no existe: ' + candidato).toBe(true);
       }
     }
   });
