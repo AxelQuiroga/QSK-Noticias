@@ -15,13 +15,18 @@ const noticias = fuenteId
   : getGacetillasDestacadas(limit);
 const fuenteInfo = fuenteId ? getFuenteInfo(fuenteId) : undefined;
 const nombre = fuenteId ? (fuenteInfo?.nombre ?? nombreFuente(fuenteId)) : 'Novedades oficiales';
-const tituloSeccion = fuenteId === 'gba'
-  ? 'Noticias de Buenos Aires'
-  : fuenteId === 'esteban-echeverria'
-    ? 'Noticias de Esteban Echeverría'
-    : fuenteId
-      ? `Noticias de ${nombre}`
-      : 'Novedades oficiales';
+
+function tituloPorFuente(fuenteId: string | undefined, nombre: string): string {
+  if (!fuenteId) return 'Novedades oficiales';
+  if (fuenteId === 'gba') return 'Noticias de Buenos Aires';
+  if (fuenteId === 'esteban-echeverria') {
+    return 'Noticias de Esteban Echeverría';
+  }
+
+  return `Noticias de ${nombre}`;
+}
+
+const tituloSeccion = tituloPorFuente(fuenteId, nombre);
 const headingId = fuenteId ? `gacetillas-${fuenteId}-heading` : 'novedades-oficiales-heading';
 const trackId = fuenteId ? `gacetillas-${fuenteId}-track` : 'novedades-oficiales-track';
 const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';

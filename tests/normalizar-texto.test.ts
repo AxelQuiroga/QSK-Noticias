@@ -70,12 +70,15 @@ describe('formatearTitulo', () => {
     );
   });
 
-  it('preserva siglas institucionales al normalizar títulos en mayúsculas', () => {
+  it('preserva las siglas institucionales al normalizar títulos en mayúsculas', () => {
     expect(formatearTitulo('OPERATIVO DE DNI Y ANSES EN EL BARRIO')).toBe(
       'Operativo de DNI y ANSES en el barrio',
     );
     expect(formatearTitulo('OBRAS DE LA UTN Y LA UNLP')).toBe(
       'Obras de la UTN y la UNLP',
+    );
+    expect(formatearTitulo('ANSES ARCA COVID DNI GBA PAMI SUBE UBA UNLAM UNLP UTN')).toBe(
+      'ANSES ARCA COVID DNI GBA PAMI SUBE UBA UNLaM UNLP UTN',
     );
   });
 

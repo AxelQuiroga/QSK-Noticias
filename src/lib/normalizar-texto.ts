@@ -173,6 +173,20 @@ export function normalizarTexto(texto: string | null | undefined): string | null
   return resultado === '' ? null : resultado;
 }
 
+const SIGLAS: Record<string, string> = {
+  ANSES: 'ANSES',
+  ARCA: 'ARCA',
+  COVID: 'COVID',
+  DNI: 'DNI',
+  GBA: 'GBA',
+  PAMI: 'PAMI',
+  SUBE: 'SUBE',
+  UBA: 'UBA',
+  UNLAM: 'UNLaM',
+  UNLP: 'UNLP',
+  UTN: 'UTN',
+};
+
 /**
  * Determina si una cadena está escrita completamente en mayúsculas (solo se
  * consideran letras alfabéticas).
@@ -197,21 +211,8 @@ export function formatearTitulo(titulo: string | null | undefined): string | nul
 
   // En títulos íntegramente en mayúsculas no se puede inferir cualquier sigla
   // automáticamente; preservamos las siglas institucionales frecuentes.
-  const siglas: Record<string, string> = {
-    ANSES: 'ANSES',
-    ARCA: 'ARCA',
-    COVID: 'COVID',
-    DNI: 'DNI',
-    GBA: 'GBA',
-    PAMI: 'PAMI',
-    SUBE: 'SUBE',
-    UBA: 'UBA',
-    UNLAM: 'UNLaM',
-    UNLP: 'UNLP',
-    UTN: 'UTN',
-  };
   return resultado.replace(/\b(?:anses|arca|covid|dni|gba|pami|sube|uba|unlam|unlp|utn)\b/gi, (token) => {
     const clave = token.toUpperCase();
-    return siglas[clave] ?? token;
+    return SIGLAS[clave] ?? token;
   });
 }
