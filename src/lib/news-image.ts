@@ -3,10 +3,6 @@ import { isAbsolute, relative, resolve, sep } from 'node:path';
 
 const NEWS_IMAGE_PREFIX = '/images/noticias/';
 
-/**
- * Comprueba que un origen remoto sea una URL HTTPS absoluta y no incluya
- * credenciales. No descarga la imagen ni garantiza que el proveedor la mantenga.
- */
 function isHttpsImageUrl(src: string): boolean {
   try {
     const url = new URL(src);
@@ -45,7 +41,6 @@ export function isValidNewsImageSrc(src: string): boolean {
  * Comprueba que una ruta local válida apunte a un archivo dentro de
  * public/images/noticias. Para URLs HTTPS solo valida el formato: el archivo
  * remoto no se descarga ni puede comprobarse durante el build.
- * El directorio público puede inyectarse en tests.
  */
 export function newsImageFileExists(
   src: string,
@@ -61,7 +56,7 @@ export function newsImageFileExists(
   if (
     relativePath === '' ||
     relativePath === '..' ||
-    relativePath.startsWith(\`..\${sep}\`) ||
+    relativePath.startsWith('..' + sep) ||
     isAbsolute(relativePath)
   ) {
     return false;
