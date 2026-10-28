@@ -22,15 +22,23 @@ describe('isValidNewsImageSrc', () => {
     expect(isValidNewsImageSrc('/images/noticias/2026/operativo_1.webp')).toBe(true);
   });
 
+  it('acepta URLs HTTPS externas con parámetros de consulta', () => {
+    expect(
+      isValidNewsImageSrc('https://cdn.example.com/imagen.jpg?v=1&size=large'),
+    ).toBe(true);
+  });
+
   it.each([
-    'https://example.com/operativo.jpg',
+    'http://example.com/operativo.jpg',
     '//example.com/operativo.jpg',
+    'https://user:password@example.com/operativo.jpg',
+    'https://',
     '/images/operativo.jpg',
     '/images/noticias/../privado.jpg',
     '/images/noticias/%2e%2e/privado.jpg',
     '/images/noticias/operativo.jpg?size=large',
     '/images/noticias/operativo.jpg#preview',
-    '/images/noticias\\operativo.jpg',
+    '/images/noticias\\\\operativo.jpg',
     '/images/noticias/',
     '',
   ])('rechaza la ruta inválida %s', (src) => {
@@ -46,7 +54,15 @@ describe('newsImageFileExists', () => {
     expect(newsImageFileExists('/images/noticias/operativo.jpg', publicDirectory)).toBe(true);
   });
 
-  it('rechaza rutas válidas cuyo archivo no existe', () => {
+  it('acepta una URL HTTPS válida sin intentar descargarla', () => {
+    const publicDirectory = createPublicDirectory();
+
+    expect(
+      newsImageFileExists('https://cdn.example.com/imagen.jpg?token=abc', publicDirectory),
+    ).toBe(true);
+  });
+
+  it('rechaza rutas válidas cuyo archivo local no existe', () => {
     const publicDirectory = createPublicDirectory();
 
     expect(newsImageFileExists('/images/noticias/no-existe.jpg', publicDirectory)).toBe(false);
