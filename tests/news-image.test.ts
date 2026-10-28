@@ -38,7 +38,7 @@ describe('isValidNewsImageSrc', () => {
     '/images/noticias/%2e%2e/privado.jpg',
     '/images/noticias/operativo.jpg?size=large',
     '/images/noticias/operativo.jpg#preview',
-    '/images/noticias\\\\operativo.jpg',
+    '/images/noticias\\operativo.jpg',
     '/images/noticias/',
     '',
   ])('rechaza la ruta inválida %s', (src) => {
