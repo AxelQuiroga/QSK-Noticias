@@ -9,7 +9,6 @@ describe('responsiveImage', () => {
 
     expect(result.srcset).toContain('fumigacion-esteban-echeverria-octubre-w400.webp 400w');
     expect(result.srcset).toContain('fumigacion-esteban-echeverria-octubre-w800.webp 800w');
-    // Cada candidato termina con su descriptor de ancho.
     result.srcset.split(',').forEach((candidate) => {
       expect(candidate.trim()).toMatch(/\.webp\s+\d+w$/);
     });
@@ -17,7 +16,6 @@ describe('responsiveImage', () => {
   });
 
   it('solo incluye variantes que existen en disco (sin escalar hacia arriba)', () => {
-    // hospital-el-cruce tiene solo variante w400 (origen 408x544).
     const result = responsiveImage('/images/noticias/hospital-el-cruce-auditoria-interna-sigen-2026.jpg', '100vw');
     expect(result.srcset).toContain('hospital-el-cruce-auditoria-interna-sigen-2026-w400.webp 400w');
     expect(result.srcset).not.toContain('600w');
@@ -33,10 +31,19 @@ describe('responsiveImage', () => {
   });
 
   it('resuelve src de respaldo a la imagen original cuando no hay variantes', () => {
-    // municipio-lanus.png no tiene variantes WebP generadas (origen pequeño PNG).
     const result = responsiveImage('/images/noticias/municipio-lanus.png', '100vw');
     expect(result.srcset).toBe('');
     expect(result.src).toBe('/images/noticias/municipio-lanus.png');
+  });
+
+  it('devuelve las URLs HTTPS externas sin intentar generar variantes locales', () => {
+    const src = 'https://cdn.example.com/imagen.jpg?size=large&v=2';
+    const result = responsiveImage(src, '100vw');
+
+    expect(result.src).toBe(src);
+    expect(result.srcset).toBe('');
+    expect(result.sizes).toBe('100vw');
+    expect(result.available).toEqual([]);
   });
 
   it('todas las variantes referenciadas en el srcset existen en el disco público', () => {
@@ -46,16 +53,14 @@ describe('responsiveImage', () => {
     );
 
     for (const fuente of fuentes) {
-      const src = `/images/noticias/${fuente}`;
+      const src = \`/images/noticias/\${fuente}\`;
       const { srcset } = responsiveImage(src, '100vw');
       if (!srcset) continue;
       const candidatos = srcset.split(',').map((c) => c.trim().split(' ')[0]);
       for (const candidato of candidatos) {
-        if (candidato === undefined) {
-          continue; 
-      }
+        if (candidato === undefined) continue;
         const existe = existsSync(join(process.cwd(), 'public', candidato.slice(1)));
-        expect(existe, `la variante referenciada no existe: ${candidato}`).toBe(true);
+        expect(existe, \`la variante referenciada no existe: \${candidato}\`).toBe(true);
       }
     }
   });
