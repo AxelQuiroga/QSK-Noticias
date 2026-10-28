@@ -61,10 +61,11 @@ test.describe('Navegación', () => {
 
     const introVideo = page.locator('[data-intro] video');
     await expect(introVideo).toHaveAttribute('src', '/videos/qsk-intro.mp4');
-    await expect(introVideo).toHaveAttribute('autoplay', '');
     await expect(introVideo).toHaveAttribute('muted', '');
     await expect(introVideo).toHaveAttribute('playsinline', '');
-    await expect(introVideo).toHaveAttribute('controls', '');
+    await expect(introVideo).not.toHaveAttribute('controls');
+    await expect(introVideo).toHaveAttribute('aria-hidden', 'true');
+    await expect(introVideo).toHaveAttribute('tabindex', '-1');
 
     await expect(page.getByText('es un medio digital independiente en sus comienzos.')).toBeVisible();
     await expect(page.getByText('Nuestra misión es acercar información clara')).toBeVisible();
