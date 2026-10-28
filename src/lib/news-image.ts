@@ -25,7 +25,7 @@ function isHttpsImageUrl(src: string): boolean {
 export function isValidNewsImageSrc(src: string): boolean {
   if (isHttpsImageUrl(src)) return true;
 
-  if (!src.startsWith(NEWS_IMAGE_PREFIX) || /[\\\\%?#\\s]/.test(src)) {
+  if (!src.startsWith(NEWS_IMAGE_PREFIX) || /[\\%?#\s]/.test(src)) {
     return false;
   }
 
@@ -61,7 +61,7 @@ export function newsImageFileExists(
   if (
     relativePath === '' ||
     relativePath === '..' ||
-    relativePath.startsWith(`..${sep}`) ||
+    relativePath.startsWith(\`..\${sep}\`) ||
     isAbsolute(relativePath)
   ) {
     return false;
