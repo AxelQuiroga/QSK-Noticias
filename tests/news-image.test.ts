@@ -23,9 +23,7 @@ describe('isValidNewsImageSrc', () => {
   });
 
   it('acepta URLs HTTPS externas con parámetros de consulta', () => {
-    expect(
-      isValidNewsImageSrc('https://cdn.example.com/imagen.jpg?v=1&size=large'),
-    ).toBe(true);
+    expect(isValidNewsImageSrc('https://cdn.example.com/imagen.jpg?v=1&size=large')).toBe(true);
   });
 
   it.each([
@@ -62,7 +60,7 @@ describe('newsImageFileExists', () => {
     ).toBe(true);
   });
 
-  it('rechaza rutas válidas cuyo archivo local no existe', () => {
+  it('rechaza rutas válidas cuyo archivo no existe', () => {
     const publicDirectory = createPublicDirectory();
 
     expect(newsImageFileExists('/images/noticias/no-existe.jpg', publicDirectory)).toBe(false);
