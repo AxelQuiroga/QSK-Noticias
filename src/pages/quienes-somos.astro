@@ -6,9 +6,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Quiénes somos — QSK Noticias"
   description="Información institucional sobre QSK Noticias."
 >
-  <div class="container-editorial py-10">
-    <article class="mx-auto max-w-3xl">
-      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text">
+  <section class="intro-section" aria-label="Presentación de QSK Noticias" data-intro>
+    <div class="intro-inner container-editorial">
+      <p class="intro-eyebrow">QSK NOTICIAS</p>
+      <div class="intro-frame">
+        <video
+          class="intro-video"
+          src="/videos/qsk-intro.mp4"
+          autoplay
+          muted
+          playsinline
+          controls
+          preload="metadata"
+          aria-label="Video de presentación de QSK Noticias"
+        >
+          Tu navegador no puede reproducir este video. Podés continuar leyendo quiénes somos debajo.
+        </video>
+      </div>
+      <p class="intro-hint" aria-hidden="true">
+        <span class="intro-hint-line"></span>
+        Deslizá para conocer el medio
+        <span class="intro-hint-line"></span>
+      </p>
+    </div>
+  </section>
+
+  <section class="about-section container-editorial" aria-labelledby="about-title">
+    <article class="about-article">
+      <p class="about-eyebrow">EL MEDIO</p>
+      <h1 id="about-title" class="font-heading text-3xl font-extrabold tracking-tight text-text">
         Quiénes somos
       </h1>
 
@@ -32,5 +58,161 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
       </div>
     </article>
-  </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .intro-section {
+    --intro-progress: 0;
+    position: relative;
+    padding-block: clamp(2.5rem, 7vh, 5rem) 2rem;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgb(105 181 255 / 12%), transparent 65%),
+      var(--color-bg);
+    opacity: calc(1 - var(--intro-progress) * 0.55);
+    transform: translateY(calc(var(--intro-progress) * -1.25rem));
+    transition: opacity 120ms linear, transform 120ms linear;
+    will-change: opacity, transform;
+  }
+
+  .intro-inner {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+  }
+
+  .intro-eyebrow,
+  .about-eyebrow {
+    margin: 0;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .intro-frame {
+    width: 100%;
+    max-width: 68rem;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    background: #071321;
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 24%);
+  }
+
+  .intro-video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: min(68vh, 42rem);
+    object-fit: contain;
+    background: #071321;
+  }
+
+  .intro-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0.25rem 0 0;
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .intro-hint-line {
+    width: clamp(1.25rem, 5vw, 3rem);
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .about-section {
+    padding-block: clamp(2.5rem, 7vw, 5.5rem) 5rem;
+  }
+
+  .about-article {
+    max-width: 48rem;
+    margin-inline: auto;
+  }
+
+  .about-article h1 {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .intro-section {
+      padding-top: 2rem;
+      padding-bottom: 1rem;
+    }
+
+    .intro-frame {
+      border-radius: 0.625rem;
+    }
+
+    .intro-video {
+      max-height: 48vh;
+    }
+
+    .about-section {
+      padding-top: 2.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro-section {
+      opacity: 1;
+      transform: none;
+      transition: none;
+      will-change: auto;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const intro = document.querySelector<HTMLElement>('[data-intro]');
+    const video = intro?.querySelector('video');
+
+    if (!intro || !video || intro.dataset.initialized === 'true') return;
+    intro.dataset.initialized = 'true';
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (reducedMotion.matches) {
+      video.autoplay = false;
+      video.pause();
+    } else {
+      const updateIntro = () => {
+        if (!intro.isConnected) {
+          window.removeEventListener('scroll', updateIntro);
+          return;
+        }
+
+        const progress = Math.min(Math.max(window.scrollY / 260, 0), 1);
+        intro.style.setProperty('--intro-progress', String(progress));
+      };
+
+      window.addEventListener('scroll', updateIntro, { passive: true });
+      updateIntro();
+    }
+
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (!entry) return;
+
+      if (!entry.isIntersecting) {
+        video.pause();
+      } else if (!reducedMotion.matches && video.paused) {
+        void video.play().catch(() => {
+          // El navegador puede bloquear autoplay; los controles siguen disponibles.
+        });
+      }
+    }, { threshold: 0.15 });
+
+    visibility.observe(intro);
+
+    document.addEventListener('astro:before-swap', () => {
+      visibility.disconnect();
+      window.removeEventListener('scroll', () => undefined);
+    }, { once: true });
+  });
+</script>
