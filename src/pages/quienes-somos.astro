@@ -9,7 +9,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="intro-section" aria-label="Presentación de QSK Noticias" data-intro>
     <video
       class="intro-video"
-      src="/videos/qsk-intro.mp4"
+      data-mobile-src="/videos/qsk-intro-vertical.mp4"
+      data-desktop-src="/videos/qsk-intro.mp4"
       muted
       playsinline
       preload="metadata"
@@ -234,7 +235,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     intro.dataset.initialized = 'true';
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mobileViewport = window.matchMedia('(max-width: 640px)');
     let observer: IntersectionObserver | undefined;
+
+    const updateVideoSource = () => {
+      const source = mobileViewport.matches ? video.dataset.mobileSrc : video.dataset.desktopSrc;
+      if (!source || video.getAttribute('src') === source) return;
+
+      video.src = source;
+      video.load();
+    };
+
+    const onViewportChange = () => {
+      updateVideoSource();
+
+      const bounds = intro.getBoundingClientRect();
+      const isVisible = bounds.bottom > 0 && bounds.top < window.innerHeight;
+      if (isVisible && !reducedMotion.matches) {
+        void video.play().catch(() => {
+          // Si el navegador bloquea la reproducción automática, la página sigue siendo usable.
+        });
+      }
+    };
+
+    updateVideoSource();
+    mobileViewport.addEventListener('change', onViewportChange);
 
     const updateIntro = () => {
       if (!intro.isConnected) return;
@@ -265,6 +290,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     const cleanup = () => {
       observer?.disconnect();
+      mobileViewport.removeEventListener('change', onViewportChange);
       window.removeEventListener('scroll', updateIntro);
       document.removeEventListener('astro:before-swap', cleanup);
       video.pause();

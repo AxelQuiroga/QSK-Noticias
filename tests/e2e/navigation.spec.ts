@@ -60,7 +60,21 @@ test.describe('Navegación', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Quiénes somos');
 
     const introVideo = page.locator('[data-intro] video');
-    await expect(introVideo).toHaveAttribute('src', '/videos/qsk-intro.mp4');
+    await expect(introVideo).toHaveAttribute('data-mobile-src', '/videos/qsk-intro-vertical.mp4');
+    await expect(introVideo).toHaveAttribute('data-desktop-src', '/videos/qsk-intro.mp4');
+
+    const expectedVideo =
+      (page.viewportSize()?.width ?? 1280) <= 640
+        ? '/videos/qsk-intro-vertical.mp4'
+        : '/videos/qsk-intro.mp4';
+    await expect
+      .poll(() =>
+        introVideo.evaluate((video: HTMLVideoElement) =>
+          video.currentSrc ? new URL(video.currentSrc).pathname : '',
+        ),
+      )
+      .toBe(expectedVideo);
+
     await expect(introVideo).toHaveAttribute('muted', '');
     await expect(introVideo).toHaveAttribute('playsinline', '');
     await expect(introVideo).not.toHaveAttribute('controls');
