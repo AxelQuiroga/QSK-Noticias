@@ -15,7 +15,8 @@ const { noticia } = Astro.props;
 const slug = getOleSlug(noticia);
 const fecha = noticia.publishedAt ? new Date(noticia.publishedAt) : null;
 const fechaValida = fecha && !Number.isNaN(fecha.getTime()) ? fecha : null;
-const descripcion = `Noticia deportiva publicada originalmente por Olé. Leé la publicación original en el sitio de la fuente.`;
+const descripcionNoticia = noticia.description?.trim();
+const descripcion = descripcionNoticia || `Noticia deportiva publicada originalmente por Olé. Leé la publicación original en el sitio de la fuente.`;
 ---
 
 <BaseLayout
@@ -73,6 +74,12 @@ const descripcion = `Noticia deportiva publicada originalmente por Olé. Leé la
     )}
 
     <div class="mx-auto mt-8 max-w-3xl">
+      {descripcionNoticia && (
+        <p class="mb-6 text-lg leading-relaxed text-text-secondary" data-ole-description>
+          {descripcionNoticia}
+        </p>
+      )}
+
       <p class="text-lg leading-relaxed text-text-secondary">
         Esta página reúne los datos del feed deportivo de Olé dentro de QSK Noticias.
         El desarrollo de la noticia y su cobertura completa se encuentran en la publicación original.
