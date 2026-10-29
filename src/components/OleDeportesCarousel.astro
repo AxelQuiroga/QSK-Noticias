@@ -1,0 +1,109 @@
+---
+import { getNoticiasOle } from '../lib/ole';
+import OleNewsCard from './OleNewsCard.astro';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 10 } = Astro.props;
+const noticias = getNoticiasOle(limit);
+const headingId = 'deportes-ole-carousel-heading';
+const trackId = 'deportes-ole-carousel-track';
+---
+
+<section class="mt-10 sm:mt-12" aria-labelledby={headingId} data-carousel>
+  <div class="section-heading">
+    <div>
+      <h2 id={headingId} class="section-title">Deportes</h2>
+      <p class="mt-1 max-w-2xl text-sm text-text-secondary">Las últimas novedades del fútbol y el deporte.</p>
+    </div>
+    <div class="flex shrink-0 items-center gap-3">
+      {noticias.length > 0 && (
+        <div class="hidden items-center gap-2 sm:flex">
+          <button
+            type="button"
+            data-carousel-prev
+            aria-label="Ver noticias deportivas anteriores"
+            aria-controls={trackId}
+            class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            data-carousel-next
+            aria-label="Ver más noticias deportivas"
+            aria-controls={trackId}
+            class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      )}
+      <a href="/secciones/deportes/" class="text-sm font-semibold text-accent hover:underline">
+        Ver Deportes <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+
+  {noticias.length > 0 ? (
+    <ul
+      id={trackId}
+      data-carousel-track
+      tabindex="0"
+      aria-label="Últimas noticias de Deportes"
+      class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {noticias.map((noticia) => (
+        <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
+          <OleNewsCard noticia={noticia} compact />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="rounded-xl border border-border p-5 text-sm text-text-secondary">
+      Todavía no hay noticias deportivas disponibles.
+    </p>
+  )}
+</section>
+
+<script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function setupCarousel(root: HTMLElement): void {
+    const track = root.querySelector<HTMLElement>('[data-carousel-track]');
+    const prev = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    if (!track || !prev || !next) return;
+
+    const scrollBehavior = (): ScrollBehavior => (prefersReducedMotion.matches ? 'auto' : 'smooth');
+    const step = (): number => {
+      const card = track.querySelector<HTMLElement>('li');
+      const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    };
+    const updateControls = (): void => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prev.disabled = track.scrollLeft <= 1;
+      next.disabled = track.scrollLeft >= maxScroll - 1;
+    };
+
+    prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: scrollBehavior() }));
+    next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: scrollBehavior() }));
+    track.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      track.scrollBy({ left: event.key === 'ArrowRight' ? step() : -step(), behavior: scrollBehavior() });
+    });
+    track.addEventListener('scroll', updateControls, { passive: true });
+    window.addEventListener('resize', updateControls);
+    updateControls();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(setupCarousel);
+</script>
