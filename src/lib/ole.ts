@@ -72,8 +72,19 @@ export function validarNoticiasOle(data: unknown): OleNews[] {
   return oleDatasetSchema.parse(data);
 }
 
-/** Devuelve las noticias validadas del dataset local, limitadas para la UI. */
+/** Devuelve el dataset validado, ordenado de más reciente a más antiguo. */
+export function getTodasNoticiasOle(): OleNews[] {
+  return validarNoticiasOle(datosOle).sort((a, b) => {
+    if (a.publishedAt === null && b.publishedAt !== null) return 1;
+    if (a.publishedAt !== null && b.publishedAt === null) return -1;
+    if (a.publishedAt && b.publishedAt && a.publishedAt !== b.publishedAt) {
+      return Date.parse(b.publishedAt) - Date.parse(a.publishedAt);
+    }
+    return a.id.localeCompare(b.id);
+  });
+}
+
+/** Devuelve las noticias validadas más recientes, limitadas para la UI. */
 export function getNoticiasOle(limit = 10): OleNews[] {
-  const noticias = validarNoticiasOle(datosOle);
-  return noticias.slice(0, Math.max(0, Math.floor(limit)));
+  return getTodasNoticiasOle().slice(0, Math.max(0, Math.floor(limit)));
 }
