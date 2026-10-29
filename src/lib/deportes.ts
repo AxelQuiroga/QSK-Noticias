@@ -1,5 +1,5 @@
 import { getArticlesByTopic } from './articles';
-import { getNoticiasOle } from './ole';
+import { getTodasNoticiasOle } from './ole';
 import { combinarNoticiasDeportes } from './deportes-feed';
 
 /** Feed unificado de la sección Deportes, ordenado por fecha y sin duplicar
@@ -7,7 +7,7 @@ import { combinarNoticiasDeportes } from './deportes-feed';
 export async function getNoticiasDeportes() {
   const [articulosQsk, noticiasOle] = await Promise.all([
     getArticlesByTopic('Deportes'),
-    Promise.resolve(getNoticiasOle(1000)),
+    Promise.resolve(getTodasNoticiasOle()),
   ]);
 
   return combinarNoticiasDeportes(articulosQsk, noticiasOle);
