@@ -55,7 +55,7 @@ describe('validarNoticiasOle', () => {
   it('rechaza imágenes de dominios externos al contrato de Olé', () => {
     expect(() =>
       validarNoticiasOle([{ ...noticiaValida, imageUrl: 'https://example.com/imagen.jpg' }]),
-    ).toThrow(/ole\\.com\\.ar/);
+    ).toThrow(/ole\.com\.ar/);
   });
 
   it('rechaza fechas inválidas', () => {
