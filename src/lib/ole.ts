@@ -97,8 +97,8 @@ export function getNoticiasOle(limit = 10): OleNews[] {
 export function getOleSlug(noticia: OleNews): string {
   try {
     const segments = new URL(noticia.url).pathname.split('/').filter(Boolean);
-    const lastSegment = segments.at(-1)?.replace(/\\.html?$/i, '').toLowerCase();
-    const slug = lastSegment?.normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '')
+    const lastSegment = segments.at(-1)?.replace(/\.html?$/i, '').toLowerCase();
+    const slug = lastSegment?.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
 
     return slug || noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
