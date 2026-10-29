@@ -1,7 +1,15 @@
+import { readFileSync } from 'node:fs';
 import { test, expect } from '@playwright/test';
-import noticiasOle from '../../src/data/ole.json';
 
-type NoticiaOle = (typeof noticiasOle)[number];
+type NoticiaOle = {
+  title: string;
+  url: string;
+  description?: string | null;
+};
+
+const noticiasOle = JSON.parse(
+  readFileSync(new URL('../../src/data/ole.json', import.meta.url), 'utf8'),
+) as NoticiaOle[];
 
 function getSlug(noticia: NoticiaOle): string {
   const pathname = new URL(noticia.url).pathname;
