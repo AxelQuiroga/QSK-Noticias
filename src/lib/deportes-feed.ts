@@ -8,10 +8,10 @@ export interface ArticuloDeportes {
   };
 }
 
-export type ElementoFeedDeportes =
+export type ElementoFeedDeportes<T extends ArticuloDeportes = ArticuloDeportes> =
   | {
       tipo: 'qsk';
-      article: ArticuloDeportes;
+      article: T;
       fecha: Date;
       clave: string;
     }
@@ -53,24 +53,24 @@ export function canonicalizarUrlNoticia(value: string): string {
  * Si una publicación propia ya cita una URL de Olé, prevalece la publicación
  * propia. No se deduplica por título: QSK puede cubrir el mismo acontecimiento.
  */
-export function combinarNoticiasDeportes(
-  articulos: readonly ArticuloDeportes[],
+export function combinarNoticiasDeportes<T extends ArticuloDeportes>(
+  articulos: readonly T[],
   noticiasOle: readonly OleNews[],
-): ElementoFeedDeportes[] {
+): ElementoFeedDeportes<T>[] {
   const urlsCubiertasPorQsk = new Set(
     articulos.flatMap((article) =>
       (article.data.sources ?? []).map((source) => canonicalizarUrlNoticia(source.url)),
     ),
   );
 
-  const propias: ElementoFeedDeportes[] = articulos.map((article) => ({
+  const propias: ElementoFeedDeportes<T>[] = articulos.map((article) => ({
     tipo: 'qsk',
     article,
     fecha: article.data.publishedAt,
     clave: article.data.slug,
   }));
 
-  const externas: ElementoFeedDeportes[] = noticiasOle
+  const externas: ElementoFeedDeportes<T>[] = noticiasOle
     .filter((noticia) => !urlsCubiertasPorQsk.has(canonicalizarUrlNoticia(noticia.url)))
     .map((noticia) => ({
       tipo: 'ole',
