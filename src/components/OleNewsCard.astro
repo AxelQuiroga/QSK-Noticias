@@ -1,0 +1,57 @@
+---
+import { formatDate } from '../lib/utils';
+import type { OleNews } from '../lib/ole';
+
+interface Props {
+  noticia: OleNews;
+  compact?: boolean;
+}
+
+const { noticia, compact = false } = Astro.props;
+const fecha = noticia.publishedAt ? new Date(noticia.publishedAt) : null;
+---
+
+<article class="group overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]">
+  {noticia.imageUrl && !compact && (
+    <a
+      href={noticia.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      tabindex="-1"
+      aria-hidden="true"
+      class="block aspect-[16/9] overflow-hidden bg-[#0b1c2e]"
+    >
+      <img
+        src={noticia.imageUrl}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        referrerpolicy="no-referrer"
+        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+      />
+    </a>
+  )}
+
+  <div class:list={['flex min-w-0 flex-col p-5', compact && 'p-4']}>
+    <p class="text-xs font-bold uppercase tracking-wider text-accent">Deportes</p>
+    <h3 class:list={[
+      'mt-3 font-heading font-extrabold leading-tight tracking-tight text-text',
+      compact ? 'text-base' : 'text-lg sm:text-xl',
+    ]}>
+      <a
+        href={noticia.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="decoration-accent/70 decoration-2 underline-offset-4 group-hover:underline"
+      >
+        {noticia.title}
+      </a>
+    </h3>
+
+    {fecha && (
+      <p class="mt-5 text-xs text-text-secondary">
+        <time datetime={fecha.toISOString()}>{formatDate(fecha)}</time>
+      </p>
+    )}
+  </div>
+</article>
