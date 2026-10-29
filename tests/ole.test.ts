@@ -10,6 +10,7 @@ import {
 const noticiaValida: OleNews = {
   id: 'ole-123',
   title: 'Un título de prueba',
+  description: 'Una bajada de prueba para la noticia.',
   url: 'https://www.ole.com.ar/futbol-primera/noticia-de-prueba.html',
   publishedAt: '2026-10-28T12:30:00.000Z',
   imageUrl: 'https://www.ole.com.ar/images/noticia.jpg',
@@ -19,6 +20,12 @@ const noticiaValida: OleNews = {
 describe('validarNoticiasOle', () => {
   it('acepta el contrato completo', () => {
     expect(validarNoticiasOle([noticiaValida])).toEqual([noticiaValida]);
+  });
+
+  it('acepta una descripción nula o ausente para noticias antiguas', () => {
+    expect(validarNoticiasOle([{ ...noticiaValida, description: null }])[0].description).toBeNull();
+    const { description: _description, ...noticiaAntigua } = noticiaValida;
+    expect(validarNoticiasOle([noticiaAntigua])[0].description).toBeUndefined();
   });
 
   it('acepta fecha e imagen opcionales nulas', () => {
