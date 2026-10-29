@@ -1,6 +1,6 @@
 ---
 import { formatDate } from '../lib/utils';
-import type { OleNews } from '../lib/ole';
+import { getOleSlug, type OleNews } from '../lib/ole';
 
 interface Props {
   noticia: OleNews;
@@ -9,14 +9,13 @@ interface Props {
 
 const { noticia, compact = false } = Astro.props;
 const fecha = noticia.publishedAt ? new Date(noticia.publishedAt) : null;
+const href = `/deportes/${getOleSlug(noticia)}/`;
 ---
 
 <article class="group overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]">
   {noticia.imageUrl && !compact && (
     <a
-      href={noticia.url}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={href}
       tabindex="-1"
       aria-hidden="true"
       class="block aspect-[16/9] overflow-hidden bg-[#0b1c2e]"
@@ -39,9 +38,7 @@ const fecha = noticia.publishedAt ? new Date(noticia.publishedAt) : null;
       compact ? 'text-base' : 'text-lg sm:text-xl',
     ]}>
       <a
-        href={noticia.url}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={href}
         class="decoration-accent/70 decoration-2 underline-offset-4 group-hover:underline"
       >
         {noticia.title}
