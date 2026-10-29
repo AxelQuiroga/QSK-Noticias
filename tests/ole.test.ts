@@ -76,14 +76,14 @@ describe('validarNoticiasOle', () => {
     ).toThrow(/id duplicado/);
   });
 
-  it('rechaza URLs repetidas aunque difieran por tracking o fragmento', () => {
+  it('rechaza URLs repetidas aunque difieran por www, barra final, tracking o fragmento', () => {
     expect(() =>
       validarNoticiasOle([
         noticiaValida,
         {
           ...noticiaValida,
           id: 'ole-124',
-          url: 'https://www.ole.com.ar/futbol-primera/noticia-de-prueba.html?utm_source=qsk#nota',
+          url: 'https://ole.com.ar/futbol-primera/noticia-de-prueba.html/?utm_source=qsk#nota',
         },
       ]),
     ).toThrow(/URL de noticia duplicada/);
