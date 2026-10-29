@@ -16,7 +16,11 @@ test.describe('Descripciones del feed de Olé', () => {
   });
 
   test('muestra la descripción en la página individual de Olé', async ({ page }) => {
-    await page.goto('/deportes/palermo-falcioni-reencuentro-salta-copa-argentina-platense-atletico-tucuman_0_lkjpj5l8vv/');
+    await page.goto('/');
+    await page.locator('#deportes-ole-carousel-track').getByRole('link', {
+      name: 'Palermo y Falcioni: del recuerdo en Boca al abrazo en Salta por Copa Argentina',
+    }).click();
+
     await expect(page.locator('[data-ole-description]')).toHaveText(descripcionPalermo);
   });
 
@@ -27,7 +31,9 @@ test.describe('Descripciones del feed de Olé', () => {
       name: 'Palermo: otra final con Platense y un posible mano a mano con Boca',
     })).toBeVisible();
 
-    await page.goto('/deportes/palermo-final-platense_0_1jsfvf1mrh/');
+    await carrusel.getByRole('link', {
+      name: 'Palermo: otra final con Platense y un posible mano a mano con Boca',
+    }).click();
     await expect(page.getByRole('heading', {
       level: 1,
       name: 'Palermo: otra final con Platense y un posible mano a mano con Boca',
