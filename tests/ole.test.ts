@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   getNoticiasOle,
+  getOleSlug,
   ordenarNoticiasOle,
   validarNoticiasOle,
   type OleNews,
@@ -41,7 +42,7 @@ describe('validarNoticiasOle', () => {
   it('rechaza URLs de artículos fuera del dominio permitido', () => {
     expect(() =>
       validarNoticiasOle([{ ...noticiaValida, url: 'https://example.com/noticia' }]),
-    ).toThrow(/ole\.com\.ar/);
+    ).toThrow(/ole\\.com\\.ar/);
   });
 
   it('rechaza enlaces de artículos que no usen HTTPS', () => {
@@ -59,7 +60,7 @@ describe('validarNoticiasOle', () => {
   it('rechaza imágenes de dominios externos al contrato de Olé', () => {
     expect(() =>
       validarNoticiasOle([{ ...noticiaValida, imageUrl: 'https://example.com/imagen.jpg' }]),
-    ).toThrow(/ole\.com\.ar/);
+    ).toThrow(/ole\\.com\\.ar/);
   });
 
   it('rechaza fechas inválidas', () => {
@@ -95,6 +96,23 @@ describe('validarNoticiasOle', () => {
 
   it('rechaza IDs vacíos', () => {
     expect(() => validarNoticiasOle([{ ...noticiaValida, id: ' ' }])).toThrow();
+  });
+});
+
+describe('getOleSlug', () => {
+  it('deriva un slug estable desde la URL original de Olé', () => {
+    expect(getOleSlug(noticiaValida)).toBe('noticia-de-prueba');
+  });
+
+  it('ignora query strings y fragmentos al derivar el slug', () => {
+    expect(getOleSlug({
+      ...noticiaValida,
+      url: 'https://www.ole.com.ar/futbol-primera/una-nota_0_ABC123.html?utm_source=rss#nota',
+    })).toBe('una-nota_0_abc123');
+  });
+
+  it('usa un fallback seguro si la URL no tiene un nombre de artículo reconocible', () => {
+    expect(getOleSlug({ ...noticiaValida, url: 'https://www.ole.com.ar/' })).toBe('ole-123');
   });
 });
 
