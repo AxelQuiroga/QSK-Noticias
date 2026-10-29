@@ -12,7 +12,7 @@ const headingId = 'deportes-ole-carousel-heading';
 const trackId = 'deportes-ole-carousel-track';
 ---
 
-<section class="mt-10 sm:mt-12" aria-labelledby={headingId} data-carousel>
+<section class="mt-10 sm:mt-12" aria-labelledby={headingId} data-ole-carousel>
   <div class="section-heading">
     <div>
       <h2 id={headingId} class="section-title">Deportes</h2>
@@ -61,7 +61,7 @@ const trackId = 'deportes-ole-carousel-track';
     >
       {noticias.map((noticia) => (
         <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
-          <OleNewsCard noticia={noticia} compact />
+          <OleNewsCard noticia={noticia} />
         </li>
       ))}
     </ul>
