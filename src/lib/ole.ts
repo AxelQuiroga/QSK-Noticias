@@ -87,3 +87,22 @@ export function getTodasNoticiasOle(): OleNews[] {
 export function getNoticiasOle(limit = 10): OleNews[] {
   return getTodasNoticiasOle().slice(0, Math.max(0, Math.floor(limit)));
 }
+
+
+/**
+ * Slug persistente para la página local de una noticia de Olé.
+ * Se deriva del identificador legible que Olé publica en su URL, no del título,
+ * para que cambios editoriales en el titular no cambien el enlace de QSK.
+ */
+export function getOleSlug(noticia: OleNews): string {
+  try {
+    const segments = new URL(noticia.url).pathname.split('/').filter(Boolean);
+    const lastSegment = segments.at(-1)?.replace(/\\.html?$/i, '').toLowerCase();
+    const slug = lastSegment?.normalize('NFKD').replace(/[\\u0300-\\u036f]/g, '')
+      .replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+
+    return slug || noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
+  } catch {
+    return noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
+  }
+}
