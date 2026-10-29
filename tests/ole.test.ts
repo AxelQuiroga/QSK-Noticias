@@ -42,7 +42,7 @@ describe('validarNoticiasOle', () => {
   it('rechaza URLs de artículos fuera del dominio permitido', () => {
     expect(() =>
       validarNoticiasOle([{ ...noticiaValida, url: 'https://example.com/noticia' }]),
-    ).toThrow(/ole\\.com\\.ar/);
+    ).toThrow(/ole\.com\.ar/);
   });
 
   it('rechaza enlaces de artículos que no usen HTTPS', () => {
@@ -60,7 +60,7 @@ describe('validarNoticiasOle', () => {
   it('rechaza imágenes de dominios externos al contrato de Olé', () => {
     expect(() =>
       validarNoticiasOle([{ ...noticiaValida, imageUrl: 'https://example.com/imagen.jpg' }]),
-    ).toThrow(/ole\\.com\\.ar/);
+    ).toThrow(/ole\.com\.ar/);
   });
 
   it('rechaza fechas inválidas', () => {
