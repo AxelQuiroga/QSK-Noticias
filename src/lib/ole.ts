@@ -9,6 +9,7 @@ const FECHA_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:
 const oleNewsSchema = z.object({
   id: z.string().trim().min(1, 'id no puede estar vacío'),
   title: z.string().trim().min(1, 'title no puede estar vacío'),
+  description: z.string().trim().nullable().optional(),
   url: z
     .string()
     .url('url debe ser una URL válida')
