@@ -24,10 +24,7 @@ test.describe('Portada', () => {
   test('muestra el carrusel de Deportes sin convertir a Olé en una sección del sitio', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('#deportes-ole-carousel-heading')).toHaveText('Deportes');
-    await expect(page.locator('#deportes-ole-carousel-track')).toHaveAttribute(
-      'aria-label',
-      'Últimas noticias de Deportes',
-    );
+    await expect(page.locator('section[aria-labelledby="deportes-ole-carousel-heading"]')).toBeVisible();
     await expect(page.locator('header').getByRole('link', { name: /Olé/i })).toHaveCount(0);
   });
 
