@@ -28,6 +28,7 @@ const oleNewsSchema = z.object({
     .refine((value) => URL_IMAGEN_OLE.test(value), 'imageUrl debe pertenecer a ole.com.ar')
     .nullable(),
   source: z.literal('Olé'),
+
 });
 
 export type OleNews = z.infer<typeof oleNewsSchema>;

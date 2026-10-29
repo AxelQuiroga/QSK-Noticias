@@ -10,7 +10,6 @@ import {
 const noticiaValida: OleNews = {
   id: 'ole-123',
   title: 'Un título de prueba',
-  description: 'Una bajada de prueba para la noticia.',
   url: 'https://www.ole.com.ar/futbol-primera/noticia-de-prueba.html',
   publishedAt: '2026-10-28T12:30:00.000Z',
   imageUrl: 'https://www.ole.com.ar/images/noticia.jpg',
@@ -22,10 +21,19 @@ describe('validarNoticiasOle', () => {
     expect(validarNoticiasOle([noticiaValida])).toEqual([noticiaValida]);
   });
 
-  it('acepta una descripción nula o ausente para noticias antiguas', () => {
-    expect(validarNoticiasOle([{ ...noticiaValida, description: null }])[0]?.description).toBeNull();
-    const { description: _description, ...noticiaAntigua } = noticiaValida;
-    expect(validarNoticiasOle([noticiaAntigua])[0]?.description).toBeUndefined();
+  it('mantiene compatibilidad con registros históricos sin description', () => {
+    expect(validarNoticiasOle([noticiaValida])).toEqual([noticiaValida]);
+  });
+
+  it('acepta description como texto o null', () => {
+    expect(validarNoticiasOle([{ ...noticiaValida, description: 'Resumen de la noticia' }]))
+      .toEqual([{ ...noticiaValida, description: 'Resumen de la noticia' }]);
+    expect(validarNoticiasOle([{ ...noticiaValida, description: null }]))
+      .toEqual([{ ...noticiaValida, description: null }]);
+  });
+
+  it.each([42, true, {}, [], ['texto']])('rechaza description con tipo inválido: %j', (description) => {
+    expect(() => validarNoticiasOle([{ ...noticiaValida, description }])).toThrow();
   });
 
   it('acepta fecha e imagen opcionales nulas', () => {
