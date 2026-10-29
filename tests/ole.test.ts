@@ -23,9 +23,9 @@ describe('validarNoticiasOle', () => {
   });
 
   it('acepta una descripción nula o ausente para noticias antiguas', () => {
-    expect(validarNoticiasOle([{ ...noticiaValida, description: null }])[0].description).toBeNull();
+    expect(validarNoticiasOle([{ ...noticiaValida, description: null }])[0]?.description).toBeNull();
     const { description: _description, ...noticiaAntigua } = noticiaValida;
-    expect(validarNoticiasOle([noticiaAntigua])[0].description).toBeUndefined();
+    expect(validarNoticiasOle([noticiaAntigua])[0]?.description).toBeUndefined();
   });
 
   it('acepta fecha e imagen opcionales nulas', () => {
