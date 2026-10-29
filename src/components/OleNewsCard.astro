@@ -45,6 +45,12 @@ const href = `/deportes/${getOleSlug(noticia)}/`;
       </a>
     </h3>
 
+    {noticia.description?.trim() && !compact && (
+      <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-text-secondary">
+        {noticia.description.trim()}
+      </p>
+    )}
+
     {fecha && (
       <p class="mt-auto pt-5 text-xs text-text-secondary">
         <time datetime={fecha.toISOString()}>{formatDate(fecha)}</time>
