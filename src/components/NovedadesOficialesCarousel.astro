@@ -93,8 +93,8 @@ const tarjetas = noticias.map((noticia) => ({
       class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {tarjetas.map((noticia, index) => (
-        <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
-          <article class="overflow-hidden rounded-xl border border-border bg-surface">
+        <li class="flex basis-[85%] shrink-0 snap-start sm:basis-[calc(50%-0.5rem)] lg:basis-[calc(33.333%-0.667rem)]">
+          <article class="flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-surface">
             {noticia.imagenUrl && (
               <a href={`/gacetillas-oficiales/${noticia.slug}/`} tabindex="-1" aria-hidden="true" class="relative block aspect-[16/9] shrink-0 overflow-hidden bg-surface-raised">
                 <img
