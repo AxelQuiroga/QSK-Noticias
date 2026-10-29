@@ -12,7 +12,7 @@ const fecha = noticia.publishedAt ? new Date(noticia.publishedAt) : null;
 const href = `/deportes/${getOleSlug(noticia)}/`;
 ---
 
-<article class="group overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]">
+<article class="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]">
   {noticia.imageUrl && !compact && (
     <a
       href={href}
@@ -31,7 +31,7 @@ const href = `/deportes/${getOleSlug(noticia)}/`;
     </a>
   )}
 
-  <div class:list={['flex min-w-0 flex-col p-5', compact && 'p-4']}>
+  <div class:list={['flex min-w-0 flex-1 flex-col p-5', compact && 'p-4']}>
     <p class="text-xs font-bold uppercase tracking-wider text-accent">Deportes</p>
     <h3 class:list={[
       'mt-3 font-heading font-extrabold leading-tight tracking-tight text-text',
@@ -46,7 +46,7 @@ const href = `/deportes/${getOleSlug(noticia)}/`;
     </h3>
 
     {fecha && (
-      <p class="mt-5 text-xs text-text-secondary">
+      <p class="mt-auto pt-5 text-xs text-text-secondary">
         <time datetime={fecha.toISOString()}>{formatDate(fecha)}</time>
       </p>
     )}
