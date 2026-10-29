@@ -2,6 +2,7 @@ import { z } from 'astro/zod';
 import datosOle from '../data/ole.json';
 
 const URL_NOTICIA_OLE = /^https:\/\/(?:www\.)?ole\.com\.ar(?:[/:?#]|$)/i;
+const URL_IMAGEN_OLE = /^https:\/\/(?:www\.)?ole\.com\.ar(?:[/:?#]|$)/i;
 const FECHA_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
 
 const oleNewsSchema = z.object({
@@ -22,6 +23,7 @@ const oleNewsSchema = z.object({
     .string()
     .url('imageUrl debe ser una URL válida')
     .refine((value) => value.startsWith('https://'), 'imageUrl debe usar HTTPS')
+    .refine((value) => URL_IMAGEN_OLE.test(value), 'imageUrl debe pertenecer a ole.com.ar')
     .nullable(),
   source: z.literal('Olé'),
 });
