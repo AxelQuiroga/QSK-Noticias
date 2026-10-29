@@ -131,7 +131,6 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { kind: 'group', label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
   { kind: 'link', section: 'Economía' },
   { kind: 'link', section: 'Deportes' },
-  { kind: 'link', section: 'Olé', href: '/fuentes/ole/' },
   { kind: 'link', section: 'Internacional', href: '/internacional/' },
 ];
 
