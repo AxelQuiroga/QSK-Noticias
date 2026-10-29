@@ -21,6 +21,21 @@ describe('validarNoticiasOle', () => {
     expect(validarNoticiasOle([noticiaValida])).toEqual([noticiaValida]);
   });
 
+  it('mantiene compatibilidad con registros históricos sin description', () => {
+    expect(validarNoticiasOle([noticiaValida])).toEqual([noticiaValida]);
+  });
+
+  it('acepta description como texto o null', () => {
+    expect(validarNoticiasOle([{ ...noticiaValida, description: 'Resumen de la noticia' }]))
+      .toEqual([{ ...noticiaValida, description: 'Resumen de la noticia' }]);
+    expect(validarNoticiasOle([{ ...noticiaValida, description: null }]))
+      .toEqual([{ ...noticiaValida, description: null }]);
+  });
+
+  it.each([42, true, {}, [], ['texto']])('rechaza description con tipo inválido: %j', (description) => {
+    expect(() => validarNoticiasOle([{ ...noticiaValida, description }])).toThrow();
+  });
+
   it('acepta fecha e imagen opcionales nulas', () => {
     expect(
       validarNoticiasOle([{ ...noticiaValida, publishedAt: null, imageUrl: null }]),
