@@ -16,11 +16,7 @@ test.describe('Descripciones del feed de Olé', () => {
   });
 
   test('muestra la descripción en la página individual de Olé', async ({ page }) => {
-    await page.goto('/');
-    await page.locator('#deportes-ole-carousel-track').getByRole('link', {
-      name: 'Palermo y Falcioni: del recuerdo en Boca al abrazo en Salta por Copa Argentina',
-    }).click();
-
+    await page.goto('/deportes/palermo-falcioni-reencuentro-salta-copa-argentina-platense-atletico-tucuman_0_lkjpj5l8vv/');
     await expect(page.locator('[data-ole-description]')).toHaveText(descripcionPalermo);
   });
 
