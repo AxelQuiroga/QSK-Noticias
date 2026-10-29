@@ -1,5 +1,10 @@
-import { describe, expect, it } from 'vitest';
-import { getNoticiasOle, validarNoticiasOle, type OleNews } from '../src/lib/ole';
+import { describe, expect, it, vi } from 'vitest';
+import {
+  getNoticiasOle,
+  ordenarNoticiasOle,
+  validarNoticiasOle,
+  type OleNews,
+} from '../src/lib/ole';
 
 const noticiaValida: OleNews = {
   id: 'ole-123',
@@ -21,9 +26,8 @@ describe('validarNoticiasOle', () => {
     ).toEqual([{ ...noticiaValida, publishedAt: null, imageUrl: null }]);
   });
 
-  it('acepta un dataset vacío mientras el productor todavía no publica datos', () => {
+  it('acepta un dataset vacío', () => {
     expect(validarNoticiasOle([])).toEqual([]);
-    expect(getNoticiasOle()).toEqual([]);
   });
 
   it('rechaza un valor que no sea una lista', () => {
@@ -91,5 +95,46 @@ describe('validarNoticiasOle', () => {
 
   it('rechaza IDs vacíos', () => {
     expect(() => validarNoticiasOle([{ ...noticiaValida, id: ' ' }])).toThrow();
+  });
+});
+
+describe('getNoticiasOle', () => {
+  it('respeta el límite solicitado', () => {
+    expect(getNoticiasOle(3)).toHaveLength(3);
+    expect(getNoticiasOle(0)).toEqual([]);
+    expect(getNoticiasOle(-2)).toEqual([]);
+  });
+
+  it('devuelve las noticias por fecha descendente', () => {
+    const noticias = getNoticiasOle();
+    const fechas = noticias
+      .map((noticia) => noticia.publishedAt)
+      .filter((fecha): fecha is string => fecha !== null)
+      .map(Date.parse);
+
+    expect(fechas).toEqual([...fechas].sort((a, b) => b - a));
+  });
+
+  it('coloca las fechas nulas al final', () => {
+    const noticias = ordenarNoticiasOle([
+      { ...noticiaValida, id: 'sin-fecha', publishedAt: null },
+      { ...noticiaValida, id: 'anterior', publishedAt: '2026-10-27T12:00:00.000Z' },
+      { ...noticiaValida, id: 'reciente', publishedAt: '2026-10-29T12:00:00.000Z' },
+    ]);
+
+    expect(noticias.map(({ id }) => id)).toEqual(['reciente', 'anterior', 'sin-fecha']);
+  });
+
+  it('devuelve una lista vacía cuando el dataset importado está vacío', async () => {
+    vi.resetModules();
+    vi.doMock('../src/data/ole.json', () => ({ default: [] }));
+
+    try {
+      const { getNoticiasOle: getNoticiasConDatasetVacio } = await import('../src/lib/ole');
+      expect(getNoticiasConDatasetVacio()).toEqual([]);
+    } finally {
+      vi.doUnmock('../src/data/ole.json');
+      vi.resetModules();
+    }
   });
 });
