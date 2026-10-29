@@ -99,7 +99,7 @@ describe('navegación principal del header', () => {
       ['Seguridad', 'Servicios', 'Salud', 'Educación'],
       ['Obras públicas', 'Tránsito'],
     ]);
-    expect(NAV_DIRECT).toEqual([ACTUALIDAD_SECTION, 'Economía', 'Deportes', 'Internacional']);
+    expect(NAV_DIRECT).toEqual([ACTUALIDAD_SECTION, 'Economía', 'Deportes', 'Olé', 'Internacional']);
   });
 
   it('respeta el orden acordado en pantalla', () => {
@@ -113,6 +113,7 @@ describe('navegación principal del header', () => {
       'Ciudad',
       'Economía',
       'Deportes',
+      'Olé',
       'Internacional',
     ]);
   });
