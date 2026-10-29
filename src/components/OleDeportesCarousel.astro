@@ -60,7 +60,7 @@ const trackId = 'deportes-ole-carousel-track';
       class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {noticias.map((noticia) => (
-        <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
+        <li class="flex basis-[85%] shrink-0 snap-start sm:basis-[calc(50%-0.5rem)] lg:basis-[calc(33.333%-0.667rem)]">
           <OleNewsCard noticia={noticia} />
         </li>
       ))}
