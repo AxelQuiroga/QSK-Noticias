@@ -1,5 +1,6 @@
 import { z } from 'astro/zod';
 import datosOle from '../data/ole.json';
+import { canonicalizarUrlNoticia } from './deportes-feed';
 
 const URL_NOTICIA_OLE = /^https:\/\/(?:www\.)?ole\.com\.ar(?:[/:?#]|$)/i;
 const URL_IMAGEN_OLE = /^https:\/\/(?:www\.)?ole\.com\.ar(?:[/:?#]|$)/i;
@@ -44,14 +45,7 @@ const oleDatasetSchema = z.array(oleNewsSchema).superRefine((items, context) => 
     }
     ids.add(item.id);
 
-    const canonicalUrl = new URL(item.url);
-    canonicalUrl.hash = '';
-    for (const key of [...canonicalUrl.searchParams.keys()]) {
-      if (/^(utm_.+|fbclid|gclid|mc_cid|mc_eid)$/i.test(key)) {
-        canonicalUrl.searchParams.delete(key);
-      }
-    }
-    const urlKey = canonicalUrl.toString();
+    const urlKey = canonicalizarUrlNoticia(item.url);
     if (urls.has(urlKey)) {
       context.addIssue({
         code: 'custom',
