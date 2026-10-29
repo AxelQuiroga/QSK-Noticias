@@ -9,6 +9,7 @@ const FECHA_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:
 const oleNewsSchema = z.object({
   id: z.string().trim().min(1, 'id no puede estar vacío'),
   title: z.string().trim().min(1, 'title no puede estar vacío'),
+  description: z.string().trim().nullable().optional(),
   url: z
     .string()
     .url('url debe ser una URL válida')
@@ -27,7 +28,7 @@ const oleNewsSchema = z.object({
     .refine((value) => URL_IMAGEN_OLE.test(value), 'imageUrl debe pertenecer a ole.com.ar')
     .nullable(),
   source: z.literal('Olé'),
-  description: z.string().nullable().optional(),
+
 });
 
 export type OleNews = z.infer<typeof oleNewsSchema>;
