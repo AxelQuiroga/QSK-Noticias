@@ -88,8 +88,8 @@ test.describe('Menú móvil', () => {
     const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
     await expect(menu).toBeVisible();
 
-    // "Servicios" ahora vive dentro del grupo "Locales".
-    await menu.getByRole('button', { name: 'Locales', exact: true }).click();
+    // "Servicios" ahora vive dentro del grupo "Comunidad".
+    await menu.getByRole('button', { name: 'Comunidad', exact: true }).click();
     await menu.locator('a', { hasText: 'Servicios' }).click();
 
     await expect(page).toHaveURL(/\/secciones\/servicios/);
