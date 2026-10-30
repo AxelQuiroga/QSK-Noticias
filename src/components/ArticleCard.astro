@@ -45,10 +45,14 @@ const publishedAt: Date | null = isNational
 const updatedAt = !isNational ? article.data.updatedAt : undefined;
 ---
 
-<article class:list={[
-  'group overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]',
-  variant === 'featured' && imageSrc && 'grid lg:grid-cols-[1.08fr_0.92fr]',
-]}>
+<article
+  data-national-card={isNational ? '' : undefined}
+  class:list={[
+    'group overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]',
+    isNational && 'flex h-full flex-col',
+    variant === 'featured' && imageSrc && 'grid lg:grid-cols-[1.08fr_0.92fr]',
+  ]}
+>
   {(imageSrc || isNational) && variant !== 'compact' && (
     <a
       href={articleHref}
@@ -92,6 +96,7 @@ const updatedAt = !isNational ? article.data.updatedAt : undefined;
     'flex min-w-0 flex-col p-5 sm:p-6',
     variant === 'featured' && 'justify-center lg:p-8',
     variant === 'compact' && 'p-4',
+    isNational && 'flex-1',
   ]}>
     <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
       {categoryLabel && categoryHref && (
@@ -112,17 +117,22 @@ const updatedAt = !isNational ? article.data.updatedAt : undefined;
     <h3 class:list={[
       'mt-3 font-heading font-extrabold leading-tight tracking-tight text-text',
       variant === 'featured' ? 'text-2xl sm:text-3xl lg:text-4xl' : variant === 'compact' ? 'text-base' : 'text-lg sm:text-xl',
+      isNational && 'line-clamp-3 min-h-[3.45em]',
     ]}>
       <a href={articleHref} class="decoration-accent/70 decoration-2 underline-offset-4 group-hover:underline">
         {data.title}
       </a>
     </h3>
 
-    {variant !== 'compact' && data.description && (
-      <p class:list={[
-        'mt-3 leading-relaxed text-text-secondary',
-        variant === 'featured' ? 'text-base sm:text-lg' : 'text-sm',
-      ]}>
+    {variant !== 'compact' && (data.description || isNational) && (
+      <p
+        data-national-card-description={isNational ? '' : undefined}
+        class:list={[
+          'mt-3 leading-relaxed text-text-secondary',
+          variant === 'featured' ? 'text-base sm:text-lg' : 'text-sm',
+          isNational && 'line-clamp-3 min-h-[4.875em]',
+        ]}
+      >
         {data.description}
       </p>
     )}
@@ -137,6 +147,15 @@ const updatedAt = !isNational ? article.data.updatedAt : undefined;
           </>
         )}
       </div>
+    )}
+
+    {isNational && (
+      <a
+        href={articleHref}
+        class="mt-auto inline-flex items-center gap-2 pt-4 text-sm font-bold text-accent hover:underline"
+      >
+        Leer noticia <span aria-hidden="true">↗</span>
+      </a>
     )}
   </div>
 </article>

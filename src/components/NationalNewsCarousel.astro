@@ -51,11 +51,11 @@ const trackId = 'national-carousel-track';
       data-national-track
       tabindex="0"
       aria-label="Noticias nacionales recientes"
-      class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      class="flex items-stretch snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {articles.map((article) => (
         <li class="flex basis-[85%] shrink-0 snap-start sm:basis-[calc(50%-0.5rem)] lg:basis-[calc(33.333%-0.667rem)]">
-          <div class="w-full">
+          <div class="h-full w-full">
             <ArticleCard article={article} />
           </div>
         </li>

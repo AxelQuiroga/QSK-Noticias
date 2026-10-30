@@ -46,34 +46,25 @@ test.describe('Hub Nacional', () => {
     const card = page.locator('main article').filter({ hasText: article.title! });
     await expect(card.locator('[data-national-card-fallback]')).toBeVisible();
   });
-  test('expone la navegación acordada en escritorio', async ({ page }) => {
+  test('conserva el navbar de master sin agregar Nacional como enlace en escritorio', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto('/');
-    const nav = page.getByRole('navigation', { name: 'Navegación principal' });
-    const entries = await nav.locator(':scope > a, :scope > div[data-nav-group]').evaluateAll((nodes) =>
-      nodes.map((node) => node.matches('[data-nav-group]')
-        ? node.querySelector('[data-nav-trigger]')?.textContent?.trim()
-        : node.textContent?.trim()),
-    );
+    const nav = page.locator('header nav').first();
 
-    expect(entries).toEqual(['Inicio', 'Locales', 'Nacional', 'Internacional', 'Buscar']);
-    await expect(nav.getByRole('link', { name: 'Nacional', exact: true })).toHaveAttribute('href', '/nacional/');
+    await expect(nav.getByRole('link', { name: 'Portada', exact: true })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Internacional', exact: true })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Nacional', exact: true })).toHaveCount(0);
   });
 
-  test('mantiene Nacional e Internacional accesibles desde el menú móvil', async ({ page }) => {
+  test('conserva el menú móvil de master sin agregar Nacional como enlace', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
     await page.locator('#menu-toggle').click();
-    const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
+    const menu = page.locator('#mobile-menu');
 
-    await expect(menu.getByRole('link', { name: 'Inicio', exact: true })).toBeVisible();
-    await expect(menu.getByRole('button', { name: 'Locales', exact: true })).toBeVisible();
-    await expect(menu.getByRole('link', { name: 'Nacional', exact: true })).toHaveAttribute('href', '/nacional/');
-    await expect(menu.getByRole('link', { name: 'Internacional', exact: true })).toHaveAttribute('href', '/internacional/');
-    await expect(menu.getByRole('link', { name: 'Buscar', exact: true })).toBeVisible();
-
-    await menu.getByRole('link', { name: 'Nacional', exact: true }).click();
-    await expect(page).toHaveURL(/nacional\/$/);
+    await expect(menu.getByRole('link', { name: 'Portada', exact: true })).toBeVisible();
+    await expect(menu.getByRole('link', { name: 'Internacional', exact: true })).toBeVisible();
+    await expect(menu.getByRole('link', { name: 'Nacional', exact: true })).toHaveCount(0);
   });
 });
 

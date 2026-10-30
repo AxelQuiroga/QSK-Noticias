@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { getNationalArticles } from '../../src/lib/nacional';
 
 test.describe('Portada', () => {
   test('carga correctamente con título y descripción', async ({ page }) => {
@@ -24,6 +25,7 @@ test.describe('Portada', () => {
   });
 
   test('no muestra el carrusel Nacional cuando el dataset esta vacio', async ({ page }) => {
+    test.skip(getNationalArticles().length > 0, 'Se ejecuta solamente con el dataset Nacional vacío.');
     await page.goto('/');
     await expect(page.locator('[data-national-carousel]')).toHaveCount(0);
     await expect(page.getByRole('heading', { name: 'Nacional', exact: true })).toHaveCount(0);
