@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
+import OleNewsCard from '../../components/OleNewsCard.astro';
 import {
   getActualidadArticles,
   getArticlesBySection,
@@ -9,6 +10,7 @@ import {
 } from '../../lib/articles';
 import { ACTUALIDAD_SECTION, SECTIONS, TOPICS } from '../../data/sections';
 import { ACTUALIDAD_WINDOW_DAYS } from '../../lib/actualidad';
+import { getNoticiasDeportes } from '../../lib/deportes';
 
 export async function getStaticPaths() {
   // Rutas estáticas para todo el catálogo: los diez topics oficiales más las
@@ -39,7 +41,9 @@ const useTopic = isTopicPage;
 const sorted = isActualidad
   ? await getActualidadArticles()
   : useTopic
-    ? await getArticlesByTopic(topic ?? '')
+    ? topic === 'Deportes'
+      ? await getNoticiasDeportes()
+      : await getArticlesByTopic(topic ?? '')
     : await getArticlesBySection(section ?? '');
 
 const plural = sorted.length === 1 ? 'artículo' : 'artículos';
@@ -67,8 +71,12 @@ const description = isActualidad
 
     {sorted.length > 0 ? (
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {sorted.map((article) => (
-          <ArticleCard article={article} />
+        {sorted.map((item) => (
+          'tipo' in item
+            ? item.tipo === 'qsk'
+              ? <ArticleCard article={item.article} />
+              : <OleNewsCard noticia={item.noticia} />
+            : <ArticleCard article={item} />
         ))}
       </div>
     ) : (

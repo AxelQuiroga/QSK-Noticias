@@ -15,13 +15,18 @@ const noticias = fuenteId
   : getGacetillasDestacadas(limit);
 const fuenteInfo = fuenteId ? getFuenteInfo(fuenteId) : undefined;
 const nombre = fuenteId ? (fuenteInfo?.nombre ?? nombreFuente(fuenteId)) : 'Novedades oficiales';
-const tituloSeccion = fuenteId === 'gba'
-  ? 'Noticias de Buenos Aires'
-  : fuenteId === 'esteban-echeverria'
-    ? 'Noticias de Esteban Echeverría'
-    : fuenteId
-      ? `Noticias de ${nombre}`
-      : 'Novedades oficiales';
+
+function tituloPorFuente(fuenteId: string | undefined, nombre: string): string {
+  if (!fuenteId) return 'Novedades oficiales';
+  if (fuenteId === 'gba') return 'Noticias de Buenos Aires';
+  if (fuenteId === 'esteban-echeverria') {
+    return 'Noticias de Esteban Echeverría';
+  }
+
+  return `Noticias de ${nombre}`;
+}
+
+const tituloSeccion = tituloPorFuente(fuenteId, nombre);
 const headingId = fuenteId ? `gacetillas-${fuenteId}-heading` : 'novedades-oficiales-heading';
 const trackId = fuenteId ? `gacetillas-${fuenteId}-track` : 'novedades-oficiales-track';
 const fuenteUrl = fuenteInfo?.listadoUrl ?? 'https://www.gba.gob.ar/comunicacion_publica/gacetillas';
@@ -88,8 +93,8 @@ const tarjetas = noticias.map((noticia) => ({
       class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {tarjetas.map((noticia, index) => (
-        <li class="w-[85%] shrink-0 snap-start sm:w-[47%] lg:w-[31%]">
-          <article class="overflow-hidden rounded-xl border border-border bg-surface">
+        <li class="flex basis-[85%] shrink-0 snap-start sm:basis-[calc(50%-0.5rem)] lg:basis-[calc(33.333%-0.667rem)]">
+          <article class="flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-surface">
             {noticia.imagenUrl && (
               <a href={`/gacetillas-oficiales/${noticia.slug}/`} tabindex="-1" aria-hidden="true" class="relative block aspect-[16/9] shrink-0 overflow-hidden bg-surface-raised">
                 <img
