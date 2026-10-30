@@ -123,7 +123,7 @@ const newsSchema = z
     }
 
     // Validate section is required for published articles
-    if (data.status === 'published' && !data.section) {
+    if (data.status === 'published' && !data.section && data.scope !== 'nacional') {
       ctx.addIssue({
         code: 'custom',
         path: ['section'],
@@ -391,6 +391,47 @@ describe('Content validation - artículos', () => {
       expect(result.section).toBeUndefined();
     });
 
+    it('published nacional sin section ni primaryTopic debe pasar', () => {
+      const result = newsSchema.parse({
+        title: 'Noticia nacional',
+        description: 'Descripci�n de prueba',
+        slug: 'noticia-nacional',
+        scope: 'nacional',
+        author: 'Argentina.gob.ar',
+        publishedAt: '2026-10-20T00:00:00.000Z',
+        status: 'published',
+      });
+
+      expect(result.scope).toBe('nacional');
+      expect(result.section).toBeUndefined();
+      expect(result.primaryTopic).toBeUndefined();
+      expect(result.country).toBeUndefined();
+    });
+
+    it('published local sin section sigue fallando', () => {
+      expect(() => newsSchema.parse({
+        title: 'Noticia local',
+        description: 'Descripci�n de prueba',
+        slug: 'noticia-local',
+        scope: 'local',
+        author: 'Test',
+        publishedAt: '2026-10-20T00:00:00.000Z',
+        status: 'published',
+      })).toThrow();
+    });
+
+    it('published nacional no admite country', () => {
+      expect(() => newsSchema.parse({
+        title: 'Noticia nacional',
+        description: 'Descripci�n de prueba',
+        slug: 'noticia-nacional-country',
+        scope: 'nacional',
+        country: 'AR',
+        author: 'Test',
+        publishedAt: '2026-10-20T00:00:00.000Z',
+        status: 'published',
+      })).toThrow();
+    });
     it('published sin section debe fallar', () => {
       expect(() =>
         newsSchema.parse({

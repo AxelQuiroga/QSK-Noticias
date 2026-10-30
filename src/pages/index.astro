@@ -4,6 +4,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 import WeatherWidget from '../components/WeatherWidget.astro';
 import NovedadesOficialesCarousel from '../components/NovedadesOficialesCarousel.astro';
 import OleDeportesCarousel from '../components/OleDeportesCarousel.astro';
+import NationalNewsCarousel from '../components/NationalNewsCarousel.astro';
 import { getFeaturedArticle, getLatestArticles } from '../lib/articles';
 import { slugify } from '../lib/utils';
 import { SECTIONS } from '../data/sections';
@@ -64,6 +65,7 @@ const regiones = getLocationsByType('region');
           </div>
         </section>
 
+        <NationalNewsCarousel limit={6} />
         <OleDeportesCarousel limit={10} />
         <NovedadesOficialesCarousel fuenteId="gba" limit={12} />
         <NovedadesOficialesCarousel fuenteId="esteban-echeverria" limit={12} />

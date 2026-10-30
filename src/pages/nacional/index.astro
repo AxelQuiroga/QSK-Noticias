@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getNationalArticles } from '../../lib/nacional';
+
+const articles = getNationalArticles();
+const title = 'Nacional | QSK Noticias';
+const description = 'Noticias nacionales de Argentina, con información de fuentes oficiales.';
+---
+
+<BaseLayout title={title} description={description} canonical="/nacional/">
+  <div class="container-editorial py-10">
+    <header class="mb-8">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-wider text-primary">Cobertura nacional</p>
+      <h1 class="font-heading text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Nacional</h1>
+      <p class="mt-3 max-w-3xl text-text-secondary">
+        Noticias de alcance nacional a partir de información publicada por Argentina.gob.ar.
+      </p>
+    </header>
+    <section aria-label="Noticias nacionales">
+      {articles.length === 0 ? (
+        <div class="rounded-xl border border-border bg-surface p-8 text-center">
+          <h2 class="font-heading text-xl font-bold text-text">Todavía no hay noticias nacionales</h2>
+          <p class="mt-2 text-text-secondary">Estamos preparando la cobertura nacional de QSK Noticias.</p>
+        </div>
+      ) : (
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {articles.map((article) => <ArticleCard article={article} />)}
+        </div>
+      )}
+    </section>
+  </div>
+</BaseLayout>
