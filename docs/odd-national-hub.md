@@ -8,7 +8,7 @@
 ## 1. Observations
 
 1. El schema de noticias ya admite `scope: nacional`, pero el campo es opcional.
-2. El schema exige actualmente `section` para todo artículo publicado. Esa regla impide publicar noticias nacionales sin tema editorial.
+2. El schema exige actualmente `section` para todo artículo publicado. Esa regla impide publicar noticias nacionales sin tema editorial; debe contemplarse la excepción para `scope: nacional`.
 3. `section` y `primaryTopic` representan clasificación temática; `scope` representa alcance geográfico. No deben confundirse.
 4. No existe actualmente una consulta dedicada `getNationalArticles()` en `src/lib/articles.ts`.
 5. Existe un hub independiente `/internacional/` que filtra artículos publicados por alcance internacional.
@@ -18,7 +18,7 @@
 9. La portada utiliza `getLatestArticles()` sin filtrar por alcance. Cambiar ese comportamiento podría desplazar noticias locales y queda fuera del objetivo mínimo.
 10. La política del sitemap y la verificación de build deben revisarse al incorporar `/nacional/`.
 11. Extracción Ultimate ya no emite frontmatter Markdown: el contrato vigente de `src/borrador.ts` es JSON con `title`, `description`, `content`, `publishedAt`, `url` e `image`.
-12. El JSON no contiene `scope`, `section`, `status`, `slug`, `author` ni `sources`. Tampoco contiene una marca explícita que permita clasificar automáticamente cada historia como nacional.
+12. El JSON no contiene `scope`, `section`, `primaryTopic`, `status`, `slug`, `author` ni `sources`. Sin embargo, la procedencia del borrador identifica que fue recibido desde Argentina.gob.ar y esa fuente se utilizará como regla de clasificación.
 13. El flujo de GitHub de Extracción Ultimate sube esos JSON a la carpeta raíz `borradores/` de QSK. El propio PR declara que esa carpeta está fuera de `src/content/noticias` y que no agrega noticias al sitio.
 14. QSK carga únicamente archivos `.md` desde `src/content/noticias`. Por lo tanto, fusionar el PR del extractor no hace que una noticia aparezca en el sitio: hace falta un paso editorial/de importación que transforme el JSON aprobado al formato de contenido de QSK.
 15. Extracción Ultimate descarga imágenes localmente en su propio workspace y coloca en `image.src` una ruta como `/images/noticias/<archivo>`. El plan de envío a QSK incluye los JSON de `borradores/`, pero no se encontró evidencia de que también copie esos binarios a `public/images/noticias/`. La ruta puede quedar apuntando a un archivo inexistente en QSK.
@@ -39,16 +39,16 @@
 - `section` / `primaryTopic`: tema editorial.
 - `country`: reservado a noticias con `scope: internacional`; no se asigna `AR` a noticias nacionales.
 
-Una noticia nacional puede tener tema editorial o no tenerlo. Si tiene un tema válido, conserva su clasificación temática y puede seguir apareciendo en el feed temático correspondiente.
+Para las historias recibidas desde Argentina.gob.ar, el destino editorial es siempre el hub `/nacional/`. No se les asigna `section` ni `primaryTopic` individualmente ni se distribuyen entre feeds temáticos: la fuente completa se sirve como Nacional, igual que las noticias de Olé se sirven dentro de Deportes y las gacetillas dentro de sus municipios. La clasificación por procedencia evita revisar manualmente el alcance y el tema de cada borrador.
 
 ### D3 — Compatibilidad editorial de artículos nacionales sin tema
 
-Se permitirá que un artículo publicado sin `section` únicamente cuando su `scope` sea `nacional`. Las noticias publicadas de otros alcances seguirán requiriendo sección hasta que exista una decisión editorial distinta.
+Se permitirá que un artículo publicado sin `section` y sin `primaryTopic` cuando su `scope` sea `nacional`. Las noticias publicadas de otros alcances seguirán requiriendo sección hasta que exista una decisión editorial distinta.
 
 ### D4 — Tarjetas con fallback contextual
 
-- Si existe `section`, la tarjeta muestra el tema y enlaza a su ruta temática actual.
-- Si falta `section` y el artículo es nacional, muestra `Nacional` y enlaza a `/nacional/`.
+- Las historias importadas desde Argentina.gob.ar no llevan `section` ni `primaryTopic`; la tarjeta muestra `Nacional` y enlaza a `/nacional/`.
+- Para artículos de otros flujos que sí tengan `section`, se conserva el tema y su ruta temática actual.
 - No se generan enlaces vacíos ni rutas `/secciones//`.
 
 ### D5 — Navegación principal
@@ -71,14 +71,14 @@ No se modifica el criterio de `getLatestArticles()` ni el orden editorial de la 
 
 ### D7 — Extracción Ultimate sigue siendo un generador de borradores JSON
 
-No se modifica Extracción Ultimate ni se incorpora LLM, reescritura, workflow remoto o publicación automática en esta tarea. El PR del extractor continúa dejando JSON en `borradores/`, fuera de la colección publicada. QSK necesitará un paso de importación/promoción editorial explícito para convertir una historia revisada en un archivo Markdown de `src/content/noticias/`. El artículo importado debe quedar como borrador/revisión hasta que una persona lo apruebe para publicación.
+No se modifica Extracción Ultimate ni se incorpora LLM, reescritura, workflow remoto o publicación automática en esta tarea. El PR del extractor continúa dejando JSON en `borradores/`, fuera de la colección publicada. QSK necesitará un paso de importación/promoción editorial explícito para convertir una historia revisada en un archivo Markdown de `src/content/noticias/`. El artículo importado debe quedar como borrador/revisión hasta que una persona lo apruebe para publicación. La clasificación geográfica y el destino editorial, en cambio, se asignan automáticamente por la fuente: toda historia recibida desde Argentina.gob.ar recibe `scope: nacional` y se sirve exclusivamente en `/nacional/`, sin clasificación temática individual.
 
 ## 3. Specifications
 
 ### S1 — Validación del contenido
 
-- Aceptar noticia `published` con `scope: nacional` y sin `section`.
-- Aceptar noticia nacional con `section` válida.
+- Aceptar noticia `published` con `scope: nacional` y sin `section` ni `primaryTopic`.
+- Las historias importadas desde Argentina.gob.ar reciben `scope: nacional` automáticamente y no reciben `section` ni `primaryTopic`.
 - Rechazar noticia publicada de alcance no nacional sin `section`.
 - Rechazar valores de `section` fuera del catálogo.
 - Mantener la regla: `scope: internacional` requiere `country`.
@@ -142,10 +142,10 @@ La adaptación QSK debe:
 - derivar un `slug` URL-friendly del titular, sujeto a revisión de colisiones;
 - completar `author` con la atribución editorial acordada;
 - dejar `status: draft` o `review`, nunca publicar automáticamente;
-- asignar `scope` solo según la regla editorial que se acuerde (el JSON actual no lo trae);
+- asignar automáticamente `scope: nacional` a todo JSON recibido desde Argentina.gob.ar, usando la procedencia como criterio; no pedir clasificación manual de alcance;
 - no crear `image` si no existe una imagen utilizable con archivo copiado y `alt` válido;
 - resolver el significado de `publishedAt`: el JSON lo define como fecha original de la fuente, mientras que QSK lo usa como fecha de publicación/orden del artículo;
-- no inventar `section` cuando no haya clasificación temática.
+- no asignar `section` ni `primaryTopic` a las historias de Argentina.gob.ar: todas se sirven en el hub Nacional, sin distribuirlas por temas.
 
 La promoción/importación debe contemplar copiar la imagen real al repositorio QSK si se conserva una ruta local, porque el extractor solo garantiza la descarga en su propio workspace.
 
@@ -204,7 +204,6 @@ No declarar una verificación como exitosa si no fue ejecutada. Revisar el diff 
 
 ## 6. Riesgos y pendientes de auditoría
 
-- Definir si todas las historias recibidas de Argentina.gob.ar se clasifican por defecto como `scope: nacional`, o si la persona editora asigna el alcance durante la revisión. El JSON actual no incluye `scope`.
 - Definir si `Locales` será un enlace a un nuevo hub `/locales/` o un desplegable que agrupe regiones y municipios. No existe hoy una ruta `/locales/`.
 - Resolver el tratamiento de `publishedAt` al importar: fecha original de la fuente o fecha de publicación en QSK.
 - Resolver cómo se transfieren las imágenes descargadas por Extracción Ultimate al repositorio QSK.
