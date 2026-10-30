@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   createNationalSlug,
+  selectNationalCarouselArticles,
   mergeNationalArticles,
   sortNationalArticles,
   toNationalArticle,
@@ -111,5 +112,27 @@ describe('sortNationalArticles', () => {
     const second = record({ title: 'Segunda', url: 'https://argentina.gob.ar/b' });
 
     expect(sortNationalArticles([second, first])).toEqual([first, second]);
+  });
+});
+
+
+describe('selectNationalCarouselArticles', () => {
+  it('devuelve las noticias mas recientes hasta el limite solicitado', () => {
+    const older = record({ title: 'Anterior', url: 'https://argentina.gob.ar/a', publishedAt: '2026-10-20T00:00:00.000Z' });
+    const newer = record({ title: 'Nueva', url: 'https://argentina.gob.ar/b', publishedAt: '2026-10-29T00:00:00.000Z' });
+    const middle = record({ title: 'Intermedia', url: 'https://argentina.gob.ar/c', publishedAt: '2026-10-25T00:00:00.000Z' });
+
+    expect(selectNationalCarouselArticles([older, newer, middle], 2)).toEqual([newer, middle]);
+  });
+
+  it('devuelve una lista vacia si no hay noticias', () => {
+    expect(selectNationalCarouselArticles([], 6)).toEqual([]);
+  });
+
+  it('no devuelve mas elementos que el limite y evita limites inv?lidos', () => {
+    const articles = [record(), record({ url: 'https://argentina.gob.ar/segunda' })];
+    expect(selectNationalCarouselArticles(articles, 1)).toHaveLength(1);
+    expect(selectNationalCarouselArticles(articles, 0)).toEqual([]);
+    expect(selectNationalCarouselArticles(articles, -1)).toEqual([]);
   });
 });

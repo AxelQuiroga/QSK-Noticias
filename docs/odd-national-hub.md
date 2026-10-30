@@ -3,7 +3,7 @@
 **Estado:** especificación acordada para implementación  
 **Rama:** `feat/national-hub`  
 **Base:** `master`  
-**Alcance:** incorporar y servir en QSK Noticias las noticias recolectadas desde Argentina.gob.ar, y adaptar la navegación principal para exponer el hub Nacional.
+**Alcance:** incorporar y servir en QSK Noticias las noticias recolectadas desde Argentina.gob.ar, e integrar un carrusel Nacional en la portada y conservar la navegacion principal de master.
 
 ## 1. Observations
 
@@ -45,23 +45,27 @@ Se permite publicar artículos con `scope: nacional` sin `section` ni `primaryTo
 - Los artículos que sí tienen `section` conservan su etiqueta y enlace temático actuales.
 - No se generan enlaces vacíos ni rutas `/secciones//`.
 
-### D5 — Navegación principal
+### D5 - Navegacion principal
 
-La navegación visible se organiza como:
+La navegacion principal conserva la estructura existente en master. Nacional no se agrega como enlace ni como grupo del navbar.
 
-`Inicio | Locales | Nacional | Internacional | Buscar`
+- Portada apunta a /.
+- Se conservan Actualidad, los grupos Politica y sociedad, Comunidad y Ciudad, y los accesos directos Economia, Deportes e Internacional.
+- Buscar sigue visible y funcional en escritorio y movil.
+- No se reagrupan secciones ni se crean rutas nuevas para modificar la navegacion.
 
-- `Inicio` apunta a `/`.
-- `Locales` conserva el acceso a la cobertura local y sus destinos actuales.
-- `Nacional` apunta a `/nacional/`.
-- `Internacional` apunta a `/internacional/`.
-- `Buscar` sigue visible y funcional en escritorio y móvil.
+La cobertura Nacional se descubre desde la portada mediante su carrusel y desde el enlace "Ver todas" hacia /nacional/.
 
-La organización interna de Locales debe preservar los destinos geográficos existentes. No se crea una ruta `/locales/` sin una decisión específica.
+### D6 - Carrusel Nacional en portada sin desplazar la cobertura local
 
-### D6 — La portada conserva su criterio actual
+No se modifica getLatestArticles() ni el orden o la seleccion del contenido local existente. Se agrega un bloque editorial independiente "Nacional" en la portada, despues del contenido principal y antes de los carruseles secundarios existentes.
 
-No se modifica `getLatestArticles()` ni el orden editorial de la portada en esta etapa. Las noticias nacionales no deben desplazar automáticamente el protagonismo local de QSK.
+- Consume src/data/nacional.json mediante la capa de datos Nacional.
+- Muestra hasta seis noticias, ordenadas de mas recientes a mas antiguas.
+- Cada tarjeta enlaza al detalle /nacional/[slug]/.
+- El acceso "Ver todas" enlaza a /nacional/.
+- Si no hay noticias, el bloque completo no se renderiza: no deja un titulo ni un carrusel vacio.
+- El bloque es adicional; no reemplaza ni desplaza la seleccion de noticias locales de la portada.
 
 ### D7 — Responsabilidades separadas entre los repositorios
 
@@ -151,38 +155,38 @@ Crear páginas individuales para las noticias nacionales.
 
 Agregar el fallback para noticias nacionales sin sección, preservando exactamente el comportamiento de artículos que sí tienen sección. Revisar los usos existentes para evitar regresiones en portada, búsqueda, municipios, regiones y feeds.
 
-### S6 — Header responsive
+### S6 - Preservacion del Header responsive
 
-Actualizar la configuración y el componente Header para reflejar la navegación acordada en escritorio y móvil. Mantener:
-- el botón Buscar;
-- accesibilidad por teclado;
-- atributos ARIA y comportamiento de disclosure;
-- apertura y cierre del menú móvil;
-- acceso a los destinos locales existentes.
+No se incorpora Nacional al navbar ni se reestructura la navegacion. Se conserva la estructura existente en master, incluyendo: Portada, Actualidad, los grupos Politica y sociedad / Comunidad / Ciudad, Economia, Deportes, Internacional y Buscar.
 
-### S7 — Pruebas
+Las pruebas deben comprobar que el menu de escritorio y el menu movil conservan sus destinos, accesibilidad por teclado, atributos ARIA y comportamiento de disclosure.
+
+### S7 - Pruebas
 
 Agregar pruebas unitarias para:
-- artículo nacional sin sección válido;
-- artículos de otros alcances sujetos a las reglas temáticas vigentes;
+- articulo nacional sin seccion valido;
+- articulos de otros alcances sujetos a las reglas tematicas vigentes;
 - consulta Nacional filtrada y ordenada;
-- incorporación incremental sin duplicados;
-- conservación del historial previo;
+- incorporacion incremental sin duplicados;
+- conservacion del historial previo;
 - no sobrescritura de registros existentes ante entregas repetidas;
-- renderizado de registros con descripción, cuerpo, fecha o imagen ausentes;
-- fallback de ArticleCard sin sección;
-- conservación de enlaces temáticos cuando existe sección.
+- renderizado de registros con descripcion, cuerpo, fecha o imagen ausentes;
+- fallback de ArticleCard sin seccion;
+- conservacion de enlaces tematicos cuando existe seccion;
+- seleccion de las seis noticias nacionales mas recientes para la portada;
+- listas vacias y limites invalidos para el selector del carrusel.
 
 Agregar pruebas E2E para:
-- ruta `/nacional/`;
-- listado y estado vacío;
-- exclusión de noticias de otros alcances;
+- ruta /nacional/;
+- listado y estado vacio;
+- exclusion de noticias de otros alcances;
 - detalle de noticia con contenido completo;
 - detalle de noticia con contenido parcial o ausente y enlace a la fuente;
 - imagen remota y fallback;
-- navegación desktop y móvil;
-- acceso a Buscar;
-- preservación de rutas locales e Internacional.
+- carrusel Nacional visible cuando hay registros y oculto cuando el dataset esta vacio;
+- enlaces de tarjetas al detalle y "Ver todas" al hub;
+- navbar sin enlace Nacional, preservando su estructura de master en escritorio y movil;
+- preservacion de rutas locales, Internacional y Buscar.
 
 ### S8 — Verificación de calidad
 
@@ -217,8 +221,8 @@ No declarar una verificación como exitosa si no fue ejecutada. Revisar el diff 
 5. Las noticias con contenido parcial se muestran con los datos disponibles y enlace a la fuente original.
 6. Las imágenes se consumen desde sus URL remotas y existe un fallback visual.
 7. Las tarjetas nacionales muestran la etiqueta y los enlaces correctos; los artículos temáticos existentes mantienen su comportamiento.
-8. La navegación queda como Inicio, Locales, Nacional, Internacional y Buscar, en escritorio y móvil.
-9. Las rutas y funciones existentes de Locales, Internacional y Buscar siguen operativas.
+8. La navegacion principal conserva la estructura de master y no agrega Nacional al navbar; Nacional se descubre desde el carrusel de portada.
+9. Las rutas geograficas locales existentes, Internacional y Buscar siguen operativas.
 10. La aceptación del PR sigue siendo manual; no se configura auto-merge ni publicación directa.
 11. El build y las pruebas aplicables pasan, o las fallas quedan identificadas con evidencia.
 12. Todo el trabajo queda aislado en `feat/national-hub`, sin cambios en `master`.

@@ -142,3 +142,13 @@ export function getNationalArticles(): NationalArticle[] {
 export function getNationalArticleBySlug(slug: string): NationalArticle | undefined {
   return getNationalArticles().find((article) => article.slug === slug);
 }
+
+
+/** Selecciona las noticias mas recientes que caben en el carrusel de portada. */
+export function selectNationalCarouselArticles<T extends NationalRecord>(
+  articles: readonly T[],
+  limit = 6,
+): T[] {
+  if (!Number.isInteger(limit) || limit <= 0) return [];
+  return sortNationalArticles(articles).slice(0, limit);
+}

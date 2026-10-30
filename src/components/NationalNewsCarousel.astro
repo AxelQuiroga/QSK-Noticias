@@ -1,0 +1,108 @@
+﻿---
+import ArticleCard from './ArticleCard.astro';
+import { getNationalArticles, selectNationalCarouselArticles } from '../lib/nacional';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 6 } = Astro.props;
+const articles = selectNationalCarouselArticles(getNationalArticles(), limit);
+const headingId = 'national-carousel-heading';
+const trackId = 'national-carousel-track';
+---
+
+{articles.length > 0 && (
+  <section class="mt-10 sm:mt-12" aria-labelledby={headingId} data-national-carousel>
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Argentina</p>
+        <h2 id={headingId} class="section-title">Nacional</h2>
+      </div>
+      <div class="flex shrink-0 items-center gap-3">
+        <div class="hidden items-center gap-2 sm:flex">
+          <button
+            type="button"
+            data-national-prev
+            aria-label="Ver noticias nacionales anteriores"
+            aria-controls={trackId}
+            class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <button
+            type="button"
+            data-national-next
+            aria-label="Ver más noticias nacionales"
+            aria-controls={trackId}
+            class="inline-flex size-10 items-center justify-center rounded-full border border-border bg-surface text-text-secondary transition-colors hover:border-info hover:text-text disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-5" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+          </button>
+        </div>
+        <a href="/nacional/" class="text-sm font-semibold text-accent hover:underline">
+          Ver todas <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <ul
+      id={trackId}
+      data-national-track
+      tabindex="0"
+      aria-label="Noticias nacionales recientes"
+      class="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      {articles.map((article) => (
+        <li class="flex basis-[85%] shrink-0 snap-start sm:basis-[calc(50%-0.5rem)] lg:basis-[calc(33.333%-0.667rem)]">
+          <div class="w-full">
+            <ArticleCard article={article} />
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function setupNationalCarousels(): void {
+    document.querySelectorAll<HTMLElement>('[data-national-carousel]').forEach((root) => {
+      if (root.dataset.carouselBound === 'true') return;
+      root.dataset.carouselBound = 'true';
+
+      const track = root.querySelector<HTMLElement>('[data-national-track]');
+      const previous = root.querySelector<HTMLButtonElement>('[data-national-prev]');
+      const next = root.querySelector<HTMLButtonElement>('[data-national-next]');
+      if (!track) return;
+
+      const step = () => {
+        const card = track.querySelector<HTMLElement>(':scope > li');
+        const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+        return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+      };
+      const updateControls = () => {
+        if (!previous || !next) return;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        previous.disabled = track.scrollLeft <= 1;
+        next.disabled = track.scrollLeft >= maxScroll - 1;
+      };
+      const behavior = (): ScrollBehavior => reducedMotion.matches ? 'auto' : 'smooth';
+
+      previous?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: behavior() }));
+      next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: behavior() }));
+      track.addEventListener('scroll', updateControls, { passive: true });
+      track.addEventListener('keydown', (event: KeyboardEvent) => {
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        track.scrollBy({ left: event.key === 'ArrowRight' ? step() : -step(), behavior: behavior() });
+      });
+      window.addEventListener('resize', updateControls);
+      updateControls();
+    });
+  }
+
+  setupNationalCarousels();
+  document.addEventListener('astro:page-load', setupNationalCarousels);
+</script>

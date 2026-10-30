@@ -88,30 +88,46 @@ describe('isKnownSection', () => {
 describe('navegación principal del header', () => {
   const NAV_SECTIONS = [...NAV_GROUPS.flatMap((group) => group.sections), ...NAV_DIRECT];
 
-  it('agrupa toda la cobertura local y separa los hubs Nacional e Internacional', () => {
-    expect(NAV_GROUPS.map((group) => group.label)).toEqual(['Locales']);
-    expect(NAV_GROUPS[0]?.sections).toEqual([ACTUALIDAD_SECTION, ...TOPICS]);
-    expect(NAV_DIRECT).toEqual(['Nacional', 'Internacional']);
+  it('respeta la estructura acordada del header', () => {
+    expect(NAV_GROUPS.map((group) => group.label)).toEqual([
+      'Política y sociedad',
+      'Comunidad',
+      'Ciudad',
+    ]);
+    expect(NAV_GROUPS.map((group) => group.sections)).toEqual([
+      ['Política', 'Sociedad'],
+      ['Seguridad', 'Servicios', 'Salud', 'Educación'],
+      ['Obras públicas', 'Tránsito'],
+    ]);
+    expect(NAV_DIRECT).toEqual([ACTUALIDAD_SECTION, 'Economía', 'Deportes', 'Internacional']);
   });
 
   it('respeta el orden acordado en pantalla', () => {
+    // El orden de `NAV_ITEMS` es el orden del header: el feed abre la
+    // navegación, los grupos van en el medio y los temas de mayor peso cierran
+    // como accesos directos.
     expect(NAV_ITEMS.map((item) => (item.kind === 'group' ? item.label : item.section))).toEqual([
-      'Locales',
-      'Nacional',
+      'Actualidad',
+      'Política y sociedad',
+      'Comunidad',
+      'Ciudad',
+      'Economía',
+      'Deportes',
       'Internacional',
     ]);
   });
 
-  it('conserva Actualidad dentro de Locales con su ruta temática histórica', () => {
-    expect(NAV_DIRECT).not.toContain(ACTUALIDAD_SECTION);
-    expect(NAV_GROUPS[0]?.sections).toContain(ACTUALIDAD_SECTION);
+  it('enlaza "Actualidad" como acceso directo, no como grupo', () => {
+    // Es el feed de los últimos días, no una categoría: tiene URL propia
+    // (`/secciones/actualidad/`) y ninguna subsección que desplegar.
+    expect(NAV_DIRECT).toContain(ACTUALIDAD_SECTION);
+    expect(NAV_GROUPS.map((group) => group.label)).not.toContain(ACTUALIDAD_SECTION);
     const international = NAV_ITEMS.find((item) => item.kind === 'link' && item.section === 'Internacional');
-    const national = NAV_ITEMS.find((item) => item.kind === 'link' && item.section === 'Nacional');
     expect(international).toMatchObject({ kind: 'link', href: '/internacional/' });
-    expect(national).toMatchObject({ kind: 'link', href: '/nacional/' });
     expect(TOPICS).not.toContain('Internacional');
-    expect(SECTIONS).not.toContain('Nacional');
+    expect(SECTIONS).not.toContain('Internacional');
   });
+
   it('las secciones de los grupos y los enlaces convencionales pertenecen al catálogo', () => {
     for (const item of NAV_ITEMS) {
       if (item.kind === 'group') {
@@ -129,7 +145,7 @@ describe('navegación principal del header', () => {
   });
 
   it('no usa como grupo el nombre de una sección con ruta', () => {
-    // "Locales" es una agrupación visual:
+    // "Política y sociedad", "Comunidad" y "Ciudad" son agrupaciones visuales:
     // no deben existir como sección, porque entonces el desplegable estaría
     // escondiendo una ruta real del catálogo.
     for (const label of NAV_GROUPS.map((group) => group.label)) {

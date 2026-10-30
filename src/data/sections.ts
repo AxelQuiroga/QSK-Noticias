@@ -85,10 +85,20 @@ export function isKnownSection(name: string): boolean {
 /**
  * Navegación principal del header.
  *
- * Locales agrupa los destinos temáticos y geográficos locales ya existentes,
- * incluida la ruta histórica de Actualidad. Nacional e Internacional son hubs
- * independientes con rutas propias. Buscar permanece como acceso fijo en el
- * componente Header.
+ * El header renderiza UNA lista ordenada de entradas (`NAV_ITEMS`): el orden
+ * del array es el orden en pantalla, así que la jerarquía editorial se lee en
+ * un solo lugar y reordenar el header no obliga a tocar el componente.
+ *
+ * Los grupos son AGRUPACIONES DE NAVEGACIÓN, no secciones editoriales: no
+ * tienen ruta propia ni entran en `SECTIONS`, así que no existe (ni debe
+ * existir) `/secciones/comunidad/`. Los enlaces convencionales usan
+ * `/secciones/<slug>/`; los hubs editoriales independientes declaran su `href`
+ * explícitamente en `NAV_ITEMS`.
+ *
+ * ⚠️ `Actualidad` es un enlace DIRECTO aunque no sea un topic: es el feed de
+ * los últimos días (`src/lib/actualidad.ts`) y conserva su URL
+ * `/secciones/actualidad/`. No lleva desplegable porque no tiene subsecciones:
+ * colgarla de un grupo temático sería volver a tratarla como categoría.
  */
 export interface NavLink {
   readonly kind: 'link';
@@ -107,16 +117,20 @@ export interface NavGroup {
 export type NavItem = NavLink | NavGroup;
 
 /**
- * Orden exacto del header. "Inicio" y "Buscar" son fijos en el componente:
+ * Orden exacto del header. "Portada" y "Buscar" son fijos en el componente:
  * abren y cierran la navegación, así que no son entradas de este catálogo.
  */
 export const NAV_ITEMS: readonly NavItem[] = [
+  { kind: 'link', section: ACTUALIDAD_SECTION },
+  { kind: 'group', label: 'Política y sociedad', sections: ['Política', 'Sociedad'] },
   {
     kind: 'group',
-    label: 'Locales',
-    sections: [ACTUALIDAD_SECTION, ...TOPICS],
+    label: 'Comunidad',
+    sections: ['Seguridad', 'Servicios', 'Salud', 'Educación'],
   },
-  { kind: 'link', section: 'Nacional', href: '/nacional/' },
+  { kind: 'group', label: 'Ciudad', sections: ['Obras públicas', 'Tránsito'] },
+  { kind: 'link', section: 'Economía' },
+  { kind: 'link', section: 'Deportes' },
   { kind: 'link', section: 'Internacional', href: '/internacional/' },
 ];
 
