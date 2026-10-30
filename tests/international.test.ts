@@ -29,6 +29,7 @@ describe('International utilities', () => {
       ['FR', 'Francia'],
       ['JP', 'Japón'],
       ['AL', 'Albania'],
+      ['LT', 'Lituania'],
     ])('devuelve el nombre de %s', (code, expectedName) => {
       expect(getCountryName(code)).toBe(expectedName);
     });
@@ -44,6 +45,7 @@ describe('International utilities', () => {
       ['AR', GEOGRAPHIC_REGIONS.AMERICAS],
       ['FR', GEOGRAPHIC_REGIONS.EUROPE],
       ['AL', GEOGRAPHIC_REGIONS.EUROPE],
+      ['LT', GEOGRAPHIC_REGIONS.EUROPE],
       ['JP', GEOGRAPHIC_REGIONS.ASIA],
       ['EG', GEOGRAPHIC_REGIONS.AFRICA],
       ['AU', GEOGRAPHIC_REGIONS.OCEANIA],
@@ -66,6 +68,7 @@ describe('International utilities', () => {
       expect(COUNTRY_CODES).toHaveProperty('AU');
       expect(COUNTRY_CODES).toHaveProperty('GB');
       expect(COUNTRY_CODES).toHaveProperty('AL');
+      expect(COUNTRY_CODES).toHaveProperty('LT');
       expect(COUNTRY_CODES).not.toHaveProperty('UK');
     });
 
