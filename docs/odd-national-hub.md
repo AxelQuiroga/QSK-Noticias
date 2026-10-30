@@ -17,7 +17,15 @@
 8. `ArticleCard.astro` presupone que cada artículo tiene `section` y construye un enlace `/secciones/<slug>/`. Una noticia nacional sin sección produciría una etiqueta/enlace incorrectos.
 9. La portada utiliza `getLatestArticles()` sin filtrar por alcance. Cambiar ese comportamiento podría desplazar noticias locales y queda fuera del objetivo mínimo.
 10. La política del sitemap y la verificación de build deben revisarse al incorporar `/nacional/`.
-11. No se pudo verificar todavía el frontmatter exacto que emite Extracción Ultimate desde el repositorio privado. La compatibilidad real de sus campos queda como verificación obligatoria antes de dar por terminado el flujo.
+11. Extracción Ultimate ya no emite frontmatter Markdown: el contrato vigente de `src/borrador.ts` es JSON con `title`, `description`, `content`, `publishedAt`, `url` e `image`.
+12. El JSON no contiene `scope`, `section`, `status`, `slug`, `author` ni `sources`. Tampoco contiene una marca explícita que permita clasificar automáticamente cada historia como nacional.
+13. El flujo de GitHub de Extracción Ultimate sube esos JSON a la carpeta raíz `borradores/` de QSK. El propio PR declara que esa carpeta está fuera de `src/content/noticias` y que no agrega noticias al sitio.
+14. QSK carga únicamente archivos `.md` desde `src/content/noticias`. Por lo tanto, fusionar el PR del extractor no hace que una noticia aparezca en el sitio: hace falta un paso editorial/de importación que transforme el JSON aprobado al formato de contenido de QSK.
+15. Extracción Ultimate descarga imágenes localmente en su propio workspace y coloca en `image.src` una ruta como `/images/noticias/<archivo>`. El plan de envío a QSK incluye los JSON de `borradores/`, pero no se encontró evidencia de que también copie esos binarios a `public/images/noticias/`. La ruta puede quedar apuntando a un archivo inexistente en QSK.
+16. El contrato permite `image: null` y `image.alt: null`; el schema de QSK, cuando incluye imagen, exige archivo local existente y texto alternativo no vacío.
+17. El contrato permite `title`, `description` y `content` nulos. El schema de QSK exige titular y bajada no vacíos; el cuerpo de la noticia debe estar presente para crear un artículo útil.
+18. La navegación actual no tiene una página `/locales/`. Los destinos geográficos existentes son `/regiones/<slug>/`, `/municipios/<slug>/` y `/localidades/<slug>/`. El catálogo contiene las regiones Zona Sur y AMBA; once municipios; y las localidades Banfield y Ezpeleta. La portada enlaza actualmente a regiones y municipios, pero no a un índice general de Locales.
+19. `src/data/sections.ts` define grupos temáticos y enlaces directos. `src/components/Header.astro` los representa con un único nivel de desplegable; para que Locales agrupe rutas geográficas arbitrarias se necesitará ampliar el modelo de navegación o crear un hub local directo.
 
 ## 2. Decisions
 
@@ -61,9 +69,9 @@ El detalle de cómo se despliega `Locales` debe preservar el acceso actual a los
 
 No se modifica el criterio de `getLatestArticles()` ni el orden editorial de la portada en esta etapa. Las noticias nacionales no deben desplazar automáticamente el protagonismo local de QSK.
 
-### D7 — Sin publicación automática ni cambios en Extracción Ultimate
+### D7 — Extracción Ultimate sigue siendo un generador de borradores JSON
 
-Esta tarea adapta QSK para servir el contenido que llega desde Extracción Ultimate. No incorpora LLM, reescritura, workflow remoto ni publicación automática. Se mantiene el flujo de revisión mediante PR.
+No se modifica Extracción Ultimate ni se incorpora LLM, reescritura, workflow remoto o publicación automática en esta tarea. El PR del extractor continúa dejando JSON en `borradores/`, fuera de la colección publicada. QSK necesitará un paso de importación/promoción editorial explícito para convertir una historia revisada en un archivo Markdown de `src/content/noticias/`. El artículo importado debe quedar como borrador/revisión hasta que una persona lo apruebe para publicación.
 
 ## 3. Specifications
 
@@ -110,13 +118,36 @@ Actualizar la fuente de configuración y el componente Header para reflejar la n
 - apertura/cierre del menú móvil;
 - navegación a los destinos locales existentes.
 
-### S6 — Integración con Extracción Ultimate
+### S6 — Adaptación del JSON de Extracción Ultimate a contenido QSK
 
-Antes de cerrar la implementación:
-- verificar un ejemplo real de frontmatter producido por Extracción Ultimate;
-- confirmar que `scope: nacional` llega con el valor esperado;
-- confirmar compatibilidad de `title`, `description`, `slug`, `publishedAt`, `status`, `author`, `sources` e imagen con el schema actual;
-- documentar cualquier transformación necesaria en el contrato de integración, sin ampliar esta tarea al desarrollo del LLM.
+Contrato verificado en `src/borrador.ts` de Extracción Ultimate:
+
+```ts
+type Borrador = {
+  title: string | null;
+  description: string | null;
+  content: string | null;
+  publishedAt: string | null;
+  url: string;
+  image: { src: string; alt: string | null } | null;
+};
+```
+
+El flujo de envío coloca archivos `.json` en `borradores/` del repositorio QSK. Esa carpeta no forma parte de la colección de Astro; fusionar el PR no publica ni muestra la noticia.
+
+La adaptación QSK debe:
+- validar el JSON antes de importarlo;
+- preservar `url` como fuente original en `sources[]`;
+- convertir `content` en cuerpo Markdown sin reescribir ni inventar información;
+- derivar un `slug` URL-friendly del titular, sujeto a revisión de colisiones;
+- completar `author` con la atribución editorial acordada;
+- dejar `status: draft` o `review`, nunca publicar automáticamente;
+- asignar `scope` solo según la regla editorial que se acuerde (el JSON actual no lo trae);
+- no crear `image` si no existe una imagen utilizable con archivo copiado y `alt` válido;
+- resolver el significado de `publishedAt`: el JSON lo define como fecha original de la fuente, mientras que QSK lo usa como fecha de publicación/orden del artículo;
+- no inventar `section` cuando no haya clasificación temática.
+
+La promoción/importación debe contemplar copiar la imagen real al repositorio QSK si se conserva una ruta local, porque el extractor solo garantiza la descarga en su propio workspace.
 
 ### S7 — Pruebas
 
@@ -173,7 +204,9 @@ No declarar una verificación como exitosa si no fue ejecutada. Revisar el diff 
 
 ## 6. Riesgos y pendientes de auditoría
 
-- Confirmar el contrato de frontmatter real de Extracción Ultimate; el repositorio privado no pudo leerse durante esta auditoría.
+- Definir si todas las historias recibidas de Argentina.gob.ar se clasifican por defecto como `scope: nacional`, o si la persona editora asigna el alcance durante la revisión. El JSON actual no incluye `scope`.
+- Definir si `Locales` será un enlace a un nuevo hub `/locales/` o un desplegable que agrupe regiones y municipios. No existe hoy una ruta `/locales/`.
+- Resolver el tratamiento de `publishedAt` al importar: fecha original de la fuente o fecha de publicación en QSK.
+- Resolver cómo se transfieren las imágenes descargadas por Extracción Ultimate al repositorio QSK.
 - Inspeccionar en detalle la política de sitemap y las pruebas existentes antes de modificarla.
-- Revisar los destinos locales exactos que debe conservar el nuevo desplegable `Locales`.
 - Verificar si el repositorio tiene cambios recientes en `master` que requieran sincronizar la rama antes de implementar.
