@@ -19,7 +19,7 @@
 10. El contrato actual de borrador de Extracción Ultimate contiene `title`, `description`, `content`, `publishedAt`, `url` e `image`. Algunos campos pueden ser nulos; el cuerpo puede no estar disponible por completo.
 11. Las imágenes se utilizarán desde sus URL remotas originales. QSK no debe asumir que los archivos descargados en el workspace de Extracción Ultimate existen dentro de su repositorio.
 12. La incorporación es incremental: cada entrega contiene novedades, mientras QSK conserva el historial completo. Los registros ya incorporados no deben duplicarse.
-13. La ubicación y el mecanismo exactos con los que Extracción Ultimate entregará los archivos en QSK se coordinan en ese repositorio. QSK debe implementar el consumo del contrato acordado, sin mantener la carpeta `borradores/` como mecanismo de publicación de Nacional.
+13. El dataset Nacional de QSK vive en src/data/nacional.json y contiene un array acumulado de registros con el contrato Borrador (title, description, content, publishedAt, url, image). Cada PR de Extracción Ultimate debe preservar el historial existente y anexar únicamente novedades; no debe reemplazar el dataset por el lote nuevo. El cambio del destino de entrega se realiza en Extracción Ultimate.
 
 ## 2. Decisions
 
@@ -112,15 +112,17 @@ Cada entrega contiene novedades. QSK las incorpora al conjunto histórico sin el
 
 ### S2 — Consumo e historial Nacional
 
-Implementar una capa de datos para consumir las noticias nacionales entregadas por Extracción Ultimate.
+Implementar una capa de datos para consumir el dataset acumulado entregado por Extracción Ultimate.
 
-- Integrar únicamente los registros nuevos de cada entrega.
-- Conservar los registros previamente incorporados.
-- Deduplicar por URL original de forma determinista.
-- No reemplazar automáticamente un registro histórico cuando vuelva a recibirse la misma URL.
-- Asignar `scope: nacional` por procedencia, sin asignar `section`, `primaryTopic` ni `country`.
-- Mantener desacoplada la capa de datos del componente visual.
-- La ubicación final de los archivos de entrada se ajustará al contrato de entrega acordado con Extracción Ultimate.
+- La fuente es src/data/nacional.json: un array JSON acumulado con el contrato Borrador (title, description, content, publishedAt, url, image).
+- Cada PR del extractor debe anexar únicamente las novedades al array existente y conservar todos los registros anteriores; el archivo no representa un lote temporal.
+- Exigir título no vacío y URL original HTTP(S) de Argentina.gob.ar. Description, content, publishedAt e image pueden ser null.
+- Cuando exista imagen, exigir una URL remota HTTP(S); no copiar ni optimizar localmente los archivos.
+- Deduplicar por URL original de forma determinista y conservar la primera versión; una entrega repetida no sobrescribe un registro histórico.
+- Ordenar por fecha descendente; los registros sin fecha van al final y el slug estable resuelve empates.
+- Asignar scope: nacional por procedencia, sin agregar section, primaryTopic ni country.
+- Mantener desacoplada la capa de datos del componente visual y no duplicar la selección editorial del extractor.
+
 
 ### S3 — Página `/nacional/`
 
@@ -221,10 +223,9 @@ No declarar una verificación como exitosa si no fue ejecutada. Revisar el diff 
 11. El build y las pruebas aplicables pasan, o las fallas quedan identificadas con evidencia.
 12. Todo el trabajo queda aislado en `feat/national-hub`, sin cambios en `master`.
 
-## 6. Pendientes de coordinación y auditoría
+## 6. Coordinación para la primera entrega
 
-- Confirmar la ruta y el formato exactos con los que Extracción Ultimate entregará las novedades dentro de QSK. El cambio del destino de entrega se realiza en Extracción Ultimate.
-- Verificar el campo de fecha disponible y definir el orden de presentación cuando falte la fecha.
-- Revisar la política de sitemap y las pruebas existentes antes de modificarla.
-- Verificar si `feat/national-hub` necesita sincronizarse con cambios recientes de `master` antes de implementar.
-- Definir la organización visual de Locales sin asumir la creación de una nueva ruta.
+- Coordinar el cambio de destino en Extracción Ultimate para que sus PR actualicen src/data/nacional.json de forma acumulativa, anexando novedades al historial existente.
+- El builder actual de Extracción Ultimate todavía requiere párrafos extraídos para construir un borrador. QSK acepta content: null, pero entregar noticias sin cuerpo requerirá revisar ese requisito en el extractor, en un cambio separado.
+- Al recibir el primer PR real, verificar el contrato contra sus registros y comprobar que el historial previo se conserva.
+- Repetir las pruebas E2E con el dataset real cuando haya noticias incorporadas.

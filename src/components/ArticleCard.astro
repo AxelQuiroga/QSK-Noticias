@@ -1,38 +1,57 @@
 ---
 import { formatDate, slugify, type Article } from '../lib/articles';
+import type { NationalArticle } from '../lib/nacional';
 import { findLocationByName, locationSlug } from '../data/locations';
 import { responsiveImage } from '../lib/responsive-image';
 
 interface Props {
-  article: Article;
+  article: Article | NationalArticle;
   variant?: 'default' | 'featured' | 'compact';
 }
 
 const { article, variant = 'default' } = Astro.props;
-const { data } = article;
 const isFeatured = variant === 'featured';
+const isNational = 'scope' in article;
+const data = isNational ? article : article.data;
+const articleHref = isNational
+  ? `/nacional/${article.slug}/`
+  : `/noticias/${article.data.slug}/`;
+const categoryLabel = isNational ? 'Nacional' : article.data.section;
+const categoryHref = isNational
+  ? '/nacional/'
+  : article.data.section
+    ? `/secciones/${slugify(article.data.section)}/`
+    : null;
 
-// Imagen responsiva: variantes WebP generadas en `public/images/noticias/optimized/`.
-const imageProps = data.image
-  ? responsiveImage(
-      data.image.src,
-      isFeatured ? '(min-width: 1024px) 520px, 100vw' : '(min-width: 768px) 480px, 100vw',
-    )
-  : null;
-const sectionSlug = data.section ? slugify(data.section) : "";
+const imageProps =
+  !isNational && article.data.image
+    ? responsiveImage(
+        article.data.image.src,
+        isFeatured ? '(min-width: 1024px) 520px, 100vw' : '(min-width: 768px) 480px, 100vw',
+      )
+    : null;
+const imageSrc = isNational
+  ? article.image?.src
+  : imageProps?.src ?? article.data.image?.src;
+const imageAlt = isNational ? article.image?.alt ?? '' : '';
 
-const municipality = data.municipality ? findLocationByName(data.municipality) : undefined;
+const municipalityName = !isNational ? article.data.municipality : undefined;
+const municipality = municipalityName ? findLocationByName(municipalityName) : undefined;
 const municipalitySlug =
   municipality && municipality.type === 'municipio' ? locationSlug(municipality) : null;
+const publishedAt: Date | null = isNational
+  ? article.publishedAt ? new Date(article.publishedAt) : null
+  : article.data.publishedAt;
+const updatedAt = !isNational ? article.data.updatedAt : undefined;
 ---
 
 <article class:list={[
   'group overflow-hidden rounded-xl border border-border bg-surface transition-colors duration-200 hover:border-[#42698c]',
-  variant === 'featured' && data.image && 'grid lg:grid-cols-[1.08fr_0.92fr]',
+  variant === 'featured' && imageSrc && 'grid lg:grid-cols-[1.08fr_0.92fr]',
 ]}>
-  {data.image && variant !== 'compact' && (
+  {(imageSrc || isNational) && variant !== 'compact' && (
     <a
-      href={`/noticias/${data.slug}/`}
+      href={articleHref}
       class:list={[
         'block overflow-hidden bg-[#0b1c2e]',
         variant === 'featured' ? 'aspect-[16/9] lg:aspect-auto lg:min-h-[360px]' : 'aspect-[16/9]',
@@ -40,16 +59,32 @@ const municipalitySlug =
       tabindex="-1"
       aria-hidden="true"
     >
-      <img
-        src={imageProps?.src ?? data.image.src}
-        alt=""
-        srcset={imageProps?.srcset}
-        sizes={imageProps?.sizes}
-        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
-        loading={isFeatured ? 'eager' : 'lazy'}
-        fetchpriority={isFeatured ? 'high' : 'auto'}
-        decoding={isFeatured ? 'sync' : 'async'}
-      />
+      {imageSrc ? (
+        <>
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            srcset={imageProps?.srcset}
+            sizes={imageProps?.sizes}
+            data-national-card-image={isNational ? '' : undefined}
+            class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+            loading={isFeatured ? 'eager' : 'lazy'}
+            fetchpriority={isFeatured ? 'high' : 'auto'}
+            decoding={isFeatured ? 'sync' : 'async'}
+          />
+          {isNational && (
+            <div
+              data-national-card-fallback
+              hidden
+              class="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-[#102b45] to-[#071321] p-6 text-center text-xs font-semibold text-slate-300"
+            >Imagen no disponible</div>
+          )}
+        </>
+      ) : (
+        <div class="flex h-full min-h-40 items-center justify-center bg-gradient-to-br from-[#102b45] to-[#071321] p-6 text-center text-xs font-semibold text-slate-300">
+          Imagen no disponible
+        </div>
+      )}
     </a>
   )}
 
@@ -59,9 +94,11 @@ const municipalitySlug =
     variant === 'compact' && 'p-4',
   ]}>
     <div class="flex flex-wrap items-center gap-2 text-xs text-text-secondary">
-      <a href={`/secciones/${sectionSlug}/`} class="font-bold uppercase tracking-wider text-accent hover:underline">
-        {data.section}
-      </a>
+      {categoryLabel && categoryHref && (
+        <a href={categoryHref} class="font-bold uppercase tracking-wider text-accent hover:underline">
+          {categoryLabel}
+        </a>
+      )}
       {municipality && municipalitySlug && (
         <>
           <span aria-hidden="true" class="text-text-secondary/70">·</span>
@@ -76,12 +113,12 @@ const municipalitySlug =
       'mt-3 font-heading font-extrabold leading-tight tracking-tight text-text',
       variant === 'featured' ? 'text-2xl sm:text-3xl lg:text-4xl' : variant === 'compact' ? 'text-base' : 'text-lg sm:text-xl',
     ]}>
-      <a href={`/noticias/${data.slug}/`} class="decoration-accent/70 decoration-2 underline-offset-4 group-hover:underline">
+      <a href={articleHref} class="decoration-accent/70 decoration-2 underline-offset-4 group-hover:underline">
         {data.title}
       </a>
     </h3>
 
-    {variant !== 'compact' && (
+    {variant !== 'compact' && data.description && (
       <p class:list={[
         'mt-3 leading-relaxed text-text-secondary',
         variant === 'featured' ? 'text-base sm:text-lg' : 'text-sm',
@@ -90,16 +127,35 @@ const municipalitySlug =
       </p>
     )}
 
-    <div class="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-text-secondary">
-      <time datetime={data.publishedAt.toISOString()}>
-        {formatDate(data.publishedAt)}
-      </time>
-      {data.updatedAt && (
-        <>
-          <span aria-hidden="true">·</span>
-          <span>Actualizado: {formatDate(data.updatedAt)}</span>
-        </>
-      )}
-    </div>
+    {publishedAt && (
+      <div class="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-text-secondary">
+        <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+        {updatedAt && (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>Actualizado: {formatDate(updatedAt)}</span>
+          </>
+        )}
+      </div>
+    )}
   </div>
 </article>
+
+<script>
+  function bindNationalCardImageFallback() {
+    document.querySelectorAll<HTMLImageElement>('[data-national-card-image]').forEach((image) => {
+      if (image.dataset.fallbackBound === 'true') return;
+      image.dataset.fallbackBound = 'true';
+      const showFallback = () => {
+        image.hidden = true;
+        image.parentElement
+          ?.querySelector<HTMLElement>('[data-national-card-fallback]')
+          ?.removeAttribute('hidden');
+      };
+      image.addEventListener('error', showFallback, { once: true });
+      if (image.complete && image.naturalWidth === 0) showFallback();
+    });
+  }
+  bindNationalCardImageFallback();
+  document.addEventListener('astro:page-load', bindNationalCardImageFallback);
+</script>

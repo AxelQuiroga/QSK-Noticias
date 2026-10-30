@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SharePublication from '../../components/SharePublication.astro';
+import { formatDate } from '../../lib/articles';
+import { getNationalArticles, type NationalArticle } from '../../lib/nacional';
+
+export function getStaticPaths() {
+  return getNationalArticles().map((article) => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props as { article: NationalArticle };
+const publishedAt = article.publishedAt ? new Date(article.publishedAt) : null;
+const canonical = `/nacional/${article.slug}/`;
+const title = `${article.title} — QSK Noticias`;
+const description = article.description ?? 'Noticia nacional publicada por Argentina.gob.ar.';
+---
+
+<BaseLayout title={title} description={description} canonical={canonical}>
+  <article class="container-editorial py-10">
+    <nav aria-label="Miga de pan" class="mb-6">
+      <ol class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+        <li><a href="/" class="hover:text-text">Inicio</a></li>
+        <li aria-hidden="true">/</li>
+        <li><a href="/nacional/" class="hover:text-text">Nacional</a></li>
+        <li aria-hidden="true">/</li>
+        <li aria-current="page" class="max-w-64 truncate">{article.title}</li>
+      </ol>
+    </nav>
+
+    <header class="mx-auto max-w-3xl">
+      <a href="/nacional/" class="text-sm font-bold uppercase tracking-wider text-accent hover:underline">Nacional</a>
+      <h1 class="mt-3 font-heading text-3xl font-extrabold tracking-tight text-text sm:text-4xl">{article.title}</h1>
+      {article.description && <p class="mt-4 text-lg leading-relaxed text-text-secondary">{article.description}</p>}
+      {publishedAt && (
+        <div class="mt-4 text-sm text-text-secondary">
+          <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+        </div>
+      )}
+    </header>
+
+    <SharePublication
+      title={title}
+      description={description}
+      url={new URL(canonical, Astro.site ?? Astro.url).href}
+    />
+
+    {article.image ? (
+      <figure class="mx-auto mt-8 max-w-4xl overflow-hidden rounded-xl bg-[#0b1c2e]">
+        <img
+          data-national-image
+          src={article.image.src}
+          alt={article.image.alt ?? ''}
+          class="h-auto max-h-[620px] w-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <div
+          data-national-image-fallback
+          hidden
+          class="flex min-h-64 items-center justify-center bg-gradient-to-br from-[#102b45] to-[#071321] p-8 text-center text-sm font-semibold text-slate-300"
+        >Imagen no disponible</div>
+      </figure>
+    ) : (
+      <div class="mx-auto mt-8 flex min-h-48 max-w-4xl items-center justify-center rounded-xl bg-gradient-to-br from-[#102b45] to-[#071321] p-8 text-center text-sm font-semibold text-slate-300">
+        Imagen no disponible
+      </div>
+    )}
+
+    <div class="mx-auto mt-8 max-w-3xl">
+      {article.content && article.content.trim().length > 0 ? (
+        <div class="whitespace-pre-line text-base leading-relaxed text-text">{article.content}</div>
+      ) : (
+        <p class="rounded-lg border border-border bg-surface p-5 text-text-secondary">
+          El contenido completo de esta noticia no está disponible en QSK Noticias. Podés consultar la publicación original en la fuente.
+        </p>
+      )}
+
+      <aside class="mt-10 rounded-lg border border-border bg-surface p-5">
+        <h2 class="font-heading text-sm font-bold uppercase tracking-wider text-text-secondary">Fuente original</h2>
+        <p class="mt-2 text-sm text-text-secondary">Esta noticia fue publicada originalmente por Argentina.gob.ar.</p>
+        <a
+          href={article.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-3 inline-flex text-sm font-semibold text-accent underline-offset-4 hover:underline"
+        >Leer publicación original en Argentina.gob.ar</a>
+      </aside>
+
+      <nav class="mt-10" aria-label="Volver">
+        <a href="/nacional/" class="link-accent text-sm font-medium">← Volver a Nacional</a>
+      </nav>
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    ...(article.description ? { description: article.description } : {}),
+    ...(publishedAt ? { datePublished: publishedAt.toISOString() } : {}),
+    ...(article.image ? { image: article.image.src } : {}),
+    mainEntityOfPage: new URL(canonical, Astro.site ?? Astro.url).href,
+    isBasedOn: article.url,
+    publisher: { '@type': 'Organization', name: 'QSK Noticias' },
+    articleSection: 'Nacional',
+  })} />
+</BaseLayout>
+
+<script>
+  function bindNationalImageFallback() {
+    document.querySelectorAll<HTMLImageElement>('[data-national-image]').forEach((image) => {
+      if (image.dataset.fallbackBound === 'true') return;
+      image.dataset.fallbackBound = 'true';
+      const showFallback = () => {
+        image.hidden = true;
+        image.parentElement
+          ?.querySelector<HTMLElement>('[data-national-image-fallback]')
+          ?.removeAttribute('hidden');
+      };
+      image.addEventListener('error', showFallback, { once: true });
+      if (image.complete && image.naturalWidth === 0) showFallback();
+    });
+  }
+  bindNationalImageFallback();
+  document.addEventListener('astro:page-load', bindNationalImageFallback);
+</script>

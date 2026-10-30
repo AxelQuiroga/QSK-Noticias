@@ -103,8 +103,8 @@ test.describe('Escritorio: el menú hamburguesa no debe interferir', () => {
     await expect(nav).toBeVisible();
     await expect(toggle).toBeHidden();
 
-    // Navegar por la nav de escritorio (grupo "Ciudad") y seguir funcionando
-    await nav.getByRole('button', { name: 'Ciudad', exact: true }).click();
+    // Navegar por la nav de escritorio (grupo "Locales") y seguir funcionando
+    await nav.getByRole('button', { name: 'Locales', exact: true }).click();
     await nav.locator('a', { hasText: 'Tránsito' }).click();
     await expect(page).toHaveURL(/\/secciones\/transito/);
     await expect(nav).toBeVisible();

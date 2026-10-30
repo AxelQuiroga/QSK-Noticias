@@ -48,11 +48,11 @@ async function abrirMenuMovil(page: Page) {
 test.describe('Header de escritorio · grupos', () => {
   test.use({ viewport: { width: 1280, height: 900 } });
 
-  test('muestra Portada, los grupos, los accesos directos y Buscar', async ({ page }) => {
+  test('muestra Inicio, los grupos, los accesos directos y Buscar', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
 
-    await expect(nav.getByRole('link', { name: 'Portada', exact: true })).toBeVisible();
+    await expect(nav.getByRole('link', { name: 'Inicio', exact: true })).toBeVisible();
     for (const group of NAV_GROUPS) {
       await expect(nav.getByRole('button', { name: group.label, exact: true })).toBeVisible();
     }
@@ -82,7 +82,7 @@ test.describe('Header de escritorio · grupos', () => {
         }),
       );
 
-    expect(entradas).toEqual(['Portada', ...ETIQUETAS_NAV, 'Buscar']);
+    expect(entradas).toEqual(['Inicio', ...ETIQUETAS_NAV, 'Buscar']);
   });
 
   test('cada grupo abre con clic y deja visibles solo sus secciones', async ({ page }) => {
@@ -111,25 +111,21 @@ test.describe('Header de escritorio · grupos', () => {
     }
   });
 
-  test('mantiene un solo menú abierto a la vez', async ({ page }) => {
+  test('cierra el desplegable Locales al navegar a Nacional', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
-    const primerGrupo = nav.getByRole('button', { name: grupoDe(0).label, exact: true });
-    const comunidad = nav.getByRole('button', { name: 'Comunidad', exact: true });
+    const locales = nav.getByRole('button', { name: 'Locales', exact: true });
 
-    await primerGrupo.click();
-    await expect(primerGrupo).toHaveAttribute('aria-expanded', 'true');
-
-    await comunidad.click();
-    await expect(comunidad).toHaveAttribute('aria-expanded', 'true');
-    await expect(primerGrupo).toHaveAttribute('aria-expanded', 'false');
-    await expect(nav.locator(`a[href="${sectionHref(primeraSeccionDe(0))}"]`)).toBeHidden();
+    await locales.click();
+    await expect(locales).toHaveAttribute('aria-expanded', 'true');
+    await nav.getByRole('link', { name: 'Nacional', exact: true }).click();
+    await expect(page).toHaveURL(/nacional\/$/);
   });
 
   test('cierra con Escape y devuelve el foco al disparador', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
-    const trigger = nav.getByRole('button', { name: 'Ciudad', exact: true });
+    const trigger = nav.getByRole('button', { name: 'Locales', exact: true });
 
     await trigger.click();
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
@@ -139,19 +135,19 @@ test.describe('Header de escritorio · grupos', () => {
     await expect(nav.locator('a[href="/secciones/transito/"]')).toBeHidden();
 
     const enfocado = await page.evaluate(() => document.activeElement?.textContent?.trim());
-    expect(enfocado).toContain('Ciudad');
+    expect(enfocado).toContain('Locales');
   });
 
   test('cierra al hacer clic fuera del menú', async ({ page }) => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
-    const trigger = nav.getByRole('button', { name: 'Comunidad', exact: true });
+    const trigger = nav.getByRole('button', { name: 'Locales', exact: true });
 
     await trigger.click();
     await expect(trigger).toHaveAttribute('aria-expanded', 'true');
 
     // Clic en un elemento no interactivo del contenido.
-    await page.getByRole('heading', { name: 'Secciones' }).click();
+    await page.mouse.click(1200, 850);
     await expect(trigger).toHaveAttribute('aria-expanded', 'false');
     // El cierre fue por el clic afuera, no por una navegación.
     await expect(page).toHaveURL(/\/$/);
@@ -180,7 +176,7 @@ test.describe('Header de escritorio · grupos', () => {
     await page.goto('/');
     const nav = page.locator('nav[aria-label="Navegación principal"]');
 
-    await nav.getByRole('button', { name: 'Ciudad', exact: true }).click();
+    await nav.getByRole('button', { name: 'Locales', exact: true }).click();
     await nav.locator('a[href="/secciones/transito/"]').click();
 
     await expect(page).toHaveURL(/\/secciones\/transito/);
@@ -204,7 +200,7 @@ test.describe('Header de escritorio · grupos', () => {
     ];
 
     const verificarGrupo = async (navegaciones: number) => {
-      const trigger = navEscritorio(page).getByRole('button', { name: 'Ciudad', exact: true });
+      const trigger = navEscritorio(page).getByRole('button', { name: 'Locales', exact: true });
 
       await trigger.click();
       await expect(
@@ -225,8 +221,11 @@ test.describe('Header de escritorio · grupos', () => {
     await verificarGrupo(0);
 
     for (const [indice, destino] of destinos.entries()) {
-      // Se navega con enlaces directos (fuera de desplegables) y vía ClientRouter,
-      // que es justo el camino que reemplaza el header.
+      // Se navega por el desplegable Locales y el acceso directo Buscar,
+      // verificando ClientRouter en ambos caminos.
+      if (destino.startsWith('/secciones/')) {
+        await navEscritorio(page).getByRole('button', { name: 'Locales', exact: true }).click();
+      }
       await navEscritorio(page).locator(`a[href="${destino}"]`).click();
       await expect(page).toHaveURL(new RegExp(destino));
       await verificarGrupo(indice + 1);
@@ -274,7 +273,7 @@ test.describe('Menú móvil · grupos', () => {
     const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
     await expect(menu).toBeVisible();
 
-    await expect(menu.getByRole('link', { name: 'Portada', exact: true })).toBeVisible();
+    await expect(menu.getByRole('link', { name: 'Inicio', exact: true })).toBeVisible();
 
     for (const group of NAV_GROUPS) {
       await expect(menu.getByRole('button', { name: group.label, exact: true })).toBeVisible();
@@ -294,7 +293,7 @@ test.describe('Menú móvil · grupos', () => {
     await page.locator('#menu-toggle').click();
 
     const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
-    const trigger = menu.getByRole('button', { name: 'Ciudad', exact: true });
+    const trigger = menu.getByRole('button', { name: 'Locales', exact: true });
     const transito = menu.locator('a[href="/secciones/transito/"]');
 
     await trigger.click();
@@ -351,9 +350,9 @@ test.describe('Menú móvil · grupos', () => {
     // Misma regresión que en escritorio, pero por el camino del menú móvil: el
     // usuario abre el hamburguesa, navega a otra sección, vuelve a abrirlo y
     // espera que las opciones salgan. Se verifica tras cada navegación.
-    const expandirCiudad = async (navegaciones: number) => {
+    const expandirLocales = async (navegaciones: number) => {
       const menu = await abrirMenuMovil(page);
-      const trigger = menu.getByRole('button', { name: 'Ciudad', exact: true });
+      const trigger = menu.getByRole('button', { name: 'Locales', exact: true });
 
       await trigger.click();
       await expect(
@@ -370,21 +369,23 @@ test.describe('Menú móvil · grupos', () => {
 
     await page.goto('/');
 
-    let trigger = await expandirCiudad(0);
+    let trigger = await expandirLocales(0);
     await trigger.click();
+    await menuMovil(page).getByRole('button', { name: 'Locales', exact: true }).click();
     await menuMovil(page).locator('a[href="/secciones/deportes/"]').click();
     await expect(page).toHaveURL(/\/secciones\/deportes/);
 
-    trigger = await expandirCiudad(1);
+    trigger = await expandirLocales(1);
     await trigger.click();
     await menuMovil(page).locator('a[href="/buscar/"]').click();
     await expect(page).toHaveURL(/\/buscar/);
 
-    trigger = await expandirCiudad(2);
+    trigger = await expandirLocales(2);
     await trigger.click();
+    await menuMovil(page).getByRole('button', { name: 'Locales', exact: true }).click();
     await menuMovil(page).locator('a[href="/secciones/economia/"]').click();
     await expect(page).toHaveURL(/\/secciones\/economia/);
 
-    await expandirCiudad(3);
+    await expandirLocales(3);
   });
 });

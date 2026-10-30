@@ -162,7 +162,7 @@ const news = defineCollection({
       }
 
       // Validate section is required for published articles
-      if (data.status === "published" && !data.section) {
+      if (data.status === "published" && !data.section && data.scope !== "nacional") {
         ctx.addIssue({
           code: "custom",
           path: ["section"],

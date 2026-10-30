@@ -10,11 +10,11 @@ test.describe('Navegación', () => {
       await page.locator('#menu-toggle').click();
       const menu = page.getByRole('navigation', { name: 'Navegación móvil' });
       // "Tránsito" vive dentro del grupo "Ciudad": hay que expandirlo.
-      await menu.getByRole('button', { name: 'Ciudad', exact: true }).click();
+      await menu.getByRole('button', { name: 'Locales', exact: true }).click();
       await menu.locator('a', { hasText: 'Tránsito' }).click();
     } else {
       const nav = page.locator('nav[aria-label="Navegación principal"]');
-      await nav.getByRole('button', { name: 'Ciudad', exact: true }).click();
+      await nav.getByRole('button', { name: 'Locales', exact: true }).click();
       await nav.locator('a', { hasText: 'Tránsito' }).click();
     }
 
