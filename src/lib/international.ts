@@ -52,6 +52,7 @@ export const COUNTRY_CODES = {
   UA: 'Ucrania',
   RU: 'Rusia',
   RS: "Serbia",
+  AL: "Albania",
   
   // Asia
   JP: 'Japón',
@@ -175,6 +176,7 @@ export const COUNTRY_TO_REGION: Record<CountryCode, GeographicRegion> = {
   UA: GEOGRAPHIC_REGIONS.EUROPE,
   RU: GEOGRAPHIC_REGIONS.EUROPE,
   RS: GEOGRAPHIC_REGIONS.EUROPE,
+  AL: GEOGRAPHIC_REGIONS.EUROPE,
   
   // Asia
   JP: GEOGRAPHIC_REGIONS.ASIA,
