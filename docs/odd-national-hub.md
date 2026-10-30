@@ -1,0 +1,179 @@
+# ODD — Hub Nacional
+
+**Estado:** propuesta de implementación  
+**Rama:** `feat/national-hub`  
+**Base:** `master`  
+**Alcance:** servir en QSK Noticias las noticias nacionales generadas por Extracción Ultimate y adaptar la navegación principal para exponer el nuevo hub.
+
+## 1. Observations
+
+1. El schema de noticias ya admite `scope: nacional`, pero el campo es opcional.
+2. El schema exige actualmente `section` para todo artículo publicado. Esa regla impide publicar noticias nacionales sin tema editorial.
+3. `section` y `primaryTopic` representan clasificación temática; `scope` representa alcance geográfico. No deben confundirse.
+4. No existe actualmente una consulta dedicada `getNationalArticles()` en `src/lib/articles.ts`.
+5. Existe un hub independiente `/internacional/` que filtra artículos publicados por alcance internacional.
+6. El header se construye desde `NAV_ITEMS` en `src/data/sections.ts`. Hoy ofrece Portada, grupos temáticos, enlaces directos e Internacional.
+7. El enlace Buscar existe tanto en navegación desktop como móvil y debe conservarse.
+8. `ArticleCard.astro` presupone que cada artículo tiene `section` y construye un enlace `/secciones/<slug>/`. Una noticia nacional sin sección produciría una etiqueta/enlace incorrectos.
+9. La portada utiliza `getLatestArticles()` sin filtrar por alcance. Cambiar ese comportamiento podría desplazar noticias locales y queda fuera del objetivo mínimo.
+10. La política del sitemap y la verificación de build deben revisarse al incorporar `/nacional/`.
+11. No se pudo verificar todavía el frontmatter exacto que emite Extracción Ultimate desde el repositorio privado. La compatibilidad real de sus campos queda como verificación obligatoria antes de dar por terminado el flujo.
+
+## 2. Decisions
+
+### D1 — Nacional es un hub geográfico independiente
+
+`Nacional` no se agrega al catálogo de temas `TOPICS/SECTIONS`. Su identidad se expresa mediante `scope: nacional` y su ruta propia es `/nacional/`.
+
+### D2 — Tema y alcance son dimensiones independientes
+
+- `scope`: alcance geográfico (`local`, `regional`, `provincial`, `nacional`, `internacional`).
+- `section` / `primaryTopic`: tema editorial.
+- `country`: reservado a noticias con `scope: internacional`; no se asigna `AR` a noticias nacionales.
+
+Una noticia nacional puede tener tema editorial o no tenerlo. Si tiene un tema válido, conserva su clasificación temática y puede seguir apareciendo en el feed temático correspondiente.
+
+### D3 — Compatibilidad editorial de artículos nacionales sin tema
+
+Se permitirá que un artículo publicado sin `section` únicamente cuando su `scope` sea `nacional`. Las noticias publicadas de otros alcances seguirán requiriendo sección hasta que exista una decisión editorial distinta.
+
+### D4 — Tarjetas con fallback contextual
+
+- Si existe `section`, la tarjeta muestra el tema y enlaza a su ruta temática actual.
+- Si falta `section` y el artículo es nacional, muestra `Nacional` y enlaza a `/nacional/`.
+- No se generan enlaces vacíos ni rutas `/secciones//`.
+
+### D5 — Navegación principal
+
+La navegación visible se simplifica a:
+
+`Inicio | Locales | Nacional | Internacional | Buscar`
+
+- `Inicio` apunta a `/`.
+- `Locales` conserva acceso a la cobertura local/AMBA y sus destinos actuales, reorganizados como agrupación si corresponde.
+- `Nacional` apunta a `/nacional/`.
+- `Internacional` apunta a `/internacional/`.
+- `Buscar` sigue visible y funcional en desktop y móvil.
+
+El detalle de cómo se despliega `Locales` debe preservar el acceso actual a los destinos locales relevantes, sin convertir los grupos de navegación en secciones editoriales.
+
+### D6 — Alcance acotado de portada
+
+No se modifica el criterio de `getLatestArticles()` ni el orden editorial de la portada en esta etapa. Las noticias nacionales no deben desplazar automáticamente el protagonismo local de QSK.
+
+### D7 — Sin publicación automática ni cambios en Extracción Ultimate
+
+Esta tarea adapta QSK para servir el contenido que llega desde Extracción Ultimate. No incorpora LLM, reescritura, workflow remoto ni publicación automática. Se mantiene el flujo de revisión mediante PR.
+
+## 3. Specifications
+
+### S1 — Validación del contenido
+
+- Aceptar noticia `published` con `scope: nacional` y sin `section`.
+- Aceptar noticia nacional con `section` válida.
+- Rechazar noticia publicada de alcance no nacional sin `section`.
+- Rechazar valores de `section` fuera del catálogo.
+- Mantener la regla: `scope: internacional` requiere `country`.
+- Mantener la regla: `country` no puede aparecer en noticias que no sean internacionales.
+- No exigir `country: AR` para noticias nacionales.
+
+### S2 — Consulta de noticias nacionales
+
+Agregar `getNationalArticles()` o equivalente en `src/lib/articles.ts`:
+- parte de los artículos publicados mediante la función compartida existente;
+- filtra exclusivamente `scope === 'nacional'`;
+- conserva el orden descendente por fecha y el desempate estable por slug;
+- no duplica artículos que también tengan un tema editorial.
+
+### S3 — Página `/nacional/`
+
+Crear una página estática con:
+- título y descripción editoriales propios;
+- listado de artículos nacionales;
+- tarjetas existentes;
+- estado vacío claro cuando todavía no haya noticias;
+- canonical correcto;
+- inclusión en sitemap si la política de indexación lo permite.
+
+La presentación puede tomar como referencia el hub Internacional, pero sin copiar su clasificación por países.
+
+### S4 — ArticleCard
+
+Agregar el fallback para noticias nacionales sin `section`, preservando exactamente el comportamiento de artículos que sí tienen sección. Revisar usos existentes para evitar regresiones en portada, búsqueda, municipios, regiones y feeds.
+
+### S5 — Header responsive
+
+Actualizar la fuente de configuración y el componente Header para reflejar la navegación acordada en escritorio y móvil. Mantener:
+- el botón Buscar;
+- accesibilidad por teclado;
+- atributos ARIA y comportamiento de disclosure;
+- apertura/cierre del menú móvil;
+- navegación a los destinos locales existentes.
+
+### S6 — Integración con Extracción Ultimate
+
+Antes de cerrar la implementación:
+- verificar un ejemplo real de frontmatter producido por Extracción Ultimate;
+- confirmar que `scope: nacional` llega con el valor esperado;
+- confirmar compatibilidad de `title`, `description`, `slug`, `publishedAt`, `status`, `author`, `sources` e imagen con el schema actual;
+- documentar cualquier transformación necesaria en el contrato de integración, sin ampliar esta tarea al desarrollo del LLM.
+
+### S7 — Pruebas
+
+Agregar pruebas unitarias para:
+- schema nacional sin sección válida;
+- nacional con sección válida;
+- local/provincial sin sección inválido;
+- internacional sin país inválido;
+- país en noticia no internacional inválido;
+- sección desconocida inválida;
+- consulta nacional filtrada y ordenada;
+- fallback de ArticleCard sin sección;
+- conservación de enlaces temáticos cuando sí hay sección.
+
+Agregar pruebas E2E para:
+- ruta `/nacional/`;
+- listado y estado vacío;
+- exclusión de noticias de otros alcances;
+- navegación desktop y móvil;
+- acceso a Buscar;
+- preservación de rutas locales e Internacional.
+
+### S8 — Verificación de calidad
+
+Ejecutar, según disponibilidad del entorno:
+- `npm test`
+- `npm run typecheck`
+- `npm run lint`
+- `npm run build` (incluye generación del índice de búsqueda y verificación del sitemap mediante los hooks configurados)
+- `npm run test:e2e`
+
+No declarar una verificación como exitosa si no fue ejecutada. Revisar el diff final y comprobar que no se modificó `master`.
+
+## 4. Fuera de alcance
+
+- Rehacer el diseño completo de la portada.
+- Cambiar el criterio de selección de noticias destacadas o últimas noticias.
+- Rediseñar el hub Internacional.
+- Crear una sección temática llamada Nacional.
+- Añadir filtros nacionales a la búsqueda en esta primera etapa, salvo que una dependencia técnica lo vuelva imprescindible.
+- Cambiar el extractor, incorporar LLM o automatizar la ejecución del extractor.
+- Publicar directamente en producción o fusionar el PR.
+
+## 5. Criterios de aceptación
+
+1. Una noticia nacional válida generada por el flujo de Extracción Ultimate aparece en `/nacional/`.
+2. La página no mezcla noticias locales, regionales, provinciales o internacionales.
+3. Las noticias nacionales sin tema se renderizan con etiqueta y enlace Nacional correctos.
+4. Las noticias nacionales con tema conservan el acceso a su sección temática.
+5. La navegación queda como Inicio, Locales, Nacional, Internacional y Buscar, en escritorio y móvil.
+6. Las rutas y funciones existentes de Locales, Internacional y Buscar siguen operativas.
+7. El build y las pruebas aplicables pasan, o las fallas preexistentes/nuevas quedan identificadas con evidencia.
+8. Todo el trabajo queda aislado en `feat/national-hub`, sin cambios en `master`.
+
+## 6. Riesgos y pendientes de auditoría
+
+- Confirmar el contrato de frontmatter real de Extracción Ultimate; el repositorio privado no pudo leerse durante esta auditoría.
+- Inspeccionar en detalle la política de sitemap y las pruebas existentes antes de modificarla.
+- Revisar los destinos locales exactos que debe conservar el nuevo desplegable `Locales`.
+- Verificar si el repositorio tiene cambios recientes en `master` que requieran sincronizar la rama antes de implementar.
