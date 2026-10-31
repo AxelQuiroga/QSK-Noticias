@@ -24,9 +24,11 @@ export async function getFeaturedArticle(): Promise<Article | null> {
   return articles.find((a) => a.data.featured) ?? articles[0] ?? null;
 }
 
-export async function getLatestArticles(count = 10): Promise<Article[]> {
+export async function getLatestArticles(count = 10, excludeSlug?: string): Promise<Article[]> {
   const articles = await getPublishedArticles();
-  return articles.slice(0, count);
+  return articles
+  .filter((article) => article.data.slug !== excludeSlug)
+  .slice(0, count);
 }
 
 export async function getArticlesBySection(section: string): Promise<Article[]> {

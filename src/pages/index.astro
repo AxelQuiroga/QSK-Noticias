@@ -11,7 +11,7 @@ import { SECTIONS } from '../data/sections';
 import { getLocationsByType, locationSlug } from '../data/locations';
 
 const featured = await getFeaturedArticle();
-const latest = await getLatestArticles(6);
+const latest = await getLatestArticles(6, featured?.data.slug);
 const sections = SECTIONS;
 const municipios = getLocationsByType('municipio');
 const regiones = getLocationsByType('region');
