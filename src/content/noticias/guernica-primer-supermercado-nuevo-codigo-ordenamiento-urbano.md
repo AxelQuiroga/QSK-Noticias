@@ -10,7 +10,7 @@ provincia: "Buenos Aires"
 scope: "local"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-10-31"
-status: "review"
+status: "published"
 featured: false
 sources:
   - name: "Gobierno de la Provincia de Buenos Aires — Presentación del Código de Ordenamiento Urbano"
