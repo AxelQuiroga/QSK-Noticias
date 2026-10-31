@@ -18,19 +18,12 @@ sources:
   - name: "Municipalidad de San Vicente"
     url: "https://sanvicente.gob.ar/"
     description: "Información municipal sobre las intervenciones viales e hidráulicas anunciadas el 29 de octubre de 2026."
-  - name: "El Diario Sur — San Vicente y Domselaar: avanzan las obras viales e hidráulicas"
-    url: "https://www.eldiariosur.com/san-vicente/2026/10/29/san-vicente-domselaar-avanzan-las-obras-viales-hidraulicas-para-mejorar-la-circulacion-84015.html"
-    description: "Detalle de los trabajos y su ubicación en San Vicente y Domselaar."
-  - name: "El Diario Sur — Comienza el ensanche de la avenida Sarmiento en San Vicente"
-    url: "https://www.eldiariosur.com/san-vicente/2026/10/27/comienza-el-ensanche-de-la-avenida-sarmiento-en-san-vicente-corte-desvios-para-autos-colectivos-83958.html"
-    description: "Información sobre el inicio de obra, el corte temporal y los desvíos de colectivos."
   - name: "Código Baires — Avanzan las obras viales e hidráulicas en Domselaar y San Vicente"
     url: "https://www.codigobaires.com.ar/2026-10-29/avanzan-las-obras-viales-e-hidraulicas-en-domseelar-y-san-vicente-251609/"
     description: "Cobertura complementaria de las intervenciones anunciadas el 29 de octubre."
 image:
   src: "/images/noticias/san-vicente-sarmiento-obra.jpg"
   alt: "Camión y maquinaria vial trabajan sobre la avenida Sarmiento durante las tareas de ensanche y repavimentación en San Vicente."
-  attribution: "Foto: El Diario Sur."
 ---
 
 El Municipio de San Vicente informó el avance de distintas intervenciones viales e hidráulicas en San Vicente y Domselaar. Los trabajos incluyen la ampliación y repavimentación de la avenida Sarmiento, tareas sobre desagües pluviales y la reconstrucción de una calle en Domselaar.
@@ -43,13 +36,11 @@ Una de las intervenciones principales se desarrolla sobre la avenida Sarmiento, 
 
 También se prevén nuevas dársenas y refugios para el transporte público. El objetivo informado es ordenar la circulación y mejorar la conexión entre distintos sectores de San Vicente.
 
-Los primeros trabajos comenzaron el 27 de octubre en el sector ubicado detrás de la estación, en las inmediaciones del cruce de Rodolfo Walsh y Arturo Illia. El inicio de la obra implicó un corte temporal y modificaciones en los recorridos de colectivos.
-
-Según la información publicada ese día por El Diario Sur, los servicios en dirección a Ruta 6 debían desviarse por Walsh, Brown y Lincoln para retomar Sarmiento. En sentido contrario, el recorrido informado era por Alberdi, Brown y Amoretti. Estos desvíos corresponden al esquema comunicado al comienzo de los trabajos y pueden modificarse a medida que avance la obra.
+Los primeros trabajos comenzaron el 27 de octubre en el sector ubicado detrás de la estación, en las inmediaciones del cruce de Rodolfo Walsh y Arturo Illia. El inicio de la obra implicó modificaciones temporales en la circulación.
 
 ![Una excavadora trabaja en una zanja de desagüe pluvial en San Vicente.](/images/noticias/san-vicente-desagues-pluviales.jpg)
 
-*Las tareas de excavación y limpieza forman parte de las intervenciones hidráulicas informadas en el distrito. Foto: El Diario Sur.*
+*Las tareas de excavación y limpieza forman parte de las intervenciones hidráulicas informadas en el distrito.*
 
 ## Desagües pluviales: qué trabajos se realizan
 
@@ -76,6 +67,4 @@ Al 31 de octubre, las fuentes consultadas describen trabajos en curso. No inform
 **Fuentes consultadas**
 
 - [Municipalidad de San Vicente](https://sanvicente.gob.ar/).
-- [El Diario Sur: San Vicente y Domselaar, obras viales e hidráulicas](https://www.eldiariosur.com/san-vicente/2026/10/29/san-vicente-domselaar-avanzan-las-obras-viales-hidraulicas-para-mejorar-la-circulacion-84015.html).
-- [El Diario Sur: inicio del ensanche de la avenida Sarmiento y desvíos](https://www.eldiariosur.com/san-vicente/2026/10/27/comienza-el-ensanche-de-la-avenida-sarmiento-en-san-vicente-corte-desvios-para-autos-colectivos-83958.html).
 - [Código Baires: obras viales e hidráulicas en Domselaar y San Vicente](https://www.codigobaires.com.ar/2026-10-29/avanzan-las-obras-viales-e-hidraulicas-en-domseelar-y-san-vicente-251609/).

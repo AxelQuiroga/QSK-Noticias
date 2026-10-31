@@ -13,9 +13,6 @@ publishedAt: "2026-10-31"
 status: "review"
 featured: false
 sources:
-  - name: "El Diario Sur — Un chino rompe con 24 años de prohibición de supermercados en Guernica"
-    url: "https://www.eldiariosur.com/pte-peron/2026/8/5/un-chino-rompe-con-24-anos-de-prohibicion-de-supermercados-en-guernica-82204.html"
-    description: "Cobertura sobre la apertura del Súper Oso, los antecedentes de la ordenanza de 1999 y las condiciones del nuevo código."
   - name: "Gobierno de la Provincia de Buenos Aires — Presentación del Código de Ordenamiento Urbano"
     url: "https://www.gba.gob.ar/gobierno/noticias/se_present%C3%B3_el_nuevo_c%C3%B3digo_de_ordenamiento_urbano_de_presidente_per%C3%B3n"
     description: "Información oficial sobre la elaboración y convalidación provincial del código en 2023."
@@ -25,7 +22,6 @@ sources:
 image:
   src: "/images/noticias/guernica-super-oso.png"
   alt: "Fachada del supermercado Súper Oso en Guernica, con su cartel y entrada sobre la colectora de la Ruta 210."
-  attribution: "Foto: El Diario Sur."
 ---
 
 En Guernica, la apertura de un supermercado tuvo un significado que excede la inauguración de un nuevo comercio. El **Súper Oso**, instalado sobre la colectora de la Ruta 210, entre las calles Bracco y Alem, se convirtió en el primer supermercado que comenzó a funcionar en el distrito bajo el nuevo Código de Ordenamiento Urbano.
@@ -34,7 +30,7 @@ El local abrió sus puertas durante la última semana de julio de 2026. La noved
 
 ## Qué establecía la ordenanza de 1999
 
-La restricción estaba contenida en la ordenanza 212, sancionada en 1999. Según el texto citado por El Diario Sur, la norma disponía el “no otorgamiento” de habilitaciones para distintos rubros comerciales, entre ellos hipermercados, supermercados y mercados.
+La restricción estaba contenida en la ordenanza 212, sancionada en 1999. La norma disponía el “no otorgamiento” de habilitaciones para distintos rubros comerciales, entre ellos hipermercados, supermercados y mercados.
 
 La medida había sido planteada como provisoria, a la espera de que el distrito contara con un código de ordenamiento urbano. Sin embargo, esa regulación se mantuvo durante 24 años y condicionó la instalación de este tipo de establecimientos en Guernica.
 
@@ -42,7 +38,7 @@ Durante ese período existió una excepción: el supermercado Dado, que ya funci
 
 ![Fotografía del texto de la ordenanza municipal 212 de Presidente Perón, sancionada en 1999.](/images/noticias/guernica-ordenanza-212.jpg)
 
-*La ordenanza 212 fue el antecedente normativo que restringió durante años la habilitación de supermercados en el distrito. Foto: El Diario Sur.*
+*La ordenanza 212 fue el antecedente normativo que restringió durante años la habilitación de supermercados en el distrito.*
 
 ## Qué cambió con el nuevo Código de Ordenamiento Urbano
 
@@ -50,7 +46,7 @@ El nuevo Código de Ordenamiento Urbano de Presidente Perón fue presentado el 2
 
 El código estableció criterios y zonificaciones para orientar el desarrollo territorial del partido. En materia comercial, el nuevo marco hizo posible la instalación de supermercados, a diferencia de la restricción general que había regido desde 1999.
 
-Eso no significa que cualquier comercio pueda instalarse sin condiciones. La cobertura de El Diario Sur señala que el código contempla restricciones, entre ellas la cercanía respecto de negocios preexistentes. Para conocer el alcance preciso de cada condición es necesario remitirse al texto normativo y a la zonificación aplicable al inmueble.
+Eso no significa que cualquier comercio pueda instalarse sin condiciones. Las condiciones concretas de instalación deben verificarse en el texto normativo y la zonificación aplicable al inmueble.
 
 ## Dónde abrió el Súper Oso
 
@@ -58,7 +54,7 @@ El establecimiento funciona en la colectora de la Ruta 210, entre Bracco y Alem,
 
 ![Vista del frente del supermercado Súper Oso en Guernica.](/images/noticias/guernica-super-oso-local.jpg)
 
-*El local abrió durante la última semana de julio de 2026. Foto: El Diario Sur.*
+*El local abrió durante la última semana de julio de 2026.*
 
 La novedad también permite distinguir dos situaciones que a veces se confunden: el comercio Dado ya existía antes de la ordenanza de 1999, mientras que el Súper Oso es el primer supermercado que abrió luego de la modificación del régimen urbanístico.
 
@@ -70,6 +66,5 @@ Por ahora, el dato comprobable es puntual: después de 24 años de restricciones
 
 **Fuentes consultadas**
 
-- [El Diario Sur: Un chino rompe con 24 años de prohibición de supermercados en Guernica](https://www.eldiariosur.com/pte-peron/2026/8/5/un-chino-rompe-con-24-anos-de-prohibicion-de-supermercados-en-guernica-82204.html).
 - [Gobierno de la Provincia de Buenos Aires: presentación del nuevo Código de Ordenamiento Urbano](https://www.gba.gob.ar/gobierno/noticias/se_present%C3%B3_el_nuevo_c%C3%B3digo_de_ordenamiento_urbano_de_presidente_per%C3%B3n).
 - [Municipalidad de Presidente Perón: Código de Ordenamiento Territorial](https://www.presidenteperon.gov.ar/docs/CODIGODEORDENAMIENTOTERRITORIAL-PRESIDENTEPERON.pdf).
