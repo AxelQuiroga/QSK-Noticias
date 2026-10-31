@@ -245,14 +245,16 @@ export const getLocationContext = (name: string): LocationContext | undefined =>
  * administrativa (`parentId`). Devuelve cadenas vacías si no se pueden
  * determinar, en vez de inventar un valor.
  */
-export const getProvinciaOf = (name: string): string =>
-  (() => {
-    const location = findLocationByName(name);
-    return location ? (getAncestorOfType(location, 'provincia')?.name ?? '') : '';
-  })();
+export const getProvinciaOf = (name: string): string => {
+  const location = findLocationByName(name);
+  if (!location) return '';
 
-export const getPaisOf = (name: string): string =>
-  (() => {
-    const location = findLocationByName(name);
-    return location ? (getAncestorOfType(location, 'pais')?.name ?? '') : '';
-  })();
+  return getAncestorOfType(location, 'provincia')?.name ?? '';
+};
+
+export const getPaisOf = (name: string): string => {
+  const location = findLocationByName(name);
+  if (!location) return '';
+
+  return getAncestorOfType(location, 'pais')?.name ?? '';
+};
