@@ -33,7 +33,7 @@ test.describe('Portada', () => {
 
   test('muestra las últimas noticias', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('heading', { name: 'Últimas noticias' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Últimas noticias', exact: true })).toBeVisible();
     const cards = page.locator('main article');
     await expect(cards.first()).toBeVisible();
   });
