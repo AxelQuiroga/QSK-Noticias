@@ -26,10 +26,6 @@ image:
   src: "https://cdn.jorgeochipinti.online/tenants/019dfe37-2133-7e6c-9876-cb3f018a1a75/media/019fd40d-2000-7abb-90d3-cb53192487fe/og.jpg?v=msgnvvr7"
   alt: "Fachada del Súper Oso, el supermercado que abrió en la colectora de la Ruta 210, en Guernica."
   attribution: "Foto enviada por WhatsApp a Diario Canning el 5 de agosto de 2026."
-gallery:
-  - src: "https://media.eldiariosur.com/p/1b781d5683bfa06e5b4ac1b74dca8a6c/adjuntos/291/imagenes/000/633/0000633652/1200x0/smart/whatsapp-image-2026-08-05-at-164802.jpeg"
-    alt: "Imagen de la ordenanza municipal 212 que restringía la habilitación de supermercados en Presidente Perón."
-    attribution: "El Diario Sur."
 ---
 
 En Guernica, la apertura de un supermercado tuvo un significado que excede la inauguración de un nuevo comercio. El **Súper Oso**, instalado sobre la colectora de la Ruta 210, entre las calles Bracco y Alem, se convirtió en el primer supermercado que comenzó a funcionar en el distrito bajo el nuevo Código de Ordenamiento Urbano.
