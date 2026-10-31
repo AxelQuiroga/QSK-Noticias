@@ -23,9 +23,9 @@ sources:
     url: "https://www.presidenteperon.gov.ar/docs/CODIGODEORDENAMIENTOTERRITORIAL-PRESIDENTEPERON.pdf"
     description: "Documento normativo municipal."
 image:
-  src: "https://cdn.jorgeochipinti.online/tenants/019dfe37-2133-7e6c-9876-cb3f018a1a75/media/019fd40d-2000-7abb-90d3-cb53192487fe/og.jpg?v=msgnvvr7"
-  alt: "Fachada del Súper Oso, el supermercado que abrió en la colectora de la Ruta 210, en Guernica."
-  attribution: "Foto enviada por WhatsApp a Diario Canning el 5 de agosto de 2026."
+  src: "/images/noticias/guernica-super-oso.png"
+  alt: "Fachada del supermercado Súper Oso en Guernica, con su cartel y entrada sobre la colectora de la Ruta 210."
+  attribution: "Foto: El Diario Sur."
 ---
 
 En Guernica, la apertura de un supermercado tuvo un significado que excede la inauguración de un nuevo comercio. El **Súper Oso**, instalado sobre la colectora de la Ruta 210, entre las calles Bracco y Alem, se convirtió en el primer supermercado que comenzó a funcionar en el distrito bajo el nuevo Código de Ordenamiento Urbano.
@@ -40,7 +40,7 @@ La medida había sido planteada como provisoria, a la espera de que el distrito 
 
 Durante ese período existió una excepción: el supermercado Dado, que ya funcionaba antes de la sanción de la ordenanza y pudo continuar con su actividad. Otros comercios que vendían productos de primera necesidad eran considerados autoservicios.
 
-![Imagen de la ordenanza 212, que restringía la habilitación de supermercados en Presidente Perón.](https://media.eldiariosur.com/p/1b781d5683bfa06e5b4ac1b74dca8a6c/adjuntos/291/imagenes/000/633/0000633652/1200x0/smart/whatsapp-image-2026-08-05-at-164802.jpeg)
+![Fotografía del texto de la ordenanza municipal 212 de Presidente Perón, sancionada en 1999.](/images/noticias/guernica-ordenanza-212.jpg)
 
 *La ordenanza 212 fue el antecedente normativo que restringió durante años la habilitación de supermercados en el distrito. Foto: El Diario Sur.*
 
@@ -55,6 +55,10 @@ Eso no significa que cualquier comercio pueda instalarse sin condiciones. La cob
 ## Dónde abrió el Súper Oso
 
 El establecimiento funciona en la colectora de la Ruta 210, entre Bracco y Alem, en Guernica. Su apertura fue la primera registrada bajo el nuevo marco normativo y marcó un cambio en la oferta comercial del distrito.
+
+![Vista del frente del supermercado Súper Oso en Guernica.](/images/noticias/guernica-super-oso-local.jpg)
+
+*El local abrió durante la última semana de julio de 2026. Foto: El Diario Sur.*
 
 La novedad también permite distinguir dos situaciones que a veces se confunden: el comercio Dado ya existía antes de la ordenanza de 1999, mientras que el Súper Oso es el primer supermercado que abrió luego de la modificación del régimen urbanístico.
 

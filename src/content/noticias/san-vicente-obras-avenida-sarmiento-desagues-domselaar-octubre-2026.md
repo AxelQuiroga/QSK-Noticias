@@ -28,9 +28,9 @@ sources:
     url: "https://www.codigobaires.com.ar/2026-10-29/avanzan-las-obras-viales-e-hidraulicas-en-domseelar-y-san-vicente-251609/"
     description: "Cobertura complementaria de las intervenciones anunciadas el 29 de octubre."
 image:
-  src: "https://www.codigobaires.com.ar/adjuntos/800/codigoba/2026/10/whatsapp-image-20261029-at-14.47.16-1449055115.jpeg"
-  alt: "Trabajador municipal realiza tareas de excavación y mantenimiento de un conducto pluvial en San Vicente."
-  attribution: "Foto: Código Baires."
+  src: "/images/noticias/san-vicente-sarmiento-obra.jpg"
+  alt: "Camión y maquinaria vial trabajan sobre la avenida Sarmiento durante las tareas de ensanche y repavimentación en San Vicente."
+  attribution: "Foto: El Diario Sur."
 ---
 
 El Municipio de San Vicente informó el avance de distintas intervenciones viales e hidráulicas en San Vicente y Domselaar. Los trabajos incluyen la ampliación y repavimentación de la avenida Sarmiento, tareas sobre desagües pluviales y la reconstrucción de una calle en Domselaar.
@@ -47,9 +47,9 @@ Los primeros trabajos comenzaron el 27 de octubre en el sector ubicado detrás d
 
 Según la información publicada ese día por El Diario Sur, los servicios en dirección a Ruta 6 debían desviarse por Walsh, Brown y Lincoln para retomar Sarmiento. En sentido contrario, el recorrido informado era por Alberdi, Brown y Amoretti. Estos desvíos corresponden al esquema comunicado al comienzo de los trabajos y pueden modificarse a medida que avance la obra.
 
-![Trabajos de excavación y mantenimiento de infraestructura pluvial en San Vicente.](https://www.codigobaires.com.ar/adjuntos/800/codigoba/2026/10/whatsapp-image-20261029-at-14.47.16-1449055115.jpeg)
+![Una excavadora trabaja en una zanja de desagüe pluvial en San Vicente.](/images/noticias/san-vicente-desagues-pluviales.jpg)
 
-*Las tareas hidráulicas forman parte de las intervenciones anunciadas por el Municipio. Foto: Código Baires.*
+*Las tareas de excavación y limpieza forman parte de las intervenciones hidráulicas informadas en el distrito. Foto: El Diario Sur.*
 
 ## Desagües pluviales: qué trabajos se realizan
 
