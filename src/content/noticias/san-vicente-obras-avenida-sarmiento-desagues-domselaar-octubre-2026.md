@@ -31,10 +31,6 @@ image:
   src: "https://www.codigobaires.com.ar/adjuntos/800/codigoba/2026/10/whatsapp-image-20261029-at-14.47.16-1449055115.jpeg"
   alt: "Trabajador municipal realiza tareas de excavación y mantenimiento de un conducto pluvial en San Vicente."
   attribution: "Foto: Código Baires."
-gallery:
-  - src: "https://media.eldiariosur.com/p/73ae9d70861c2cec36bae20d93bc6658/adjuntos/291/imagenes/000/638/0000638692/1200x675/smart/ae33e16f-e4ed-47ef-bd08-b126c1b32c70.jpg"
-    alt: "Imagen publicada junto a la cobertura de las obras viales e hidráulicas en San Vicente y Domselaar."
-    attribution: "El Diario Sur."
 ---
 
 El Municipio de San Vicente informó el avance de distintas intervenciones viales e hidráulicas en San Vicente y Domselaar. Los trabajos incluyen la ampliación y repavimentación de la avenida Sarmiento, tareas sobre desagües pluviales y la reconstrucción de una calle en Domselaar.
