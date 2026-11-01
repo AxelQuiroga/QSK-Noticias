@@ -121,11 +121,21 @@ export function normalizeText(text: string): string {
 
 /** Términos significativos de una consulta, sin palabras vacías ni repetidos. */
 export function tokenizeQuery(query: string): string[] {
+  const tokens = query.split(/\s+/).map((rawToken) => {
+    const token = normalizeText(rawToken);
+    const isUppercaseCountryCode =
+      /^[A-Z]{2}$/.test(rawToken) && Boolean(getCountryName(rawToken));
+    return { token, isUppercaseCountryCode };
+  });
+
   return [
     ...new Set(
-      normalizeText(query)
-        .split(' ')
-        .filter((token) => token !== '' && !STOPWORDS.has(token)),
+      tokens
+        .filter(
+          ({ token, isUppercaseCountryCode }) =>
+            token !== '' && (!STOPWORDS.has(token) || isUppercaseCountryCode),
+        )
+        .map(({ token }) => token),
     ),
   ];
 }
