@@ -1,4 +1,4 @@
-
+﻿
 import { test, expect } from '@playwright/test';
 
 test.describe('E2E: rutas existentes', () => {
@@ -79,7 +79,7 @@ test.describe('E2E: página Internacional', () => {
     const mobileToggle = page.locator('#menu-toggle');
     if (await mobileToggle.isVisible()) await mobileToggle.click();
 
-    const internationalLink = page.getByRole('link', {
+    const internationalLink = page.locator('header').getByRole('link', {
       name: 'Internacional',
       exact: true,
     });
@@ -100,7 +100,7 @@ test.describe('E2E: página Internacional', () => {
     const mobileToggle = page.locator('#menu-toggle');
     if (await mobileToggle.isVisible()) await mobileToggle.click();
 
-    await page.getByRole('link', {
+    await page.locator('header').getByRole('link', {
       name: 'Internacional',
       exact: true,
     }).click();
