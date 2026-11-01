@@ -14,11 +14,25 @@ export async function getStaticPaths() {
 
 const { region } = Astro.props;
 const sorted = await getArticlesByRegion(region);
+
+const regionDescription =
+  region === 'Zona Sur'
+    ? 'Noticias de Zona Sur del Gran Buenos Aires en QSK Noticias.'
+    : region === 'AMBA'
+      ? 'Noticias del Área Metropolitana de Buenos Aires (AMBA) en QSK Noticias.'
+      : `Noticias de la región ${region} en QSK Noticias.`;
+
+const regionIntro =
+  region === 'Zona Sur'
+    ? 'Cobertura territorial de Zona Sur del Gran Buenos Aires, principal identidad y diferencial de QSK Noticias.'
+    : region === 'AMBA'
+      ? 'Actualidad metropolitana del Área Metropolitana de Buenos Aires.'
+      : `Actualidad de la región ${region}.`;
 ---
 
 <BaseLayout
   title={`${region} - QSK Noticias`}
-  description={`Noticias de la región ${region} en Zona Sur del conurbano bonaerense.`}
+  description={regionDescription}
 >
   <div class="container-editorial py-10">
     <header>
@@ -26,6 +40,9 @@ const sorted = await getArticlesByRegion(region);
         {region}
       </h1>
       <p class="mt-2 text-text-secondary">
+        {regionIntro}
+      </p>
+      <p class="mt-1 text-sm text-text-secondary">
         {sorted.length} {sorted.length === 1 ? 'artículo' : 'artículos'} de esta región.
       </p>
     </header>

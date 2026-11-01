@@ -18,19 +18,19 @@ const regiones = getLocationsByType('region');
 ---
 
 <BaseLayout
-  title="QSK Noticias — Zona Sur, Buenos Aires"
-  description="Medio digital independiente con cobertura de actualidad en Zona Sur del conurbano bonaerense."
+  title="QSK Noticias — La información que nos conecta"
+  description="Medio digital independiente con raíces en Zona Sur del Gran Buenos Aires y cobertura de AMBA, Argentina y el mundo."
 >
   <div class="container-editorial pb-14 pt-7 sm:pt-10">
     <section class="mb-8 border-b border-border pb-6 sm:mb-10" aria-labelledby="home-title">
-      <p class="eyebrow">Actualidad · Zona Sur · Argentina</p>
+      <p class="eyebrow">Zona Sur · AMBA · Argentina · Mundo</p>
       <div class="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div class="max-w-3xl">
           <h1 id="home-title" class="font-heading text-3xl font-extrabold tracking-tight text-text sm:text-4xl lg:text-5xl">
-            Las noticias, <span class="text-accent">con contexto.</span>
+            La información que nos conecta.
           </h1>
           <p class="mt-3 max-w-2xl text-base leading-relaxed text-text-secondary sm:text-lg">
-            Información local y nacional, con fuentes identificadas y una mirada puesta en la comunidad.
+            QSK Noticias es un medio digital independiente con raíces en Zona Sur del Gran Buenos Aires y una mirada que alcanza toda la actualidad: AMBA, Argentina y el mundo.
           </p>
         </div>
         <p class="hidden shrink-0 border-l-2 border-info pl-4 text-sm font-medium leading-relaxed text-text-secondary md:block">
@@ -114,7 +114,7 @@ const regiones = getLocationsByType('region');
         <section class="rounded-xl border border-border bg-[#0c2034] p-5 sm:col-span-2 lg:col-span-1" aria-labelledby="regions-heading">
           <p class="eyebrow">Cobertura</p>
           <h2 id="regions-heading" class="mt-2 font-heading text-lg font-extrabold text-text">Más allá de lo local</h2>
-          <p class="mt-2 text-sm leading-relaxed text-text-secondary">Seguimos la actualidad de Buenos Aires y Argentina, sin perder el foco en Zona Sur.</p>
+          <p class="mt-2 text-sm leading-relaxed text-text-secondary">Seguimos la actualidad metropolitana, nacional e internacional, sin perder el foco en Zona Sur.</p>
           <ul class="mt-4 flex flex-wrap gap-2">
             {regiones.map((location) => (
               <li>
@@ -126,6 +126,14 @@ const regiones = getLocationsByType('region');
                 </a>
               </li>
             ))}
+            <li>
+              <a
+                href="/internacional/"
+                class="text-sm font-semibold text-accent hover:underline"
+              >
+                Internacional
+              </a>
+            </li>
           </ul>
         </section>
       </aside>

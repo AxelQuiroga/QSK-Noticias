@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+﻿import { test, expect } from '@playwright/test';
 
 test.describe('Navegación', () => {
   test('navega a una sección', async ({ page }) => {
@@ -81,8 +81,8 @@ test.describe('Navegación', () => {
     await expect(introVideo).toHaveAttribute('aria-hidden', 'true');
     await expect(introVideo).toHaveAttribute('tabindex', '-1');
 
-    await expect(page.getByText('es un medio digital independiente en sus comienzos.')).toBeVisible();
-    await expect(page.getByText('Nuestra misión es acercar información clara')).toBeVisible();
+    await expect(page.getByText('es un medio de comunicación digital dedicado a informar')).toBeVisible();
+    await expect(page.getByText('Creemos en el valor de la información clara')).toBeVisible();
   });
 
   test('página institucional: contacto', async ({ page }) => {
