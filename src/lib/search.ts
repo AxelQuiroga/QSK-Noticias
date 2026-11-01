@@ -121,7 +121,7 @@ export function normalizeText(text: string): string {
 
 /** Términos significativos de una consulta, sin palabras vacías ni repetidos. */
 export function tokenizeQuery(query: string): string[] {
-  const tokens = query.split(/\\s+/).map((rawToken) => {
+  const tokens = query.split(/\s+/).map((rawToken) => {
     const token = normalizeText(rawToken);
     const isUppercaseCountryCode =
       /^[A-Z]{2}$/.test(rawToken) && Boolean(getCountryName(rawToken));
