@@ -1,4 +1,5 @@
 import { findLocationByName, getLocationContext, getAncestorOfType } from '../data/locations';
+import { getCountryName } from './international';
 
 /**
  * Búsqueda textual y geográfica del sitio: UNA sola implementación, compartida
@@ -26,6 +27,11 @@ export interface SearchIndexEntry {
   region: string;
   scope: string;
   publishedAt: string;
+  /** Clasificación editorial. Opcionales para tolerar índices anteriores. */
+  primaryTopic?: string;
+  secondaryTopics?: string[];
+  /** Código ISO 3166-1 alpha-2 del país, si corresponde. */
+  country?: string;
   /** Cuerpo del artículo sin markdown. Puede venir vacío. */
   content: string;
 }
@@ -58,7 +64,10 @@ export interface SearchDocument {
 export const FIELD_WEIGHTS = {
   title: 5,
   location: 4,
+  primaryTopic: 4,
+  country: 4,
   section: 3,
+  secondaryTopics: 2,
   description: 2,
   content: 1,
 } as const;
@@ -184,6 +193,9 @@ export function buildSearchDocument(entry: SearchIndexEntry): SearchDocument {
     ...regionNames,
   ]);
 
+  const countryCode = entry.country?.trim().toUpperCase() ?? '';
+  const countryName = countryCode ? getCountryName(countryCode) ?? countryCode : '';
+
   return {
     slug: entry.slug,
     title: entry.title,
@@ -200,6 +212,9 @@ export function buildSearchDocument(entry: SearchIndexEntry): SearchDocument {
     fields: [
       { text: entry.title, weight: FIELD_WEIGHTS.title },
       { text: locationNames.join(' '), weight: FIELD_WEIGHTS.location },
+      { text: entry.primaryTopic ?? '', weight: FIELD_WEIGHTS.primaryTopic },
+      { text: (entry.secondaryTopics ?? []).join(' '), weight: FIELD_WEIGHTS.secondaryTopics },
+      { text: [countryCode, countryName].filter(Boolean).join(' '), weight: FIELD_WEIGHTS.country },
       { text: entry.section, weight: FIELD_WEIGHTS.section },
       { text: entry.description, weight: FIELD_WEIGHTS.description },
       { text: entry.content, weight: FIELD_WEIGHTS.content },
