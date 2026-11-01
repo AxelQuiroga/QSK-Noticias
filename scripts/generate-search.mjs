@@ -62,10 +62,13 @@ export function buildSearchIndex(contentDir = CONTENT_DIR) {
       title: data.title || '',
       description: data.description || '',
       section: data.section || '',
+      primaryTopic: data.primaryTopic || '',
+      secondaryTopics: Array.isArray(data.secondaryTopics) ? data.secondaryTopics : [],
       municipality: data.municipality || '',
       localidad: data.localidad || '',
       region: data.region || '',
       scope: data.scope || '',
+      country: data.country || '',
       publishedAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : '',
       content: toPlainText(content),
     }))
