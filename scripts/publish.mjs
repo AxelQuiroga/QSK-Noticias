@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import matter from 'gray-matter';
+import { serializeFrontmatter } from './frontmatter.mjs';
 
 const CONTENT_DIR = 'src/content/noticias';
 
@@ -10,7 +11,7 @@ function getMarkdownFiles(dir) {
     .map((f) => join(dir, f));
 }
 
-function formatValue(value) {
+/*function formatValue(value) {
   if (value === null || value === undefined) return '';
   if (value instanceof Date) return value.toISOString();
   if (typeof value === 'boolean') return String(value);
@@ -32,7 +33,7 @@ function formatValue(value) {
     return JSON.stringify(str);
   }
   return `'${str}'`;
-}
+}*/
 
 function processFile(filePath) {
   const content = readFileSync(filePath, 'utf-8');
@@ -49,13 +50,8 @@ function processFile(filePath) {
   const now = new Date();
   data.publishedAt = now.toISOString();
 
-  const frontmatter = Object.entries(data)
-    .map(([key, value]) => `${key}: ${formatValue(value)}`)
-    .join('\n');
-
-  const newContent = `---\n${frontmatter}\n---\n${body}`;
+  const newContent = serializeFrontmatter(data, body);
   writeFileSync(filePath, newContent);
-
   return { action: 'published', publishedAt: data.publishedAt };
 }
 

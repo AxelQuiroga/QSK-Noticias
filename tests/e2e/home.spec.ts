@@ -14,6 +14,25 @@ test.describe('Portada', () => {
     await expect(featured.locator('h3 a')).toBeVisible();
   });
 
+  test('no repite la noticia destacada entre las últimas noticias', async ({ page }) => {
+  await page.goto('/');
+
+  const featuredLink = page.locator(
+    'section[aria-labelledby="featured-heading"] article h3 a',
+  );
+
+  const latestLinks = page.locator(
+    'section[aria-labelledby="latest-heading"] article h3 a',
+  );
+
+  const featuredHref = await featuredLink.getAttribute('href');
+  const latestHrefs = await latestLinks.evaluateAll((links) =>
+    links.map((link) => link.getAttribute('href')),
+  );
+
+  expect(latestHrefs).not.toContain(featuredHref);
+});
+
   test('mantiene el navbar de main sin agregar Nacional como enlace principal', async ({ page }) => {
     await page.goto('/');
     const isMobile = (page.viewportSize()?.width ?? 1280) < 768;

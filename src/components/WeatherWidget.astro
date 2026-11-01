@@ -103,6 +103,12 @@ const locations = [
       : parsed.toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' });
   };
 
+  const weatherWidgetCleanups = new Set<() => void>();
+
+  const cleanupWeatherWidgets = () => {
+    weatherWidgetCleanups.forEach((cleanup) => cleanup());
+  };
+
   const initWeatherWidget = (root: HTMLElement) => {
     if (root.dataset.weatherInitialized === 'true') return;
     root.dataset.weatherInitialized = 'true';
@@ -118,27 +124,42 @@ const locations = [
     const rain = root.querySelector<HTMLElement>('[data-weather-rain]');
     const humidity = root.querySelector<HTMLElement>('[data-weather-humidity]');
     const updated = root.querySelector<HTMLElement>('[data-weather-updated]');
+
     let selectedLocation = 'lanus';
     let requestId = 0;
+    let activeRequestController: AbortController | null = null;
+
+    const lifecycleController = new AbortController();
 
     const refresh = async () => {
+      activeRequestController?.abort();
+
+      const controller = new AbortController();
+      activeRequestController = controller;
       const currentRequestId = ++requestId;
       const locationId = selectedLocation;
+
       if (status) status.textContent = 'Actualizando';
+
       try {
-        const response = await fetch(`/api/weather?location=${encodeURIComponent(locationId)}`);
+        const response = await fetch(
+          `/api/weather?location=${encodeURIComponent(locationId)}`,
+          { signal: controller.signal },
+        );
+
         if (!response.ok) {
           console.warn(`[QSK weather] API respondió HTTP ${response.status} para ${locationId}`);
           throw new Error(`weather HTTP ${response.status}`);
         }
+
         const weather = (await response.json()) as WeatherPayload;
-        if (currentRequestId !== requestId || locationId !== selectedLocation) return;
+        if (controller.signal.aborted || currentRequestId !== requestId || locationId !== selectedLocation) return;
+
         if (temperature) temperature.textContent = `${Math.round(weather.temperatureC)}°`;
         if (symbol) symbol.textContent = conditionSymbol(weather.conditionCode);
         if (condition) {
-  condition.textContent =
-    weather.condition === 'Cubierto' ? 'Cielo nublado' : weather.condition;
-}
+          condition.textContent = weather.condition === 'Cubierto' ? 'Cielo nublado' : weather.condition;
+        }
         if (feelsLike) feelsLike.textContent = `${Math.round(weather.feelsLikeC)}°`;
         if (rain) rain.textContent = weather.chanceOfRain === null ? 's/d' : `${weather.chanceOfRain}%`;
         if (humidity) humidity.textContent = `${weather.humidity}%`;
@@ -146,12 +167,17 @@ const locations = [
         if (status) status.textContent = '';
         root.dataset.weatherState = 'loaded';
       } catch (error) {
-        if (currentRequestId !== requestId) return;
+        if (controller.signal.aborted || currentRequestId !== requestId) return;
+
         console.error('[QSK weather] No se pudo actualizar el clima.', error);
         if (condition) condition.textContent = 'Clima no disponible por el momento';
         if (status) status.textContent = '';
         if (updated) updated.textContent = 'Sin actualización';
         root.dataset.weatherState = 'error';
+      } finally {
+        if (activeRequestController === controller) {
+          activeRequestController = null;
+        }
       }
     };
 
@@ -162,30 +188,48 @@ const locations = [
           if (locationPicker instanceof HTMLDetailsElement) locationPicker.open = false;
           return;
         }
+
         selectedLocation = nextLocation;
-        if (locationLabel) locationLabel.textContent = option.querySelector('span')?.textContent?.trim() ?? nextLocation;
+        if (locationLabel) {
+          locationLabel.textContent = option.querySelector('span')?.textContent?.trim() ?? nextLocation;
+        }
+
         locationOptions.forEach((item) => {
           const selected = item === option;
           item.setAttribute('aria-pressed', String(selected));
           item.classList.toggle('font-semibold', selected);
           item.classList.toggle('text-accent', selected);
           item.classList.toggle('text-text', !selected);
-          const check = item.querySelector<HTMLElement>('[data-location-check]');
-          check?.classList.toggle('invisible', !selected);
+          item.querySelector<HTMLElement>('[data-location-check]')?.classList.toggle('invisible', !selected);
         });
+
         if (locationPicker instanceof HTMLDetailsElement) locationPicker.open = false;
         if (condition) condition.textContent = 'Consultando…';
         void refresh();
-      });
+      }, { signal: lifecycleController.signal });
     });
 
+    const intervalId = window.setInterval(() => void refresh(), 30 * 60 * 1000);
+
+    const cleanup = () => {
+      window.clearInterval(intervalId);
+      requestId++;
+      activeRequestController?.abort();
+      activeRequestController = null;
+      lifecycleController.abort();
+      delete root.dataset.weatherInitialized;
+      weatherWidgetCleanups.delete(cleanup);
+    };
+
+    weatherWidgetCleanups.add(cleanup);
     void refresh();
-    window.setInterval(() => void refresh(), 30 * 60 * 1000);
   };
 
   const mountWeatherWidgets = () => {
     document.querySelectorAll<HTMLElement>('[data-weather-widget]').forEach(initWeatherWidget);
   };
-  mountWeatherWidgets();
+
+  document.addEventListener('astro:before-swap', cleanupWeatherWidgets);
   document.addEventListener('astro:page-load', mountWeatherWidgets);
+  mountWeatherWidgets();
 </script>

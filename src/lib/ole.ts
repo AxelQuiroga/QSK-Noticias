@@ -1,63 +1,68 @@
-import { z } from 'astro/zod';
-import datosOle from '../data/ole.json';
-import { canonicalizarUrlNoticia } from './deportes-feed';
+import { z } from "astro/zod";
+import datosOle from "../data/ole.json";
+import { canonicalizarUrlNoticia } from "./deportes-feed";
 
 const URL_NOTICIA_OLE = /^https:\/\/(?:www\.)?ole\.com\.ar(?:[/:?#]|$)/i;
 const URL_IMAGEN_OLE = /^https:\/\/(?:www\.)?ole\.com\.ar(?:[/:?#]|$)/i;
-const FECHA_ISO = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
+const FECHA_ISO =
+  /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
 
 const oleNewsSchema = z.object({
-  id: z.string().trim().min(1, 'id no puede estar vacío'),
-  title: z.string().trim().min(1, 'title no puede estar vacío'),
+  id: z.string().trim().min(1, "id no puede estar vacío"),
+  title: z.string().trim().min(1, "title no puede estar vacío"),
   description: z.string().trim().nullable().optional(),
   url: z
-    .string()
-    .url('url debe ser una URL válida')
-    .refine((value) => URL_NOTICIA_OLE.test(value), 'url debe pertenecer a ole.com.ar'),
+    .url({ error: "url debe ser una URL válida" })
+    .refine(
+      (value) => URL_NOTICIA_OLE.test(value),
+      "url debe pertenecer a ole.com.ar",
+    ),
   publishedAt: z
     .string()
     .nullable()
     .refine(
-      (value) => value === null || (FECHA_ISO.test(value) && !Number.isNaN(Date.parse(value))),
-      'publishedAt debe ser una fecha ISO válida o null',
+      (value) =>
+        value === null ||
+        (FECHA_ISO.test(value) && !Number.isNaN(Date.parse(value))),
+      "publishedAt debe ser una fecha ISO válida o null",
     ),
   imageUrl: z
-    .string()
-    .url('imageUrl debe ser una URL válida')
-    .refine((value) => value.startsWith('https://'), 'imageUrl debe usar HTTPS')
-    .refine((value) => URL_IMAGEN_OLE.test(value), 'imageUrl debe pertenecer a ole.com.ar')
-    .nullable(),
-  source: z.literal('Olé'),
-
+  .url({ error: 'imageUrl debe ser una URL válida' })
+  .refine((value) => value.startsWith('https://'), 'imageUrl debe usar HTTPS')
+  .refine((value) => URL_IMAGEN_OLE.test(value), 'imageUrl debe pertenecer a ole.com.ar')
+  .nullable(),
+  source: z.literal("Olé"),
 });
 
 export type OleNews = z.infer<typeof oleNewsSchema>;
 
-const oleDatasetSchema = z.array(oleNewsSchema).superRefine((items, context) => {
-  const ids = new Set<string>();
-  const urls = new Set<string>();
+const oleDatasetSchema = z
+  .array(oleNewsSchema)
+  .superRefine((items, context) => {
+    const ids = new Set<string>();
+    const urls = new Set<string>();
 
-  items.forEach((item, index) => {
-    if (ids.has(item.id)) {
-      context.addIssue({
-        code: 'custom',
-        path: [index, 'id'],
-        message: `id duplicado: ${item.id}`,
-      });
-    }
-    ids.add(item.id);
+    items.forEach((item, index) => {
+      if (ids.has(item.id)) {
+        context.addIssue({
+          code: "custom",
+          path: [index, "id"],
+          message: `id duplicado: ${item.id}`,
+        });
+      }
+      ids.add(item.id);
 
-    const urlKey = canonicalizarUrlNoticia(item.url);
-    if (urls.has(urlKey)) {
-      context.addIssue({
-        code: 'custom',
-        path: [index, 'url'],
-        message: `URL de noticia duplicada: ${urlKey}`,
-      });
-    }
-    urls.add(urlKey);
+      const urlKey = canonicalizarUrlNoticia(item.url);
+      if (urls.has(urlKey)) {
+        context.addIssue({
+          code: "custom",
+          path: [index, "url"],
+          message: `URL de noticia duplicada: ${urlKey}`,
+        });
+      }
+      urls.add(urlKey);
+    });
   });
-});
 
 /**
  * Valida el contrato recibido por QSK. Los errores no se ocultan:
@@ -90,7 +95,6 @@ export function getNoticiasOle(limit = 10): OleNews[] {
   return getTodasNoticiasOle().slice(0, Math.max(0, Math.floor(limit)));
 }
 
-
 /**
  * Slug persistente para la página local de una noticia de Olé.
  * Se deriva del identificador legible que Olé publica en su URL, no del título,
@@ -98,13 +102,19 @@ export function getNoticiasOle(limit = 10): OleNews[] {
  */
 export function getOleSlug(noticia: OleNews): string {
   try {
-    const segments = new URL(noticia.url).pathname.split('/').filter(Boolean);
-    const lastSegment = segments.at(-1)?.replace(/\.html?$/i, '').toLowerCase();
-    const slug = lastSegment?.normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9_-]+/g, '-').replace(/^-+|-+$/g, '');
+    const segments = new URL(noticia.url).pathname.split("/").filter(Boolean);
+    const lastSegment = segments
+      .at(-1)
+      ?.replace(/\.html?$/i, "")
+      .toLowerCase();
+    const slug = lastSegment
+      ?.normalize("NFKD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9_-]+/g, "-")
+      .replace(/^-+|-+$/g, "");
 
-    return slug || noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
+    return slug || noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
   } catch {
-    return noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, '-');
+    return noticia.id.toLowerCase().replace(/[^a-z0-9_-]+/g, "-");
   }
 }
