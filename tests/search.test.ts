@@ -136,6 +136,34 @@ describe('searchDocuments', () => {
     expect(slugsFor('educación')).toContain('lanus-escuelas');
   });
 
+  it('busca por tema principal y temas secundarios', () => {
+    const editorialDocuments = buildSearchDocuments([
+      makeEntry({
+        slug: 'alemania-economia',
+        title: 'Alemania anuncia nuevas medidas',
+        primaryTopic: 'Economía',
+        secondaryTopics: ['Política', 'Comercio'],
+        country: 'DE',
+      }),
+    ]);
+    const search = (query: string) => searchDocuments(editorialDocuments, query).map(({ slug }) => slug);
+
+    expect(search('economía')).toEqual(['alemania-economia']);
+    expect(search('política')).toEqual(['alemania-economia']);
+    expect(search('comercio')).toEqual(['alemania-economia']);
+    expect(search('economía comercio')).toEqual(['alemania-economia']);
+    expect(search('economía deportes')).toEqual([]);
+  });
+
+  it('busca por código ISO y nombre legible del país', () => {
+    const internationalDocuments = buildSearchDocuments([
+      makeEntry({ slug: 'alemania', title: 'Medidas económicas', country: 'de' }),
+    ]);
+
+    expect(searchDocuments(internationalDocuments, 'alemania').map(({ slug }) => slug)).toEqual(['alemania']);
+    expect(searchDocuments(internationalDocuments, 'DE').map(({ slug }) => slug)).toEqual(['alemania']);
+  });
+
   it('busca por municipio', () => {
     expect(slugsFor('quilmes')).toEqual(expect.arrayContaining(['ezpeleta-corte', 'quilmes-evento']));
   });
