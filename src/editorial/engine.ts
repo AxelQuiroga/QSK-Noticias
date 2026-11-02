@@ -93,7 +93,7 @@ export async function rewriteDescription(
       const raw = await options.provider.complete({
         system: QSK_EDITORIAL_SYSTEM_PROMPT,
         user: buildUserContent(original, field),
-        maxTokens: options.maxTokens ?? 256,
+        maxTokens: options.maxTokens ?? 2048,
         temperature: options.temperature ?? 0.2,
       });
 

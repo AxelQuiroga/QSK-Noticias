@@ -70,8 +70,9 @@ export class CloudflareWorkersAiProvider implements LlmProvider {
         { role: "system", content: request.system },
         { role: "user", content: request.user },
       ],
-      max_tokens: request.maxTokens ?? 512,
+      max_tokens: request.maxTokens ?? 2048,
       temperature: request.temperature ?? 0.2,
+      chat_template_kwargs: { enable_thinking: false },
     });
 
     const controller = new AbortController();

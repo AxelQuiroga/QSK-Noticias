@@ -1,9 +1,0 @@
-{
-  "indice": 2,
-  "original": {
-    "titulo": "Kicillof encabezó la presentación del programa “Empleo Verde Joven”",
-    "descripcion": "La iniciativa está destinada a promover la formación técnica y la inserción laboral de jóvenes en el sector de las energías renovables."
-  },
-  "estado": "error",
-  "error": "Se agotaron los reintentos (3) sin obtener una descripción válida: Workers AI devolvió una respuesta sin texto reconocible."
-}

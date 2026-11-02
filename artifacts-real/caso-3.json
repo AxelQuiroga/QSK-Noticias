@@ -1,9 +1,0 @@
-{
-  "indice": 3,
-  "original": {
-    "titulo": "Se entregó el crédito N°500.000 de Provincia Microcréditos",
-    "descripcion": "Fue en un encuentro encabezado por el gobernador. La empresa del Banco Provincia alcanzó este hito tras haber otorgado más de 260.000 préstamos en los últimos seis años."
-  },
-  "estado": "error",
-  "error": "Se agotaron los reintentos (3) sin obtener una descripción válida: Workers AI devolvió una respuesta sin texto reconocible."
-}
