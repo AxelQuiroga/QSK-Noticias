@@ -171,7 +171,7 @@ test.describe('Página de detalle de una gacetilla', () => {
     expect(hrefs).toHaveLength(12);
 
     for (const href of hrefs) {
-      const response = await page.goto(href);
+      const response = await page.goto(href, { waitUntil: 'domcontentloaded' });
       expect(response?.status()).toBe(200);
       await expect(page.getByRole('heading', { level: 1 })).not.toBeEmpty();
       await expect(page.getByRole('link', { name: /Ver publicación original/ })).toBeVisible();
