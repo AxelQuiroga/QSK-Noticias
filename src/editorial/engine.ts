@@ -86,11 +86,9 @@ export async function rewriteDescription(
   const maxAttempts = maxRetries + 1;
 
   const original = { ...record };
-  let attempts = 0;
   let lastError: unknown = null;
 
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-    attempts = attempt;
     try {
       const raw = await options.provider.complete({
         system: QSK_EDITORIAL_SYSTEM_PROMPT,
@@ -110,7 +108,7 @@ export async function rewriteDescription(
         originalDescription: record[field] as string,
         description: validated,
         output,
-        attempts,
+        attempts: attempt,
       };
     } catch (error) {
       lastError = error;

@@ -125,7 +125,7 @@ describe("rewriteDescription - contrato y preservación", () => {
   });
 
   it("rechaza si el proveedor falta", async () => {
-    // @ts-expect-error
+    // @ts-expect-error missing provider
     await expect(rewriteDescription({ descripcion: "x" }, {})).rejects.toMatchObject({ code: "INVALID_INPUT" });
   });
 
@@ -218,7 +218,7 @@ describe("CloudflareWorkersAiProvider", () => {
   });
 
   it("respeta timeout", async () => {
-    const fetchFn = vi.fn(async (_url: any, init?: RequestInit) => {
+    const fetchFn = vi.fn(async (_url: unknown, init?: RequestInit) => {
       return new Promise<Response>((_resolve, reject) => {
         init?.signal?.addEventListener("abort", () => {
           const err = new Error("aborted");
