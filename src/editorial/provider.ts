@@ -124,10 +124,6 @@ export class CloudflareWorkersAiProvider implements LlmProvider {
       );
     }
 
-    if (process.env.EDITORIAL_DEBUG === "1") {
-      console.error("Workers AI payload:", JSON.stringify(payload));
-    }
-
     const text = extractResponseText(payload);
     if (!text) {
       throw new ProviderError("Workers AI devolvió una respuesta sin texto reconocible.", undefined, true);
