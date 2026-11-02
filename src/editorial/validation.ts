@@ -1,9 +1,15 @@
 import { EditorialEngineError } from "./errors.ts";
 
-export const DEFAULT_MAX_DESCRIPTION_LENGTH = 280;
-export const DEFAULT_MIN_DESCRIPTION_LENGTH = 1;
+export const DEFAULT_MAX_ADDITIONAL_DESCRIPTION_LENGTH = 100;
 
-export const DESCRIPTION_FIELD_CANDIDATES = ["descripcion", "description"] as const;
+export function computeMaxDescriptionLength(
+  originalLength: number,
+  additional: number = DEFAULT_MAX_ADDITIONAL_DESCRIPTION_LENGTH,
+): number {
+  return originalLength + additional;
+}
+
+export const DEFAULT_MIN_DESCRIPTION_LENGTH = 1;
 
 export function detectDescriptionField(input: Record<string, unknown>): string {
   const hasEs = Object.prototype.hasOwnProperty.call(input, "descripcion");
@@ -63,7 +69,7 @@ export function validateInput(input: unknown): { field: string; value: string } 
 
 export function validateOutput(
   candidate: string,
-  maxLength: number = DEFAULT_MAX_DESCRIPTION_LENGTH,
+  maxLength: number,
 ): string {
   const cleaned = candidate.trim().replace(/^["'`]+|["'`]+$/g, "").trim();
   if (cleaned.length < DEFAULT_MIN_DESCRIPTION_LENGTH) {

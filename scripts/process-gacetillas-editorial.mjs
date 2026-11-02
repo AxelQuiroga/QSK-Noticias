@@ -44,7 +44,7 @@ const { CloudflareWorkersAiProvider } = await import("../src/editorial/provider.
 const provider = new CloudflareWorkersAiProvider();
 
 const { updated, state: newState, summary, changed } = await processBatch(current, state, provider, {
-  maxDescriptionLength: 280,
+  maxAdditionalDescriptionLength: 100,
   maxRetries: 2,
   base,
 });

@@ -9,13 +9,13 @@ import { QSK_EDITORIAL_SYSTEM_PROMPT, buildUserContent } from "./prompt.ts";
 
 export interface RewriteOptions {
   provider: LlmProvider;
-  /** Largo máximo de la descripción reescrita. Default 280. */
-  maxDescriptionLength?: number;
+  /** Caracteres adicionales permitidos sobre la descripción original. Default 100. */
+  maxAdditionalDescriptionLength?: number;
   /** Reintentos acotados ante respuestas inválidas o errores transitorios. Default 2. */
   maxRetries?: number;
   /** Temperatura del modelo. Default 0.2. */
   temperature?: number;
-  /** Máximo de tokens de salida. Default 256. */
+  /** Máximo de tokens de salida. Default 2048. */
   maxTokens?: number;
 }
 
@@ -81,7 +81,10 @@ export async function rewriteDescription(
   const field = detectedField;
   const record = input as Record<string, unknown>;
 
-  const maxDescriptionLength = options.maxDescriptionLength ?? 280;
+  const additional = options.maxAdditionalDescriptionLength ?? 100;
+  const originalDescription = record[field] as string;
+  const maxDescriptionLength = originalDescription.length + additional;
+
   const maxRetries = Math.max(0, options.maxRetries ?? 2);
   const maxAttempts = maxRetries + 1;
 
@@ -92,7 +95,7 @@ export async function rewriteDescription(
     try {
       const raw = await options.provider.complete({
         system: QSK_EDITORIAL_SYSTEM_PROMPT,
-        user: buildUserContent(original, field),
+        user: buildUserContent(original, field, additional),
         maxTokens: options.maxTokens ?? 2048,
         temperature: options.temperature ?? 0.2,
       });

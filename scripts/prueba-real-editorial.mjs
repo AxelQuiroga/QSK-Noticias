@@ -34,12 +34,13 @@ function validateResult(original, result) {
     }
   }
   const field = Object.prototype.hasOwnProperty.call(original, "descripcion") ? "descripcion" : "description";
+  const maxAllowed = original[field].length + 100;
   const nueva = output[field];
   if (typeof nueva !== "string" || nueva.trim().length === 0) {
     return "La descripción reescrita está vacía.";
   }
-  if (nueva.length > 280) {
-    return `La descripción reescrita supera 280 caracteres (${nueva.length}).`;
+  if (nueva.length > maxAllowed) {
+    return `La descripción reescrita supera el máximo permitido (${maxAllowed} caracteres, original ${original[field].length} + 100).`;
   }
   if (nueva === original[field]) {
     return "La descripción no cambió (posible fallo del motor).";

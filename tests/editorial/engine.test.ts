@@ -81,7 +81,7 @@ describe("rewriteDescription - contrato y preservación", () => {
   it("rechaza salida que supera el máximo", async () => {
     const long = "a".repeat(300);
     const provider = mockProvider(long);
-    await expect(rewriteDescription({ descripcion: "algo" }, { provider, maxDescriptionLength: 50 })).rejects.toMatchObject({ code: "RETRIES_EXHAUSTED" });
+    await expect(rewriteDescription({ descripcion: "algo" }, { provider, maxAdditionalDescriptionLength: 46 })).rejects.toMatchObject({ code: "RETRIES_EXHAUSTED" });
   });
 
   it("rechaza salida que es solo fence", async () => {
@@ -193,6 +193,86 @@ describe("buildUserContent", () => {
     const content = buildUserContent(input, "description");
     expect(content).toContain("Título: T");
     expect(content).toContain("Descripción original: D");
+  });
+});
+
+describe("límite dinámico de descripción", () => {
+  it("calcula el máximo como longitud original + 100", async () => {
+    const original = "a".repeat(150);
+    const rewritten = "b".repeat(250);
+    const provider = mockProvider(rewritten);
+    const result = await rewriteDescription({ descripcion: original }, { provider });
+    expect(result.description).toBe(rewritten);
+  });
+
+  it("acepta una respuesta exactamente en el límite", async () => {
+    const original = "a".repeat(150);
+    const rewritten = "b".repeat(250);
+    const provider = mockProvider(rewritten);
+    const result = await rewriteDescription({ descripcion: original }, { provider, maxAdditionalDescriptionLength: 100 });
+    expect(result.description).toBe(rewritten);
+  });
+
+  it("rechaza una respuesta que excede el límite por un carácter", async () => {
+    const original = "a".repeat(150);
+    const rewritten = "b".repeat(251);
+    const provider = mockProvider(rewritten);
+    await expect(rewriteDescription({ descripcion: original }, { provider, maxAdditionalDescriptionLength: 100 })).rejects.toMatchObject({ code: "RETRIES_EXHAUSTED" });
+  });
+
+  it("maneja distintas longitudes originales", async () => {
+    for (const len of [150, 280, 350, 600]) {
+      const original = "a".repeat(len);
+      const rewritten = "b".repeat(len + 100);
+      const provider = mockProvider(rewritten);
+      const result = await rewriteDescription({ descripcion: original }, { provider });
+      expect(result.description).toBe(rewritten);
+    }
+  });
+
+  it("verifica que el prompt recibe el máximo dinámico", async () => {
+    const original = "a".repeat(150);
+    const provider = mockProvider("ok");
+    await rewriteDescription({ descripcion: original }, { provider });
+    const calls = (provider.complete as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    const call = (calls[0]?.[0] ?? {}) as { user?: string };
+    expect(call?.user).toContain("Máximo permitido: 250 caracteres");
+  });
+
+  it("verifica que el motor utiliza el mismo máximo para validar", async () => {
+    const original = "a".repeat(150);
+    const rewritten = "b".repeat(251);
+    const provider = mockProvider(rewritten);
+    await expect(rewriteDescription({ descripcion: original }, { provider })).rejects.toBeInstanceOf(EditorialEngineError);
+  });
+
+  it("preserva todos los metadatos originales con límite dinámico", async () => {
+    const original = "a".repeat(150);
+    const item = { titulo: "T", descripcion: original, slug: "s", urlNoticia: "https://x/1" };
+    const rewritten = "b".repeat(200);
+    const provider = mockProvider(rewritten);
+    const result = await rewriteDescription(item, { provider });
+    expect(result.output.titulo).toBe("T");
+    expect(result.output.slug).toBe("s");
+    expect(result.output.urlNoticia).toBe("https://x/1");
+  });
+
+  it("mantiene el límite de entrada de 4000 caracteres", async () => {
+    const original = "a".repeat(4001);
+    const provider = mockProvider("ok");
+    await expect(rewriteDescription({ descripcion: original }, { provider })).rejects.toMatchObject({ code: "INVALID_INPUT" });
+  });
+
+  it("mantiene reintentos ante respuestas inválidas", async () => {
+    const original = "a".repeat(150);
+    const provider = {
+      name: "mock",
+      complete: vi.fn()
+        .mockResolvedValueOnce("   ")
+        .mockResolvedValueOnce("b".repeat(250)),
+    };
+    const result = await rewriteDescription({ descripcion: original }, { provider, maxAdditionalDescriptionLength: 100 });
+    expect(result.attempts).toBe(2);
   });
 });
 
