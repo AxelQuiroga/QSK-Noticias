@@ -70,6 +70,7 @@ for (const [i, item] of dataset.entries()) {
     registro.estado = "error";
     registro.error = error instanceof Error ? error.message : String(error);
     fallos++;
+    console.error(`Caso ${i + 1} falló: ${registro.error}`);
   }
   resultados.push(registro);
   await writeFile(new URL(`caso-${i + 1}.json`, outDir), JSON.stringify(registro, null, 2) + "\n", "utf8");
