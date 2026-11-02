@@ -1,0 +1,9 @@
+{
+  "indice": 1,
+  "original": {
+    "titulo": "La Provincia entregó el premio Hebe Uhart de Novela 2026",
+    "descripcion": "La ceremonia fue encabezada por el gobernador. El concurso promueve la creatividad artística y fomenta la escritura y la producción cultural."
+  },
+  "estado": "error",
+  "error": "Se agotaron los reintentos (3) sin obtener una descripción válida: Workers AI devolvió una respuesta sin texto reconocible."
+}
