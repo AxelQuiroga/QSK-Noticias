@@ -153,7 +153,7 @@ export async function processBatch(
   current: Gacetilla[],
   state: EditorialState,
   provider: LlmProvider,
-  options: { maxDescriptionLength?: number; maxRetries?: number; base?: Gacetilla[] | null } = {},
+  options: { maxAdditionalDescriptionLength?: number; maxRetries?: number; base?: Gacetilla[] | null } = {},
 ): Promise<BatchResult> {
   const detected = new Set(detectItemsToProcess(current, options.base ?? null, state).map((d) => d.item.urlNoticia));
   const updated = current.map((item) => ({ ...item }));
@@ -180,7 +180,7 @@ export async function processBatch(
     try {
       const result = await rewriteDescription(item, {
         provider,
-        maxDescriptionLength: options.maxDescriptionLength ?? 280,
+        maxAdditionalDescriptionLength: options.maxAdditionalDescriptionLength ?? 100,
         maxRetries: options.maxRetries ?? 2,
       });
       updated[i]!.descripcion = result.description;
