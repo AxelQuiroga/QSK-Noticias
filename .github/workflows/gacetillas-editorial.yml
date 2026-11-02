@@ -1,0 +1,80 @@
+name: Motor editorial gacetillas
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "src/data/gacetillas.json"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: gacetillas-editorial-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  procesar:
+    name: Reescribir descripciones de gacetillas nuevas o modificadas
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout de la rama base confiable
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+          fetch-depth: 0
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Preparar copia aislada del PR
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git fetch origin "$PR_HEAD_SHA"
+          git worktree add --detach /tmp/qsk-pr "$PR_HEAD_SHA"
+
+      - name: Evitar reprocesamiento por commits del motor
+        id: guard
+        run: |
+          LAST_AUTHOR_EMAIL="$(git -C /tmp/qsk-pr log -1 --format='%ae')"
+          if [ "$LAST_AUTHOR_EMAIL" = "41898282+github-actions[bot]@users.noreply.github.com" ]; then
+            echo "Último commit es del motor; se evita el reprocesamiento."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Procesar gacetillas con el motor editorial
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          GACETILLAS_PATH: /tmp/qsk-pr/src/data/gacetillas.json
+          STATE_PATH: /tmp/qsk-pr/data/editorial-state.json
+          BASE_GACETILLAS_PATH: ${{ github.workspace }}/src/data/gacetillas.json
+        run: node scripts/process-gacetillas-editorial.mjs
+
+      - name: Commit y push en la rama del PR
+        if: steps.guard.outputs.skip != 'true'
+        env:
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          git -C /tmp/qsk-pr config user.name "github-actions[bot]"
+          git -C /tmp/qsk-pr config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C /tmp/qsk-pr add -- src/data/gacetillas.json data/editorial-state.json
+          if git -C /tmp/qsk-pr diff --cached --quiet; then
+            echo "No hay cambios nuevos para guardar."
+            exit 0
+          fi
+          git -C /tmp/qsk-pr commit -m "chore(editorial-engine): rewrite gacetilla descriptions"
+          git -C /tmp/qsk-pr push origin "HEAD:${PR_HEAD_REF}"
