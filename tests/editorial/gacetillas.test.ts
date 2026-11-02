@@ -129,6 +129,18 @@ describe("processBatch", () => {
     expect(updated[1]!.descripcion).toBe("OK2");
   });
 
+  it("idempotencia: segundo procesamiento con estado guardado no llama al proveedor", async () => {
+    const provider = mockProvider("Nueva desc.");
+    const first = await processBatch([item], EMPTY_STATE, provider);
+    const savedState = first.state;
+    const provider2 = mockProvider("no debería llamarse");
+    const second = await processBatch([item], savedState, provider2);
+    expect(second.summary.processed).toBe(0);
+    expect(second.summary.skipped).toBe(1);
+    expect(second.changed).toBe(false);
+    expect(provider2.complete).not.toHaveBeenCalled();
+  });
+
   it("no reprocesa si el estado coincide", async () => {
     const state = loadState({ version: 1, items: { [item.urlNoticia]: { originalHash: hashOriginal(item), processedAt: "2026-01-01" } } });
     const provider = mockProvider("no debería llamarse");
