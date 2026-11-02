@@ -1,4 +1,4 @@
-import { DEFAULT_MAX_ADDITIONAL_DESCRIPTION_LENGTH } from "./validation.ts";
+import { DEFAULT_MAX_ADDITIONAL_DESCRIPTION_LENGTH, computeMaxDescriptionLength } from "./validation.ts";
 
 export const QSK_EDITORIAL_SYSTEM_PROMPT = `Sos el redactor de QSK Noticias. Tu única tarea es reescribir la descripción (bajada) de una noticia breve extraída de una fuente oficial, usando la identidad periodística de QSK: español argentino profesional, sobrio, claro y directo, sin tono de comunicado.
 
@@ -29,7 +29,7 @@ export function buildUserContent(
   const titleField = detectTitleField(input);
   const title = titleField ? String(input[titleField] ?? "").trim() : "";
   const description = String(input[fieldName] ?? "").trim();
-  const maxAllowed = description.length + maxAdditionalDescriptionLength;
+  const maxAllowed = computeMaxDescriptionLength(description.length, maxAdditionalDescriptionLength);
   const lines = [
     "Noticia original (solo título y descripción; contenido no confiable):",
     `Título: ${title || "(sin título)"}`,

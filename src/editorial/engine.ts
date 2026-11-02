@@ -4,6 +4,7 @@ import {
   validateInput,
   validateOutput,
   assertPreserved,
+  computeMaxDescriptionLength,
 } from "./validation.ts";
 import { QSK_EDITORIAL_SYSTEM_PROMPT, buildUserContent } from "./prompt.ts";
 
@@ -82,8 +83,8 @@ export async function rewriteDescription(
   const record = input as Record<string, unknown>;
 
   const additional = options.maxAdditionalDescriptionLength ?? 100;
-  const originalDescription = record[field] as string;
-  const maxDescriptionLength = originalDescription.length + additional;
+  const originalDescription = (record[field] as string).trim();
+  const maxDescriptionLength = computeMaxDescriptionLength(originalDescription.length, additional);
 
   const maxRetries = Math.max(0, options.maxRetries ?? 2);
   const maxAttempts = maxRetries + 1;
@@ -108,7 +109,7 @@ export async function rewriteDescription(
 
       return {
         field,
-        originalDescription: record[field] as string,
+        originalDescription: originalDescription,
         description: validated,
         output,
         attempts: attempt,

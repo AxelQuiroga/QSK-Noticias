@@ -263,6 +263,45 @@ describe("límite dinámico de descripción", () => {
     await expect(rewriteDescription({ descripcion: original }, { provider })).rejects.toMatchObject({ code: "INVALID_INPUT" });
   });
 
+  it("admite 4000 caracteres originales hasta 4100", async () => {
+    const original = "a".repeat(4000);
+    const rewritten = "b".repeat(4100);
+    const provider = mockProvider(rewritten);
+    const result = await rewriteDescription({ descripcion: original }, { provider });
+    expect(result.description).toBe(rewritten);
+  });
+
+  it("rechaza 4101 caracteres cuando el original tiene 4000", async () => {
+    const original = "a".repeat(4000);
+    const rewritten = "b".repeat(4101);
+    const provider = mockProvider(rewritten);
+    await expect(rewriteDescription({ descripcion: original }, { provider })).rejects.toMatchObject({ code: "RETRIES_EXHAUSTED" });
+  });
+
+  it("calcula el límite sobre la descripción recortada (espacios periféricos)", async () => {
+    const original = "  abc  ";
+    const rewritten = "b".repeat(103);
+    const provider = mockProvider(rewritten);
+    const result = await rewriteDescription({ descripcion: original }, { provider });
+    expect(result.description).toBe(rewritten);
+  });
+
+  it("rechaza si excede el límite calculado sobre la descripción recortada", async () => {
+    const original = "  abc  ";
+    const rewritten = "b".repeat(104);
+    const provider = mockProvider(rewritten);
+    await expect(rewriteDescription({ descripcion: original }, { provider })).rejects.toMatchObject({ code: "RETRIES_EXHAUSTED" });
+  });
+
+  it("el prompt usa el máximo calculado sobre la descripción recortada", async () => {
+    const original = "  abc  ";
+    const provider = mockProvider("ok");
+    await rewriteDescription({ descripcion: original }, { provider });
+    const calls = (provider.complete as unknown as { mock: { calls: unknown[][] } }).mock.calls;
+    const call = (calls[0]?.[0] ?? {}) as { user?: string };
+    expect(call.user).toContain("Máximo permitido: 103 caracteres.");
+  });
+
   it("mantiene reintentos ante respuestas inválidas", async () => {
     const original = "a".repeat(150);
     const provider = {
