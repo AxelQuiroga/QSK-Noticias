@@ -13,7 +13,6 @@ on:
 
 permissions:
   contents: read
-  actions: write
 
 jobs:
   prueba-real:
@@ -29,12 +28,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
-
-      - name: Instalar pnpm
-        run: npm install -g pnpm
+          cache: npm
 
       - name: Instalar dependencias
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Ejecutar prueba real con Cloudflare Workers AI
         env:

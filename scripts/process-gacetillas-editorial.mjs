@@ -59,3 +59,8 @@ if (changed) {
 } else {
   console.log("Sin cambios que procesar.");
 }
+
+if (summary.failed > 0) {
+  console.error(`Procesamiento con ${summary.failed} fallo(s) de ${summary.total}.`);
+  process.exit(1);
+}
