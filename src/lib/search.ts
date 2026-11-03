@@ -24,6 +24,7 @@ export interface SearchIndexEntry {
   municipality: string;
   localidad: string;
   region: string;
+  provincia: string;
   scope: string;
   publishedAt: string;
   /** Cuerpo del artículo sin markdown. Puede venir vacío. */
@@ -139,6 +140,7 @@ const uniqueNonEmpty = (values: ReadonlyArray<string | undefined>): string[] => 
 };
 
 const provinciaOf = (entry: SearchIndexEntry): string => {
+  if (entry.provincia) return entry.provincia;
   for (const name of [entry.municipality, entry.localidad]) {
     if (!name) continue;
     const location = findLocationByName(name);

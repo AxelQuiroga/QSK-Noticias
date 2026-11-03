@@ -232,7 +232,13 @@ const TABS = [
 
         const locations = getLocationsByType(
           kind === 'municipios' ? 'municipio' : kind === 'localidades' ? 'localidad' : 'provincia',
-        ).filter((location) => !hasQuery || matchesQuery(location.name, query));
+        ).filter((location) => {
+          if (hasQuery && !matchesQuery(location.name, query)) return false;
+          if (kind === 'provincias') {
+            return countOf((doc) => doc.location.provincia === location.name) > 0;
+          }
+          return true;
+        });
 
         listEl.innerHTML = locations
           .map((location) => {

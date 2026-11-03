@@ -25,6 +25,7 @@ const makeEntry = (
   municipality: '',
   localidad: '',
   region: '',
+  provincia: '',
   scope: '',
   publishedAt: '2026-10-13T00:00:00.000Z',
   content: '',
