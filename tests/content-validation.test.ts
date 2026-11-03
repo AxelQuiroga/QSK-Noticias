@@ -80,13 +80,13 @@ describe('Validación del contenido editorial', () => {
 
   it('los artículos publicados no exponen contenido interno del extractor', () => {
     const internalMarkers = [
-      /Borrador automático\\s+—\\s+no publicable/i,
-      /^## Texto completo extraído de la fuente\\s*$/m,
-      /^## Síntesis extractiva de la fuente\\s*$/m,
-      /^## Datos concretos detectados\\s*$/m,
-      /^## Estado del borrador\\s*$/m,
-      /^## Señales geográficas\\s*$/m,
-      /^## Datos a verificar o faltantes\\s*$/m,
+      /Borrador automático\s+—\s+no publicable/i,
+      /^## Texto completo extraído de la fuente\s*$/m,
+      /^## Síntesis extractiva de la fuente\s*$/m,
+      /^## Datos concretos detectados\s*$/m,
+      /^## Estado del borrador\s*$/m,
+      /^## Señales geográficas\s*$/m,
+      /^## Datos a verificar o faltantes\s*$/m,
     ];
 
     for (const { file, data, content } of getAllArticles()) {
