@@ -1,5 +1,5 @@
 ---
-status: "published"
+status: "draft"
 title: "Nuevos informes de EITI Argentina fortalecen la transparencia de los sectores extractivos"
 description: "El Informe de Divulgación Sistemática releva el estado actual de la publicación de información y el grado de cumplimiento de los requisitos establecidos por el Estándar EITI"
 slug: "nuevos-informes-de-eiti-argentina-fortalecen-la-transparencia-de-los-sectores-extractivos"
