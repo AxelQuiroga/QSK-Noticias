@@ -12,6 +12,10 @@ author: "Redacción QSK Noticias"
 publishedAt: "2026-11-02"
 status: "published"
 featured: false
+image:
+  src: "/images/noticias/ormuz-transito-naval-2012.webp"
+  alt: "El crucero lanzamisiles USS Cape St. George y el portaaviones USS Abraham Lincoln navegan en formacion por el estrecho de Ormuz, el 11 de mayo de 2012."
+  attribution: "U.S. Navy / Alex R. Forster. Dominio publico de EE. UU., via Wikimedia Commons. Fotografia de archivo del 11 de mayo de 2012; no documenta las negociaciones de 2026."
 sources:
   - name: "Reuters"
     url: "https://www.reuters.com/world/middle-east/iranians-have-left-doha-talks-draft-proposal-us-deal-being-circulated-official-2026-11-02/"

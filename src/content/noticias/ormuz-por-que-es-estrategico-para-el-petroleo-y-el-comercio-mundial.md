@@ -12,6 +12,10 @@ author: "Redacción QSK Noticias"
 publishedAt: "2026-11-02"
 status: "published"
 featured: false
+image:
+  src: "/images/noticias/ormuz-transitos-2026.webp"
+  alt: "Grafico de los transitos de buques por el estrecho de Ormuz entre enero y abril de 2026, elaborado con datos de IMF PortWatch y actualizado el 15 de abril de 2026."
+  attribution: "Wikideas1 / Wikimedia Commons. CC0 1.0. Elaborado con datos de IMF PortWatch."
 sources:
   - name: "Administración de Información Energética de Estados Unidos (EIA)"
     url: "https://www.eia.gov/outlooks/steo/report/energysecurity/article.php"

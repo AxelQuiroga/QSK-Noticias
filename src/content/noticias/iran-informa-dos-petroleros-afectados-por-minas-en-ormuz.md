@@ -12,6 +12,10 @@ author: "Redacción QSK Noticias"
 publishedAt: "2026-11-02"
 status: "published"
 featured: false
+image:
+  src: "/images/noticias/ormuz-buque-mercante-2004.webp"
+  alt: "Un buque mercante navega junto al buque de asalto anfibio USS Kearsarge durante un transito por el estrecho de Ormuz, el 5 de julio de 2004."
+  attribution: "U.S. Navy / Angel Roman-Otero. Dominio publico de EE. UU., via Wikimedia Commons. Fotografia de archivo de 2004; no corresponde a los incidentes de 2026."
 sources:
   - name: "Reuters"
     url: "https://www.reuters.com/world/middle-east/irans-irgc-navy-says-two-tankers-exploded-after-hitting-mines-hormuz-2026-11-01/"
