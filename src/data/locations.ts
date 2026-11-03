@@ -60,6 +60,28 @@ export const LOCATIONS: readonly Location[] = [
     type: 'provincia',
     parentId: 'pais-argentina',
   },
+  { id: 'provincia-ciudad-autonoma-de-buenos-aires', name: 'Ciudad Autónoma de Buenos Aires', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-catamarca', name: 'Catamarca', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-chaco', name: 'Chaco', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-chubut', name: 'Chubut', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-cordoba', name: 'Córdoba', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-corrientes', name: 'Corrientes', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-entre-rios', name: 'Entre Ríos', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-formosa', name: 'Formosa', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-jujuy', name: 'Jujuy', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-la-pampa', name: 'La Pampa', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-la-rioja', name: 'La Rioja', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-mendoza', name: 'Mendoza', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-misiones', name: 'Misiones', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-neuquen', name: 'Neuquén', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-rio-negro', name: 'Río Negro', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-salta', name: 'Salta', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-san-juan', name: 'San Juan', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-san-luis', name: 'San Luis', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-santa-cruz', name: 'Santa Cruz', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-santiago-del-estero', name: 'Santiago del Estero', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-tierra-del-fuego', name: 'Tierra del Fuego, Antártida e Islas del Atlántico Sur', type: 'provincia', parentId: 'pais-argentina' },
+  { id: 'provincia-tucuman', name: 'Tucumán', type: 'provincia', parentId: 'pais-argentina' },
   // Regiones editoriales: agrupaciones de cobertura, no jurisdicciones.
   { id: 'region-zona-sur', name: 'Zona Sur', type: 'region' },
   { id: 'region-amba', name: 'AMBA', type: 'region' },
@@ -249,12 +271,16 @@ export const getProvinciaOf = (name: string): string => {
   const location = findLocationByName(name);
   if (!location) return '';
 
+  if (location.type === 'provincia') return location.name;
+
   return getAncestorOfType(location, 'provincia')?.name ?? '';
 };
 
 export const getPaisOf = (name: string): string => {
   const location = findLocationByName(name);
   if (!location) return '';
+
+  if (location.type === 'pais') return location.name;
 
   return getAncestorOfType(location, 'pais')?.name ?? '';
 };
