@@ -1,6 +1,6 @@
 ---
-title: "Irán informó que dos petroleros explotaron tras impactar contra minas en el estrecho de Ormuz"
-description: "La Guardia Revolucionaria iraní aseguró que dos buques resultaron afectados al navegar por rutas que calificó como no autorizadas. No se difundieron datos confirmados sobre víctimas ni se verificaron de forma independiente todos los detalles."
+title: "La Guardia Revolucionaria iraní afirmó que dos petroleros explotaron tras chocar con minas en Ormuz"
+description: "La fuerza naval iraní atribuyó las explosiones a minas colocadas en una ruta que calificó como no autorizada. Reuters informó que la versión fue difundida por medios estatales; por ahora, no hay una verificación independiente completa de esos detalles."
 slug: "iran-informa-dos-petroleros-afectados-por-minas-en-ormuz"
 section: "Política"
 primaryTopic: "Política"
@@ -13,27 +13,27 @@ publishedAt: "2026-11-02"
 status: "published"
 featured: false
 sources:
-  - name: "EFE"
-    url: "https://efe.com/mundo/2026-11-02/petroleros-minas-ormuz/"
-    description: "Información sobre el anuncio de la Guardia Revolucionaria iraní y el contexto de las negociaciones."
-  - name: "Europa Press"
-    url: "https://www.europapress.es/internacional/noticia-iran-informa-dos-nuevas-explosiones-impacto-minas-contra-petroleros-ormuz-20261101213908.html"
-    description: "Reporte del comunicado iraní y de un incidente marítimo informado por UKMTO."
+  - name: "Reuters"
+    url: "https://www.reuters.com/world/middle-east/irans-irgc-navy-says-two-tankers-exploded-after-hitting-mines-hormuz-2026-11-01/"
+    description: "Reporte del 1 de noviembre sobre la declaración de la Armada de la Guardia Revolucionaria iraní."
+  - name: "gCaptain"
+    url: "https://gcaptain.com/new-wave-of-attacks-hits-tankers-and-lng-carrier-in-strait-of-hormuz-and-persian-gulf/"
+    description: "Información del 2 de noviembre sobre nuevos incidentes contra buques mercantes y la evacuación de tripulantes."
   - name: "Al Jazeera"
     url: "https://www.aljazeera.com/news/liveblog/2026/11/2/iran-war-live-tankers-hit-in-hormuz-trump-again-says-conflict-to-end-soon"
-    description: "Seguimiento de los incidentes, las declaraciones de Irán y las negociaciones diplomáticas."
+    description: "Seguimiento de los incidentes marítimos y de las declaraciones de las partes."
 ---
 
-La Guardia Revolucionaria de Irán afirmó que dos petroleros explotaron después de impactar contra minas navales mientras navegaban por el estrecho de Ormuz. El anuncio fue difundido durante la noche del domingo y se conoció en medio de las negociaciones indirectas entre Teherán y Washington para intentar reducir las tensiones en la región.
+La Armada de la Guardia Revolucionaria de Irán afirmó que dos petroleros explotaron después de chocar con minas navales mientras navegaban por el estrecho de Ormuz. Según la versión difundida el domingo por medios estatales iraníes, los buques utilizaban una ruta que Teherán considera no autorizada.
 
-Según el comunicado iraní, las embarcaciones habían utilizado rutas que las autoridades de ese país consideran no autorizadas. Una de ellas sería un superpetrolero que, de acuerdo con la versión oficial, sufrió una explosión de gran magnitud y quedó envuelto en llamas.
+La información fue recogida por Reuters, que atribuyó expresamente el anuncio a la fuerza naval iraní. El reporte no identificó a los petroleros ni precisó sus banderas, los nombres de las compañías operadoras o el estado de sus tripulaciones. Tampoco presentó una confirmación independiente de que las explosiones se hayan producido exactamente como describió el comunicado iraní.
 
-Hasta el momento, la información difundida por la Guardia Revolucionaria no precisó las banderas de los buques, la cantidad de tripulantes afectados ni la existencia de víctimas. Los detalles centrales del anuncio tampoco cuentan, por ahora, con una verificación independiente completa. Por eso, la atribución de los hechos debe mantenerse explícita al informar sobre el episodio.
+El episodio se conoce en un contexto de nuevos ataques contra el transporte comercial en el golfo Pérsico. La publicación especializada gCaptain informó el lunes que un petrolero fue alcanzado por dos proyectiles no identificados y que los incidentes recientes obligaron a evacuar a 25 marinos de distintas embarcaciones. Esos reportes describen episodios adicionales y no permiten concluir que todos correspondan a los dos buques mencionados por Teherán.
 
-La agencia británica de Operaciones de Comercio Marítimo (UKMTO) también comunicó que recibió un reporte de un incidente en el que un buque mercante emitió una señal de auxilio e informó que otra embarcación habría sido alcanzada por un proyectil no identificado. Ese reporte no permite establecer por sí solo si se trata de los mismos petroleros mencionados por Irán.
+La distinción es relevante: una declaración militar sobre un ataque, un aviso de seguridad marítima y una confirmación independiente son niveles distintos de información. Hasta que se conozcan los nombres de los barcos, los registros de navegación y los informes de las autoridades marítimas, no es posible establecer con precisión qué ocurrió con cada embarcación ni atribuir todos los incidentes a una misma causa.
 
-Los episodios se producen en una zona clave para el transporte mundial de hidrocarburos. El estrecho conecta el golfo Pérsico con el golfo de Omán y constituye una vía de salida para importantes exportaciones de petróleo y gas. La inseguridad en sus aguas puede alterar las rutas comerciales, elevar los costos de transporte y seguros y generar incertidumbre en los mercados energéticos.
+Ormuz es una de las rutas más sensibles para el transporte mundial de energía. El estrecho conecta el golfo Pérsico con el golfo de Omán y concentra el paso de cargamentos de petróleo y gas procedentes de los principales exportadores de la región. Una amenaza a la navegación puede obligar a los buques a esperar, modificar sus recorridos o evitar el área, además de elevar los costos de seguros y transporte.
 
-El anuncio coincide además con contactos diplomáticos impulsados por Catar. Mientras continúan las gestiones para alcanzar un entendimiento, los incidentes marítimos mantienen la atención sobre la seguridad de las tripulaciones y la continuidad del tránsito comercial por Ormuz.
+Los incidentes también aumentan el riesgo para las tripulaciones civiles, que trabajan en buques comerciales y no participan directamente de las operaciones militares. La Organización Marítima Internacional viene advirtiendo sobre el impacto de la crisis en los marinos y en la libertad de navegación.
 
-La información disponible puede cambiar a medida que las autoridades marítimas y los operadores de los buques publiquen nuevos datos.
+Por el momento, la afirmación sobre los dos petroleros debe atribuirse a la Guardia Revolucionaria iraní. QSK Noticias continuará siguiendo los reportes de las autoridades marítimas y de las agencias internacionales para determinar qué hechos cuentan con confirmación independiente.
