@@ -65,6 +65,7 @@ export function buildSearchIndex(contentDir = CONTENT_DIR) {
       municipality: data.municipality || '',
       localidad: data.localidad || '',
       region: data.region || '',
+      provincia: data.provincia || '',
       scope: data.scope || '',
       publishedAt: data.publishedAt ? new Date(data.publishedAt).toISOString() : '',
       content: toPlainText(content),

@@ -25,6 +25,7 @@ const makeEntry = (
   municipality: '',
   localidad: '',
   region: '',
+  provincia: '',
   scope: '',
   publishedAt: '2026-10-13T00:00:00.000Z',
   content: '',
@@ -304,5 +305,63 @@ describe('catálogo geográfico', () => {
     expect(isKnownLocationName('AMBA', 'region')).toBe(true);
     expect(isKnownLocationName('Banfield', 'localidad')).toBe(true);
     expect(isKnownLocationName('Avellaneda', 'municipio')).toBe(true);
+  });
+});
+
+describe('Provincia explícita en el índice', () => {
+  it('asocia una noticia provincial sin municipio a su provincia', () => {
+    const entry = makeEntry({
+      slug: 'cordoba-provincial',
+      title: 'Noticia provincial de Córdoba',
+      description: 'Hecho provincial',
+      section: 'Actualidad',
+      provincia: 'Córdoba',
+      content: 'Contenido.',
+    });
+    const doc = buildSearchDocument(entry);
+    expect(doc.location.provincia).toBe('Córdoba');
+  });
+
+  it('permite encontrar la noticia buscando el nombre de la provincia', () => {
+    const entry = makeEntry({
+      slug: 'cordoba-provincial-2',
+      title: 'Hecho provincial',
+      description: 'Sin mención del nombre',
+      section: 'Actualidad',
+      provincia: 'Córdoba',
+      content: 'Texto sin el nombre de la provincia.',
+    });
+    const docs = buildSearchDocuments([entry]);
+    const results = searchDocuments(docs, 'córdoba');
+    expect(results).toHaveLength(1);
+  });
+
+  it('resuelve el país de una noticia provincial', () => {
+    const entry = makeEntry({
+      slug: 'cordoba-provincial-3',
+      title: 'Hecho provincial',
+      description: 'Desc',
+      section: 'Actualidad',
+      provincia: 'Córdoba',
+      content: 'Texto.',
+    });
+    const doc = buildSearchDocument(entry);
+    expect(doc.location.pais).toBe('Argentina');
+  });
+
+  it('rechaza contradicción entre municipio y provincia (schema)', async () => {
+    const { newsSchema } = await import('../src/schemas/news');
+    const result = newsSchema.safeParse({
+      title: 'T',
+      description: 'D',
+      slug: 't',
+      section: 'Actualidad',
+      author: 'A',
+      publishedAt: '2026-01-01',
+      status: 'published',
+      municipality: 'Lanús',
+      provincia: 'Córdoba',
+    });
+    expect(result.success).toBe(false);
   });
 });

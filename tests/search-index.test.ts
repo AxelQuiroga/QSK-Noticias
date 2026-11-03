@@ -12,12 +12,13 @@ import { findLocationByNameAndType } from '../src/data/locations';
 import type { SearchIndexEntry } from '../src/lib/search';
 
 const GEO_FIELDS: ReadonlyArray<{
-  field: 'municipality' | 'localidad' | 'region';
-  type: 'municipio' | 'localidad' | 'region';
+  field: 'municipality' | 'localidad' | 'region' | 'provincia';
+  type: 'municipio' | 'localidad' | 'region' | 'provincia';
 }> = [
   { field: 'municipality', type: 'municipio' },
   { field: 'localidad', type: 'localidad' },
   { field: 'region', type: 'region' },
+  { field: 'provincia', type: 'provincia' },
 ];
 
 const readPublishedFrontmatter = () =>

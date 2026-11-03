@@ -1,5 +1,5 @@
 import { z } from "astro/zod";
-import { isKnownLocationName, type LocationType } from "../data/locations";
+import { isKnownLocationName, type LocationType, getProvinciaOf } from "../data/locations";
 import { isKnownSection, isKnownTopic } from "../data/sections";
 import { isValidNewsImageSrc, newsImageFileExists } from "../lib/news-image";
 import { COUNTRY_CODES } from "../lib/international";
@@ -169,6 +169,29 @@ export const newsSchema = z
             code: "custom",
             path: [field],
             message: `"${value}" no es un ${type} del catálogo de ubicaciones (src/data/locations.ts).`,
+          });
+        }
+      }
+
+      // Consistencia territorial: si se declara provincia y municipio/localidad,
+      // la provincia debe coincidir con la resuelta por la jerarquía.
+      if (data.provincia && data.municipality) {
+        const resolved = getProvinciaOf(data.municipality);
+        if (resolved && resolved !== data.provincia) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["provincia"],
+            message: `La provincia "${data.provincia}" no coincide con la del municipio "${data.municipality}" (${resolved}).`,
+          });
+        }
+      }
+      if (data.provincia && data.localidad) {
+        const resolved = getProvinciaOf(data.localidad);
+        if (resolved && resolved !== data.provincia) {
+          ctx.addIssue({
+            code: "custom",
+            path: ["provincia"],
+            message: `La provincia "${data.provincia}" no coincide con la de la localidad "${data.localidad}" (${resolved}).`,
           });
         }
       }
