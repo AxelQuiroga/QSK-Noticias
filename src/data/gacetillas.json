@@ -120,6 +120,26 @@
     "slug": "kicillof-participo-de-la-5-marcha-federal-universitaria"
   },
   {
+    "titulo": "EL COLECTIVO SANITARIO LLEGA AL PARQUE LINEAL DEL OESTE",
+    "descripcion": "El Colectivo Sanitario se instalará en el Parque Lineal del Oeste de Lanús del 3 al 5 de noviembre, de 10 a 14, para brindar controles preventivos y prestaciones médicas gratuitas.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-02-at-71355-pm-pxBdI.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4652-el-colectivo-sanitario-llega-al-parque-lineal-del-oeste",
+    "fecha": "2026-11-02",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "el-colectivo-sanitario-llega-al-parque-lineal-del-oeste"
+  },
+  {
+    "titulo": "CONTINÚAN LAS OBRAS DEL PLAN DE PAVIMENTACIÓN EN EL BARRIO VILLA DIAMANTE",
+    "descripcion": "El municipio de Lanús informó que las obras de pavimentación avanzan en distintas calles del distrito, con financiamiento propio. El objetivo es mejorar la circulación, la seguridad vial y la calidad de vida de los vecinos.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante-1-UQoj8.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4651-continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante",
+    "fecha": "2026-11-02",
+    "volanta": "Obras Públicas",
+    "fuente": "lanus",
+    "slug": "continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante"
+  },
+  {
     "titulo": "NUEVA EDICIÓN CONJUNTA DE LA FERIA \"HECHO EN LANÚS\" Y MERCADOS BONAERENSES",
     "descripcion": "Lanús Gobierno realizará una edición conjunta de la Feria de la Economía Social “Hecho en Lanús” con los tradicionales Mercados Bonaerenses durante el martes 3 de noviembre, de 10 a 14 en la plaza Villa Obrera, situada en la avenida Eva Perón N° 2400 en Lanús Este.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-02-at-104253-uJCUH.jpeg",
@@ -190,28 +210,8 @@
     "slug": "feria-de-artesanias-nuevas-jornadas-en-el-distrito"
   },
   {
-    "titulo": "FERIA \"HECHO EN LANÚS\": NUEVAS EDICIONES EN EL CENTRO CULTURAL LEONARDO FAVIO Y EN LA PLAZA SARMIENTO",
-    "descripcion": "Lanús Gobierno realizará otras dos jornadas de la Feria de la Economía Social “Hecho en Lanús” durante el sábado 31 de octubre y el domingo 1 de noviembre, de 15 a 19, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste) y en la plaza Sarmiento (avenida 9 de julio N° 1900, Lanús Este).",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-22-at-190833-7rYbO.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4643-feria-hecho-en-lanus-nuevas-ediciones-en-el-centro-cultural-leonardo-favio-y-en-la-plaza-sarmiento",
-    "fecha": "2026-10-29",
-    "volanta": "Desarrollo Social",
-    "fuente": "lanus",
-    "slug": "feria-hecho-en-lanus-nuevas-ediciones-en-el-centro-cultural-leonardo-favio-y-en-la-plaza-sarmiento"
-  },
-  {
-    "titulo": "JORNADAS DE AUTOCUIDADO \"LANÚS SE PREPARA\": CONOCÉ LAS PRÓXIMAS FECHAS",
-    "descripcion": "Lanús Gobierno informa que desde el lunes 2 al sábado 7 de noviembre se llevarán a cabo distintas Jornadas de Autocuidado bajo el lema “Lanús se prepara para afrontar riesgos climatológicos”, donde las y los lanusenses obtendrán información relacionada al fenómeno climatológico El Niño, además de recomendaciones sobre cómo actuar frente a este evento.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-29-at-134609-Kdc5M.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4642-jornadas-de-autocuidado-lanus-se-prepara-conoce-las-proximas-fechas",
-    "fecha": "2026-10-29",
-    "volanta": "Salud",
-    "fuente": "lanus",
-    "slug": "jornadas-de-autocuidado-lanus-se-prepara-conoce-las-proximas-fechas"
-  },
-  {
     "titulo": "Jornadas de vacunación antirrábica y desparasitación",
-    "descripcion": "El operativo de zoonosis en Gerli se suspendió por las lluvias.",
+    "descripcion": "El operativo de zoonosis en Gerli se suspende por las lluvias.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/09/MS_2314.JPG-350x240.jpeg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/operativo-de-zoonosis/",
     "fecha": "2026-11-02",
@@ -330,8 +330,38 @@
     "slug": "salud-presente-en-tu-barrio"
   },
   {
+    "titulo": "FERNANDO GRAY DIALOGÓ CON REPRESENTANTES DE LA SOCIEDAD DE FOMENTO ALTOS DE MONTE GRANDE",
+    "descripcion": "El intendente de Esteban Echeverría dialogó con autoridades de la Sociedad de Fomento Altos de Monte Grande y entregó equipamiento para su sala teatral.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-dialogo-con-representantes-de-la-sociedad-de-fomento-altos-de-monte-grande/",
+    "fecha": "2026-11-02",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-dialogo-con-representantes-de-la-sociedad-de-fomento-altos-de-monte-grande"
+  },
+  {
+    "titulo": "9 DE ABRIL: DESARTICULAN PUNTOS DE VENTA DE DROGAS Y DETIENEN A CUATRO PERSONAS",
+    "descripcion": "Agentes de la Policía de la Provincia de Buenos Aires detuvieron a cuatro personas tras realizar allanamientos en 9 de Abril por la tenencia y comercialización de estupefacientes. La operación se basó en denuncias vecinales, inteligencia policial y el uso de cámaras de videovigilancia del Municipio de Esteban Echeverría. Durante los registros se secuestraron 399 envoltorios de pasta base, dos trozos de marihuana, tres celulares y municiones. Los detenidos fueron trasladados a la Subcomisaría Nuestras Malvinas y quedaron a disposición de la justicia.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/9-de-abril-desarticulan-puntos-de-venta-de-drogas-y-detienen-a-cuatro-personas/",
+    "fecha": "2026-11-02",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "9-de-abril-desarticulan-puntos-de-venta-de-drogas-y-detienen-a-cuatro-personas"
+  },
+  {
+    "titulo": "FENÓMENO DE EL NIÑO: LIMPIEZA Y SANEAMIENTO EN EL RÍO MATANZA",
+    "descripcion": "El Municipio de Esteban Echeverría realiza tareas de limpieza y saneamiento en el río Matanza-Riachuelo, en el marco de operativos preventivos por la posible intensificación de lluvias por El Niño. Las cuadrillas utilizan maquinaria para perfilar márgenes y remover sedimentos. También se recuerda a la población evitar arrojar residuos al curso hídrico.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fenmeno-de-el-nio-limpieza-y-saneamiento-en-el-ro-matanza/",
+    "fecha": "2026-11-02",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fenomeno-de-el-nino-limpieza-y-saneamiento-en-el-rio-matanza"
+  },
+  {
     "titulo": "EL JAGÜEL TUVO SU PASEO PEATONAL DE COMPRAS EDICIÓN HALLOWEEN",
-    "descripcion": "El Jagüel organizó un paseo comercial con temática Halloween en la calle Evita, entre Ruta 205 y Valentín Alsina. Los comercios locales instalaron puestos en una iniciativa conjunta con el Municipio para fomentar la actividad económica y acompañar el funcionamiento de los negocios de cercanía.",
+    "descripcion": "El Jagüel vivió ayer su paseo comercial con temática Halloween en la calle Evita, entre Ruta 205 y Valentín Alsina. Los comercios y emprendimientos locales instalaron puestos para exhibir sus productos, una iniciativa conjunta del Municipio y los comerciantes para apoyar el comercio de cercanía y la actividad económica.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/el-jagel-tuvo-su-paseo-peatonal-de-compras-edicin-halloween/",
     "fecha": "2026-11-02",
@@ -341,7 +371,7 @@
   },
   {
     "titulo": "EL MUNICIPIO REALIZÓ OPERATIVOS DE SEGURIDAD Y CONTROL VEHICULAR EN MONTE GRANDE",
-    "descripcion": "Guardia Urbana, Tránsito local y la Policía bonaerense realizaron controles de alcoholemia, estupefacientes y documentación en las plazas Salta y Mitre de Monte Grande. También se trabajó en la concientización sobre el uso del casco y el cinturón. Como consecuencia, se secuestraron cuatro vehículos por infracciones a la Ley Nacional de Tránsito.",
+    "descripcion": "Los efectivos de Guardia Urbana, Tránsito local y la Policía bonaerense realizaron un operativo nocturno en Monte Grande. En las inmediaciones de las plazas Salta y Mitre, se realizaron controles de alcoholemia, estupefacientes y documentación, además de concientizar sobre el uso del casco y el cinturón de seguridad. Como consecuencia, se secuestraron cuatro vehículos por infracciones a la Ley Nacional de Tránsito.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-realiz-operativos-de-seguridad-y-control-vehicular-en-monte-grande/",
     "fecha": "2026-11-02",
@@ -351,7 +381,7 @@
   },
   {
     "titulo": "FERNANDO GRAY PARTICIPÓ DE LA APERTURA DE LA CORRECAMINATA ROSA GABY PANDO",
-    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, concurrió este domingo a la apertura de la Correcaminata Rosa Gaby Pando, un encuentro deportivo en homenaje a la exjugadora de Las Leonas Gabriela Pando. El evento busca concientizar sobre la prevención del cáncer de mama y contó con la presencia de deportistas locales y vecinos.",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, inauguró la Correcaminata Rosa Gaby Pando, un evento deportivo que busca concientizar sobre la prevención del cáncer de mama. La actividad contó con la participación de vecinos y deportistas de distintos distritos.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-participo-de-la-apertura-de-la-correcaminata-rosa-gaby-pando/",
     "fecha": "2026-11-02",
@@ -361,7 +391,7 @@
   },
   {
     "titulo": "CRONOGRAMA DE SERVICIOS MUNICIPALES DURANTE EL ASUETO ADMINISTRATIVO DEL PRÓXIMO LUNES",
-    "descripcion": "El Municipio de Esteban Echeverría detalló el funcionamiento de los servicios durante el asueto del próximo lunes 2 de noviembre. La recolección de residuos será normal, el edificio municipal estará cerrado y el Hospital Municipal Santamarina operará con guardias. Las Unidades Sanitarias N° 6 y N° 24 mantendrán el horario habitual, mientras que las N° 3 y N° 4 funcionarán de 8 a 20 horas. El CAV atenderá de 6 a 22 horas y el cementerio estará abierto de 7 a 18.",
+    "descripcion": "El Municipio de Esteban Echeverría detalló el funcionamiento de los servicios durante el asueto del próximo lunes 2 de noviembre. La recolección de residuos será normal, mientras que el edificio municipal permanecerá cerrado. En salud, el Hospital Municipal Santamarina y las Unidades Sanitarias N° 6 y 24 operarán con guardias de 24 horas. Las Unidades N° 3 y 4 atenderán de 8 a 20 horas. El CAV estará disponible de 6 a 22 horas y el cementerio de 7 a 18.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/cronograma-de-servicios-municipales-durante-el-asueto-administrativo-del-proximo-lunes-3/",
     "fecha": "2026-11-02",
@@ -370,8 +400,8 @@
     "slug": "cronograma-de-servicios-municipales-durante-el-asueto-administrativo-del-proximo-lunes"
   },
   {
-    "titulo": "LA CORRECAMINATA ROSA “GABY PANDO” SE REALIZÓ EN MONTE GRANDE",
-    "descripcion": "La Correcaminata Rosa “Gaby Pando” se realizó el domingo 1° de noviembre en Monte Grande, con salida desde el edificio municipal. La propuesta contó con tres distancias: 5K, 3K y 1K kids, y formó parte de las actividades de concientización sobre el cáncer de mama.",
+    "titulo": "SE REALIZA LA CORRECAMINATA ROSA “GABY PANDO” EN EL MES DE CONCIENTIZACIÓN DEL CÁNCER DE MAMA",
+    "descripcion": "El Municipio de Esteban Echeverría organiza la Correcaminata Rosa “Gaby Pando” este domingo 1° de noviembre desde las 8:30 horas. La actividad, que se realizará en Monte Grande, ofrece distancias de 5K, 3K y 1K para niños y cuenta con desvíos de tránsito desde las 7 horas. Quienes quieran participar deben inscribirse en el enlace oficial y asistir con ropa rosa.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/se-realiza-la-correcaminata-rosa-gaby-pando-en-el-mes-de-concientizacion-del-cancer-de-mama/",
     "fecha": "2026-11-02",
@@ -398,6 +428,26 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "fernando-gray-recibio-a-autoridades-de-la-primaria-n-37-de-monte-grande"
+  },
+  {
+    "titulo": "FERIA \"HECHO EN LANÚS\": NUEVAS EDICIONES EN EL CENTRO CULTURAL LEONARDO FAVIO Y EN LA PLAZA SARMIENTO",
+    "descripcion": "Lanús Gobierno realizará otras dos jornadas de la Feria de la Economía Social “Hecho en Lanús” durante el sábado 31 de octubre y el domingo 1 de noviembre, de 15 a 19, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste) y en la plaza Sarmiento (avenida 9 de julio N° 1900, Lanús Este).",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-22-at-190833-7rYbO.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4643-feria-hecho-en-lanus-nuevas-ediciones-en-el-centro-cultural-leonardo-favio-y-en-la-plaza-sarmiento",
+    "fecha": "2026-10-29",
+    "volanta": "Desarrollo Social",
+    "fuente": "lanus",
+    "slug": "feria-hecho-en-lanus-nuevas-ediciones-en-el-centro-cultural-leonardo-favio-y-en-la-plaza-sarmiento"
+  },
+  {
+    "titulo": "JORNADAS DE AUTOCUIDADO \"LANÚS SE PREPARA\": CONOCÉ LAS PRÓXIMAS FECHAS",
+    "descripcion": "Lanús Gobierno informa que desde el lunes 2 al sábado 7 de noviembre se llevarán a cabo distintas Jornadas de Autocuidado bajo el lema “Lanús se prepara para afrontar riesgos climatológicos”, donde las y los lanusenses obtendrán información relacionada al fenómeno climatológico El Niño, además de recomendaciones sobre cómo actuar frente a este evento.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-10-29-at-134609-Kdc5M.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4642-jornadas-de-autocuidado-lanus-se-prepara-conoce-las-proximas-fechas",
+    "fecha": "2026-10-29",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "jornadas-de-autocuidado-lanus-se-prepara-conoce-las-proximas-fechas"
   },
   {
     "titulo": "COMIENZA LA INSCRIPCIÓN A LAS TECNICATURAS DE LA UTN",
