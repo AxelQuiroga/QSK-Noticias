@@ -1,5 +1,5 @@
 ---
-status: "published"
+status: "draft"
 title: "Santiago del Estero: Detectan más de 144 kilos de hojas de coca en un transporte de cargas"
 description: "Los gendarmes hallaron el vegetal durante el control a un camión que circulaba desde la localidad salteña de Las Palomitas con destino la Córdoba. La mercadería estaba distribuida en 18 bultos ocultos en el semirremolque."
 slug: "santiago-del-estero-detectan-mas-de-144-kilos-de-hojas-de-coca-en-un-transporte-de-cargas"
