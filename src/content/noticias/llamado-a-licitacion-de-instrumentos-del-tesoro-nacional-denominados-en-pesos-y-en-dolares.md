@@ -1,5 +1,5 @@
 ---
-status: "published"
+status: "draft"
 title: "Llamado a licitación de instrumentos del Tesoro Nacional denominados en pesos y en dólares estadounidenses"
 description: "La Secretaría de Finanzas ofrece en este llamado a licitación por efectivo los instrumentos del Tesoro Nacional que se detallan a continuación:"
 slug: "llamado-a-licitacion-de-instrumentos-del-tesoro-nacional-denominados-en-pesos-y-en-dolares"
