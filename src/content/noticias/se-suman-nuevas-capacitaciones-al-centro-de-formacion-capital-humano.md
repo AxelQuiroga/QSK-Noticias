@@ -1,5 +1,5 @@
 ---
-status: "published"
+status: "draft"
 title: "Se suman nuevas capacitaciones al Centro de Formación Capital Humano"
 description: "El nuevo curso brindará a los participantes herramientas prácticas para optimizar la toma de decisiones económicas y fortalecer su inserción en el mercado formal."
 slug: "se-suman-nuevas-capacitaciones-al-centro-de-formacion-capital-humano"
