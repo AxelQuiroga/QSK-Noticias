@@ -1,7 +1,7 @@
 ---
 status: "published"
 title: "La nutrición de la vaca puede definir el futuro productivo del ternero"
-description: "Un trabajo del INTA Cuenca del Salado determinó que la alimentación de la madre durante la gestación influye en el crecimiento, la calidad de carne, la fertilidad y la salud de la descendencia. Los efectos pueden extenderse durante toda la vida del animal."
+description: "Investigadores del INTA Cuenca del Salado analizaron cómo la alimentación de las vacas durante la gestación incide en el desarrollo de los terneros, con efectos sobre su crecimiento, la calidad de la carne, la reproducción y la salud."
 slug: "la-nutricion-de-la-vaca-puede-definir-el-futuro-productivo-del-ternero"
 section: "Salud"
 primaryTopic: "Salud"
@@ -17,8 +17,6 @@ image:
 publishedAt: "2026-10-27"
 
 ---
-
-## Texto completo extraído de la fuente
 
 Durante décadas, el manejo nutricional de la vaca de cría estuvo orientado principalmente a mejorar los índices reproductivos del rodeo. Sin embargo, la investigación científica comenzó a demostrar que la alimentación durante la gestación tiene un alcance mucho mayor: también condiciona el desarrollo del feto y puede definir buena parte del desempeño productivo de los terneros una vez nacidos.
 
@@ -43,46 +41,3 @@ En la Argentina, una proporción importante del rodeo de cría enfrenta restricc
 Para los especialistas del INTA, la evidencia disponible obliga a ampliar la mirada sobre el manejo de la vaca gestante. “Ya no se trata solamente de asegurar buenos índices reproductivos, sino de comprender que las decisiones nutricionales durante esos meses también determinan el potencial productivo de la próxima generación”, explicó Rodríguez.
 
 Aunque todavía quedan interrogantes sobre los mecanismos biológicos involucrados y su impacto económico, las investigaciones buscan aportar herramientas para optimizar la productividad de los sistemas de cría desde el inicio mismo de la vida del animal.
-
-## Síntesis extractiva de la fuente
-
-> Fragmentos textuales del arranque de la nota oficial. NO son redacción propia.
-
-> "Durante décadas, el manejo nutricional de la vaca de cría estuvo orientado principalmente a mejorar los índices reproductivos del rodeo."
-> "Sin embargo, la investigación científica comenzó a demostrar que la alimentación durante la gestación tiene un alcance mucho mayor: también condiciona el desarrollo del feto y puede definir buena parte del desempeño productivo de los terneros una vez nacidos."
-
-## Datos concretos detectados
-
-Detectados por patrones sobre el texto de la fuente. Verificar cada uno.
-
-- **cantidad** — "En ensayos realizados por el INTA en la Chacra Experimental Manantiales, en Chascomús, las vacas alimentadas con solo el 50 % de sus requerimientos nutricionales produjeron terneros que nacieron con alrededor de dos kilogramos menos, registraron menores ganancias de peso durante la lactancia y…"
-
-## Estado de la medida
-
-**No determinado**
-
-Marcadores encontrados: ninguno.
-
-No se pudo separar "anunciado" de "ya implementado" con las formas verbales de la nota: revisar el texto original antes de titular.
-
-## Señales geográficas
-
-_(la nota no menciona ninguna ubicación del catálogo de QSK)_
-
-## Datos a verificar o faltantes
-
-Puntos detectados automáticamente. No es una lista cerrada: la revisión editorial puede encontrar más.
-
-- [ ] El titular es textual de la fuente: reescribirlo con el estilo de QSK antes de publicar.
-- [ ] La bajada es textual de la fuente: revisar que describa la noticia publicada.
-- [ ] La sección propuesta ("Salud") sale de palabras clave, no de una clasificación editorial: confirmarla.
-- [ ] No se pudo determinar si la medida está anunciada o ya implementada. Marcadores encontrados: ninguno.
-- [ ] Alcance `nacional` propuesto por defecto: el titular no menciona ninguna ubicación del catálogo de QSK.
-- [ ] El texto del borrador es extractivo: verificar cada dato contra la fuente y reescribirlo antes de publicar.
-
-## Fuente
-
-- **Título original:** Instituto Nacional de Tecnología Agropecuaria
-- **URL:** <https://www.argentina.gob.ar/noticias/la-nutricion-de-la-vaca-puede-definir-el-futuro-productivo-del-ternero>
-- **Fecha de publicación en la fuente:** 2026-10-26T13:07:20-03:00
-- **Organismo(s):** "Instituto Nacional de Tecnología Agropecuaria"
