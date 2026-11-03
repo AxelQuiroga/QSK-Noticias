@@ -11,11 +11,13 @@ interface RawArticle {
   slug?: string;
   publishedAt?: string | Date;
   updatedAt?: string | Date;
+  status?: string;
 }
 
 interface ParsedArticle {
   file: string;
   data: RawArticle;
+  content: string;
 }
 
 function getMarkdownFiles(dir: string): string[] {
@@ -47,6 +49,7 @@ function getAllArticles(): ParsedArticle[] {
   return getMarkdownFiles(CONTENT_DIR).map((file) => ({
     file,
     data: parseFrontmatter(file),
+    content: readFileSync(file, 'utf-8'),
   }));
 }
 
@@ -71,6 +74,30 @@ describe('Validación del contenido editorial', () => {
         result.success,
         `Schema inválido en ${file}:\n${JSON.stringify(result.error?.issues, null, 2)}`,
       ).toBe(true);
+    }
+  });
+
+
+  it('los artículos publicados no exponen contenido interno del extractor', () => {
+    const internalMarkers = [
+      /Borrador automático\\s+—\\s+no publicable/i,
+      /^## Texto completo extraído de la fuente\\s*$/m,
+      /^## Síntesis extractiva de la fuente\\s*$/m,
+      /^## Datos concretos detectados\\s*$/m,
+      /^## Estado del borrador\\s*$/m,
+      /^## Señales geográficas\\s*$/m,
+      /^## Datos a verificar o faltantes\\s*$/m,
+    ];
+
+    for (const { file, data, content } of getAllArticles()) {
+      if (data.status !== 'published') continue;
+
+      const exposedMarkers = internalMarkers.filter((marker) => marker.test(content));
+
+      expect(
+        exposedMarkers,
+        `El artículo publicado ${data.slug ?? file} contiene secciones internas del extractor.`,
+      ).toHaveLength(0);
     }
   });
 
