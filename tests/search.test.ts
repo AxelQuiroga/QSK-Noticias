@@ -308,7 +308,7 @@ describe('catálogo geográfico', () => {
   });
 });
 
-describe('Provincia expl�cita en el �ndice', () => {
+describe('Provincia explícita en el índice', () => {
   it('asocia una noticia provincial sin municipio a su provincia', () => {
     const entry = makeEntry({
       slug: 'cordoba-provincial',
@@ -326,17 +326,17 @@ describe('Provincia expl�cita en el �ndice', () => {
     const entry = makeEntry({
       slug: 'cordoba-provincial-2',
       title: 'Hecho provincial',
-      description: 'Sin menci�n del nombre',
+      description: 'Sin mención del nombre',
       section: 'Actualidad',
       provincia: 'Córdoba',
       content: 'Texto sin el nombre de la provincia.',
     });
     const docs = buildSearchDocuments([entry]);
-    const results = searchDocuments(docs, 'c�rdoba');
+    const results = searchDocuments(docs, 'córdoba');
     expect(results).toHaveLength(1);
   });
 
-  it('resuelve el pa�s de una noticia provincial', () => {
+  it('resuelve el país de una noticia provincial', () => {
     const entry = makeEntry({
       slug: 'cordoba-provincial-3',
       title: 'Hecho provincial',
@@ -349,7 +349,7 @@ describe('Provincia expl�cita en el �ndice', () => {
     expect(doc.location.pais).toBe('Argentina');
   });
 
-  it('rechaza contradicci�n entre municipio y provincia (schema)', async () => {
+  it('rechaza contradicción entre municipio y provincia (schema)', async () => {
     const { newsSchema } = await import('../src/schemas/news');
     const result = newsSchema.safeParse({
       title: 'T',
@@ -359,7 +359,7 @@ describe('Provincia expl�cita en el �ndice', () => {
       author: 'A',
       publishedAt: '2026-01-01',
       status: 'published',
-      municipality: 'Lan�s',
+      municipality: 'Lanús',
       provincia: 'Córdoba',
     });
     expect(result.success).toBe(false);

@@ -1,10 +1,44 @@
 import { describe, it, expect } from 'vitest';
 import { LOCATIONS, getLocationsByType, getProvinciaOf, getPaisOf, findLocationByName } from '../src/data/locations';
 
+const EXPECTED_PROVINCES = [
+  'Buenos Aires',
+  'Ciudad Autónoma de Buenos Aires',
+  'Catamarca',
+  'Chaco',
+  'Chubut',
+  'Córdoba',
+  'Corrientes',
+  'Entre Ríos',
+  'Formosa',
+  'Jujuy',
+  'La Pampa',
+  'La Rioja',
+  'Mendoza',
+  'Misiones',
+  'Neuquén',
+  'Río Negro',
+  'Salta',
+  'San Juan',
+  'San Luis',
+  'Santa Cruz',
+  'Santa Fe',
+  'Santiago del Estero',
+  'Tierra del Fuego, Antártida e Islas del Atlántico Sur',
+  'Tucumán',
+];
+
 describe('Catálogo territorial nacional', () => {
   it('contiene las 24 jurisdicciones argentinas', () => {
     const provincias = getLocationsByType('provincia');
     expect(provincias).toHaveLength(24);
+  });
+
+  it('contiene cada una de las 24 jurisdicciones por nombre', () => {
+    const nombres = getLocationsByType('provincia').map((p) => p.name).sort();
+    for (const expected of EXPECTED_PROVINCES) {
+      expect(nombres, `Falta la provincia ${expected}`).toContain(expected);
+    }
   });
 
   it('incluye CABA como jurisdicción propia', () => {
