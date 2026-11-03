@@ -1,5 +1,5 @@
 ---
-status: "published"
+status: "draft"
 title: "La nutrición de la vaca puede definir el futuro productivo del ternero"
 description: "Un trabajo del INTA Cuenca del Salado determinó que la alimentación de la madre durante la gestación influye en el crecimiento, la calidad de carne, la fertilidad y la salud de la descendencia. Los efectos pueden extenderse durante toda la vida del animal."
 slug: "la-nutricion-de-la-vaca-puede-definir-el-futuro-productivo-del-ternero"
