@@ -16,6 +16,9 @@ sources:
   - name: "El País"
     url: "https://elpais.com/internacional/2026-11-02/la-triple-paradoja-de-ormuz-mas-barcos-cruzando-mas-ataques-y-el-petroleo-por-las-nubes.html"
     description: "Datos recientes sobre ataques a buques, tránsito marítimo y efectos en los mercados energéticos."
+  - name: "Administración de Información Energética de Estados Unidos (EIA)"
+    url: "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints?ftag=YHF4eb9d17"
+    description: "Datos de flujos de petróleo por Ormuz durante el primer semestre de 2025 y su peso en el consumo y el comercio marítimo mundial."
   - name: "Organización Marítima Internacional"
     url: "https://www.imo.org/es/mediacentre/hottopics/pages/middle-east-strait-of-hormuz.aspx"
     description: "Seguimiento de incidentes marítimos y consecuencias para las tripulaciones y la navegación internacional."
@@ -26,7 +29,7 @@ sources:
 
 El estrecho de Ormuz es uno de los pasos marítimos más importantes para el comercio energético internacional. Ubicado entre Irán y Omán, conecta el golfo Pérsico con el golfo de Omán y permite que los principales países productores de la región transporten petróleo y gas hacia distintos mercados del mundo.
 
-Su relevancia se explica por la concentración de exportaciones que dependen de esta ruta. Antes de la actual crisis, por el estrecho circulaba aproximadamente una quinta parte del consumo mundial de petróleo, según los datos citados habitualmente por organismos y entidades del sector energético. Por eso, cualquier interrupción puede repercutir más allá de Oriente Medio.
+Su relevancia se explica por la concentración de exportaciones que dependen de esta ruta. Durante el primer semestre de 2025, por el estrecho transitaron en promedio 20,9 millones de barriles diarios de petróleo y otros líquidos, un volumen equivalente a cerca del 20 % del consumo mundial de líquidos petrolíferos y a una cuarta parte del comercio marítimo global de petróleo, según la Administración de Información Energética de Estados Unidos (EIA). Por eso, cualquier interrupción puede repercutir más allá de Oriente Medio.
 
 Cuando los buques enfrentan amenazas, las consecuencias no se limitan a la posibilidad de que una carga no llegue a destino. Las compañías navieras pueden modificar recorridos, esperar instrucciones o evitar la zona. A eso se suman mayores costos de seguros y transporte, que pueden trasladarse a los precios de los productos energéticos.
 
