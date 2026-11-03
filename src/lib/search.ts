@@ -152,6 +152,14 @@ const provinciaOf = (entry: SearchIndexEntry): string => {
 };
 
 const paisOf = (entry: SearchIndexEntry): string => {
+  if (entry.provincia) {
+    const location = findLocationByName(entry.provincia);
+    if (location) {
+      if (location.type === 'pais') return location.name;
+      const pais = getAncestorOfType(location, 'pais');
+      if (pais) return pais.name;
+    }
+  }
   for (const name of [entry.municipality, entry.localidad]) {
     if (!name) continue;
     const location = findLocationByName(name);
@@ -181,6 +189,8 @@ export function buildSearchDocument(entry: SearchIndexEntry): SearchDocument {
   const locationNames = uniqueNonEmpty([
     entry.municipality,
     entry.localidad,
+    entry.provincia,
+    provinciaOf(entry),
     ...(municipalityContext?.names ?? []),
     ...(localidadContext?.names ?? []),
     ...regionNames,

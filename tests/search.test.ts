@@ -307,3 +307,61 @@ describe('catálogo geográfico', () => {
     expect(isKnownLocationName('Avellaneda', 'municipio')).toBe(true);
   });
 });
+
+describe('Provincia expl�cita en el �ndice', () => {
+  it('asocia una noticia provincial sin municipio a su provincia', () => {
+    const entry = makeEntry({
+      slug: 'cordoba-provincial',
+      title: 'Noticia provincial de Córdoba',
+      description: 'Hecho provincial',
+      section: 'Actualidad',
+      provincia: 'Córdoba',
+      content: 'Contenido.',
+    });
+    const doc = buildSearchDocument(entry);
+    expect(doc.location.provincia).toBe('Córdoba');
+  });
+
+  it('permite encontrar la noticia buscando el nombre de la provincia', () => {
+    const entry = makeEntry({
+      slug: 'cordoba-provincial-2',
+      title: 'Hecho provincial',
+      description: 'Sin menci�n del nombre',
+      section: 'Actualidad',
+      provincia: 'Córdoba',
+      content: 'Texto sin el nombre de la provincia.',
+    });
+    const docs = buildSearchDocuments([entry]);
+    const results = searchDocuments(docs, 'c�rdoba');
+    expect(results).toHaveLength(1);
+  });
+
+  it('resuelve el pa�s de una noticia provincial', () => {
+    const entry = makeEntry({
+      slug: 'cordoba-provincial-3',
+      title: 'Hecho provincial',
+      description: 'Desc',
+      section: 'Actualidad',
+      provincia: 'Córdoba',
+      content: 'Texto.',
+    });
+    const doc = buildSearchDocument(entry);
+    expect(doc.location.pais).toBe('Argentina');
+  });
+
+  it('rechaza contradicci�n entre municipio y provincia (schema)', async () => {
+    const { newsSchema } = await import('../src/schemas/news');
+    const result = newsSchema.safeParse({
+      title: 'T',
+      description: 'D',
+      slug: 't',
+      section: 'Actualidad',
+      author: 'A',
+      publishedAt: '2026-01-01',
+      status: 'published',
+      municipality: 'Lan�s',
+      provincia: 'Córdoba',
+    });
+    expect(result.success).toBe(false);
+  });
+});
