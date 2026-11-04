@@ -1,6 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { slugify, formatDate } from './utils';
 import { isActualidadEligible } from './actualidad';
+import { selectFeaturedArticle } from './featured-article';
 
 export type Article = CollectionEntry<'news'>;
 
@@ -21,7 +22,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
 
 export async function getFeaturedArticle(): Promise<Article | null> {
   const articles = await getPublishedArticles();
-  return articles.find((a) => a.data.featured) ?? articles[0] ?? null;
+  return selectFeaturedArticle(articles);
 }
 
 export async function getLatestArticles(count = 10, excludeSlug?: string): Promise<Article[]> {
