@@ -13,6 +13,10 @@ author: "Redacción QSK Noticias"
 publishedAt: "2026-11-04"
 status: "published"
 featured: false
+image:
+  src: "/images/noticias/riachuelo-vuelta-de-rocha-2026.jpg"
+  alt: "Vista de la Vuelta de Rocha y la ribera del Riachuelo, en La Boca, Buenos Aires."
+  attribution: "Foto: Gonzabar77 / Wikimedia Commons — CC BY 4.0"
 sources:
   - name: "Gobierno de la Provincia de Buenos Aires"
     url: "https://www.gba.gob.ar/gobierno/noticias/bianco_%E2%80%9Clos_trabajadores_se_quedan_sin_plata_antes_de_llegar_fin_de_mes%E2%80%9D"
