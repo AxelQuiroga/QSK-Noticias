@@ -72,3 +72,50 @@ describe('filterByMunicipality', () => {
     expect(filterByMunicipality(mockArticles, 'Avellaneda')).toHaveLength(0);
   });
 });
+
+
+describe('selectFeaturedArticle', () => {
+  const createArticle = (slug: string, featured: boolean, hasImage: boolean) => ({
+    data: {
+      slug,
+      featured,
+      ...(hasImage ? { image: { src: '/images/test.webp' } } : {}),
+    },
+  });
+
+  it('prioriza una noticia destacada que tenga imagen', async () => {
+    const { selectFeaturedArticle } = await import('../src/lib/featured-article');
+    const articles = [
+      createArticle('mas-reciente-sin-imagen', false, false),
+      createArticle('destacada-con-imagen', true, true),
+      createArticle('otra-con-imagen', false, true),
+    ];
+
+    expect(selectFeaturedArticle(articles)?.data.slug).toBe('destacada-con-imagen');
+  });
+
+  it('elige la primera noticia con imagen si la más reciente no tiene', async () => {
+    const { selectFeaturedArticle } = await import('../src/lib/featured-article');
+    const articles = [
+      createArticle('riachuelo-sin-imagen', false, false),
+      createArticle('noticia-con-imagen', false, true),
+    ];
+
+    expect(selectFeaturedArticle(articles)?.data.slug).toBe('noticia-con-imagen');
+  });
+
+  it('usa un fallback sin imagen sólo cuando ninguna noticia tiene imagen', async () => {
+    const { selectFeaturedArticle } = await import('../src/lib/featured-article');
+    const articles = [
+      createArticle('primera-sin-imagen', false, false),
+      createArticle('destacada-sin-imagen', true, false),
+    ];
+
+    expect(selectFeaturedArticle(articles)?.data.slug).toBe('destacada-sin-imagen');
+  });
+
+  it('devuelve null cuando no hay noticias', async () => {
+    const { selectFeaturedArticle } = await import('../src/lib/featured-article');
+    expect(selectFeaturedArticle([])).toBeNull();
+  });
+});
