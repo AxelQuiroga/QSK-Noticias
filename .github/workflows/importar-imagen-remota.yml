@@ -81,4 +81,3 @@ jobs:
             - La descarga fue ejecutada en GitHub Actions; no requiere que una PC local esté encendida.
 
             **Revisión editorial requerida:** comprobar que la imagen corresponde a la noticia, que la licencia/autorización es válida y que los datos de atribución son correctos antes de integrar el cambio.
-          labels: content, editorial
