@@ -1,0 +1,84 @@
+name: Importar imagen remota para QSK
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_url:
+        description: URL HTTPS directa de la imagen
+        required: true
+        type: string
+      filename:
+        description: Nombre de archivo sin extensión (slug, minúsculas y guiones)
+        required: true
+        type: string
+      alt_text:
+        description: Texto alternativo descriptivo
+        required: true
+        type: string
+      attribution:
+        description: Autor, organismo o titular que debe acreditarse
+        required: true
+        type: string
+      license_url:
+        description: URL HTTPS de la licencia o autorización de reutilización
+        required: true
+        type: string
+      rights_confirmed:
+        description: Confirmo que QSK tiene derecho a reutilizar esta imagen
+        required: true
+        type: choice
+        options:
+          - 'no'
+          - 'yes'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: qsk-image-import
+  cancel-in-progress: false
+
+jobs:
+  download-and-propose:
+    name: Descargar, validar y proponer imagen
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout de master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Descargar y validar imagen
+        env:
+          IMAGE_URL: ${{ inputs.image_url }}
+          IMAGE_FILENAME: ${{ inputs.filename }}
+          IMAGE_ALT_TEXT: ${{ inputs.alt_text }}
+          IMAGE_ATTRIBUTION: ${{ inputs.attribution }}
+          IMAGE_LICENSE_URL: ${{ inputs.license_url }}
+          IMAGE_RIGHTS_CONFIRMED: ${{ inputs.rights_confirmed }}
+        run: node .github/scripts/download-news-image.mjs
+
+      - name: Crear PR con la imagen y su procedencia
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: automation/image-import-${{ github.run_id }}
+          delete-branch: true
+          commit-message: 'content(images): import licensed news image'
+          title: 'Imagen para noticias: ${{ inputs.filename }}'
+          body: |
+            ## Importación remota de imagen
+
+            - Archivo: `public/images/noticias/${{ inputs.filename }}`
+            - Texto alternativo y atribución: registrados en el archivo `.meta.json` asociado.
+            - La descarga fue ejecutada en GitHub Actions; no requiere que una PC local esté encendida.
+
+            **Revisión editorial requerida:** comprobar que la imagen corresponde a la noticia, que la licencia/autorización es válida y que los datos de atribución son correctos antes de integrar el cambio.
+          labels: content, editorial
