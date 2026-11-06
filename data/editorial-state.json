@@ -54,8 +54,8 @@
       "processedAt": "2026-11-03T23:23:11.488Z"
     },
     "https://www.mda.gob.ar/noticias/magdalena-sierra-recorrio-la-expo-escuelas-tecnicas-2026/": {
-      "originalHash": "7f2991b6e6e95a614990c8dee8594785bac663e59d04f61152fc1ce7c86349b4",
-      "processedAt": "2026-11-03T23:23:12.528Z"
+      "originalHash": "dc3960b193a3afa487ec4a8fae004d544c699c4f02d060ae117c5872f15bd5b7",
+      "processedAt": "2026-11-05T19:57:49.469Z"
     },
     "https://www.estebanecheverria.gob.ar/tareas-de-bacheo-en-monte-grande/": {
       "originalHash": "e00f934c4d2db0ba228bbe0efe39340af8a5483bdf16fa9da5d4848f6d458690",
@@ -92,6 +92,38 @@
     "https://www.estebanecheverria.gob.ar/el-municipio-invirtio-en-octubre-3-271-76072-en-combustible-para-los-bomberos-voluntarios-y-le-condono-la-deuda-por-tasas-municipales-hasta-2025-inclusive/": {
       "originalHash": "5d58f006162884dad9c0f2231e4ef658219cf160a3fd8abb1cff0646e28ff451",
       "processedAt": "2026-11-04T19:45:53.122Z"
+    },
+    "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_encabez%C3%B3_el_cierre_de_la_6%C2%B0_edici%C3%B3n_de_futuro_memoria": {
+      "originalHash": "543199606c2d29d65680dbbbcc212f09a732d3308ceb036a0a90fcd638fac595",
+      "processedAt": "2026-11-05T19:57:38.471Z"
+    },
+    "https://www.lanus.gob.ar/noticias/4659-se-viene-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-en-lanus-oeste": {
+      "originalHash": "93f86deeb1fd6eae131d9d3a0909862dde1ce5f224061666cfd9d7fbe2754110",
+      "processedAt": "2026-11-05T19:57:40.128Z"
+    },
+    "https://www.lanus.gob.ar/noticias/4658-se-desarrollaran-dos-nuevas-ediciones-de-la-feria-hecho-en-lanus": {
+      "originalHash": "93098aace160975e1dce40461e0135571e9c06d2d15d9dcebcde6103534ec25d",
+      "processedAt": "2026-11-05T19:57:47.591Z"
+    },
+    "https://www.lanus.gob.ar/noticias/4657-julian-alvarez-firmo-un-convenio-con-la-utn-para-incorporar-herramientas-tecnologicas-a-la-planta-asfaltica-municipal": {
+      "originalHash": "08a2e1bc92ea54d4ec98cffdd011d6f4c6d54e3f6067b0593f5676b65f1a88f1",
+      "processedAt": "2026-11-05T19:57:48.873Z"
+    },
+    "https://www.estebanecheverria.gob.ar/fernando-gray-participo-de-la-apertura-del-centro-de-atencion-al-estudiante-y-a-la-familia-de-la-universidad-de-flores/": {
+      "originalHash": "9d2c2958e6e68fa9144aa320ce19aad8d85508fcdce54cf31605e06c8d991538",
+      "processedAt": "2026-11-05T19:57:50.789Z"
+    },
+    "https://www.estebanecheverria.gob.ar/monte-grande-detuvieron-a-tres-hombres-tras-un-intento-de-robo-a-una-institucion/": {
+      "originalHash": "bb80621e60bbd468a75459fde8691a21a8f229b72b8509bcc8229c7c678faf6d",
+      "processedAt": "2026-11-05T19:57:52.621Z"
+    },
+    "https://www.estebanecheverria.gob.ar/fernando-gray-brindo-un-reconocimiento-a-trabajadoras-y-trabajadores-vecinales-del-distrito/": {
+      "originalHash": "16f02227f59e26627be56ce0be4e3bbd3466713af6fa6d7ff4f722ad7e4ae8bc",
+      "processedAt": "2026-11-05T19:57:54.235Z"
+    },
+    "https://www.estebanecheverria.gob.ar/el-municipio-entrego-lentes-del-programa-oftalmologico-echeverria-4/": {
+      "originalHash": "7a4be65ad082bc4f922d69d0298735bf52945944669017e5d4c6e2d4516e9a8f",
+      "processedAt": "2026-11-05T19:57:56.071Z"
     }
   }
 }
