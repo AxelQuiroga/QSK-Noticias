@@ -1,7 +1,7 @@
 [
   {
     "titulo": "Kicillof encabezó el cierre de la 6° edición de Futuro Memoria",
-    "descripcion": "El gobernador presidió el cierre de la sexta edición de la iniciativa que busca impulsar producciones culturales y artísticas que visibilicen las luchas por la Memoria, la Verdad y la Justicia.",
+    "descripcion": "La iniciativa promueve la creación de producciones culturales y artísticas que visibilicen las luchas por la Memoria, la Verdad y la Justicia.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_226.jpg",
     "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_encabez%C3%B3_el_cierre_de_la_6%C2%B0_edici%C3%B3n_de_futuro_memoria",
     "fecha": null,
@@ -120,8 +120,18 @@
     "slug": "kicillof-encabezo-la-apertura-de-la-etapa-final-de-los-juegos-bonaerenses-2026"
   },
   {
+    "titulo": "JULIÁN ÁLVAREZ RECONOCIÓ A MÁS DE 200 TRABAJADORES Y TRABAJADORAS MUNICIPALES DE LANÚS POR SU TRAYECTORIA",
+    "descripcion": "El intendente de Lanús, Julián Álvarez, otorgó una serie de reconocimientos a más de 200 empleados y empleadas municipales por sus 25, 30, 35 y 40 años de trayectoria, en un acto que se desarrolló en el Microestadio Lionel Messi, ubicado en el Parque Central Las Colonias en la localidad de Remedios de Escalada, en el marco del Día del Trabajador y de la Trabajadora Municipal que se conmemorará el próximo domingo 8 de noviembre.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-05-at-172543-IEKw8.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4660-julian-alvarez-reconocio-a-mas-de-200-trabajadores-y-trabajadoras-municipales-de-lanus-por-su-trayectoria",
+    "fecha": "2026-11-05",
+    "volanta": null,
+    "fuente": "lanus",
+    "slug": "julian-alvarez-reconocio-a-mas-de-200-trabajadores-y-trabajadoras-municipales-de-lanus-por-su-trayectoria"
+  },
+  {
     "titulo": "SE VIENE UN NUEVO OPERATIVO DE \"SÁBADOS DE SALUD EN EL BARRIO\" EN LANÚS OESTE",
-    "descripcion": "El gobierno de Lanús llevará adelante el operativo “Sábados de Salud en el Barrio” este sábado 7 de noviembre, de 10 a 14, en la plaza Juan Manuel de Rosas (José María Moreno 2102), con servicios gratuitos de prevención, atención y promoción de la salud.",
+    "descripcion": "Lanús Gobierno desarrollará otra nueva jornada del operativo “Sábados de Salud en el Barrio” este sábado 7 de noviembre, de 10 a 14 en la plaza Juan Manuel de Rosas, situada en José María Moreno N° 2102, en Lanús Oeste, con el objetivo de ofrecer numerosos servicios gratuitos en materia de prevención, atención y promoción de la salud.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-05-at-150422-6SNa0.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4659-se-viene-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-en-lanus-oeste",
     "fecha": "2026-11-05",
@@ -131,7 +141,7 @@
   },
   {
     "titulo": "SE DESARROLLARÁN DOS NUEVAS EDICIONES DE LA FERIA “HECHO EN LANÚS”",
-    "descripcion": "El municipio de Lanús confirmó la realización de dos nuevas ediciones de la Feria de la Economía Social “Hecho en Lanús” los días 7 y 8 de noviembre, en horario de tarde, en el Centro Cultural Leonardo Favio y la plaza Villa Obrera.",
+    "descripcion": "Lanús Gobierno concretará otras dos jornadas de la Feria de la Economía Social “Hecho en Lanús” durante el sábado 7 y el domingo 8 de noviembre, de 16 a 20, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste) y en la plaza Villa Obrera (avenida Eva Perón N° 2400, Lanús Este).",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-05-at-101501-6HSAq.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4658-se-desarrollaran-dos-nuevas-ediciones-de-la-feria-hecho-en-lanus",
     "fecha": "2026-11-05",
@@ -141,7 +151,7 @@
   },
   {
     "titulo": "JULIÁN ÁLVAREZ FIRMÓ UN CONVENIO CON LA UTN PARA INCORPORAR HERRAMIENTAS TECNOLÓGICAS A LA PLANTA ASFÁLTICA MUNICIPAL",
-    "descripcion": "El intendente de Lanús firmó un convenio con la UTN para incorporar herramientas tecnológicas y asesoramiento técnico a la Planta Asfáltica Municipal, con el objetivo de mejorar la calidad de la mezcla, optimizar los procesos de producción y reducir costos.",
+    "descripcion": "El intendente de Lanús, Julián Álvarez, recibió en su despacho del Palacio Municipal al decano de la Universidad Tecnológica Nacional (UTN) La Plata, ingeniero Fabio Romani, con quien rubricó un convenio específico para incorporar asesoramiento técnico y herramientas tecnológicas a la Planta Asfáltica Municipal, con la finalidad de mejorar la calidad de la mezcla, optimizar los procesos de producción y reducir costos.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-05-at-084746-cGxY3.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4657-julian-alvarez-firmo-un-convenio-con-la-utn-para-incorporar-herramientas-tecnologicas-a-la-planta-asfaltica-municipal",
     "fecha": "2026-11-05",
@@ -200,16 +210,6 @@
     "slug": "el-colectivo-sanitario-llega-al-parque-lineal-del-oeste"
   },
   {
-    "titulo": "CONTINÚAN LAS OBRAS DEL PLAN DE PAVIMENTACIÓN EN EL BARRIO VILLA DIAMANTE",
-    "descripcion": "Lanús Gobierno informa que siguen a buen ritmo las obras del Plan de Pavimentación en distintas calles del distrito, con financiamiento 100% municipal, cuyo propósito es mejorar la circulación vehicular y peatonal, al igual la seguridad vial y la calidad de vida de las y los lanusenses.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante-1-UQoj8.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4651-continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante",
-    "fecha": "2026-11-02",
-    "volanta": "Obras Públicas",
-    "fuente": "lanus",
-    "slug": "continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante"
-  },
-  {
     "titulo": "Avellaneda incorporó Inteligencia Artificial al monitoreo de cámaras de seguridad",
     "descripcion": "La gestión de la intendenta Magdalena Sierra suma esta nueva herramienta para fortalecer la prevención en materia de seguridad en nuestra ciudad.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/Proyecto-nuevo-7-350x240.jpg",
@@ -221,7 +221,7 @@
   },
   {
     "titulo": "Magdalena Sierra recorrió la “Expo Escuelas Técnicas 2026”",
-    "descripcion": "La actividad se realizó en el Parque La Estación, con acceso libre y gratuito.",
+    "descripcion": "Se desarrolló en el Parque La Estación, con entrada libre y gratuita.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/Proyecto-nuevo-350x240.jpg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/magdalena-sierra-recorrio-la-expo-escuelas-tecnicas-2026/",
     "fecha": "2026-11-03",
@@ -331,7 +331,7 @@
   },
   {
     "titulo": "FERNANDO GRAY PARTICIPÓ DE LA APERTURA DEL CENTRO DE ATENCIÓN AL ESTUDIANTE Y A LA FAMILIA DE LA UNIVERSIDAD DE FLORES",
-    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, inauguró el Centro de Atención al Estudiante y a la Familia de la Universidad de Flores en Canning. La autoridad local destacó la importancia de estos espacios para garantizar mayores oportunidades educativas en la comunidad.",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, participó de la apertura del Centro de Atención al Estudiante y a la Familia de la Universidad de Flores que funcionará en la localidad de Canning. “Seguimos estrechando lazos para que las vecinas y los vecinos de Esteban Echeverría cuenten con cada vez más accesos a la educación. Fomentamos el desarrollo académico de nuestra comunidad y estos espacios nos permiten garantizarles mayores oportunidades”, expresó Fernando Gray, quien estuvo acompañado por el intendente de Ezeiza, Gastón Granados, y las máximas autoridades de instituciones académicas y de salud de la región. En el plano universitario, participaron la rectora de la Universidad de Flores, Ruth Fischer; el vicerrector general, Christian Kreber; el rector de la Universidad Nacional Guillermo Brown, Pablo Domenichini; el rector y la vicerrectora de la Universidad Provincial de Ezeiza, Pablo Galli y Macarena Forneris; la vicerrectora general de docencia e investigación de la UFLO, Analía Lozada, y la coordinadora de la Universidad de Flores Canning, Florencia Amer. Asimismo, el ámbito institucional y sanitario local estuvo representado por el presidente de la Clínica Monte Grande, Carlos Santoro; la jefa distrital, Lucía Ibarra, y el presidente del Consejo Escolar, David De Lío.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-participo-de-la-apertura-del-centro-de-atencion-al-estudiante-y-a-la-familia-de-la-universidad-de-flores/",
     "fecha": "2026-11-05",
@@ -341,7 +341,7 @@
   },
   {
     "titulo": "MONTE GRANDE: DETUVIERON A TRES HOMBRES TRAS UN INTENTO DE ROBO A UNA INSTITUCIÓN",
-    "descripcion": "Personal del Centro Operativo de Monitoreo detectó a tres hombres en actitud sospechosa en Monte Grande. Tras observar cómo uno intentaba sustraer un equipo de aire acondicionado de la Escuela de Arte, se alertó a la Guardia Urbana y a la Policía bonaerense. Los efectivos detuvieron a los tres sospechosos y los pusieron a disposición de la Justicia.",
+    "descripcion": "A través de las cámaras del Centro Operativo de Monitoreo (COM) de Esteban Echeverría, personal municipal detectó a tres sujetos en actitud sospechosa en la intersección de las calles Alem e Italiani, en Monte Grande. Mediante el seguimiento en tiempo real, los operadores observaron cómo uno de los hombres trepaba la reja de la Escuela de Arte e intentaba sustraer un equipo de aire acondicionado del establecimiento, mientras los otros dos permanecían en la vereda haciendo de campana. Inmediatamente, desde el COM se dio aviso a efectivos de la Guardia Urbana y de la Policía bonaerense, quienes acudieron con móviles al lugar. Como resultado del rápido accionar conjunto, los tres sospechosos fueron detenidos y puestos a disposición de la Justicia. El Centro Operativo de Monitoreo cuenta actualmente con 1.783 cámaras fijas y domos de 360 grados en funcionamiento durante las 24 horas. Este sistema de prevención se complementa con paradas seguras, tótems de emergencia y el Anillo Digital de Seguridad, que incorpora lectoras de patentes para detectar vehículos con pedido de secuestro o denuncia de robo.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/monte-grande-detuvieron-a-tres-hombres-tras-un-intento-de-robo-a-una-institucion/",
     "fecha": "2026-11-05",
@@ -351,7 +351,7 @@
   },
   {
     "titulo": "FERNANDO GRAY BRINDÓ UN RECONOCIMIENTO A TRABAJADORAS Y TRABAJADORES VECINALES DEL DISTRITO",
-    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, reconoció a trabajadores y trabajadoras vecinales mayores de 65 años que llevan más de dos décadas acompañando a la comunidad. El acto incluyó la entrega de un mate grabado y contó con la presencia de funcionarios de la administración.",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, llevó adelante un reconocimiento a trabajadoras y trabajadores vecinales mayores de 65 años que desde hace más de 25 años acompañan a la comunidad en todos los barrios del distrito.&#160; “Es un orgullo ver el compromiso con el que las trabajadoras y los trabajadores vecinales día a día acompañan a la población de nuestro municipio. Agradezco infinitamente su apoyo y la ayuda que brindan a las personas que más lo necesitan”, expresó Fernando Gray, quien estuvo acompañado por el subsecretario de Inclusión y Asistencia, César Galo; y el director general de Participación Comunitaria, Gastón Solimini. Durante el encuentro, el intendente hizo entrega de un mate grabado a cada vecina y vecino, en reconocimiento por su gran labor. Recibieron el reconocimiento: Martha Rodríguez, Mirta Díaz, María Giménez, Marta Ruiz, Nélida Sanabria, Patricia Vergara, Norma Aires, Estela Ríos, Rafaela Espínola Báez, Héctor Godoy, Mirta Romero, Leila Rivero, María Rosa Cotez, Elda Cabral y Teresa Jesús Vázquez",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-brindo-un-reconocimiento-a-trabajadoras-y-trabajadores-vecinales-del-distrito/",
     "fecha": "2026-11-05",
@@ -361,7 +361,7 @@
   },
   {
     "titulo": "EL MUNICIPIO ENTREGÓ LENTES DEL PROGRAMA OFTALMOLÓGICO ECHEverRÍA",
-    "descripcion": "El Municipio de El Jagüel entregó 511 pares de lentes a estudiantes de cuatro instituciones educativas a través del Programa Oftalmológico EcheVERría. La iniciativa, que incluye a la concejal Magui Gray, se enfocó en escuelas primarias y secundarias, con una entrega específica de 47, 212 y 60 lentes en las N° 3, 17 y 20, respectivamente, y 192 en la Secundaria N° 38.",
+    "descripcion": "El Programa Oftalmológico EcheVERría llegó a cuatro instituciones educativas de El Jagüel, donde los equipos de trabajo del Municipio, junto con la concejal Magui Gray, entregaron 511 pares de lentes a chicas y chicos de tres escuelas primarias y una secundaria. &#160; En referencia al nivel primario, se entregaron 47 lentes a estudiantes de la Escuela Primaria N° 3, 212 en la Escuela Primaria N° 17, y 60 en la Escuela Primaria N° 20. En el nivel secundario, los equipos hicieron entrega de 192 anteojos a chicas y chicos de la Escuela Secundaria N° 38.&#160; El Programa Oftalmológico EcheVERría es una política del Gobierno local destinada a la detección, el diagnóstico y el tratamiento de los problemas de visión, con el objetivo de mejorar la salud, la calidad de vida y el desempeño escolar de las y los estudiantes, reafirmando el compromiso de estar siempre cerca de las familias echeverrianas. En lo que va de 2026, mediante este programa ya se entregaron 1.068 pares de anteojos.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-entrego-lentes-del-programa-oftalmologico-echeverria-4/",
     "fecha": "2026-11-04",
@@ -428,6 +428,16 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "9-de-abril-desarticulan-puntos-de-venta-de-drogas-y-detienen-a-cuatro-personas"
+  },
+  {
+    "titulo": "CONTINÚAN LAS OBRAS DEL PLAN DE PAVIMENTACIÓN EN EL BARRIO VILLA DIAMANTE",
+    "descripcion": "Lanús Gobierno informa que siguen a buen ritmo las obras del Plan de Pavimentación en distintas calles del distrito, con financiamiento 100% municipal, cuyo propósito es mejorar la circulación vehicular y peatonal, al igual la seguridad vial y la calidad de vida de las y los lanusenses.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante-1-UQoj8.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4651-continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante",
+    "fecha": "2026-11-02",
+    "volanta": "Obras Públicas",
+    "fuente": "lanus",
+    "slug": "continuan-las-obras-del-plan-de-pavimentacion-en-el-barrio-villa-diamante"
   },
   {
     "titulo": "Kicillof inauguró un Centro de Desarrollo Infantil y entregó viviendas paralizadas por el Gobierno nacional",
