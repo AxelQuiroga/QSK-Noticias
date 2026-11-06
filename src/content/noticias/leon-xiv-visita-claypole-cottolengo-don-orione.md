@@ -63,7 +63,3 @@ La planificación provincial incluye 200 trabajadores de salud, 15 ambulancias y
 La visita a Claypole será una de las actividades centrales de la primera jornada completa de León XIV en la Argentina. El Papa llegará al país el domingo 8 de noviembre y continuará su agenda en Buenos Aires, Córdoba y Luján antes de partir hacia Perú el miércoles 11.
 
 El cronograma y las indicaciones para el público pueden consultarse en el [sitio oficial del Gobierno bonaerense sobre la visita](https://visitadelpapapba.gba.gob.ar/claypole.html).
-
----
-
-**Fuentes:** [Oficina de Prensa de la Santa Sede](https://press.vatican.va/content/salastampa/es/bollettino/pubblico/2026/09/21/210926d.html) · [Gobierno de la Provincia de Buenos Aires](https://visitadelpapapba.gba.gob.ar/claypole.html) · [Pequeño Cottolengo Don Orione](https://donorione.org.ar/).
