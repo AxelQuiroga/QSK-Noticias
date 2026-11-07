@@ -121,7 +121,7 @@
   },
   {
     "titulo": "LLEGA UNA NUEVA EDICIÓN DEL PASEO DE COMPRAS 25 DE MAYO",
-    "descripcion": "El municipio de Lanús habilitará el Paseo de Compras 25 de Mayo los días 9, 11 y 13 de noviembre, de 13:30 a 16:30, en Santiago Plaul 3201, con stands de emprendedores locales.",
+    "descripcion": "Lanús Gobierno informa que el lunes 9, miércoles 11 y viernes 13 de noviembre, de 13:30 a 16:30, el Paseo de Compras 25 de Mayo estará disponible en Santiago Plaul N° 3201, en Lanús Oeste, con diferentes propuestas de emprendedores y emprendedoras del distrito.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/photo-5148112079645945528-w-XCPAI.jpg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4663-llega-una-nueva-edicion-del-paseo-de-compras-25-de-mayo",
     "fecha": "2026-11-07",
@@ -135,7 +135,7 @@
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/lanus-gobierno-premia-a-los-buenos-contribuyentes-2-m4b07.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4662-premian-a-los-buenos-contribuyentes-con-descuentos-en-la-tsg",
     "fecha": "2026-11-06",
-    "volanta": "Atención vecinal",
+    "volanta": "Desarrollo Social",
     "fuente": "lanus",
     "slug": "premian-a-los-buenos-contribuyentes-con-descuentos-en-la-tsg"
   },
@@ -330,6 +330,36 @@
     "slug": "la-delegacion-de-avellaneda-logro-el-tercer-puesto-en-la-final-de-los-juegos-bonaerenses-2026"
   },
   {
+    "titulo": "UN DETENIDO TRAS SER DETECTADO POR EL COM DESCARTANDO UN ARMA EN LA VÍA PÚBLICA",
+    "descripcion": "La Policía bonaerense detuvo a un hombre en Monte Grande tras detectarlo por cámaras del COM arrojando un objeto sospechoso a la basura. Los operadores alertaron a las fuerzas, quienes interceptaron al sospechoso en el cruce con D. Rocha y recuperaron una réplica de arma de fuego. El detenido fue trasladado a la comisaría y puesto a disposición de la justicia.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/un-detenido-tras-ser-detectado-por-el-com-descartando-un-arma-en-la-via-publica/",
+    "fecha": "2026-11-07",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "un-detenido-tras-ser-detectado-por-el-com-descartando-un-arma-en-la-via-publica"
+  },
+  {
+    "titulo": "FERNANDO GRAY INAUGURÓ EL TECHO PARABÓLICO DEL CLUB SOCIAL Y DEPORTIVO SANTA CATALINA",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, inauguró el techo parabólico del Club Social y Deportivo Santa Catalina, en Luis Guillón. La obra mejorará las instalaciones y las actividades del club.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-inauguro-el-techo-parabolico-del-club-social-y-deportivo-santa-catalina/",
+    "fecha": "2026-11-07",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-inauguro-el-techo-parabolico-del-club-social-y-deportivo-santa-catalina"
+  },
+  {
+    "titulo": "AVANZAN LAS TAREAS DE FUMIGACIÓN EN ESTEBAN ECHEVERRÍA",
+    "descripcion": "El municipio de Esteban Echeverría continúa con las fumigaciones para prevenir el dengue en distintos barrios del distrito. Los operativos son gratuitos y a cargo de personal autorizado; ante dudas o denuncias, se sugiere contactar al Centro de Atención al Vecino.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/avanzan-las-tareas-de-fumigacion-en-esteban-echeverria-33/",
+    "fecha": "2026-11-07",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "avanzan-las-tareas-de-fumigacion-en-esteban-echeverria-3"
+  },
+  {
     "titulo": "PROGRAMA OFTALMOLÓGICO ECHEverRÍA: ENTREGA DE LENTES A ESTUDIANTES DE LUIS GUILLÓN",
     "descripcion": "Los equipos del Municipio de Esteban Echeverría, acompañados por la presidenta del Concejo Deliberante, Valeria Bellizzi, llevaron adelante una nueva jornada de entrega de lentes para estudiantes de la localidad de Luis Guillón, en el marco del Programa Oftalmológico EcheVERría. Durante la visita a la Escuela Primaria Nº 18 se otorgaron 108 pares de lentes, con la participación de la subsecretaria de Niñez, Adolescencia y Familia, Laura Gómez, y la directora general de Infancias, Gisele Bufano. Posteriormente, en la Escuela de Educación Secundaria Nº 28 se entregaron 78 pares de lentes, una actividad que contó con el acompañamiento de la directora general de Derechos Sociales, Romina Pereyra, y la coordinadora de Juventudes, Milagros Arias. Previo a estas entregas, profesionales de la salud del Municipio asistieron a los establecimientos para realizar los controles de agudeza visual y determinar quiénes necesitaban los anteojos, los cuales fueron elegidos y entregados de forma totalmente gratuita a cada chica y chico. El Programa Oftalmológico EcheVERría es una política del Gobierno local destinada a la detección, el diagnóstico y el tratamiento de los problemas de visión, con el objetivo de mejorar la salud, la calidad de vida y el desempeño escolar de las y los estudiantes, reafirmando el compromiso de estar siempre cerca de las familias echeverrianas.",
     "imagenUrl": null,
@@ -511,7 +541,7 @@
   },
   {
     "titulo": "NUEVA EDICIÓN CONJUNTA DE LA FERIA \"HECHO EN LANÚS\" Y MERCADOS BONAERENSES",
-    "descripcion": "El municipio de Lanús organizará una edición conjunta de la Feria de la Economía Social “Hecho en Lanús” con los Mercados Bonaerenses. El evento se llevará a cabo el martes 3 de noviembre, de 10 a 14, en la plaza Villa Obrera, avenida Eva Perón 2400, en Lanús Este.",
+    "descripcion": "Lanús Gobierno realizará una edición conjunta de la Feria de la Economía Social “Hecho en Lanús” con los tradicionales Mercados Bonaerenses durante el martes 3 de noviembre, de 10 a 14 en la plaza Villa Obrera, situada en la avenida Eva Perón N° 2400 en Lanús Este.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-02-at-104253-uJCUH.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4650-nueva-edicion-conjunta-de-la-feria-hecho-en-lanus-y-mercados-bonaerenses",
     "fecha": "2026-11-02",
