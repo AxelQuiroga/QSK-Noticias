@@ -1,6 +1,6 @@
 ---
-title: "Riachuelo: la Provincia denunció el retiro de fondos y ACUMAR registra contrataciones de limpieza en 2026"
-description: "Carlos Bianco cuestionó al Gobierno nacional por el financiamiento del saneamiento y habló de un fuerte recorte en ACUMAR. Los registros oficiales también muestran procedimientos de contratación para tareas de limpieza durante 2026."
+title: "Riachuelo: quién limpia hoy la ribera de Lanús y Avellaneda"
+description: "ACUMAR reconoce que ya había contratado la limpieza de esos tramos y volvió a abrir otro proceso en 2026. La pregunta es qué pasó con el servicio y quién garantiza su continuidad."
 slug: "riachuelo-provincia-denuncia-retiro-fondos-acumar-contrataciones-2026"
 primaryTopic: "Política"
 secondaryTopics:
@@ -18,52 +18,63 @@ image:
   alt: "Vista de la Vuelta de Rocha y la ribera del Riachuelo, en La Boca, Buenos Aires."
   attribution: "Foto: Gonzabar77 / Wikimedia Commons — CC BY 4.0"
 sources:
+  - name: "ACUMAR — Disposición que autorizó la contratación 03/2026"
+    url: "https://www.acumar.gob.ar/wp-content/uploads/2026/06/DI-2026-60004034-APN-DGAACUMAR.pdf"
+    description: "El organismo explica que la contratación de 2025 permitió limpiar los mismos tramos y fundamenta la nueva convocatoria."
+  - name: "ACUMAR — Pliego de limpieza de márgenes 03/2026"
+    url: "https://www.acumar.gob.ar/wp-content/uploads/2026/06/PLIEG-2026-59508127-APN-DGAACUMAR-1.pdf"
+    description: "Detalla el alcance del servicio, su duración y cómo deben certificarse los trabajos."
+  - name: "ACUMAR — Compras y contrataciones"
+    url: "https://www.acumar.gob.ar/transparencia/compras-y-contrataciones/regimen-especial-de-cyc-proveedores-sociales-y-mipymesprov-sociales-mipymes/"
+    description: "Registro público del procedimiento 03/2026 para los tramos 1 a 5 de Avellaneda y Lanús."
+  - name: "ACUMAR — Monitor PISA: mantenimiento de las márgenes"
+    url: "https://monitorpisa.acumar.gob.ar/sistema-de-indicadores/limpieza-de-margenes-y-camino-de-sirga/estado-del-mantenimiento-las-margenes/"
+    description: "Explica quién tiene a cargo las tareas y publica el último indicador disponible, con datos de 2025."
   - name: "Gobierno de la Provincia de Buenos Aires"
     url: "https://www.gba.gob.ar/gobierno/noticias/bianco_%E2%80%9Clos_trabajadores_se_quedan_sin_plata_antes_de_llegar_fin_de_mes%E2%80%9D"
-    description: "Comunicado oficial sobre la conferencia de prensa de Carlos Bianco del 2 de noviembre de 2026."
-  - name: "ACUMAR — Compras y contrataciones"
-    url: "https://www.acumar.gob.ar/transparencia/compras-y-contrataciones/"
-    description: "Registro oficial de procedimientos de contratación, incluido un servicio de limpieza y extracción de residuos flotantes en arroyos críticos de la cuenca durante 2026."
-  - name: "ACUMAR — Régimen especial de proveedores sociales y MiPyMEs"
-    url: "https://www.acumar.gob.ar/transparencia/compras-y-contrataciones/regimen-especial-de-cyc-proveedores-sociales-y-mipymesprov-sociales-mipymes/"
-    description: "Procedimientos de 2026 para limpieza y mantenimiento de tramos en Esteban Echeverría, Lomas de Zamora, La Matanza, Avellaneda y Lanús."
-  - name: "ACUMAR — Monitor PISA: mantenimiento del espejo de agua"
-    url: "https://monitorpisa.acumar.gob.ar/sistema-de-indicadores/limpieza-de-margenes-y-camino-de-sirga/estado-del-mantenimiento-espejo-de-agua/"
-    description: "Indicador oficial sobre mantenimiento del cauce principal, con última actualización publicada en enero de 2026."
+    description: "Declaraciones de Carlos Bianco sobre el financiamiento de tareas vinculadas con el saneamiento."
+  - name: "Argentina.gob.ar"
+    url: "https://www.argentina.gob.ar/sites/default/files/rio_matanza_riachuelo.jpg"
+    description: "Imagen de archivo utilizada como referencia visual; no documenta el estado actual de los tramos."
+  - name: "Gobierno de la Ciudad de Buenos Aires"
+    url: "https://buenosaires.gob.ar/gcaba_historico/noticias/margenes-del-riachuelo-ya-se-limpiaron-mas-de-1000-toneladas-de-residuos"
+    description: "Registro histórico de tareas de limpieza en la ribera, publicado en junio de 2014."
 ---
 
-La limpieza de la Cuenca Matanza-Riachuelo quedó en el centro de un nuevo cruce entre la Provincia de Buenos Aires y el Gobierno nacional. El ministro de Gobierno bonaerense, Carlos Bianco, cuestionó el 2 de noviembre la decisión de Nación de dejar de financiar y prestar servicios vinculados al saneamiento ambiental. Sin embargo, los registros públicos de ACUMAR también muestran procedimientos de contratación para tareas de limpieza durante 2026, un dato que obliga a distinguir entre los anuncios sobre el financiamiento y la situación administrativa de cada servicio.
+Para quien vive cerca del Riachuelo, la limpieza no es una pelea de oficinas. Es saber si alguien retira la basura, corta el pasto y mantiene la ribera que forma parte del barrio. En Lanús y Avellaneda hay una pregunta que ACUMAR todavía tiene que responder con claridad: **¿qué pasó con el servicio de limpieza y quién se está ocupando hoy de esos tramos?**
 
-## Qué denunció la Provincia
+![Trabajadores realizan tareas de limpieza y retiro de vegetación en la ribera del río Matanza-Riachuelo.](/images/noticias/riachuelo-limpieza-margenes-archivo.jpg)
 
-Durante una conferencia de prensa en La Plata, Bianco sostuvo que el Gobierno nacional redujo los recursos destinados a la Autoridad de Cuenca Matanza-Riachuelo (ACUMAR). Según las cifras que presentó el funcionario, el presupuesto del organismo cayó un 74% en términos reales respecto de 2023 y su planta de trabajadores se redujo a la mitad, con 350 despidos desde el inicio de la actual gestión nacional.
+*Imagen de archivo de tareas de limpieza en la ribera. No muestra una inspección actual de Lanús ni de Avellaneda.*
 
-El ministro también afirmó que desde 2024 dejaron de ejecutarse inversiones en programas de emergencia sanitaria, urbanización de barrios populares, construcción de desagües pluviales, control de la contaminación industrial y ordenamiento territorial. Frente a ese escenario, señaló que la Provincia sostiene algunas intervenciones con recursos propios.
+## Un servicio que volvió a ponerse en marcha en los papeles
 
-Esas cifras y afirmaciones corresponden a la exposición del Gobierno bonaerense. La información oficial consultada no incluye, junto a ese anuncio, una respuesta del Gobierno nacional que permita contrastar cada uno de los puntos planteados.
+En un documento de junio de 2026, ACUMAR reconoció que una contratación anterior, realizada en 2025, había permitido limpiar y mantener los mismos cinco tramos de la ribera que comparten Lanús y Avellaneda. El recorrido comprende sectores del Camino de la Ribera Sur, entre el Puente Nicolás Avellaneda y la avenida General Hornos.
 
-## Qué muestran los registros de ACUMAR
+Pero el organismo volvió a impulsar una contratación. En abril de 2026, su área ambiental planteó que era necesario continuar con esas tareas. Dos meses después, ACUMAR autorizó un nuevo llamado para contratar la limpieza y el mantenimiento de esos mismos sectores.
 
-En el portal de compras y contrataciones del organismo aparecen procedimientos publicados durante 2026 vinculados con tareas de limpieza en la cuenca.
+![Operativo de limpieza de la ribera del Riachuelo con una embarcación y trabajadores en la orilla.](/images/noticias/riachuelo-limpieza-ribera-archivo-2014.jpg)
 
-Entre ellos figuran contrataciones para el mantenimiento de distintos tramos de la margen del cauce principal en Esteban Echeverría, Lomas de Zamora, La Matanza, Avellaneda y Lanús. Los registros identifican esos procedimientos como publicados, con fechas de apertura entre el 25 y el 30 de junio.
+*Imagen de archivo de un operativo de limpieza en la ribera, publicada por el Gobierno porteño en 2014.*
 
-Además, ACUMAR publicó una licitación para contratar un servicio de limpieza, extracción de residuos sólidos flotantes y mantenimiento del espejo de agua en arroyos críticos de la cuenca. La apertura de ofertas fue fijada para el 11 de agosto de 2026.
+El procedimiento se abrió en junio y el registro público de ACUMAR todavía lo muestra como “Publicado”. El pliego prevé un servicio de seis meses, que empieza a correr desde la firma del acta de inicio, con opción de extenderlo por otros seis. Pero ese plazo no permite saber cuándo arrancaron efectivamente los trabajos: para eso hace falta conocer si hubo adjudicación, contrato y acta de inicio.
 
-La existencia de esos procedimientos acredita que hubo trámites de contratación publicados durante el año. Sin embargo, su estado administrativo no permite afirmar por sí solo que todos los servicios hayan sido adjudicados, que los trabajos se hayan iniciado o que continúen prestándose actualmente. Para establecerlo es necesario conocer las adjudicaciones, los contratos vigentes y sus niveles de ejecución.
+La pregunta, entonces, no es solamente por qué se abrió otra contratación. Es qué pasó entre el servicio anterior y este nuevo llamado, si hubo continuidad en las tareas y quién puede demostrar que la limpieza se hizo.
 
-## Un indicador oficial con datos hasta enero
+## No es lo mismo limpiar la orilla que el agua
 
-El Monitor del Plan Integral de Saneamiento Ambiental de ACUMAR mantiene un indicador sobre el mantenimiento del cauce principal. Su última actualización publicada corresponde a enero de 2026 y describe tareas realizadas mediante una empresa contratista, con embarcaciones y equipos destinados a retirar residuos del curso de agua.
+También hay que separar dos trabajos que suelen mezclarse cuando se habla del Riachuelo. Una cosa es mantener las márgenes: retirar residuos de la ribera, cortar el pasto y conservar esos espacios. Otra es sacar basura flotante y limpiar el espejo de agua.
 
-El propio indicador señala que los trabajos involucran sectores de Avellaneda, Esteban Echeverría, La Matanza, Lanús y Lomas de Zamora, además de la Ciudad de Buenos Aires. También informa resultados correspondientes a 2025.
+ACUMAR publicó durante 2026 otro proceso para retirar residuos flotantes y mantener el agua en arroyos críticos de la cuenca. Es una contratación distinta: no alcanza para demostrar que las márgenes de Lanús y Avellaneda estén cubiertas.
 
-Por tratarse de información con varios meses de antigüedad, ese registro sirve como antecedente de las tareas que realizaba el organismo, pero no alcanza para confirmar cuál es el estado operativo del servicio en noviembre.
+El último indicador público de ACUMAR sobre el mantenimiento de las márgenes informa un estado satisfactorio durante el cuarto trimestre de 2025. Pero la página fue actualizada por última vez en enero de 2026 y el propio organismo indica que el indicador está en proceso de actualización. Es un antecedente, no una foto de cómo está la ribera hoy.
 
-## Qué falta aclarar
+## La discusión no puede dejar a los vecinos sin respuestas
 
-La discusión no se limita a la reducción de recursos denunciada por la Provincia. También es necesario conocer qué contratos finalizaron, cuáles fueron renovados o adjudicados, qué tareas continúan y qué organismo se hará cargo de los trabajos que eventualmente se interrumpan.
+El 2 de noviembre, el ministro bonaerense Carlos Bianco cuestionó la reducción de fondos nacionales para el saneamiento y sostuvo que la Provincia tendría que afrontar tareas que antes financiaba Nación. Esas declaraciones abrieron una discusión política, pero no explican por sí solas qué pasa con cada servicio.
 
-Los documentos públicos consultados permiten comprobar que ACUMAR publicó procedimientos de contratación para limpieza durante 2026, pero no resuelven por sí solos la denuncia sobre el retiro de financiamiento y servicios. La respuesta oficial de Nación y el detalle actualizado de la ejecución de esos contratos son datos centrales para determinar el alcance concreto de la medida.
+ACUMAR debe aclarar quién quedó a cargo de la limpieza de estos cinco tramos, cuándo empezó a trabajar, qué tareas realizó y qué controles se hicieron. También tiene que informar si el contrato anterior terminó, si fue prorrogado o cómo se cubrió el período hasta la nueva contratación.
 
-Para los municipios de la cuenca, entre ellos Lanús, Lomas de Zamora, Avellaneda y Esteban Echeverría, la continuidad de la limpieza y el mantenimiento tiene consecuencias directas sobre el entorno urbano y ambiental. El seguimiento de los contratos y de las tareas efectivamente realizadas será clave para saber cómo seguirá el saneamiento del Riachuelo.
+Para quienes viven cerca del río, no alcanza con que un organismo publique un llamado y otro anuncie un recorte. Hace falta saber quién limpia, con qué frecuencia y ante quién reclamar cuando el trabajo no se hace.
+
+**La ribera no puede quedar en el medio de una disputa entre gobiernos. La responsabilidad de mantenerla y dar explicaciones tiene que ser concreta y comprobable.**
