@@ -11,6 +11,7 @@ provincia: "Buenos Aires"
 scope: "regional"
 author: "Redacción QSK Noticias"
 publishedAt: "2026-11-04"
+updatedAt: "2026-11-07"
 status: "published"
 featured: false
 image:
