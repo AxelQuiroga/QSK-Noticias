@@ -1,4 +1,4 @@
-﻿---
+---
 title: "La clínica que PAMI recuperó en Lanús dejó de atender: qué pasa con sus afiliados"
 description: "La ex Clínica Estrada volvió a funcionar como efector público y fue adquirida por PAMI en 2023. Tras el cierre de noviembre, la pregunta es dónde continúan sus pacientes las consultas y tratamientos."
 slug: "clinica-pami-lanus-cierre-continuidad-atencion-afiliados-2026"
