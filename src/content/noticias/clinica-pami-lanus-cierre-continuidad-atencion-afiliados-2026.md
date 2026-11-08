@@ -11,7 +11,7 @@ region: "Zona Sur"
 provincia: "Buenos Aires"
 scope: "local"
 author: "Redacción QSK Noticias"
-publishedAt: "2026-11-07"
+publishedAt: "2026-11-08"
 status: "published"
 featured: false
 image:
