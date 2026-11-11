@@ -1,7 +1,7 @@
 [
   {
     "titulo": "Kicillof recibió al papa León XIV en el Pequeño Cottolengo Don Orione",
-    "descripcion": "El Papa León XIV recorrió el santuario y la parroquia, conversó con los residentes y saludó al personal de atención durante su visita a la institución.",
+    "descripcion": "Durante la visita, el santo Padre recorrió el santuario y la parroquia, conversó con los huéspedes y saludó al personal que los asiste.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/IMG-20261109-WA0014.jpg.jpeg",
     "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_recibi%C3%B3_al_papa_le%C3%B3n_xiv_en_el_peque%C3%B1o_cottolengo_don",
     "fecha": null,
@@ -120,8 +120,18 @@
     "slug": "se-entrego-el-credito-n500000-de-provincia-microcreditos"
   },
   {
+    "titulo": "EL OPERATIVO “LANÚS TU GOBIERNO” LLEGA A MONTE CHINGOLO",
+    "descripcion": "El municipio llevará adelante este viernes un operativo de atención ciudadana en Monte Chingolo. Vecinos y vecinas podrán recibir asesorías y gestionar trámites en el Polideportivo Municipal.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-10-at-111003-L7N6z.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4667-el-operativo-lanus-tu-gobierno-llega-a-monte-chingolo",
+    "fecha": "2026-11-10",
+    "volanta": "Control Comunal",
+    "fuente": "lanus",
+    "slug": "el-operativo-lanus-tu-gobierno-llega-a-monte-chingolo"
+  },
+  {
     "titulo": "SE VIENE UNA NUEVA EDICIÓN DE LA FERIA DEL LIBRO EN LANÚS",
-    "descripcion": "El municipio de Lanús confirmó la realización de la Feria del Libro los días 13, 14 y 15 de noviembre en el Centro Cultural Leonardo Favio. La actividad, con entrada libre y gratuita, se desarrollará de 16 a 21 horas bajo el lema “Nos merecemos leer” e incluirá charlas y talleres para la comunidad.",
+    "descripcion": "Lanús Gobierno informa que el viernes 13, sábado 14 y domingo 15 de noviembre, de 16 a 21, se llevará adelante una nueva edición de la tradicional Feria del Libro en Lanús, bajo el lema “Nos merecemos leer”, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste). La propuesta será con entrada libre y gratuita, y contará con diferentes actividades culturales, charlas y talleres destinados a toda la comunidad.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-09-at-51128-pm-FM4q8.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4666-se-viene-una-nueva-edicion-de-la-feria-del-libro-en-lanus",
     "fecha": "2026-11-09",
@@ -198,16 +208,6 @@
     "volanta": "Salud",
     "fuente": "lanus",
     "slug": "se-viene-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-en-lanus-oeste"
-  },
-  {
-    "titulo": "SE DESARROLLARÁN DOS NUEVAS EDICIONES DE LA FERIA “HECHO EN LANÚS”",
-    "descripcion": "Lanús Gobierno concretará otras dos jornadas de la Feria de la Economía Social “Hecho en Lanús” durante el sábado 7 y el domingo 8 de noviembre, de 16 a 20, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste) y en la plaza Villa Obrera (avenida Eva Perón N° 2400, Lanús Este).",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-05-at-101501-6HSAq.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4658-se-desarrollaran-dos-nuevas-ediciones-de-la-feria-hecho-en-lanus",
-    "fecha": "2026-11-05",
-    "volanta": "Control Comunal",
-    "fuente": "lanus",
-    "slug": "se-desarrollaran-dos-nuevas-ediciones-de-la-feria-hecho-en-lanus"
   },
   {
     "titulo": "La intendenta Sierra supervisó el entrenamiento de la Policía Municipal de Avellaneda",
@@ -330,6 +330,46 @@
     "slug": "la-delegacion-de-avellaneda-logro-el-tercer-puesto-en-la-final-de-los-juegos-bonaerenses-2026"
   },
   {
+    "titulo": "FERNANDO GRAY ASISTIÓ AL FESTEJO POR LOS 37 AÑOS DEL CENTRO DE RESIDENTES PARAGUAYOS EMILIANO R. FERNÁNDEZ",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, asistió a la celebración de los 37 años del Centro de Residentes Paraguayos Emiliano R. Fernández en El Jagüel. Durante el acto, entregó una ayuda económica para refacciones y firmó la escritura de comodato por 30 años a la comisión directiva para asegurar la continuidad del espacio.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-asistio-al-festejo-por-los-37-anos-del-centro-de-residentes-paraguayos-emiliano-r-fernandez/",
+    "fecha": "2026-11-08",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-asistio-al-festejo-por-los-37-anos-del-centro-de-residentes-paraguayos-emiliano-r-fernandez"
+  },
+  {
+    "titulo": "CRONOGRAMA DE SERVICIOS DURANTE LOS PRÓXIMOS FERIADOS",
+    "descripcion": "El Municipio de Esteban Echeverría informó el funcionamiento de servicios durante los feriados del 9 y 11 de noviembre, con motivo de la visita del Papa León XIV. La recolección de residuos será normal y el edificio municipal cerrará. El Hospital Municipal Santamarina operará con guardias las 24 horas, mientras que las Unidades Sanitarias N° 6 y 24 mantendrán el servicio de 24 horas. Las Unidades N° 3 y 4 funcionarán de 8 a 20 horas. El Centro de Atención al Vecino estará disponible de 6 a 22 horas y el cementerio atenderá visitas de 7 a 18 horas.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/cronograma-de-servicios-durante-los-proximos-feriados-6/",
+    "fecha": "2026-11-08",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "cronograma-de-servicios-durante-los-proximos-feriados"
+  },
+  {
+    "titulo": "FERNANDO GRAY PARTICIPÓ DE LA CELEBRACIÓN DEL 40° ANIVERSARIO DEL CENTRO DE JUBILADOS Y PENSIONADOS 9 DE ABRIL",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, acompañó a jubilados en el festejo por los 40 años del Centro de Jubilados y Pensionados 9 de Abril. El mandatario descubrió una placa y entregó una ayuda económica para la compra de materiales de construcción.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-participo-de-la-celebracion-del-40-aniversario-del-centro-de-jubilados-y-pensionados-9-de-abril/",
+    "fecha": "2026-11-07",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-participo-de-la-celebracion-del-40-aniversario-del-centro-de-jubilados-y-pensionados-9-de-abril"
+  },
+  {
+    "titulo": "ENTREGA DE LENTES DEL PROGRAMA OFTALMOLÓGICO ECHEverRÍA A ESCUELAS PRIMARIAS DE MONTE GRANDE Y EL JAGÜEL",
+    "descripcion": "El municipio de Esteban Echeverría, junto a la concejal Magui Gray, entregó 243 pares de lentes gratuitos a estudiantes de dos escuelas primarias. En la N° 15 de Monte Grande se entregaron 155 anteojos y en la N° 23 de El Jagüel se distribuyeron otros 88.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/entrega-de-lentes-del-programa-oftalmologico-echeverria-a-escuelas-primarias-de-monte-grande-y-el-jaguel/",
+    "fecha": "2026-11-07",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "entrega-de-lentes-del-programa-oftalmologico-echeverria-a-escuelas-primarias-de-monte-grande-y-el-jaguel"
+  },
+  {
     "titulo": "UN DETENIDO TRAS SER DETECTADO POR EL COM DESCARTANDO UN ARMA EN LA VÍA PÚBLICA",
     "descripcion": "La Policía bonaerense aprehendió en Monte Grande a un hombre que fue detectado por las cámaras del Centro Operativo de Monitoreo (COM) tras descartar un objeto similar a un arma de fuego en la vía pública. El procedimiento se inició cuando operadores del COM observaron, a través de las cámaras, a un individuo que caminaba por la zona de Vicente López y Petrazzini y arrojaba un objeto en un cesto de basura. Tras advertir la maniobra, los operadores dieron aviso inmediato a las fuerzas de seguridad. Con las características aportadas por el sistema de vigilancia municipal, efectivos del Comando de Patrullas interceptaron al sospechoso a pocas cuadras del lugar, en el cruce con D. Rocha. Durante el procedimiento, los agentes recuperaron el elemento descartado y constataron que se trataba de una réplica de arma de fuego. El aprehendido fue trasladado a la Comisaría N° 1 de Monte Grande y quedó a disposición de la UFI en turno. El Municipio de Esteban Echeverría cuenta actualmente con 1.783 cámaras fijas y domos de 360 grados en funcionamiento durante todo el año. El sistema se complementa con paradas seguras, tótems de emergencia y el Anillo Digital de Seguridad, que incorpora lectoras de patentes para detectar vehículos con pedido de secuestro o denuncia de robo.",
     "imagenUrl": null,
@@ -388,6 +428,16 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "fernando-gray-participo-de-la-apertura-del-centro-de-atencion-al-estudiante-y-a-la-familia-de-la-universidad-de-flores"
+  },
+  {
+    "titulo": "SE DESARROLLARÁN DOS NUEVAS EDICIONES DE LA FERIA “HECHO EN LANÚS”",
+    "descripcion": "Lanús Gobierno concretará otras dos jornadas de la Feria de la Economía Social “Hecho en Lanús” durante el sábado 7 y el domingo 8 de noviembre, de 16 a 20, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste) y en la plaza Villa Obrera (avenida Eva Perón N° 2400, Lanús Este).",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-05-at-101501-6HSAq.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4658-se-desarrollaran-dos-nuevas-ediciones-de-la-feria-hecho-en-lanus",
+    "fecha": "2026-11-05",
+    "volanta": "Control Comunal",
+    "fuente": "lanus",
+    "slug": "se-desarrollaran-dos-nuevas-ediciones-de-la-feria-hecho-en-lanus"
   },
   {
     "titulo": "MONTE GRANDE: DETUVIERON A TRES HOMBRES TRAS UN INTENTO DE ROBO A UNA INSTITUCIÓN",
