@@ -3,8 +3,6 @@ title: "Avellaneda incorporó inteligencia artificial al monitoreo de sus 2.500 
 description: "La herramienta ya funciona en los ocho centros de monitoreo del municipio. Puede detectar movimientos repetidos, intrusiones y desplazamientos, mientras los operadores humanos verifican las alertas y deciden cómo actuar."
 slug: "avellaneda-inteligencia-artificial-monitoreo-2500-camaras-seguridad"
 primaryTopic: "Seguridad"
-secondaryTopics:
-  - "Tecnología"
 section: "Seguridad"
 municipality: "Avellaneda"
 region: "Zona Sur"
@@ -27,6 +25,9 @@ sources:
   - name: "La Unión — Avellaneda sumó inteligencia artificial al sistema de videovigilancia"
     url: "https://launion.com.ar/region/avellaneda-sumo-inteligencia-artificial-al-sistema-videovigilancia-n5447429"
     description: "Cobertura local sobre la incorporación de la herramienta."
+  - name: "Agencia de Acceso a la Información Pública — Videovigilancia"
+    url: "https://www.argentina.gob.ar/aaip/datospersonales/responsables/videovigilancia"
+    description: "Información oficial sobre protección de datos personales en sistemas de videovigilancia."
 image:
   src: "https://www.mda.gob.ar/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-04-at-12.59.35-1.jpeg"
   alt: "Fotografía difundida por la Municipalidad de Avellaneda junto al anuncio de la incorporación de inteligencia artificial al monitoreo de cámaras."
