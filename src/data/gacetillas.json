@@ -1,7 +1,17 @@
 [
   {
+    "titulo": "Se entregaron diplomas a egresados del Curso de Formación de Cuidadores Domiciliarios",
+    "descripcion": "El gobernador de Buenos Aires presidió el cierre del Curso de Formación de Cuidadores Domiciliarios, donde 50 egresados recibieron sus diplomas.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/AxelKicillofCuidarnos.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/se_entregaron_diplomas_egresados_del_curso_de_formaci%C3%B3n_de",
+    "fecha": null,
+    "volanta": "LA PLATA",
+    "fuente": "gba",
+    "slug": "se-entregaron-diplomas-a-egresados-del-curso-de-formacion-de-cuidadores-domiciliarios"
+  },
+  {
     "titulo": "Kicillof participó de la Santa Misa brindada por el papa León XIV en Luján",
-    "descripcion": "El gobernador asistió a la misa papal en la Plaza Belgrano de Luján, frente a la Basílica, ante una multitud superior al millón de personas.",
+    "descripcion": "Fue en la Plaza Belgrano, frente a la Basílica, ante más de dos millones de personas.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/cf33717b385b4dc18d72c30c4674364a.jpg.jpeg",
     "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_particip%C3%B3_de_la_santa_misa_brindada_por_el_papa_le%C3%B3n_xiv_en",
     "fecha": null,
@@ -110,18 +120,38 @@
     "slug": "kicillof-entrego-escrituras-gratuitas-a-familias-de-rivadavia"
   },
   {
-    "titulo": "Kicillof inauguró la obra de refacción integral de la Escuela Primaria N°1",
-    "descripcion": "Además, el Gobernador recorrió los avances de la construcción del nuevo Centro Universitario del programa Puentes y entregó netbooks a estudiantes del distrito.",
-    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB6141.jpg",
-    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_inaugur%C3%B3_la_obra_de_refacci%C3%B3n_integral_de_la_escuela",
-    "fecha": null,
-    "volanta": "GENERAL VILLEGAS",
-    "fuente": "gba",
-    "slug": "kicillof-inauguro-la-obra-de-refaccion-integral-de-la-escuela-primaria-n1"
+    "titulo": "CONOCÉ DÓNDE FUNCIONARÁ LA NUEVA EDICIÓN DE LA FERIA DE ARTESANÍAS",
+    "descripcion": "El municipio de Lanús confirmó que la Feria de Artesanías, gastronomía y compras se realizará este fin de semana en espacios públicos, con el objetivo de apoyar a los emprendedores locales y ofrecer productos a precios accesibles.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-13-at-093232-UzXsa.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4675-conoce-donde-funcionara-la-nueva-edicion-de-la-feria-de-artesanias",
+    "fecha": "2026-11-13",
+    "volanta": "Control Comunal",
+    "fuente": "lanus",
+    "slug": "conoce-donde-funcionara-la-nueva-edicion-de-la-feria-de-artesanias"
+  },
+  {
+    "titulo": "SE REALIZARÁN NUEVAS EDICIONES DE LA FERIA DE LA ECONOMÍA SOCIAL “HECHO EN LANÚS”",
+    "descripcion": "El municipio de Lanús confirmó que el sábado 14 y domingo 15 de noviembre se realizarán nuevas jornadas de la Feria de la Economía Social “Hecho en Lanús” en las plazas Sarmiento y Villa Obrera, en el barrio de Lanús Este.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-12-at-151004-O3Ow7.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4674-se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus",
+    "fecha": "2026-11-12",
+    "volanta": null,
+    "fuente": "lanus",
+    "slug": "se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus"
+  },
+  {
+    "titulo": "LLEGA UN NUEVO OPERATIVO DE \"SÁBADOS DE SALUD EN EL BARRIO\" A MONTE CHINGOLO",
+    "descripcion": "El municipio de Lanús confirmó que el sábado 14 de noviembre se realizará una nueva jornada del operativo “Sábados de Salud en el Barrio” en la plaza Hebe de Bonafini, en Monte Chingolo. La actividad se desarrollará de 10 a 14 y ofrecerá prestaciones gratuitas de prevención, atención y promoción de la salud para la comunidad.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-12-at-101028-UQxl2.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4673-llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo",
+    "fecha": "2026-11-12",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo"
   },
   {
     "titulo": "SE VIENE UN NUEVO PUNTO DE CASTRACIÓN ITINERANTE EN LANÚS OESTE",
-    "descripcion": "El municipio de Lanús habilitará nuevos turnos presenciales para la castración gratuita de mascotas en el Club ATA, ubicado en Catamarca 2985, Lanús Oeste, este viernes 13 de noviembre desde las 9 hasta agotar cupos.",
+    "descripcion": "Lanús Gobierno informa que el viernes 13 de noviembre, a partir de las 9 y hasta agotar cupos, se entregarán nuevos turnos presenciales para acceder al servicio gratuito de castración itinerante de perros y gatos en el Club ATA, ubicado en Catamarca N° 2985, Lanús Oeste.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-11-at-35029-pm-Rmtzd.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4672-se-viene-un-nuevo-punto-de-castracion-itinerante-en-lanus-oeste",
     "fecha": "2026-11-11",
@@ -131,7 +161,7 @@
   },
   {
     "titulo": "SE ENTREGARON INSUMOS A ESCUELAS TÉCNICAS DEL DISTRITO PARA EL DESARROLLO DE DIFERENTES PROYECTOS",
-    "descripcion": "El municipio de Lanús entregó herramientas y materiales a escuelas técnicas para financiar proyectos de los alumnos, en el marco del programa Escuelas y Proyectos en Comunidad.",
+    "descripcion": "Lanús Gobierno destinó herramientas y materiales a escuelas de educación técnica del distrito con el objetivo de solventar la concreción de distintos trabajos diseñados en las aulas, en el marco del programa “Escuelas y Proyectos en Comunidad”.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/lanus-gobierno-entrego-insumos-a-escuelas-tecnicas-1-3kib7.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4671-se-entregaron-insumos-a-escuelas-tecnicas-del-distrito-para-el-desarrollo-de-diferentes-proyectos",
     "fecha": "2026-11-11",
@@ -141,7 +171,7 @@
   },
   {
     "titulo": "NUEVAS JORNADAS DE AUTOCUIDADO “LANÚS SE PREPARA” EN EL DISTRITO",
-    "descripcion": "El municipio de Lanús anunció dos jornadas de autocuidado para el 12 y 13 de noviembre. El objetivo es informar a la población sobre el fenómeno El Niño y brindar recomendaciones para actuar frente a este riesgo climático.",
+    "descripcion": "Lanús Gobierno informa que el jueves 12 y viernes 13 de noviembre, a las 19, se llevarán a cabo nuevas Jornadas de Autocuidado bajo el lema “Lanús se prepara para afrontar riesgos climatológicos”, con el objetivo de acercar información a las y los lanusenses sobre el fenómeno climático El Niño, al igual que recomendaciones sobre cómo actuar frente a este evento.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-11-at-115142-am-BNvmW.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4670-nuevas-jornadas-de-autocuidado-lanus-se-prepara-en-el-distrito",
     "fecha": "2026-11-11",
@@ -151,7 +181,7 @@
   },
   {
     "titulo": "SE EXPANDEN LAS OBRAS DEL PARQUE LINEAL MONTE CHINGOLO",
-    "descripcion": "El municipio de Lanús comenzó una obra de renovación en la ex traza ferroviaria de Monte Chingolo, entre Ituzaingó y Coronel Lynch. El objetivo es recuperar más de 8.000 metros cuadrados de espacio verde para el uso de la comunidad.",
+    "descripcion": "Lanús Gobierno inició una obra de renovación y puesta en valor sobre la ex traza del Ferrocarril Provincial Buenos Aires, entre Ituzaingó y Coronel Lynch en Monte Chingolo, con el objetivo de poner en valor más de 8.000 metros cuadrados de espacio verde para el disfrute de las vecinas y de los vecinos de la zona.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/obras-del-parque-lineal-monte-chingolo-FysPS.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4669-se-expanden-las-obras-del-parque-lineal-monte-chingolo",
     "fecha": "2026-11-11",
@@ -180,34 +210,24 @@
     "slug": "el-operativo-lanus-tu-gobierno-llega-a-monte-chingolo"
   },
   {
-    "titulo": "SE VIENE UNA NUEVA EDICIÓN DE LA FERIA DEL LIBRO EN LANÚS",
-    "descripcion": "Lanús Gobierno informa que el viernes 13, sábado 14 y domingo 15 de noviembre, de 16 a 21, se llevará adelante una nueva edición de la tradicional Feria del Libro en Lanús, bajo el lema “Nos merecemos leer”, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste). La propuesta será con entrada libre y gratuita, y contará con diferentes actividades culturales, charlas y talleres destinados a toda la comunidad.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-09-at-51128-pm-FM4q8.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4666-se-viene-una-nueva-edicion-de-la-feria-del-libro-en-lanus",
-    "fecha": "2026-11-09",
-    "volanta": "Cultura",
-    "fuente": "lanus",
-    "slug": "se-viene-una-nueva-edicion-de-la-feria-del-libro-en-lanus"
+    "titulo": "El Municipio de Avellaneda renovó el convenio con Provincia Microcréditos para fortalecer emprendimientos locales",
+    "descripcion": "Se amplían los fondos para que más vecinos accedan a créditos con tasas subsidiadas y así impulsar sus proyectos locales.",
+    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-12-at-17.31.31-1-350x240.jpeg",
+    "urlNoticia": "https://www.mda.gob.ar/noticias/el-municipio-de-avellaneda-renovo-el-convenio-con-provincia-microcreditos-para-fortalecer-emprendimientos-locales/",
+    "fecha": "2026-11-13",
+    "volanta": null,
+    "fuente": "avellaneda",
+    "slug": "el-municipio-de-avellaneda-renovo-el-convenio-con-provincia-microcreditos-para-fortalecer-emprendimientos-locales"
   },
   {
-    "titulo": "NUEVA EDICIÓN DEL PROGRAMA “PLAZAS SALUDABLES”: CONOCÉ EL CRONOGRAMA SEMANAL",
-    "descripcion": "Lanús Gobierno informa que el martes 10, jueves 12 y viernes 13 de noviembre se llevarán adelante nuevas jornadas del programa “Plazas Saludables” en diferentes espacios públicos de la ciudad. Las actividades se realizarán de 9 a 12, con el propósito de acercar controles médicos gratuitos, promover hábitos saludables e incentivar la actividad física entre las vecinas y los vecinos.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/5026555236629720641-0wArN.jpg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4665-nueva-edicion-del-programa-plazas-saludables-conoce-el-cronograma-semanal",
-    "fecha": "2026-11-08",
-    "volanta": "Salud",
-    "fuente": "lanus",
-    "slug": "nueva-edicion-del-programa-plazas-saludables-conoce-el-cronograma-semanal"
-  },
-  {
-    "titulo": "¡AMBIENTE SÍ!: NUEVO OPERATIVO EN EL DISTRITO",
-    "descripcion": "Lanús Gobierno informa que el martes 10, jueves 12, viernes 13 y sábado 14 de noviembre se desarrollarán nuevas jornadas del operativo ¡Ambiente Sí! en distintos espacios públicos de la ciudad. La iniciativa permitirá que las vecinas y los vecinos acerquen materiales reciclables, retiren semillas de temporada y participen de acciones relacionadas con el cuidado del ambiente. Las postas funcionarán de 10 a 13 durante los días de semana y el sábado de 10 a 17.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-08-at-120917-pm-cwZ2u.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4664-ambiente-si-nuevo-operativo-en-el-distrito",
-    "fecha": "2026-11-08",
-    "volanta": "Ambiente",
-    "fuente": "lanus",
-    "slug": "ambiente-si-nuevo-operativo-en-el-distrito"
+    "titulo": "La Policía Municipal de Avellaneda se capacita en el uso de armas y dispositivos de baja letalidad",
+    "descripcion": "Magdalena Sierra asistió a una clase de tiro en el polígono del Polo de Formación y Entrenamiento Policial de Avellaneda.",
+    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/WhatsApp-Image-2026-11-12-at-10.19.05-350x240.jpeg",
+    "urlNoticia": "https://www.mda.gob.ar/noticias/la-policia-municipal-de-avellaneda-se-capacita-en-el-uso-de-armas-y-dispositivos-de-baja-letalidad/",
+    "fecha": "2026-11-12",
+    "volanta": null,
+    "fuente": "avellaneda",
+    "slug": "la-policia-municipal-de-avellaneda-se-capacita-en-el-uso-de-armas-y-dispositivos-de-baja-letalidad"
   },
   {
     "titulo": "Magdalena Sierra compartió la primera jornada de fin de curso de las y los egresados de las primarias",
@@ -310,28 +330,48 @@
     "slug": "magdalena-sierra-recibio-al-consejo-pastoral-evangelico"
   },
   {
-    "titulo": "Avellaneda presenta el programa municipal “Repartidores en Red”",
-    "descripcion": "La iniciativa está destinada a acompañar a las y los trabajadores de plataformas y repartidores de nuestra ciudad, a través de diferentes programas y beneficios.",
-    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/Proyecto-nuevo-2-2-350x240.jpg",
-    "urlNoticia": "https://www.mda.gob.ar/noticias/avellaneda-presenta-el-programa-municipal-repartidores-en-red/",
-    "fecha": "2026-10-27",
+    "titulo": "CENTENARIO DE LUIS GUILLÓN: GRILLA DE SHOWS Y ACTIVIDADES",
+    "descripcion": "Este domingo 15 de noviembre se realizarán festejos por el centenario de Luis Guillón en la plaza 25 de Mayo, con desfile de autos clásicos, shows artísticos, talleres y feria gastronómica. La actividad arrancará a las 8.30 y contará con la participación de instituciones locales.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/centenario-de-luis-guillon-grilla-de-shows-y-actividades/",
+    "fecha": "2026-11-13",
     "volanta": null,
-    "fuente": "avellaneda",
-    "slug": "avellaneda-presenta-el-programa-municipal-repartidores-en-red"
+    "fuente": "esteban-echeverria",
+    "slug": "centenario-de-luis-guillon-grilla-de-shows-y-actividades"
   },
   {
-    "titulo": "La intendenta Sierra celebró los aniversarios de las orquestas “Creer es crear” y “El Docke musical”",
-    "descripcion": "Estas formaciones musicales promueven el desarrollo social, cultural y educativo de las y los niños y adolescentes de Avellaneda.",
-    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-24-at-16.21.40-350x240.jpeg",
-    "urlNoticia": "https://www.mda.gob.ar/noticias/32300/",
-    "fecha": "2026-10-24",
+    "titulo": "MONTE GRANDE SUR: VECINAS Y VECINOS ACCEDIERON A UN NUEVO OPERATIVO DE RECARGA DE GARRAFAS",
+    "descripcion": "El Municipio de Esteban Echeverría instaló un nuevo operativo de recarga de garrafas en el Centro Cultural Los Gurises de Santa Isabel. La iniciativa permite abonar $25.500 por un tanque de 10 kilos, una tarifa más baja que la del mercado.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/monte-grande-sur-vecinas-y-vecinos-accedieron-a-un-nuevo-operativo-de-recarga-de-garrafas/",
+    "fecha": "2026-11-12",
     "volanta": null,
-    "fuente": "avellaneda",
-    "slug": "la-intendenta-sierra-celebro-los-aniversarios-de-las-orquestas-creer-es-crear-y-el-docke-musical"
+    "fuente": "esteban-echeverria",
+    "slug": "monte-grande-sur-vecinas-y-vecinos-accedieron-a-un-nuevo-operativo-de-recarga-de-garrafas"
+  },
+  {
+    "titulo": "EL MUNICIPIO DE ESTEBAN ECHEVERRÍA ENTREGÓ 475 PARES DE LENTES A ESTUDIANTES DE 9 DE ABRIL",
+    "descripcion": "El Municipio de Esteban Echeverría entregó 475 pares de lentes a estudiantes de 9 de Abril a través del Programa Oftalmológico EcheVERría. La actividad se desarrolló en las escuelas Primaria N° 11 y Secundaria N° 16, donde se otorgaron anteojos a chicos y chicas con dificultades visuales. Previo a la entrega, profesionales locales realizaron los controles de agudeza visual para determinar quiénes necesitaban los elementos, los cuales fueron entregados de forma gratuita.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-de-esteban-echeverria-entrego-475-pares-de-lentes-a-estudiantes-de-9-de-abril/",
+    "fecha": "2026-11-12",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "el-municipio-de-esteban-echeverria-entrego-475-pares-de-lentes-a-estudiantes-de-9-de-abril"
+  },
+  {
+    "titulo": "FERNANDO GRAY PARTICIPÓ DEL 45° ANIVERSARIO DE LA IGLESIA CRISTIANA “SURIEL MI ROCA ES DIOS”, DE 9 DE ABRIL",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, asistió a los festejos por el 45° aniversario de la Iglesia Cristiana “Suriel mi Roca es Dios”, en 9 de Abril. Durante el acto, se hizo un homenaje al apóstol Rubén Osvaldo Mirande, quien falleció en junio de este año. El intendente entregó materiales para la refacción del lugar y una placa en su honor.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-participo-del-45-aniversario-de-la-iglesia-cristiana-suriel-mi-roca-es-dios-de-9-de-abril/",
+    "fecha": "2026-11-12",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-participo-del-45-aniversario-de-la-iglesia-cristiana-suriel-mi-roca-es-dios-de-9-de-abril"
   },
   {
     "titulo": "OPERATIVO DE RECARGA DE GARRAFAS A PRECIO ACCESIBLE EN MONTE GRANDE SUR",
-    "descripcion": "El Municipio de Esteban Echeverría realizará un operativo de recarga de garrafas de 10 kilos a $25.500 el jueves 12 de noviembre, de 11 a 12:30 horas, en el Centro Cultural y Comunitario Los Gurises (La Calandria 2195, Santa Isabel). El pago será en efectivo o por código QR.",
+    "descripcion": "El Municipio de Esteban Echeverría llevará adelante un nuevo operativo de recarga de garrafas el jueves 12 de noviembre, de 11 a 12:30 horas. Será en el Centro Cultural y Comunitario Los Gurises, ubicado en La Calandria 2195, barrio Santa Isabel, Monte Grande Sur. Durante la jornada, las personas podrán recargar sus envases de 10 kilos por $25.500. El pago podrá realizarse en efectivo o mediante código QR. La iniciativa forma parte de las políticas del Municipio para facilitar el acceso a servicios esenciales y acompañar la economía de la comunidad. En caso de lluvia, la actividad será suspendida.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/operativo-de-recarga-de-garrafas-a-precio-accesible-en-monte-grande-sur-7/",
     "fecha": "2026-11-11",
@@ -341,7 +381,7 @@
   },
   {
     "titulo": "CONTINÚAN LOS TRABAJOS DE BACHEO EN CALLES Y AVENIDAS EN MONTE GRANDE",
-    "descripcion": "El municipio de Esteban Echeverría continuó con tareas de bacheo en Monte Grande. Los trabajos se realizaron en la intersección de las calles Amado Nervo y Olavarría. Las cuadrillas municipales aplicaron asfalto caliente para reparar sectores deteriorados de la calzada.",
+    "descripcion": "Como parte de las acciones de mantenimiento de la red vial urbana de todo el distrito, los equipos de trabajo del Municipio de Esteban Echeverría llevaron adelante tareas de bacheo con asfalto caliente en la localidad de Monte Grande. Los mismos se realizaron en la intersección de las calles Amado Nervo y Olavarría. Las intervenciones estuvieron a cargo de cuadrillas municipales que realizaron la reparación de sectores con deterioro del pavimento mediante la aplicación de asfalto caliente. Este procedimiento consiste principalmente en la colocación de mezcla asfáltica a alta temperatura, lo que permite recomponer la superficie de la calzada y garantizar condiciones adecuadas de circulación. Los trabajos se enmarcan en el plan integral de mantenimiento vial que el Municipio ejecuta con financiamiento propio, el cual contempla tareas de bacheo, pavimentación, repavimentación y sellado de juntas en calles y avenidas de las distintas localidades del distrito.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/continuan-los-trabajos-de-bacheo-en-calles-y-avenidas-en-monte-grande/",
     "fecha": "2026-11-11",
@@ -390,6 +430,26 @@
     "slug": "entrega-de-lentes-del-programa-oftalmologico-echeverria-a-escuelas-primarias-de-monte-grande-y-el-jaguel"
   },
   {
+    "titulo": "SE VIENE UNA NUEVA EDICIÓN DE LA FERIA DEL LIBRO EN LANÚS",
+    "descripcion": "Lanús Gobierno informa que el viernes 13, sábado 14 y domingo 15 de noviembre, de 16 a 21, se llevará adelante una nueva edición de la tradicional Feria del Libro en Lanús, bajo el lema “Nos merecemos leer”, en el Centro Cultural Leonardo Favio (avenida 25 de Mayo N° 131, Lanús Oeste). La propuesta será con entrada libre y gratuita, y contará con diferentes actividades culturales, charlas y talleres destinados a toda la comunidad.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-09-at-51128-pm-FM4q8.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4666-se-viene-una-nueva-edicion-de-la-feria-del-libro-en-lanus",
+    "fecha": "2026-11-09",
+    "volanta": "Cultura",
+    "fuente": "lanus",
+    "slug": "se-viene-una-nueva-edicion-de-la-feria-del-libro-en-lanus"
+  },
+  {
+    "titulo": "Avellaneda presenta el programa municipal “Repartidores en Red”",
+    "descripcion": "La iniciativa está destinada a acompañar a las y los trabajadores de plataformas y repartidores de nuestra ciudad, a través de diferentes programas y beneficios.",
+    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/Proyecto-nuevo-2-2-350x240.jpg",
+    "urlNoticia": "https://www.mda.gob.ar/noticias/avellaneda-presenta-el-programa-municipal-repartidores-en-red/",
+    "fecha": "2026-10-27",
+    "volanta": null,
+    "fuente": "avellaneda",
+    "slug": "avellaneda-presenta-el-programa-municipal-repartidores-en-red"
+  },
+  {
     "titulo": "UN DETENIDO TRAS SER DETECTADO POR EL COM DESCARTANDO UN ARMA EN LA VÍA PÚBLICA",
     "descripcion": "La Policía bonaerense aprehendió en Monte Grande a un hombre que fue detectado por las cámaras del Centro Operativo de Monitoreo (COM) tras descartar un objeto similar a un arma de fuego en la vía pública. El procedimiento se inició cuando operadores del COM observaron, a través de las cámaras, a un individuo que caminaba por la zona de Vicente López y Petrazzini y arrojaba un objeto en un cesto de basura. Tras advertir la maniobra, los operadores dieron aviso inmediato a las fuerzas de seguridad. Con las características aportadas por el sistema de vigilancia municipal, efectivos del Comando de Patrullas interceptaron al sospechoso a pocas cuadras del lugar, en el cruce con D. Rocha. Durante el procedimiento, los agentes recuperaron el elemento descartado y constataron que se trataba de una réplica de arma de fuego. El aprehendido fue trasladado a la Comisaría N° 1 de Monte Grande y quedó a disposición de la UFI en turno. El Municipio de Esteban Echeverría cuenta actualmente con 1.783 cámaras fijas y domos de 360 grados en funcionamiento durante todo el año. El sistema se complementa con paradas seguras, tótems de emergencia y el Anillo Digital de Seguridad, que incorpora lectoras de patentes para detectar vehículos con pedido de secuestro o denuncia de robo.",
     "imagenUrl": null,
@@ -410,6 +470,36 @@
     "slug": "fernando-gray-inauguro-el-techo-parabolico-del-club-social-y-deportivo-santa-catalina"
   },
   {
+    "titulo": "Kicillof inauguró la obra de refacción integral de la Escuela Primaria N°1",
+    "descripcion": "Además, el Gobernador recorrió los avances de la construcción del nuevo Centro Universitario del programa Puentes y entregó netbooks a estudiantes del distrito.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB6141.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_inaugur%C3%B3_la_obra_de_refacci%C3%B3n_integral_de_la_escuela",
+    "fecha": null,
+    "volanta": "GENERAL VILLEGAS",
+    "fuente": "gba",
+    "slug": "kicillof-inauguro-la-obra-de-refaccion-integral-de-la-escuela-primaria-n1"
+  },
+  {
+    "titulo": "NUEVA EDICIÓN DEL PROGRAMA “PLAZAS SALUDABLES”: CONOCÉ EL CRONOGRAMA SEMANAL",
+    "descripcion": "Lanús Gobierno informa que el martes 10, jueves 12 y viernes 13 de noviembre se llevarán adelante nuevas jornadas del programa “Plazas Saludables” en diferentes espacios públicos de la ciudad. Las actividades se realizarán de 9 a 12, con el propósito de acercar controles médicos gratuitos, promover hábitos saludables e incentivar la actividad física entre las vecinas y los vecinos.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/5026555236629720641-0wArN.jpg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4665-nueva-edicion-del-programa-plazas-saludables-conoce-el-cronograma-semanal",
+    "fecha": "2026-11-08",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "nueva-edicion-del-programa-plazas-saludables-conoce-el-cronograma-semanal"
+  },
+  {
+    "titulo": "La intendenta Sierra celebró los aniversarios de las orquestas “Creer es crear” y “El Docke musical”",
+    "descripcion": "Estas formaciones musicales promueven el desarrollo social, cultural y educativo de las y los niños y adolescentes de Avellaneda.",
+    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/WhatsApp-Image-2026-10-24-at-16.21.40-350x240.jpeg",
+    "urlNoticia": "https://www.mda.gob.ar/noticias/32300/",
+    "fecha": "2026-10-24",
+    "volanta": null,
+    "fuente": "avellaneda",
+    "slug": "la-intendenta-sierra-celebro-los-aniversarios-de-las-orquestas-creer-es-crear-y-el-docke-musical"
+  },
+  {
     "titulo": "AVANZAN LAS TAREAS DE FUMIGACIÓN EN ESTEBAN ECHEVERRÍA",
     "descripcion": "Los equipos del Municipio de Esteban Echeverría continúan realizando tareas de fumigación en el distrito para prevenir la reproducción del mosquito Aedes aegypti , transmisor de enfermedades virales como el dengue. En esta oportunidad, los trabajos se realizaron en los barrios Lomas de Beherán, El Gaucho, El Prado, El Manzanar, El Fortín, Cotito, Santa Adela, Olimpo, Las Torres, San Carlos y San Sebastián Este (9 de Abril); Villa de Mayo, Santa Catalina y Parish Robertson (Luis Guillón); Federal, Primo, Don Conrado, Las Talitas y 25 de Mayo (Monte Grande); La Morita, Siglo XX, Antártida Argentina, San Ignacio y Martínez Moreno (El Jagüel); y San Roque, Cercanías, Las Heras, Monte Chico, Las Colinas y Colón (Monte Grande Sur). Como complemento de estas acciones, se recomienda a la comunidad realizar la limpieza de jardines, eliminar objetos que puedan acumular agua y utilizar repelentes, tanto ambientales como personales. Los operativos son gratuitos y están a cargo de personal autorizado por la comuna. Se recuerda que dicho personal no está facultado para realizar cobros por estos trabajos en la vía pública. Ante cualquier consulta o denuncia, las vecinas y los vecinos pueden comunicarse con el Centro de Atención al Vecino (CAV) llamando al 0810-999-6800, por WhatsApp al 15-5131-6800 (solo para chats) o enviando un correo electrónico a cavee@estebanecheverria.gob.ar.",
     "imagenUrl": null,
@@ -418,6 +508,16 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "avanzan-las-tareas-de-fumigacion-en-esteban-echeverria-3"
+  },
+  {
+    "titulo": "¡AMBIENTE SÍ!: NUEVO OPERATIVO EN EL DISTRITO",
+    "descripcion": "Lanús Gobierno informa que el martes 10, jueves 12, viernes 13 y sábado 14 de noviembre se desarrollarán nuevas jornadas del operativo ¡Ambiente Sí! en distintos espacios públicos de la ciudad. La iniciativa permitirá que las vecinas y los vecinos acerquen materiales reciclables, retiren semillas de temporada y participen de acciones relacionadas con el cuidado del ambiente. Las postas funcionarán de 10 a 13 durante los días de semana y el sábado de 10 a 17.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-08-at-120917-pm-cwZ2u.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4664-ambiente-si-nuevo-operativo-en-el-distrito",
+    "fecha": "2026-11-08",
+    "volanta": "Ambiente",
+    "fuente": "lanus",
+    "slug": "ambiente-si-nuevo-operativo-en-el-distrito"
   },
   {
     "titulo": "PROGRAMA OFTALMOLÓGICO ECHEverRÍA: ENTREGA DE LENTES A ESTUDIANTES DE LUIS GUILLÓN",
