@@ -1,13 +1,33 @@
 [
   {
+    "titulo": "Kicillof inauguró el Parque Solar de Pipinas",
+    "descripcion": "El Gobernador puso en marcha el Parque Solar de Pipinas, además inauguró un Centro de Desarrollo Infantil y entregó viviendas, obras que estaban detenidas por el Gobierno nacional.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB7866%20%281%29.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_inaugur%C3%B3_el_parque_solar_de_pipinas",
+    "fecha": null,
+    "volanta": "PUNTA INDIO",
+    "fuente": "gba",
+    "slug": "kicillof-inauguro-el-parque-solar-de-pipinas"
+  },
+  {
+    "titulo": "Kicillof: “No importa de qué potencia hablemos, la Argentina no va a ser el patio trasero de nadie”",
+    "descripcion": "El gobernador encabezó un acto en Punta Indio junto al intendente local, David Angueira.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_230.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_%E2%80%9Cno_importa_de_qu%C3%A9_potencia_hablemos_la_argentina_no_va_ser",
+    "fecha": null,
+    "volanta": "DÍA DE LA SOBERANÍA NACIONAL",
+    "fuente": "gba",
+    "slug": "kicillof-no-importa-de-que-potencia-hablemos-la-argentina-no-va-a-ser-el-patio-trasero-de-nadie"
+  },
+  {
     "titulo": "Kicillof entregó 55 viviendas a familias de Dock Sud",
     "descripcion": "Las obras incluyen redes de agua, cloacas, electricidad, gas, iluminación y veredas.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB3222%20%282%29ed.jpg",
-    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_entreg%C3%B3_55_viviendas_familias_de_dock_sud_0",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_entreg%C3%B3_55_viviendas_familias_de_dock_sud",
     "fecha": null,
     "volanta": "AVELLANEDA",
     "fuente": "gba",
-    "slug": "kicillof-entrego-55-viviendas-a-familias-de-dock-sud"
+    "slug": "kicillof-entrego-55-viviendas-a-familias-de-dock-sud-2"
   },
   {
     "titulo": "Kicillof participó de la 5º Jornada de Economía para el Desarrollo de la Provincia",
@@ -100,28 +120,38 @@
     "slug": "kicillof-entrego-viviendas-a-familias-de-san-pedro"
   },
   {
-    "titulo": "Kicillof inauguró un nuevo centro universitario en Arrecifes",
-    "descripcion": "Además, el Gobernador entregó escrituras gratuitas y otorgó netbooks a estudiantes secundarios del distrito.",
-    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_227.jpg",
-    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_inaugur%C3%B3_un_nuevo_centro_universitario_en_arrecifes",
-    "fecha": null,
-    "volanta": "PROGRAMA PUENTES",
-    "fuente": "gba",
-    "slug": "kicillof-inauguro-un-nuevo-centro-universitario-en-arrecifes"
+    "titulo": "CONTINÚA EL DESARROLLO DE LAS JORNADAS DE AUTOCUIDADO \"LANÚS SE PREPARA\"",
+    "descripcion": "El municipio de Lanús continuará con las Jornadas de Autocuidado para capacitar a la población sobre cómo enfrentar riesgos climáticos y actuar ante emergencias.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-20-at-50304-pm-r3K2i.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4681-continua-el-desarrollo-de-las-jornadas-de-autocuidado-lanus-se-prepara",
+    "fecha": "2026-11-20",
+    "volanta": "Espacios y Servicios Públicos",
+    "fuente": "lanus",
+    "slug": "continua-el-desarrollo-de-las-jornadas-de-autocuidado-lanus-se-prepara"
   },
   {
-    "titulo": "Kicillof encabezó el cierre de la 6° edición de Futuro Memoria",
-    "descripcion": "La iniciativa promueve la creación de producciones culturales y artísticas que visibilicen las luchas por la Memoria, la Verdad y la Justicia.",
-    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_226.jpg",
-    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_encabez%C3%B3_el_cierre_de_la_6%C2%B0_edici%C3%B3n_de_futuro_memoria",
-    "fecha": null,
-    "volanta": "LA PLATA",
-    "fuente": "gba",
-    "slug": "kicillof-encabezo-el-cierre-de-la-6-edicion-de-futuro-memoria"
+    "titulo": "FERIA DE ARTESANÍAS: CONOCÉ EN QUÉ PLAZAS Y PARQUES FUNCIONARÁ LA NUEVA EDICIÓN",
+    "descripcion": "El municipio de Lanús informó que la Feria de Artesanías, Paseo de Compras y puestos gastronómicos se realizará este fin de semana en plazas y parques del distrito. El objetivo es promover la actividad local y ofrecer opciones de consumo a precios populares.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-20-at-34944-pm-hYH8j.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4680-feria-de-artesanias-conoce-en-que-plazas-y-parques-funcionara-la-nueva-edicion",
+    "fecha": "2026-11-20",
+    "volanta": "Control Comunal",
+    "fuente": "lanus",
+    "slug": "feria-de-artesanias-conoce-en-que-plazas-y-parques-funcionara-la-nueva-edicion"
+  },
+  {
+    "titulo": "SE DESARROLLARÁ UNA NUEVA EDICIÓN DEL OPERATIVO “SÁBADOS DE SALUD EN EL BARRIO” EN LANÚS OESTE",
+    "descripcion": "El municipio de Lanús programó una nueva edición del operativo “Sábados de Salud en el Barrio” para el sábado 21 de noviembre, de 10 a 14, en la plaza del Futuro (José María Moreno y Pasaje Aguirre). La actividad ofrecerá prestaciones gratuitas de prevención, atención y promoción de la salud para la comunidad.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-20-at-105959-gdWcH.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4679-se-desarrollara-una-nueva-edicion-del-operativo-sabados-de-salud-en-el-barrio-en-lanus-oeste",
+    "fecha": "2026-11-20",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "se-desarrollara-una-nueva-edicion-del-operativo-sabados-de-salud-en-el-barrio-en-lanus-oeste"
   },
   {
     "titulo": "EL PUNTO DE CASTRACIÓN ITINERANTE LLEGA A LANÚS OESTE",
-    "descripcion": "El municipio de Lanús habilitó una nueva tanda de turnos presenciales para la castración itinerante gratuita de perros y gatos en el Club ATA, ubicado en Catamarca 2985, de Lanús Oeste. La atención será este viernes 20 de noviembre, desde las 9 hasta agotar cupos.",
+    "descripcion": "Lanús Gobierno informa que el viernes 20 de noviembre, a partir de las 9 y hasta agotar cupos, se otorgará una nueva tanda de turnos presenciales para acceder al servicio de castración itinerante gratuito de perros y gatos en el Club ATA, ubicado en Catamarca N° 2985, en Lanús Oeste.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-19-at-151526-1S8mw.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4678-el-punto-de-castracion-itinerante-llega-a-lanus-oeste",
     "fecha": "2026-11-19",
@@ -131,7 +161,7 @@
   },
   {
     "titulo": "SE LLEVARÁ A CABO UNA NUEVA EDICIÓN DEL PASEO AMBIENTAL",
-    "descripcion": "El municipio de Lanús confirmó la realización de la nueva edición del Paseo Ambiental los días 21 y 22 de noviembre en el Parque Ambiental (Ferré y Almeyra). La actividad busca ofrecer un espacio recreativo y de concientización sobre la protección de la biodiversidad.",
+    "descripcion": "Lanús Gobierno informa que se llevará adelante una nueva edición del Paseo Ambiental durante el sábado 21 y domingo 22 de noviembre en el Parque Ambiental, ubicado en la intersección de las calles Ferré y Almeyra dentro del Parque Central Las Colonias, con el objetivo de generar un espacio recreativo y de concientización para las ciudadanas y los ciudadanos sobre la importancia del cuidado de la biodiversidad.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-19-at-104155-sF33u.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4677-se-llevara-a-cabo-una-nueva-edicion-del-paseo-ambiental",
     "fecha": "2026-11-19",
@@ -180,38 +210,18 @@
     "slug": "llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo"
   },
   {
-    "titulo": "SE VIENE UN NUEVO PUNTO DE CASTRACIÓN ITINERANTE EN LANÚS OESTE",
-    "descripcion": "Lanús Gobierno informa que el viernes 13 de noviembre, a partir de las 9 y hasta agotar cupos, se entregarán nuevos turnos presenciales para acceder al servicio gratuito de castración itinerante de perros y gatos en el Club ATA, ubicado en Catamarca N° 2985, Lanús Oeste.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-11-at-35029-pm-Rmtzd.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4672-se-viene-un-nuevo-punto-de-castracion-itinerante-en-lanus-oeste",
-    "fecha": "2026-11-11",
-    "volanta": "Salud",
-    "fuente": "lanus",
-    "slug": "se-viene-un-nuevo-punto-de-castracion-itinerante-en-lanus-oeste"
-  },
-  {
-    "titulo": "SE ENTREGARON INSUMOS A ESCUELAS TÉCNICAS DEL DISTRITO PARA EL DESARROLLO DE DIFERENTES PROYECTOS",
-    "descripcion": "Lanús Gobierno destinó herramientas y materiales a escuelas de educación técnica del distrito con el objetivo de solventar la concreción de distintos trabajos diseñados en las aulas, en el marco del programa “Escuelas y Proyectos en Comunidad”.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/lanus-gobierno-entrego-insumos-a-escuelas-tecnicas-1-3kib7.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4671-se-entregaron-insumos-a-escuelas-tecnicas-del-distrito-para-el-desarrollo-de-diferentes-proyectos",
-    "fecha": "2026-11-11",
-    "volanta": "Educación",
-    "fuente": "lanus",
-    "slug": "se-entregaron-insumos-a-escuelas-tecnicas-del-distrito-para-el-desarrollo-de-diferentes-proyectos"
-  },
-  {
-    "titulo": "NUEVAS JORNADAS DE AUTOCUIDADO “LANÚS SE PREPARA” EN EL DISTRITO",
-    "descripcion": "Lanús Gobierno informa que el jueves 12 y viernes 13 de noviembre, a las 19, se llevarán a cabo nuevas Jornadas de Autocuidado bajo el lema “Lanús se prepara para afrontar riesgos climatológicos”, con el objetivo de acercar información a las y los lanusenses sobre el fenómeno climático El Niño, al igual que recomendaciones sobre cómo actuar frente a este evento.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-11-at-115142-am-BNvmW.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4670-nuevas-jornadas-de-autocuidado-lanus-se-prepara-en-el-distrito",
-    "fecha": "2026-11-11",
-    "volanta": "Espacios y Servicios Públicos",
-    "fuente": "lanus",
-    "slug": "nuevas-jornadas-de-autocuidado-lanus-se-prepara-en-el-distrito"
+    "titulo": "Entrega de certificados en el cierre de la capacitación sobre el Protocolo de Actuación ante Derechos Vulnerados",
+    "descripcion": "El Municipio de Avellaneda, junto a UNICEF y el gobierno de la Provincia de Buenos Aires, finalizó una capacitación sobre el Protocolo de Actuación ante Derechos Vulnerados y entregó los certificados correspondientes.",
+    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/Proyecto-nuevo-2-2-350x240.jpg",
+    "urlNoticia": "https://www.mda.gob.ar/noticias/entrega-de-certificados-en-el-cierre-de-la-capacitacion-sobre-el-protocolo-de-actuacion-ante-derechos-vulnerados/",
+    "fecha": "2026-11-20",
+    "volanta": null,
+    "fuente": "avellaneda",
+    "slug": "entrega-de-certificados-en-el-cierre-de-la-capacitacion-sobre-el-protocolo-de-actuacion-ante-derechos-vulnerados"
   },
   {
     "titulo": "Axel Kicillof y Magdalena Sierra entregaron 55 viviendas en Avellaneda",
-    "descripcion": "El municipio de Avellaneda, junto al Gobierno provincial, culminó la entrega de 55 viviendas que estaban paralizadas por falta de fondos nacionales.",
+    "descripcion": "El Municipio de Avellaneda, en articulación con el Gobierno provincial, garantizó la continuidad de las obras y finalizó proyectos interrumpidos por falta de financiamiento del Gobierno nacional.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/Proyecto-nuevo-2-1-350x240.jpg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/axel-kicillof-y-magdalena-sierra-entregaron-55-viviendas-en-avellaneda/",
     "fecha": "2026-11-19",
@@ -320,18 +330,38 @@
     "slug": "jornadas-de-vacunacion-antirrabica-y-desparasitacion"
   },
   {
-    "titulo": "Productos económicos cerca de tu casa",
-    "descripcion": null,
-    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/CanastaBWeb-350x240.jpg",
-    "urlNoticia": "https://www.mda.gob.ar/noticias/vuelve-la-canasta-basica-avellaneda/",
-    "fecha": "2026-11-02",
+    "titulo": "EL MUNICIPIO TRABAJA EN LA PREVENCIÓN ANTE EL FENÓMENO DEL SÚPER NIÑO E INFORMA QUÉ MEDIDAS TOMAR FRENTE A UN EVENTO CLIMÁTICO SEVERO",
+    "descripcion": "El Municipio de Esteban Echeverría coordina acciones preventivas ante la temporada de lluvias intensas y el fenómeno del Súper Niño. Se realizan tareas de limpieza, saneamiento y construcción de desagües pluviales en distintos arroyos y el río Matanza-Riachuelo. Se recomienda mantenerse atento al pronóstico, asegurar objetos en espacios exteriores y revisar canaletas. Ante una alerta, se sugiere evitar salir, buscar refugio y cortar el suministro eléctrico si entra agua. El distrito cuenta con un equipo interdisciplinario de Defensa Civil, Servicios Públicos, Salud y Desarrollo Social para la asistencia y respuesta rápida, además de guardias activas de Obras Públicas, Tránsito y Desarrollo Social. Las vecinas pueden comunicarse al Centro de Atención al Vecino al 0810-999-6800 o por WhatsApp al 15-5131-6800.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-trabaja-en-la-prevencion-ante-el-fenomeno-del-super-nino-e-informa-que-medidas-tomar-frente-a-un-evento-climatico-severo/",
+    "fecha": "2026-11-20",
     "volanta": null,
-    "fuente": "avellaneda",
-    "slug": "productos-economicos-cerca-de-tu-casa"
+    "fuente": "esteban-echeverria",
+    "slug": "el-municipio-trabaja-en-la-prevencion-ante-el-fenomeno-del-super-nino-e-informa-que-medidas-tomar-frente-a-un-evento-climatico-severo"
+  },
+  {
+    "titulo": "EL MUNICIPIO DE ESTEBAN ECHEVERRÍA INSTALÓ UN NUEVO SEMÁFORO EN MONTE GRANDE",
+    "descripcion": "El Municipio de Esteban Echeverría instaló un semáforo en la intersección de Oliver y Vernet, en Monte Grande. El objetivo es ordenar el tránsito y mejorar la seguridad peatonal en una zona concurrida. La medida se enmarca en un plan de la comuna para optimizar la transitabilidad en las calles del distrito.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-de-esteban-echeverria-instalo-un-nuevo-semaforo-en-monte-grande/",
+    "fecha": "2026-11-20",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "el-municipio-de-esteban-echeverria-instalo-un-nuevo-semaforo-en-monte-grande"
+  },
+  {
+    "titulo": "FERNANDO GRAY ACOMPAÑÓ LA MARCHA DE LA INDUSTRIA DEL CALZADO POR EL TRABAJO Y LA PRODUCCIÓN NACIONAL",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, participó de una movilización convocada por la Cámara de la Industria del Calzado y la UTICRA en defensa de la producción y el empleo nacional. El titular del PJ local criticó el cierre de fábricas y la caída de la producción, mientras que el sector presentó un petitorio que incluye medidas antidumping, regulación de plataformas digitales y reducción de costos impositivos.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-acompano-la-marcha-de-la-industria-del-calzado-por-el-trabajo-y-la-produccion-nacional/",
+    "fecha": "2026-11-19",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-acompano-la-marcha-de-la-industria-del-calzado-por-el-trabajo-y-la-produccion-nacional"
   },
   {
     "titulo": "AVANZAN LOS TRABAJOS DE BACHEO EN CANNING",
-    "descripcion": "El Municipio de Esteban Echeverría realiza bacheo en Canning con fondos propios. Se trabajó en 1.000 metros de la calle Coronel Vicente Dupuy, entre la Ruta 58 y Suárez, aplicando asfalto caliente. Las obras forman parte de un plan integral de mantenimiento vial que incluye pavimentación y repavimentación en el distrito.",
+    "descripcion": "El Municipio de Esteban Echeverría continúa con las tareas de bacheo en las calles y avenidas de todo el distrito. En esta ocasión, se trabajó a lo largo de aproximadamente 1.000 metros sobre la calle Coronel Vicente Dupuy, entre la Ruta 58 y la calle Suárez, en la localidad de Canning. Los trabajos se ejecutan mediante la aplicación de asfalto caliente, una técnica que consiste en el uso de mezcla asfáltica a alta temperatura para recomponer la superficie de la calzada y asegurar su estabilidad. Estas obras se desarrollan íntegramente con fondos municipales y en el marco de un plan integral de mantenimiento vial, que también incluye trabajos de pavimentación en asfalto y hormigón, repavimentación y sellado de juntas en distintos puntos del partido.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/avanzan-los-trabajos-de-bacheo-en-canning-2/",
     "fecha": "2026-11-19",
@@ -341,7 +371,7 @@
   },
   {
     "titulo": "FERNANDO GRAY PARTICIPÓ DEL 35° ANIVERSARIO DEL CLUB SOCIAL Y DEPORTIVO UNIÓN DE MONTE GRANDE",
-    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, asistió a los festejos del 35° aniversario del Club Social y Deportivo Unión, de Monte Grande. En la ceremonia, descubrió una placa conmemorativa y entregó un subsidio para la finalización de las cabeceras del microestadio.",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, participó de los festejos por el 35° aniversario del Club Social y Deportivo Unión, de Monte Grande, donde junto con las autoridades de la entidad descubrió una placa conmemorativa en homenaje a la trayectoria de esta institución que representa un gran aporte a la vida social y deportiva del distrito. “Es una alegría acompañar este aniversario y reconocer el compromiso diario de quienes sostienen el club. Quiero agradecer a las autoridades, a las familias y a cada vecina y vecino que forma parte de este espacio, porque el deporte y la vida en comunidad son pilares fundamentales que se fortalecen en instituciones como esta”, expresó Fernando Gray, quien estuvo acompañado por la presidenta del Concejo Deliberante, Valeria Bellizzi; y la subsecretaria de Entidades Intermedias, Tamara Crosta. Durante la ceremonia, de la que también fueron parte el presidente del club, Francisco Peñalba; el vicepresidente, Guido Presler; el delegado, Iván Orellana; y la tesorera, Mabel Carballo, el jefe comunal hizo entrega de un subsidio para la compra de materiales de construcción para finalizar los trabajos de cerramiento de las cabeceras del microestadio. Asimismo, se entregaron bandejas de reconocimiento por su labor y trayectoria al integrante de la comisión directiva, Raúl Ernesto Bonetti, y al ex presidente de la entidad, Nelson Ramírez.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-participo-del-35-aniversario-del-club-social-y-deportivo-union-de-monte-grande/",
     "fecha": "2026-11-18",
@@ -351,7 +381,7 @@
   },
   {
     "titulo": "NUEVO OPERATIVO DE RECARGA DE GARRAFAS EN 9 DE ABRIL",
-    "descripcion": "El Municipio de Esteban Echeverría realizará este jueves 19 de noviembre un operativo de recarga de garrafas de 10 kg por $25.500 en la plaza Manuel Belgrano de 9 de Abril. El pago será en efectivo o por código QR, y la actividad se suspende si llueve.",
+    "descripcion": "El Municipio de Esteban Echeverría llevará a cabo un nuevo operativo de recarga de garrafas a precio accesible. Será el jueves 19 de noviembre, de 11 a 12:30 horas, en la plaza Manuel Belgrano, ubicada en Elcano y Santa Magdalena, en el barrio El Manzanar de la localidad de 9 de Abril. Allí, las vecinas y los vecinos tendrán la posibilidad de acceder a la recarga del envase de 10 kg por $25.500, valor que se encuentra por debajo del precio que ofrece el mercado. El pago podrá realizarse en efectivo o mediante código QR. La iniciativa forma parte de las políticas del Municipio para facilitar el acceso a servicios esenciales y acompañar la economía de la comunidad. En caso de lluvia, la actividad quedará suspendida.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/nuevo-operativo-de-recarga-de-garrafas-en-9-de-abril-2/",
     "fecha": "2026-11-18",
@@ -398,6 +428,76 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "monte-grande-continuan-los-trabajos-de-bacheo-en-calles-y-avenidas"
+  },
+  {
+    "titulo": "Kicillof entregó 55 viviendas a familias de Dock Sud",
+    "descripcion": "Las obras contemplaron también redes de agua, cloacas, tendido eléctrico, gas envasado, luminarias y veredas.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB3222%20%282%29ed.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_entreg%C3%B3_55_viviendas_familias_de_dock_sud_0",
+    "fecha": null,
+    "volanta": "AVELLANEDA",
+    "fuente": "gba",
+    "slug": "kicillof-entrego-55-viviendas-a-familias-de-dock-sud"
+  },
+  {
+    "titulo": "Kicillof inauguró un nuevo centro universitario en Arrecifes",
+    "descripcion": "Además, el Gobernador entregó escrituras gratuitas y otorgó netbooks a estudiantes secundarios del distrito.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_227.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_inaugur%C3%B3_un_nuevo_centro_universitario_en_arrecifes",
+    "fecha": null,
+    "volanta": "PROGRAMA PUENTES",
+    "fuente": "gba",
+    "slug": "kicillof-inauguro-un-nuevo-centro-universitario-en-arrecifes"
+  },
+  {
+    "titulo": "Kicillof encabezó el cierre de la 6° edición de Futuro Memoria",
+    "descripcion": "La iniciativa promueve la creación de producciones culturales y artísticas que visibilicen las luchas por la Memoria, la Verdad y la Justicia.",
+    "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_226.jpg",
+    "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_encabez%C3%B3_el_cierre_de_la_6%C2%B0_edici%C3%B3n_de_futuro_memoria",
+    "fecha": null,
+    "volanta": "LA PLATA",
+    "fuente": "gba",
+    "slug": "kicillof-encabezo-el-cierre-de-la-6-edicion-de-futuro-memoria"
+  },
+  {
+    "titulo": "SE VIENE UN NUEVO PUNTO DE CASTRACIÓN ITINERANTE EN LANÚS OESTE",
+    "descripcion": "Lanús Gobierno informa que el viernes 13 de noviembre, a partir de las 9 y hasta agotar cupos, se entregarán nuevos turnos presenciales para acceder al servicio gratuito de castración itinerante de perros y gatos en el Club ATA, ubicado en Catamarca N° 2985, Lanús Oeste.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-11-at-35029-pm-Rmtzd.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4672-se-viene-un-nuevo-punto-de-castracion-itinerante-en-lanus-oeste",
+    "fecha": "2026-11-11",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "se-viene-un-nuevo-punto-de-castracion-itinerante-en-lanus-oeste"
+  },
+  {
+    "titulo": "SE ENTREGARON INSUMOS A ESCUELAS TÉCNICAS DEL DISTRITO PARA EL DESARROLLO DE DIFERENTES PROYECTOS",
+    "descripcion": "Lanús Gobierno destinó herramientas y materiales a escuelas de educación técnica del distrito con el objetivo de solventar la concreción de distintos trabajos diseñados en las aulas, en el marco del programa “Escuelas y Proyectos en Comunidad”.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/lanus-gobierno-entrego-insumos-a-escuelas-tecnicas-1-3kib7.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4671-se-entregaron-insumos-a-escuelas-tecnicas-del-distrito-para-el-desarrollo-de-diferentes-proyectos",
+    "fecha": "2026-11-11",
+    "volanta": "Educación",
+    "fuente": "lanus",
+    "slug": "se-entregaron-insumos-a-escuelas-tecnicas-del-distrito-para-el-desarrollo-de-diferentes-proyectos"
+  },
+  {
+    "titulo": "NUEVAS JORNADAS DE AUTOCUIDADO “LANÚS SE PREPARA” EN EL DISTRITO",
+    "descripcion": "Lanús Gobierno informa que el jueves 12 y viernes 13 de noviembre, a las 19, se llevarán a cabo nuevas Jornadas de Autocuidado bajo el lema “Lanús se prepara para afrontar riesgos climatológicos”, con el objetivo de acercar información a las y los lanusenses sobre el fenómeno climático El Niño, al igual que recomendaciones sobre cómo actuar frente a este evento.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-11-at-115142-am-BNvmW.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4670-nuevas-jornadas-de-autocuidado-lanus-se-prepara-en-el-distrito",
+    "fecha": "2026-11-11",
+    "volanta": "Espacios y Servicios Públicos",
+    "fuente": "lanus",
+    "slug": "nuevas-jornadas-de-autocuidado-lanus-se-prepara-en-el-distrito"
+  },
+  {
+    "titulo": "Productos económicos cerca de tu casa",
+    "descripcion": null,
+    "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/10/CanastaBWeb-350x240.jpg",
+    "urlNoticia": "https://www.mda.gob.ar/noticias/vuelve-la-canasta-basica-avellaneda/",
+    "fecha": "2026-11-02",
+    "volanta": null,
+    "fuente": "avellaneda",
+    "slug": "productos-economicos-cerca-de-tu-casa"
   },
   {
     "titulo": "EL MUNICIPIO REALIZÓ OPERATIVOSDE SEGURIDAD Y CONTROL VEHICULAR EN MONTE GRANDE",
