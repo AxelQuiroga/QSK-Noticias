@@ -1,7 +1,7 @@
 [
   {
     "titulo": "Kicillof inauguró el Parque Solar de Pipinas",
-    "descripcion": "El Gobernador puso en marcha el Parque Solar de Pipinas, además inauguró un Centro de Desarrollo Infantil y entregó viviendas, obras que estaban detenidas por el Gobierno nacional.",
+    "descripcion": "Además, el Gobernador puso en funcionamiento un Centro de Desarrollo Infantil y entregó viviendas, obras que habían sido paralizadas por el Gobierno nacional.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB7866%20%281%29.jpg",
     "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_inaugur%C3%B3_el_parque_solar_de_pipinas",
     "fecha": null,
@@ -11,7 +11,7 @@
   },
   {
     "titulo": "Kicillof: “No importa de qué potencia hablemos, la Argentina no va a ser el patio trasero de nadie”",
-    "descripcion": "El gobernador encabezó un acto en Punta Indio junto al intendente local, David Angueira.",
+    "descripcion": "El Gobernador encabezó el acto en el municipio de Punta Indio, junto al intendente local, David Angueira.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/Axel%20Kicillof_230.jpg",
     "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_%E2%80%9Cno_importa_de_qu%C3%A9_potencia_hablemos_la_argentina_no_va_ser",
     "fecha": null,
@@ -21,7 +21,7 @@
   },
   {
     "titulo": "Kicillof entregó 55 viviendas a familias de Dock Sud",
-    "descripcion": "Las obras incluyen redes de agua, cloacas, electricidad, gas, iluminación y veredas.",
+    "descripcion": "Las obras contemplaron también redes de agua, cloacas, tendido eléctrico, gas envasado, luminarias y veredas.",
     "imagenUrl": "https://www.gba.gob.ar/sites/default/files/comunicacion_publica/imagenes/_1AB3222%20%282%29ed.jpg",
     "urlNoticia": "https://www.gba.gob.ar/comunicacion_publica/gacetillas/kicillof_entreg%C3%B3_55_viviendas_familias_de_dock_sud",
     "fecha": null,
@@ -120,8 +120,18 @@
     "slug": "kicillof-entrego-viviendas-a-familias-de-san-pedro"
   },
   {
+    "titulo": "JULIÁN ÁLVAREZ SUPERVISÓ LAS OBRAS DE PAVIMENTO QUE SE REALIZARON EN MONTE CHINGOLO",
+    "descripcion": "El intendente de Lanús, Julián Álvarez, recorrió las obras de pavimento que se ejecutaron a través de la Planta Asfáltica Municipal en Margarita Weild entre Monasterio y San Carlos, en la localidad de Monte Chingolo, con el objetivo de mejorar la circulación peatonal, vehicular y la calidad de vida de los vecinos y de las vecinas.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/julian-alvarez-superviso-las-obras-de-pavimento-que-se-realizaron-en-monte-chingolo-1-zDqHb.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4682-julian-alvarez-superviso-las-obras-de-pavimento-que-se-realizaron-en-monte-chingolo",
+    "fecha": "2026-11-20",
+    "volanta": "Obras Públicas",
+    "fuente": "lanus",
+    "slug": "julian-alvarez-superviso-las-obras-de-pavimento-que-se-realizaron-en-monte-chingolo"
+  },
+  {
     "titulo": "CONTINÚA EL DESARROLLO DE LAS JORNADAS DE AUTOCUIDADO \"LANÚS SE PREPARA\"",
-    "descripcion": "El municipio de Lanús continuará con las Jornadas de Autocuidado para capacitar a la población sobre cómo enfrentar riesgos climáticos y actuar ante emergencias.",
+    "descripcion": "Lanús Gobierno llevará adelante nuevas Jornadas de Autocuidado bajo el lema “Lanús se prepara para afrontar riesgos climatológicos”, con el objetivo de brindar herramientas y conocimientos a las y los vecinos para prevenir situaciones de riesgo y actuar ante posibles emergencias.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-20-at-50304-pm-r3K2i.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4681-continua-el-desarrollo-de-las-jornadas-de-autocuidado-lanus-se-prepara",
     "fecha": "2026-11-20",
@@ -131,7 +141,7 @@
   },
   {
     "titulo": "FERIA DE ARTESANÍAS: CONOCÉ EN QUÉ PLAZAS Y PARQUES FUNCIONARÁ LA NUEVA EDICIÓN",
-    "descripcion": "El municipio de Lanús informó que la Feria de Artesanías, Paseo de Compras y puestos gastronómicos se realizará este fin de semana en plazas y parques del distrito. El objetivo es promover la actividad local y ofrecer opciones de consumo a precios populares.",
+    "descripcion": "Lanús Gobierno informa que este viernes 20, sábado 21 y domingo 22 de noviembre se desarrolla la tradicional Feria de Artesanías, Paseo de Compras y Puestos Gastronómicos en diferentes espacios públicos del distrito, con el objetivo de promover la labor de los emprendedores y las emprendedoras locales y acercar alternativas de consumo a precios populares.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-20-at-34944-pm-hYH8j.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4680-feria-de-artesanias-conoce-en-que-plazas-y-parques-funcionara-la-nueva-edicion",
     "fecha": "2026-11-20",
@@ -141,7 +151,7 @@
   },
   {
     "titulo": "SE DESARROLLARÁ UNA NUEVA EDICIÓN DEL OPERATIVO “SÁBADOS DE SALUD EN EL BARRIO” EN LANÚS OESTE",
-    "descripcion": "El municipio de Lanús programó una nueva edición del operativo “Sábados de Salud en el Barrio” para el sábado 21 de noviembre, de 10 a 14, en la plaza del Futuro (José María Moreno y Pasaje Aguirre). La actividad ofrecerá prestaciones gratuitas de prevención, atención y promoción de la salud para la comunidad.",
+    "descripcion": "Lanús Gobierno realizará una nueva jornada del operativo “Sábados de Salud en el Barrio” el sábado 21 de noviembre, de 10 a 14 en la plaza del Futuro, ubicada en la calle José María Moreno y Pasaje Aguirre, en Lanús Oeste, con la finalidad de que las vecinas y los vecinos puedan acceder a diferentes prestaciones gratuitas vinculadas a la prevención, atención y promoción de la salud.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-20-at-105959-gdWcH.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4679-se-desarrollara-una-nueva-edicion-del-operativo-sabados-de-salud-en-el-barrio-en-lanus-oeste",
     "fecha": "2026-11-20",
@@ -200,18 +210,8 @@
     "slug": "se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus"
   },
   {
-    "titulo": "LLEGA UN NUEVO OPERATIVO DE \"SÁBADOS DE SALUD EN EL BARRIO\" A MONTE CHINGOLO",
-    "descripcion": "Lanús Gobierno informa que el sábado 14 de noviembre, de 10 a 14, se llevará adelante una nueva jornada del operativo “Sábados de Salud en el Barrio” en la plaza Hebe de Bonafini, situada en la avenida Donato Álvarez N° 4789, en Monte Chingolo. La propuesta permitirá que las vecinas y los vecinos accedan a diferentes prestaciones gratuitas vinculadas a la prevención, atención y promoción de la salud.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-12-at-101028-UQxl2.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4673-llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo",
-    "fecha": "2026-11-12",
-    "volanta": "Salud",
-    "fuente": "lanus",
-    "slug": "llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo"
-  },
-  {
     "titulo": "Entrega de certificados en el cierre de la capacitación sobre el Protocolo de Actuación ante Derechos Vulnerados",
-    "descripcion": "El Municipio de Avellaneda, junto a UNICEF y el gobierno de la Provincia de Buenos Aires, finalizó una capacitación sobre el Protocolo de Actuación ante Derechos Vulnerados y entregó los certificados correspondientes.",
+    "descripcion": "El Municipio de Avellaneda, junto a UNICEF y el gobierno de la Provincia de Buenos Aires, promueve la formación permanente para construir una ciudad que cuida y protege a sus infancias y adolescencias.",
     "imagenUrl": "https://www.mda.gob.ar/wp-content/uploads/2026/11/Proyecto-nuevo-2-2-350x240.jpg",
     "urlNoticia": "https://www.mda.gob.ar/noticias/entrega-de-certificados-en-el-cierre-de-la-capacitacion-sobre-el-protocolo-de-actuacion-ante-derechos-vulnerados/",
     "fecha": "2026-11-20",
@@ -331,7 +331,7 @@
   },
   {
     "titulo": "EL MUNICIPIO TRABAJA EN LA PREVENCIÓN ANTE EL FENÓMENO DEL SÚPER NIÑO E INFORMA QUÉ MEDIDAS TOMAR FRENTE A UN EVENTO CLIMÁTICO SEVERO",
-    "descripcion": "El Municipio de Esteban Echeverría coordina acciones preventivas ante la temporada de lluvias intensas y el fenómeno del Súper Niño. Se realizan tareas de limpieza, saneamiento y construcción de desagües pluviales en distintos arroyos y el río Matanza-Riachuelo. Se recomienda mantenerse atento al pronóstico, asegurar objetos en espacios exteriores y revisar canaletas. Ante una alerta, se sugiere evitar salir, buscar refugio y cortar el suministro eléctrico si entra agua. El distrito cuenta con un equipo interdisciplinario de Defensa Civil, Servicios Públicos, Salud y Desarrollo Social para la asistencia y respuesta rápida, además de guardias activas de Obras Públicas, Tránsito y Desarrollo Social. Las vecinas pueden comunicarse al Centro de Atención al Vecino al 0810-999-6800 o por WhatsApp al 15-5131-6800.",
+    "descripcion": "El Municipio de Esteban Echeverría continúa coordinando acciones de prevención ante la temporada de lluvias intensas que podría provocar el fenómeno del Súper Niño, e informa a las vecinas y vecinos del distrito cómo actuar frente a un evento climático severo. Los equipos de trabajo llevan adelante distintas tareas preventivas, entre ellas la limpieza, el saneamiento y el perfilado de márgenes del río Matanza-Riachuelo, en 9 de Abril; trabajos periódicos de mantenimiento en los arroyos Ortega, Medrano y Santa Catalina; operativos de zanjeo y desobstrucción de cañerías; y la construcción de desagües pluviales para mejorar el escurrimiento del agua y reducir el riesgo de anegamientos. El Municipio recomienda a las vecinas y vecinos mantenerse al tanto del pronóstico del tiempo y las posibles alertas en la zona; retirar y asegurar objetos de patios, terrazas y balcones que se puedan volar por el viento; y revisar y limpiar techos, canaletas y desagües. Ante una alerta, es importante tomar las siguientes precauciones: evitar salir de casa si no es estrictamente necesario; si se está en la calle, buscar refugio en un lugar cerrado y seguro; cortar inmediatamente el suministro eléctrico si comienza a ingresar agua en la vivienda; y no circular en auto ni a pie por calles anegadas o inundadas. Si se produce un evento climático severo por el Súper Niño, el Municipio cuenta con un equipo interdisciplinario permanente integrado por Defensa Civil, áreas de Servicios Públicos, Desarrollo Social y Salud que coordinarán acciones de asistencia y respuesta rápida en todo el distrito. También están listas para actuar, ante cualquier situación de emergencia, las guardias activas de Obras Públicas, Tránsito y Desarrollo Social para el despeje de vías y asistencia habitacional. Ante cualquier situación generada por el fenómeno del Súper Niño, las vecinas se pueden comunicar al Centro de Atención al Vecino por celular, al 0810-999-6800 y/o por WhatsApp al 15-5131-6800.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-trabaja-en-la-prevencion-ante-el-fenomeno-del-super-nino-e-informa-que-medidas-tomar-frente-a-un-evento-climatico-severo/",
     "fecha": "2026-11-20",
@@ -341,7 +341,7 @@
   },
   {
     "titulo": "EL MUNICIPIO DE ESTEBAN ECHEVERRÍA INSTALÓ UN NUEVO SEMÁFORO EN MONTE GRANDE",
-    "descripcion": "El Municipio de Esteban Echeverría instaló un semáforo en la intersección de Oliver y Vernet, en Monte Grande. El objetivo es ordenar el tránsito y mejorar la seguridad peatonal en una zona concurrida. La medida se enmarca en un plan de la comuna para optimizar la transitabilidad en las calles del distrito.",
+    "descripcion": "El Municipio de Esteban Echeverría llevó adelante la instalación de un nuevo semáforo en la intersección de las calles Oliver y Vernet en la localidad de Monte Grande. El nuevo dispositivo está pensado para ordenar y agilizar la circulación de vehículos en una zona de alto tránsito, y para brindar también una mayor seguridad peatonal a las vecinas y los vecinos. Esta acción forma parte de un plan integral de la Comuna para optimizar la seguridad vial en las calles y avenidas del distrito, que se suma a la colocación de contadores de tiempo en semáforos del municipio que permiten a la población visualizar el tiempo en el que el semáforo permanece en un mismo color, mejorando así la transitabilidad.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-de-esteban-echeverria-instalo-un-nuevo-semaforo-en-monte-grande/",
     "fecha": "2026-11-20",
@@ -351,7 +351,7 @@
   },
   {
     "titulo": "FERNANDO GRAY ACOMPAÑÓ LA MARCHA DE LA INDUSTRIA DEL CALZADO POR EL TRABAJO Y LA PRODUCCIÓN NACIONAL",
-    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, participó de una movilización convocada por la Cámara de la Industria del Calzado y la UTICRA en defensa de la producción y el empleo nacional. El titular del PJ local criticó el cierre de fábricas y la caída de la producción, mientras que el sector presentó un petitorio que incluye medidas antidumping, regulación de plataformas digitales y reducción de costos impositivos.",
+    "descripcion": "El intendente de Esteban Echeverría y presidente del Partido Justicialista local, Fernando Gray, participó de la marcha en defensa de la industria y el trabajo nacional convocada por la Cámara de la Industria del Calzado (CIC) y la Unión de Trabajadores de la Industria del Calzado de la República Argentina (UTICRA). “No podemos permitir que el Gobierno nacional continúe boicoteando a las trabajadoras y trabajadores de nuestro país. Con cada empresa que cierra son cientos los puestos de trabajo que se pierden”, expresó Fernando Gray, durante la marcha que comenzó en la intersección de las calles Tacuarí y Belgrano (CABA) y finalizó en la Secretaría de Industria nacional. También agregó: “La industria del calzado demanda gran cantidad de insumos y servicios logísticos; con la caída de la producción la cadena se rompe y se afecta una parte muy importante del movimiento económico y comercial de cada comunidad”. Una vez en el destino, el presidente de la CIC, Horacio Moschetto, acompañado por representantes del sector, llevó adelante la entrega de un petitorio con las preocupaciones y propuestas sobre la industria del calzado. Entre las principales problemáticas se encuentra la caída de la producción y el empleo; también se pide la continuidad de las medidas antidumping con China —las cuales vencen en diciembre de este año— que permiten que los productos importados no se vendan a un precio inferior al de mercado, fomentando la competencia leal; se destaca la necesidad de regulación de las plataformas internacionales de comercio electrónico; y se reclama la reducción de los costos impositivos y medidas para recuperar el consumo interno, entre otras peticiones. La industria del calzado es una de las que se ha visto más afectada desde noviembre de 2023, con más de 200 fábricas cerradas y la pérdida de alrededor de 10.000 puestos de trabajo. La producción nacional cayó un 25,6% en el período del 2023 al 2025, y solo en el primer trimestre de 2026 disminuyó un 24,3% con respecto al mismo período del año pasado. La movilización de este 19 de noviembre reunió a cientos de representantes del sector, como fabricantes, comerciantes, proveedores, talleristas, pymes y trabajadores, en defensa de la producción y el empleo nacional.",
     "imagenUrl": null,
     "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-acompano-la-marcha-de-la-industria-del-calzado-por-el-trabajo-y-la-produccion-nacional/",
     "fecha": "2026-11-19",
@@ -428,6 +428,16 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "monte-grande-continuan-los-trabajos-de-bacheo-en-calles-y-avenidas"
+  },
+  {
+    "titulo": "LLEGA UN NUEVO OPERATIVO DE \"SÁBADOS DE SALUD EN EL BARRIO\" A MONTE CHINGOLO",
+    "descripcion": "Lanús Gobierno informa que el sábado 14 de noviembre, de 10 a 14, se llevará adelante una nueva jornada del operativo “Sábados de Salud en el Barrio” en la plaza Hebe de Bonafini, situada en la avenida Donato Álvarez N° 4789, en Monte Chingolo. La propuesta permitirá que las vecinas y los vecinos accedan a diferentes prestaciones gratuitas vinculadas a la prevención, atención y promoción de la salud.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-12-at-101028-UQxl2.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4673-llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo",
+    "fecha": "2026-11-12",
+    "volanta": "Salud",
+    "fuente": "lanus",
+    "slug": "llega-un-nuevo-operativo-de-sabados-de-salud-en-el-barrio-a-monte-chingolo"
   },
   {
     "titulo": "Kicillof entregó 55 viviendas a familias de Dock Sud",
