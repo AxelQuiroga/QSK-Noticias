@@ -120,8 +120,18 @@
     "slug": "kicillof-entrego-viviendas-a-familias-de-san-pedro"
   },
   {
+    "titulo": "SE LLEVA ADELANTE UNA NUEVA EDICIÓN DEL PASEO DE COMPRAS 25 DE MAYO",
+    "descripcion": "El municipio de Lanús confirmó que el Paseo de Compras 25 de Mayo se realizará los días 23, 25 y 27 de noviembre, de 13:30 a 16:30, en Santiago Plaul 3201. La iniciativa busca promover el consumo local y ofrecer productos artesanales y populares a precios accesibles.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-21-at-45238-pm-8uW1e.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4683-se-lleva-adelante-una-nueva-edicion-del-paseo-de-compras-25-de-mayo",
+    "fecha": "2026-11-21",
+    "volanta": null,
+    "fuente": "lanus",
+    "slug": "se-lleva-adelante-una-nueva-edicion-del-paseo-de-compras-25-de-mayo"
+  },
+  {
     "titulo": "JULIÁN ÁLVAREZ SUPERVISÓ LAS OBRAS DE PAVIMENTO QUE SE REALIZARON EN MONTE CHINGOLO",
-    "descripcion": "El intendente de Lanús, Julián Álvarez, recorrió las obras de pavimento ejecutadas por la Planta Asfáltica Municipal en Monte Chingolo, en el tramo entre Monasterio y San Carlos, con el objetivo de mejorar la circulación y la calidad de vida de los vecinos.",
+    "descripcion": "El intendente de Lanús, Julián Álvarez, recorrió las obras de pavimento que se ejecutaron a través de la Planta Asfáltica Municipal en Margarita Weild entre Monasterio y San Carlos, en la localidad de Monte Chingolo, con el objetivo de mejorar la circulación peatonal, vehicular y la calidad de vida de los vecinos y de las vecinas.",
     "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/julian-alvarez-superviso-las-obras-de-pavimento-que-se-realizaron-en-monte-chingolo-1-zDqHb.jpeg",
     "urlNoticia": "https://www.lanus.gob.ar/noticias/4682-julian-alvarez-superviso-las-obras-de-pavimento-que-se-realizaron-en-monte-chingolo",
     "fecha": "2026-11-20",
@@ -198,16 +208,6 @@
     "volanta": "Control Comunal",
     "fuente": "lanus",
     "slug": "conoce-donde-funcionara-la-nueva-edicion-de-la-feria-de-artesanias"
-  },
-  {
-    "titulo": "SE REALIZARÁN NUEVAS EDICIONES DE LA FERIA DE LA ECONOMÍA SOCIAL “HECHO EN LANÚS”",
-    "descripcion": "Lanús Gobierno informa que el sábado 14 y domingo 15 de noviembre, de 15 a 19, se desarrollarán nuevas jornadas de la Feria de la Economía Social “Hecho en Lanús” en las plazas Sarmiento (avenida 9 de Julio N° 1900) y Villa Obrera (Eva Perón N° 2400), ambas ubicadas en Lanús Este.",
-    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-12-at-151004-O3Ow7.jpeg",
-    "urlNoticia": "https://www.lanus.gob.ar/noticias/4674-se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus",
-    "fecha": "2026-11-12",
-    "volanta": null,
-    "fuente": "lanus",
-    "slug": "se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus"
   },
   {
     "titulo": "Entrega de certificados en el cierre de la capacitación sobre el Protocolo de Actuación ante Derechos Vulnerados",
@@ -330,6 +330,86 @@
     "slug": "jornadas-de-vacunacion-antirrabica-y-desparasitacion"
   },
   {
+    "titulo": "FERNANDO GRAY PARTICIPÓ DE LA CEREMONIA DEL 200° ANIVERSARIO DEL PRIMER SERVICIO PRESBÍTERIANO EN LA COLONIA ESCOCESA DE MONTE GRANDE",
+    "descripcion": "El intendente Fernando Gray participó de la ceremonia por los 200 años del primer servicio presbiteriano en Monte Grande, llevada a cabo en el Museo La Campana. El acto incluyó la entrega de una réplica del nomenclador a un sobrino bisnieto de Santiago Lumsden y contó con la presencia de funcionarios y autoridades religiosas.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-particip-de-la-ceremonia-del-200-aniversario-del-primer-servicio-presbteriano-en-la-colonia-escocesa-de-monte-grande/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-participo-de-la-ceremonia-del-200-aniversario-del-primer-servicio-presbiteriano-en-la-colonia-escocesa-de-monte-grande"
+  },
+  {
+    "titulo": "CRONOGRAMA DE SERVICIOS DURANTE EL PRÓXIMO FERIADO",
+    "descripcion": "El Municipio de Esteban Echeverría detalló el funcionamiento de los servicios durante el feriado del Día de la Soberanía Nacional. La recolección de residuos será normal y el edificio municipal permanecerá cerrado. El Hospital Municipal Santamarina y las Unidades Sanitarias N° 6 y N° 24 operarán con guardias de 24 horas, mientras que las N° 3 y N° 4 atenderán de 8 a 20 horas. El CAV estará disponible de 6 a 22 horas y el cementerio de 7 a 18.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/cronograma-de-servicios-durante-el-prximo-feriado-2/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "cronograma-de-servicios-durante-el-proximo-feriado"
+  },
+  {
+    "titulo": "TRABAJOS DE TOMADO DE JUNTAS EN MONTE GRANDE",
+    "descripcion": "El Municipio de Esteban Echeverría continúa con las tareas de mantenimiento vial en Monte Grande. En la calle Juan de Garay, entre Teniente Benjamín Matienzo y Jorge Newbery, se realizaron trabajos de tomado de juntas. La intervención busca evitar filtraciones que generen quiebres en el pavimento mediante el relleno de grietas con material asfáltico. Estas acciones forman parte del plan integral de mantenimiento del distrito, que incluye pavimentación, bacheo y repavimentación.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/trabajos-de-tomado-de-juntas-en-monte-grande/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "trabajos-de-tomado-de-juntas-en-monte-grande"
+  },
+  {
+    "titulo": "EL MUNICIPIO REALIZÓ UN NUEVO OPERATIVO DE RECARGA DE GARRAFAS EN 9 DE ABRIL",
+    "descripcion": "El Municipio de Esteban Echeverría realizó un operativo de recarga de garrafas en la plaza Manuel Belgrano de 9 de Abril. El servicio se ofreció a $25.500 por un envase de 10 kg, un precio menor al del mercado. La medida busca facilitar el acceso a servicios esenciales para la comunidad.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-realiz-un-nuevo-operativo-de-recarga-de-garrafas-en-9-de-abril/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "el-municipio-realizo-un-nuevo-operativo-de-recarga-de-garrafas-en-9-de-abril"
+  },
+  {
+    "titulo": "FERNANDO GRAY VISITÓ LA IGLESIA DEL NAZARENO MONTE GRANDE CON MOTIVO DE SU 60º ANIVERSARIO",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, visitó la Iglesia del Nazareno Monte Grande para descubrir una placa conmemorativa por su 60º aniversario y acompañar a la comunidad en un contexto complejo. El jefe comunal acompañado por la subsecretaria de Entidades Intermedias, Tamara Crosta, y los pastores de la institución, Fabián Benítez y Mónica Gramajo, también entregó un subsidio para la compra de elementos de audio y materiales de construcción.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-visit-la-iglesia-del-nazareno-monte-grande-con-motivo-de-su-60-aniversario/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-visito-la-iglesia-del-nazareno-monte-grande-con-motivo-de-su-60-aniversario"
+  },
+  {
+    "titulo": "FERNANDO GRAY ENCABEZÓ UNA NUEVA ENTREGA DE TARJETAS DEL PLAN MÁS VIDA",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, encabezó la entrega de 60 nuevas tarjetas del Plan Más Vida para familias del distrito, en un acto realizado en el edificio municipal. El programa, impulsado por el Ministerio de Desarrollo de la Comunidad de la Provincia de Buenos Aires, busca garantizar el acceso a la asistencia alimentaria para familias con niños de hasta 6 años y gestantes que no reciben la Tarjeta Alimentar. Con esta nueva entrega, el Municipio alcanzó un total de 538 tarjetas otorgadas en lo que va de 2026.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-encabezo-una-nueva-entrega-de-tarjetas-del-plan-mas-vida-2/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-encabezo-una-nueva-entrega-de-tarjetas-del-plan-mas-vida"
+  },
+  {
+    "titulo": "FERNANDO GRAY RECORRIÓ LAS OBRAS DEL NUEVO EDIFICIO DE LA ESCUELA SECUNDARIA N° 43 DE MONTE GRANDE",
+    "descripcion": "El intendente de Esteban Echeverría, Fernando Gray, visitó las obras del nuevo edificio de la Escuela Secundaria N° 43 en Monte Grande, con el apoyo del Gobierno de la Provincia de Buenos Aires. En la visita, acompañado por autoridades locales, se destacó la importancia del espacio para la formación de los estudiantes. Actualmente, los equipos avanzan con las tareas interiores de pulido, instalación eléctrica, revestimientos y cielorraso, además de obras en exteriores como el cerco y los patios. El proyecto incluye la construcción de seis aulas, una biblioteca, una sala de informática, una sala de usos múltiples y núcleos sanitarios.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/fernando-gray-recorrio-las-obras-del-nuevo-edificio-de-la-escuela-secundaria-n-43-de-monte-grande-2/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "fernando-gray-recorrio-las-obras-del-nuevo-edificio-de-la-escuela-secundaria-n-43-de-monte-grande"
+  },
+  {
+    "titulo": "EL MUNICIPIO DE ESTEBAN ECHEVERRÍA INSTALÓ UN NUEVO SEMÁFORO EN MONTE GRANDE",
+    "descripcion": "El Municipio de Esteban Echeverría instaló un semáforo en la intersección de Oliver y Vernet, en Monte Grande, para ordenar el tránsito y mejorar la seguridad peatonal. Esta medida se suma a otros contadores de tiempo que ya existen en el distrito.",
+    "imagenUrl": null,
+    "urlNoticia": "https://www.estebanecheverria.gob.ar/el-municipio-de-esteban-echeverria-instalo-un-nuevo-semaforo-en-monte-grande-2/",
+    "fecha": "2026-11-22",
+    "volanta": null,
+    "fuente": "esteban-echeverria",
+    "slug": "el-municipio-de-esteban-echeverria-instalo-un-nuevo-semaforo-en-monte-grande-2"
+  },
+  {
     "titulo": "EL MUNICIPIO TRABAJA EN LA PREVENCIÓN ANTE EL FENÓMENO DEL SÚPER NIÑO E INFORMA QUÉ MEDIDAS TOMAR FRENTE A UN EVENTO CLIMÁTICO SEVERO",
     "descripcion": "El Municipio de Esteban Echeverría continúa coordinando acciones de prevención ante la temporada de lluvias intensas que podría provocar el fenómeno del Súper Niño, e informa a las vecinas y vecinos del distrito cómo actuar frente a un evento climático severo. Los equipos de trabajo llevan adelante distintas tareas preventivas, entre ellas la limpieza, el saneamiento y el perfilado de márgenes del río Matanza-Riachuelo, en 9 de Abril; trabajos periódicos de mantenimiento en los arroyos Ortega, Medrano y Santa Catalina; operativos de zanjeo y desobstrucción de cañerías; y la construcción de desagües pluviales para mejorar el escurrimiento del agua y reducir el riesgo de anegamientos. El Municipio recomienda a las vecinas y vecinos mantenerse al tanto del pronóstico del tiempo y las posibles alertas en la zona; retirar y asegurar objetos de patios, terrazas y balcones que se puedan volar por el viento; y revisar y limpiar techos, canaletas y desagües. Ante una alerta, es importante tomar las siguientes precauciones: evitar salir de casa si no es estrictamente necesario; si se está en la calle, buscar refugio en un lugar cerrado y seguro; cortar inmediatamente el suministro eléctrico si comienza a ingresar agua en la vivienda; y no circular en auto ni a pie por calles anegadas o inundadas. Si se produce un evento climático severo por el Súper Niño, el Municipio cuenta con un equipo interdisciplinario permanente integrado por Defensa Civil, áreas de Servicios Públicos, Desarrollo Social y Salud que coordinarán acciones de asistencia y respuesta rápida en todo el distrito. También están listas para actuar, ante cualquier situación de emergencia, las guardias activas de Obras Públicas, Tránsito y Desarrollo Social para el despeje de vías y asistencia habitacional. Ante cualquier situación generada por el fenómeno del Súper Niño, las vecinas se pueden comunicar al Centro de Atención al Vecino por celular, al 0810-999-6800 y/o por WhatsApp al 15-5131-6800.",
     "imagenUrl": null,
@@ -428,6 +508,16 @@
     "volanta": null,
     "fuente": "esteban-echeverria",
     "slug": "monte-grande-continuan-los-trabajos-de-bacheo-en-calles-y-avenidas"
+  },
+  {
+    "titulo": "SE REALIZARÁN NUEVAS EDICIONES DE LA FERIA DE LA ECONOMÍA SOCIAL “HECHO EN LANÚS”",
+    "descripcion": "Lanús Gobierno informa que el sábado 14 y domingo 15 de noviembre, de 15 a 19, se desarrollarán nuevas jornadas de la Feria de la Economía Social “Hecho en Lanús” en las plazas Sarmiento (avenida 9 de Julio N° 1900) y Villa Obrera (Eva Perón N° 2400), ambas ubicadas en Lanús Este.",
+    "imagenUrl": "https://www.lanus.gob.ar/storage/fichas/imagenes/whatsapp-image-2026-11-12-at-151004-O3Ow7.jpeg",
+    "urlNoticia": "https://www.lanus.gob.ar/noticias/4674-se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus",
+    "fecha": "2026-11-12",
+    "volanta": null,
+    "fuente": "lanus",
+    "slug": "se-realizaran-nuevas-ediciones-de-la-feria-de-la-economia-social-hecho-en-lanus"
   },
   {
     "titulo": "LLEGA UN NUEVO OPERATIVO DE \"SÁBADOS DE SALUD EN EL BARRIO\" A MONTE CHINGOLO",
